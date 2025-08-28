@@ -1,7 +1,8 @@
-
 <!DOCTYPE html>
 
 <html lang="en">
+
+
 
 <head>
 
@@ -13,25 +14,19 @@
 
 
 
-  <!-- CSS -->
-
   <link rel="stylesheet" href="style.css?v=2" />
-
-
-
-  <!-- Favicon من مجلد image/ -->
 
   <link rel="icon" type="image/svg+xml" href="image/favicon.svg?v=2" />
 
 </head>
+
+
 
 <body>
 
   <div class="topline"></div>
 
 
-
-  <!-- NAV -->
 
   <nav class="nav">
 
@@ -44,8 +39,6 @@
         <span class="wordmark">PorchMe</span>
 
       </a>
-
-
 
       <div class="nav-links">
 
@@ -66,8 +59,6 @@
   </nav>
 
 
-
-  <!-- HERO -->
 
   <header id="top" class="hero">
 
@@ -99,8 +90,6 @@
 
 
 
-  <!-- WHAT WE DO -->
-
   <section id="services" class="section wood">
 
     <div class="wrap">
@@ -124,8 +113,6 @@
   </section>
 
 
-
-  <!-- PROCESS -->
 
   <section id="process" class="section">
 
@@ -151,7 +138,7 @@
 
 
 
-  <!-- GALLERY (حدّث المسارات لاحقاً لصورك الحقيقية) -->
+  <!-- ===== GALLERY SECTION (Dynamic) ===== -->
 
   <section id="gallery" class="section wood">
 
@@ -159,23 +146,17 @@
 
       <h2>Recent Work</h2>
 
-      <div class="gallery">
+      <section id="recent-work"
 
-        <img src="image/sample1.jpg" alt="Porch example 1" loading="lazy">
+               style="display:grid;gap:16px;grid-template-columns:repeat(auto-fill,minmax(260px,1fr))">
 
-        <img src="image/sample2.jpg" alt="Porch example 2" loading="lazy">
-
-        <img src="image/sample3.jpg" alt="Porch example 3" loading="lazy">
-
-      </div>
+      </section>
 
     </div>
 
   </section>
 
 
-
-  <!-- QUOTE -->
 
   <section id="quote" class="section">
 
@@ -198,8 +179,6 @@
   </section>
 
 
-
-  <!-- CONTACT -->
 
   <section id="contact" class="section">
 
@@ -229,8 +208,6 @@
 
 
 
-  <!-- FOOTER -->
-
   <footer class="footer">
 
     <div class="wrap">
@@ -242,6 +219,68 @@
     </div>
 
   </footer>
+
+
+
+  <!-- ===== Script to Load Gallery Dynamically ===== -->
+
+  <script>
+
+    const SHEET_JSON_URL = "https://script.google.com/macros/s/AKfycbw0N3eKY62Z4q8UnH0FEhRmi3_7QGuwclHtsU0IgB_mLbWDHW2cnpp64LBW7F6Gnq3/exec";
+
+
+
+    async function loadGallery(){
+
+      try{
+
+        const res = await fetch(SHEET_JSON_URL + "?t=" + Date.now(), { cache:"no-store" });
+
+        const items = await res.json();
+
+        const c = document.getElementById('recent-work');
+
+
+
+        if(!Array.isArray(items) || items.length === 0){
+
+          c.innerHTML = '<p style="opacity:.85">No images yet.</p>'; 
+
+          return;
+
+        }
+
+
+
+        c.innerHTML = items.reverse().map(it => `
+
+          <figure style="border:1px solid rgba(255,255,255,.12);padding:10px;border-radius:12px;margin:0;background:rgba(255,255,255,.03)">
+
+            <img src="${it.image_url}" alt="${it.title||'Porch image'}"
+
+                 loading="lazy" style="width:100%;border-radius:10px;display:block;aspect-ratio:16/9;object-fit:cover">
+
+            ${it.title ? `<figcaption style="margin-top:8px;opacity:.9">${it.title}</figcaption>` : ``}
+
+          </figure>
+
+        `).join('');
+
+      }catch(e){
+
+        console.error(e);
+
+        document.getElementById('recent-work').innerHTML = '<p style="opacity:.85">Couldn’t load images.</p>';
+
+      }
+
+    }
+
+
+
+    loadGallery();
+
+  </script>
 
 </body>
 
