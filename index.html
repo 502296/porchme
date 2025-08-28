@@ -1,307 +1,190 @@
-<!DOCTYPE html>
 
-<html lang="en">
+:root{
 
-<head>
+  --royal-blue:#0b1c3f;
 
-  <meta charset="utf-8" />
+  --royal-blue-2:#122655;
 
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  --silver:#c8d2e2;
 
-  <title>PorchMe – Royal Porch Design</title>
+  --silver-mid:#a0acc2;
 
+  --cream:#eef1f6;
 
+  --ink:#0f1320;
 
-  <!-- CSS -->
+  --radius:14px;
 
-  <link rel="stylesheet" href="style.css" />
+  --shadow:0 12px 28px rgba(0,0,0,.25);
 
+}
 
+*{box-sizing:border-box}
 
-  <!-- Favicon (يعمل فوراً عبر SVG data URI) -->
+body{
 
-  <link rel="icon" type="image/svg+xml"
+  margin:0;
 
-        href='data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 108 108"><defs><radialGradient id="S" cx="35%" cy="35%" r="70%"><stop offset="0%" stop-color="%23c8d2e2"/><stop offset="100%" stop-color="%23a0acc2"/></radialGradient></defs><circle cx="54" cy="54" r="52" fill="url(%23S)"/><circle cx="54" cy="54" r="48" fill="none" stroke="rgba(255,255,255,.65)" stroke-width="2"/><g transform="translate(54,20)"><path d="M-16 12 L-8 0 L0 10 L8 0 L16 12 Z" fill="%23d4af37" stroke="%23b8860b" stroke-width="1"/><circle cx="-8" cy="0" r="1.8" fill="%23ffe08a"/><circle cx="0" cy="10" r="1.8" fill="%23ffe08a"/><circle cx="8" cy="0" r="1.8" fill="%23ffe08a"/></g><g fill="%230b1c3f" transform="translate(0,10)"><polygon points="24,46 84,46 54,22"/><rect x="24" y="46" width="60" height="4"/><rect x="32" y="50" width="10" height="32" rx="1.5"/><rect x="66" y="50" width="10" height="32" rx="1.5"/><rect x="24" y="82" width="60" height="4"/></g></svg>' />
+  background:linear-gradient(180deg,var(--royal-blue),var(--royal-blue-2));
 
+  color:var(--cream);
 
+  font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial;
 
-  <!-- (اختياري) لو رفعت PNGs، فعّل الروابط أدناه واحذف data-uri بالأعلى
+  line-height:1.6;
 
-  <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32.png">
+}
 
-  <link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16.png">
+h1,h2,h3{color:var(--silver);font-family:Georgia,serif}
 
-  <link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png">
 
-  <link rel="manifest" href="site.webmanifest">
 
-  -->
+/* خط فضي علوي */
 
-</head>
+.topline{height:6px;background:linear-gradient(90deg,var(--silver),var(--silver-mid),var(--silver))}
 
-<body>
 
-  <div class="topline"></div>
 
+/* NAV */
 
+.nav{position:sticky;top:0;z-index:1000;backdrop-filter:saturate(120%) blur(8px);
 
-  <!-- NAV -->
+  background:rgba(10,20,45,.70);border-bottom:1px solid rgba(200,210,226,.35);
 
-  <nav class="nav">
+  box-shadow:inset 0 -1px 0 rgba(200,210,226,.25)}
 
-    <div class="wrap">
+.nav .wrap{max-width:1160px;margin:auto;display:flex;align-items:center;gap:18px;padding:14px 18px}
 
-      <a class="brand" href="#top" aria-label="PorchMe Home">
+.brand{display:flex;align-items:center;gap:12px;text-decoration:none;color:var(--silver)}
 
-        <!-- الشعار الملكي (SVG مدمج) -->
+.wordmark{font-size:1.35rem;font-weight:800;letter-spacing:.4px}
 
-        <svg class="royal-logo" viewBox="0 0 108 108" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+.royal-logo{width:44px;height:44px;flex:0 0 44px}
 
-          <defs>
+.nav-links{margin-left:auto;display:flex;gap:8px;flex-wrap:wrap}
 
-            <radialGradient id="S2" cx="35%" cy="35%" r="70%">
+.nav a{color:var(--cream);text-decoration:none;opacity:.9;padding:8px 10px;border-radius:8px}
 
-              <stop offset="0%" stop-color="#c8d2e2"/><stop offset="100%" stop-color="#a0acc2"/>
+.nav a:hover{background:rgba(200,210,226,.12);opacity:1}
 
-            </radialGradient>
 
-          </defs>
 
-          <circle cx="54" cy="54" r="52" fill="url(#S2)"/>
+@media (min-width:880px){.wordmark{font-size:1.5rem}.royal-logo{width:50px;height:50px}}
 
-          <circle cx="54" cy="54" r="48" fill="none" stroke="rgba(255,255,255,.65)" stroke-width="2"/>
 
-          <g transform="translate(54,20)">
 
-            <path d="M-16 12 L-8 0 L0 10 L8 0 L16 12 Z" fill="#d4af37" stroke="#b8860b" stroke-width="1"/>
+/* HERO مع إطار فضي */
 
-            <circle cx="-8" cy="0" r="1.8" fill="#ffe08a"/>
+.hero{padding:92px 18px 72px;
 
-            <circle cx="0" cy="10" r="1.8" fill="#ffe08a"/>
+  background:radial-gradient(1500px 500px at 50% -200px, rgba(200,210,226,.12), transparent 55%);
 
-            <circle cx="8" cy="0" r="1.8" fill="#ffe08a"/>
+  border-top:1px solid rgba(200,210,226,.25); border-bottom:1px solid rgba(200,210,226,.25)}
 
-          </g>
+.hero .wrap{max-width:1160px;margin:auto}
 
-          <g fill="#0b1c3f" transform="translate(0,10)">
+.kicker{color:var(--silver);text-transform:uppercase;letter-spacing:2px;font-weight:700;font-size:.85rem}
 
-            <polygon points="24,46 84,46 54,22" />
+h1{margin:0;font-size:clamp(32px,5.2vw,54px)}
 
-            <rect x="24" y="46" width="60" height="4" />
+.lead{max-width:760px;color:#e9edf5}
 
-            <rect x="32" y="50" width="10" height="32" rx="1.5" />
+.btns{display:flex;gap:14px;flex-wrap:wrap;margin-top:6px}
 
-            <rect x="66" y="50" width="10" height="32" rx="1.5" />
 
-            <rect x="24" y="82" width="60" height="4" />
 
-          </g>
+/* BUTTONS */
 
-        </svg>
+.btn{display:inline-flex;align-items:center;justify-content:center;padding:12px 18px;border-radius:999px;
 
-        <span class="wordmark">PorchMe</span>
+  text-decoration:none;font-weight:700;box-shadow:var(--shadow);transition:.3s}
 
-      </a>
+.btn-gold{color:#fff;background:linear-gradient(180deg,#d4af37,#b8860b);border:1px solid rgba(255,215,0,.6)}
 
+.btn-gold:hover{filter:brightness(1.08);transform:translateY(-3px)}
 
+.btn-silver{color:var(--ink);background:linear-gradient(180deg,var(--silver),var(--silver-mid));border:1px solid rgba(200,210,226,.6)}
 
-      <div class="nav-links">
+.btn-silver:hover{filter:brightness(1.06);transform:translateY(-3px)}
 
-        <a href="#services">Services</a>
+.btn-outline{color:var(--silver);border:1px solid rgba(200,210,226,.5);background:rgba(255,255,255,.04)}
 
-        <a href="#process">Process</a>
+.btn-outline:hover{background:rgba(200,210,226,.12);transform:translateY(-2px)}
 
-        <a href="#gallery">Gallery</a>
 
-        <a href="#quote">Get a Quote</a>
 
-        <a href="tel:+15022968168" class="btn btn-outline">Call: (502) 296-8168</a>
+/* SECTIONS */
 
-      </div>
+.section{padding:64px 18px}.section .wrap{max-width:1160px;margin:auto}
 
-    </div>
+.section h2{margin:0 0 22px;font-size:clamp(26px,3.6vw,38px)}
 
-  </nav>
 
 
+/* CARDS */
 
-  <!-- HERO -->
+.grid{display:grid;gap:18px;grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}
 
-  <header id="top" class="hero">
+.card{background:rgba(255,255,255,.03);border:1px solid rgba(200,210,226,.25);border-radius:16px;padding:22px;
 
-    <div class="wrap">
+  box-shadow:0 10px 18px rgba(0,0,0,.25)}
 
-      <div class="kicker">ROYAL PORCH CRAFT</div>
+.card:hover{border-color:var(--silver);transform:translateY(-4px)}
 
-      <h1>Build a Porch You’ll Love</h1>
 
-      <p class="lead">
 
-        Premium porch design & craftsmanship—stable structure, code-compliant anchors,
+/* TIMELINE */
 
-        and a long-lasting royal finish tailored to your home.
+.timeline{display:grid;gap:14px}
 
-      </p>
+.step{padding:16px;border-left:3px solid var(--silver);background:rgba(255,255,255,.03);border-radius:10px}
 
-      <div class="btns">
 
-        <a href="#quote" class="btn btn-gold">Book a Free Visit</a>
 
-        <a href="#gallery" class="btn btn-silver">See Recent Work</a>
+/* GALLERY */
 
-      </div>
+.gallery{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(200px,1fr))}
 
-    </div>
+.gallery img{width:100%;height:220px;object-fit:cover;border-radius:12px;border:1px solid rgba(200,210,226,.18);
 
-  </header>
+  box-shadow:0 8px 18px rgba(0,0,0,.25)}
 
 
 
-  <!-- WHAT WE DO -->
+/* WOOD SECTIONS (ارفع صورتك إن أردت) */
 
-  <section id="services" class="section wood">
+.wood{
 
-    <div class="wrap">
+  background:linear-gradient(180deg, rgba(12,24,52,.70), rgba(12,24,52,.82));
 
-      <h2>What We Do</h2>
+  border-top:1px solid rgba(200,210,226,.18);
 
-      <div class="grid">
+  border-bottom:1px solid rgba(200,210,226,.18);
 
-        <div class="card"><h3>Custom Design</h3><p>From classic Southern porches to modern lines—tailored to your home and lifestyle.</p></div>
+}
 
-        <div class="card"><h3>Quality Materials</h3><p>Pressure-treated lumber, composite decking options, and weather-ready finishes.</p></div>
 
-        <div class="card"><h3>Permits & Safety</h3><p>We handle approvals and build to local codes for long-lasting safety and comfort.</p></div>
 
-        <div class="card"><h3>Transparent Quotes</h3><p>Clear scope, timeline, and cost—no surprises. We keep you updated at each step.</p></div>
+/* FORM */
 
-      </div>
+.form{display:grid;gap:12px;grid-template-columns:repeat(12,1fr)}
 
-    </div>
+.input,.textarea{grid-column:span 12;padding:12px 14px;border-radius:12px;border:1px solid rgba(200,210,226,.35);
 
-  </section>
+  background:rgba(255,255,255,.06);color:#fff;outline:none}
 
+@media(min-width:720px){.span-6{grid-column:span 6}}
 
+.textarea{min-height:120px;resize:vertical}
 
-  <!-- PROCESS -->
 
-  <section id="process" class="section">
 
-    <div class="wrap">
+/* FOOTER */
 
-      <h2>How It Works</h2>
+.footer{padding:28px 18px;border-top:1px solid rgba(200,210,226,.22);background:#0b1c3f}
 
-      <div class="timeline">
+.footer .wrap{max-width:1160px;margin:auto;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px}
 
-        <div class="step"><strong>Free on-site visit</strong><div>Measurements & style discussion right at your home.</div></div>
+.footer small{color:#e9edf5;opacity:.95}
 
-        <div class="step"><strong>Design & Quote</strong><div>Material options, scope, and timeline—clearly documented.</div></div>
-
-        <div class="step"><strong>Build & Finishing</strong><div>Quality build with paint/stain and weather protection.</div></div>
-
-        <div class="step"><strong>Final Handover</strong><div>Walkthrough, cleanup, and care tips for a porch that lasts.</div></div>
-
-      </div>
-
-    </div>
-
-  </section>
-
-
-
-  <!-- GALLERY (ضع صورك الحقيقية مكان الـsrc) -->
-
-  <section id="gallery" class="section wood">
-
-    <div class="wrap">
-
-      <h2>Recent Work</h2>
-
-      <div class="gallery">
-
-        <img src="images/sample1.jpg" alt="Classic front porch with painted railings" loading="lazy">
-
-        <img src="images/sample2.jpg" alt="Composite decking with modern lines" loading="lazy">
-
-        <img src="images/sample3.jpg" alt="Covered porch with steps and columns" loading="lazy">
-
-      </div>
-
-    </div>
-
-  </section>
-
-
-
-  <!-- QUOTE -->
-
-  <section id="quote" class="section">
-
-    <div class="wrap">
-
-      <h2>Get a Free Visit & Quote</h2>
-
-      <p class="lead">We’ll visit your home, take measurements, discuss style and materials, then send a clear, honest quote.</p>
-
-      <div class="btns">
-
-        <a class="btn btn-gold" href="#contact">Request Now</a>
-
-        <a class="btn btn-outline" href="tel:+15022968168">Call (502) 296-8168</a>
-
-      </div>
-
-    </div>
-
-  </section>
-
-
-
-  <!-- CONTACT -->
-
-  <section id="contact" class="section">
-
-    <div class="wrap">
-
-      <h2>Contact</h2>
-
-      <form class="form" action="#" method="post">
-
-        <input class="input span-6" type="text" name="name" placeholder="Full Name" required>
-
-        <input class="input span-6" type="tel" name="phone" placeholder="Phone" required>
-
-        <input class="input span-6" type="email" name="email" placeholder="Email">
-
-        <input class="input span-6" type="text" name="address" placeholder="Address">
-
-        <textarea class="textarea" name="message" placeholder="Tell us about your porch (size, style, materials)"></textarea>
-
-        <button class="btn btn-gold" style="grid-column:span 12; justify-self:start">Send</button>
-
-      </form>
-
-    </div>
-
-  </section>
-
-
-
-  <!-- FOOTER -->
-
-  <footer class="footer">
-
-    <div class="wrap">
-
-      <small>© PorchMe. Crafted with pride.</small>
-
-      <small class="royal-signature">Royal Porch Design • Louisville, KY</small>
-
-    </div>
-
-  </footer>
-
-</body>
-
-</html>
+.royal-signature{color:var(--silver);font-size:14px;letter-spacing:1px}
