@@ -9,59 +9,13 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-  <title>PorchMe – Royal Porch Design & Craftsmanship</title>
+  <title>PorchMe – Royal Porch Design</title>
 
 
 
-  <!-- ربط CSS الأزرق + الفضّي -->
+  <!-- ربط ملف التنسيقات -->
 
   <link rel="stylesheet" href="style_silver.css" />
-
-
-
-  <!-- تحسينات سريعة للزر الذهبي وتكبير العلامة -->
-
-  <style>
-
-    .btn-gold{
-
-      color:#fff;
-
-      background:linear-gradient(180deg,#d4af37,#b8860b);
-
-      border:1px solid rgba(255,215,0,.6);
-
-      box-shadow:0 6px 14px rgba(212,175,55,.45);
-
-      transition:all .3s ease;
-
-    }
-
-    .btn-gold:hover{
-
-      filter:brightness(1.08);
-
-      transform:translateY(-3px);
-
-      box-shadow:0 8px 18px rgba(212,175,55,.55);
-
-    }
-
-    .brand{gap:14px}
-
-    .brand .wordmark{
-
-      font-size:1.35rem;font-weight:800;letter-spacing:.4px;color:var(--silver);
-
-      display:flex;align-items:center;gap:12px;text-decoration:none
-
-    }
-
-    .brand .royal-logo{width:44px;height:44px;flex:0 0 44px;display:block}
-
-    @media (min-width:880px){.brand .wordmark{font-size:1.5rem}.brand .royal-logo{width:50px;height:50px}}
-
-  </style>
 
 </head>
 
@@ -73,13 +27,13 @@
 
   <!-- NAV -->
 
-  <nav class="nav" aria-label="Primary">
+  <nav class="nav">
 
     <div class="wrap">
 
-      <!-- الشعار الملكي بجانب الاسم (SVG داخلي لضمان عمله بدون ملفات إضافية) -->
+      <a class="brand wordmark" href="#top">
 
-      <a class="brand wordmark" href="#top" aria-label="PorchMe Home">
+        <!-- شعار SVG داخلي -->
 
         <svg class="royal-logo" viewBox="0 0 108 108" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
 
@@ -113,7 +67,7 @@
 
           </g>
 
-          <!-- جملون + عمودين (أزرق ملكي) -->
+          <!-- Porch -->
 
           <g fill="#0b1c3f" transform="translate(0,10)">
 
@@ -191,45 +145,21 @@
 
   <!-- WHAT WE DO -->
 
-  <section id="services" class="section wood" aria-labelledby="whatwedo-title">
+  <section id="services" class="section wood">
 
     <div class="wrap">
 
-      <h2 id="whatwedo-title">What We Do</h2>
+      <h2>What We Do</h2>
 
       <div class="grid">
 
-        <div class="card">
+        <div class="card"><h3>Custom Design</h3><p>From classic Southern porches to modern lines—tailored to your home and lifestyle.</p></div>
 
-          <h3>Custom Design</h3>
+        <div class="card"><h3>Quality Materials</h3><p>Pressure-treated lumber, composite decking options, and weather-ready finishes.</p></div>
 
-          <p>From classic Southern porches to modern lines—tailored to your home and lifestyle.</p>
+        <div class="card"><h3>Permits & Safety</h3><p>We handle approvals and build to local codes for long-lasting safety and comfort.</p></div>
 
-        </div>
-
-        <div class="card">
-
-          <h3>Quality Materials</h3>
-
-          <p>Pressure-treated lumber, composite decking options, and weather-ready finishes.</p>
-
-        </div>
-
-        <div class="card">
-
-          <h3>Permits & Safety</h3>
-
-          <p>We handle approvals and build to local codes for long-lasting safety and comfort.</p>
-
-        </div>
-
-        <div class="card">
-
-          <h3>Transparent Quotes</h3>
-
-          <p>Clear scope, timeline, and cost—no surprises. We keep you updated at each step.</p>
-
-        </div>
+        <div class="card"><h3>Transparent Quotes</h3><p>Clear scope, timeline, and cost—no surprises. We keep you updated at each step.</p></div>
 
       </div>
 
@@ -241,11 +171,11 @@
 
   <!-- PROCESS -->
 
-  <section id="process" class="section" aria-labelledby="process-title">
+  <section id="process" class="section">
 
     <div class="wrap">
 
-      <h2 id="process-title">How It Works</h2>
+      <h2>How It Works</h2>
 
       <div class="timeline">
 
@@ -267,19 +197,19 @@
 
   <!-- GALLERY -->
 
-  <section id="gallery" class="section wood" aria-labelledby="gallery-title">
+  <section id="gallery" class="section wood">
 
     <div class="wrap">
 
-      <h2 id="gallery-title">Recent Work</h2>
+      <h2>Recent Work</h2>
 
       <div class="gallery">
 
-        <img src="images/sample1.jpg" alt="Classic front porch with painted railings" loading="lazy">
+        <img src="images/sample1.jpg" alt="Porch example 1" loading="lazy">
 
-        <img src="images/sample2.jpg" alt="Composite decking with modern lines" loading="lazy">
+        <img src="images/sample2.jpg" alt="Porch example 2" loading="lazy">
 
-        <img src="images/sample3.jpg" alt="Covered porch with steps and columns" loading="lazy">
+        <img src="images/sample3.jpg" alt="Porch example 3" loading="lazy">
 
       </div>
 
@@ -291,11 +221,11 @@
 
   <!-- QUOTE -->
 
-  <section id="quote" class="section" aria-labelledby="quote-title">
+  <section id="quote" class="section">
 
     <div class="wrap">
 
-      <h2 id="quote-title">Get a Free Visit & Quote</h2>
+      <h2>Get a Free Visit & Quote</h2>
 
       <p class="lead">We’ll visit your home, take measurements, discuss style and materials, then send a clear, honest quote.</p>
 
@@ -315,37 +245,27 @@
 
   <!-- CONTACT -->
 
-  <section id="contact" class="section" aria-labelledby="contact-title">
+  <section id="contact" class="section">
 
     <div class="wrap">
 
-      <h2 id="contact-title">Contact</h2>
+      <h2>Contact</h2>
 
       <form class="form" action="#" method="post">
 
-        <input class="input span-6" type="text" name="name" placeholder="Full Name" required>
+        <input class="input span-6" type="text" placeholder="Full Name" required>
 
-        <input class="input span-6" type="tel" name="phone" placeholder="Phone" required>
+        <input class="input span-6" type="tel" placeholder="Phone" required>
 
-        <input class="input span-6" type="email" name="email" placeholder="Email">
+        <input class="input span-6" type="email" placeholder="Email">
 
-        <input class="input span-6" type="text" name="address" placeholder="Address">
+        <input class="input span-6" type="text" placeholder="Address">
 
-        <textarea class="textarea" name="message" placeholder="Tell us about your porch (size, style, materials)"></textarea>
+        <textarea class="textarea" placeholder="Tell us about your porch (size, style, materials)"></textarea>
 
-        <button class="btn btn-gold" style="grid-column:span 12; justify-self:start">Send</button>
+        <button class="btn btn-gold">Send</button>
 
       </form>
-
-      <p style="margin-top:12px; color:#eae7df">
-
-        Prefer WhatsApp or Call?
-
-        <a href="tel:+15022968168" class="btn btn-outline" style="margin-left:8px">Call (502) 296-8168</a>
-
-        <a href="https://wa.me/15022968168" class="btn btn-outline">WhatsApp</a>
-
-      </p>
 
     </div>
 
@@ -355,7 +275,7 @@
 
   <!-- FOOTER -->
 
-  <footer class="footer" role="contentinfo">
+  <footer class="footer">
 
     <div class="wrap">
 
