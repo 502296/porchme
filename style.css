@@ -59,7 +59,9 @@ h1,h2,h3{color:var(--silver);font-family:Georgia,serif}
 
 .wordmark{font-size:1.35rem;font-weight:800;letter-spacing:.4px}
 
-.royal-logo{width:44px;height:44px;flex:0 0 44px}
+.royal-logo{width:50px;height:50px;display:block;object-fit:contain}
+
+@media (max-width:480px){.royal-logo{width:40px;height:40px}}
 
 .nav-links{margin-left:auto;display:flex;gap:8px;flex-wrap:wrap}
 
@@ -67,7 +69,7 @@ h1,h2,h3{color:var(--silver);font-family:Georgia,serif}
 
 .nav a:hover{background:rgba(200,210,226,.12);opacity:1}
 
-@media (min-width:880px){.wordmark{font-size:1.5rem}.royal-logo{width:50px;height:50px}}
+@media (min-width:880px){.wordmark{font-size:1.5rem}}
 
 
 
