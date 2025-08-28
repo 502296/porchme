@@ -1,4 +1,3 @@
-
 <!doctype html>
 
 <html lang="en">
@@ -19,17 +18,17 @@
 
     .wrap{max-width:560px;margin:40px auto;padding:24px;border:1px solid rgba(255,255,255,.15);border-radius:12px;background:rgba(255,255,255,.03)}
 
+    h2{margin-top:0}
+
     button{padding:12px 18px;border-radius:10px;border:1px solid rgba(255,255,255,.2);background:#1b396b;color:#fff;font-weight:600;cursor:pointer}
 
-    input,textarea{width:100%;padding:12px;border-radius:10px;border:1px solid rgba(255,255,255,.2);background:rgba(255,255,255,.06);color:#fff}
+    input{width:100%;padding:12px;border-radius:10px;border:1px solid rgba(255,255,255,.2);background:rgba(255,255,255,.06);color:#fff}
 
     .row{margin:12px 0}
 
-    .thumb{margin-top:14px}
-
     .thumb img{max-width:100%;border-radius:10px;border:1px solid rgba(255,255,255,.15)}
 
-    .note{opacity:.8;font-size:.9rem;margin-top:8px}
+    .note{opacity:.85;font-size:.9rem;margin-top:8px}
 
   </style>
 
@@ -63,7 +62,7 @@
 
     <button id="uploadBtn">Upload Image</button>
 
-    <div class="note">Allowed: JPG/PNG/WebP. Large files will be auto-optimized.</div>
+    <div class="note">JPG/PNG/WebP. Large files will be auto-optimized.</div>
 
   </div>
 
@@ -77,15 +76,17 @@
 
 <script>
 
-  // ==== CONFIG (بدّل القيم بما يخصك) ====
+  // === CONFIG – بدّل القيم حسب حسابك في Cloudinary ===
 
-  const CLOUD_NAME = "YOUR_CLOUD_NAME";
+  const CLOUD_NAME = "YOUR_CLOUD_NAME";        // مثال: porchme
 
-  const UPLOAD_PRESET = "porchme_unsigned";  // من Cloudinary
+  const UPLOAD_PRESET = "porchme_unsigned";    // Unsigned preset من Cloudinary
 
-  const SHEET_WEBAPP_URL = "YOUR_APPS_SCRIPT_WEBAPP_URL"; // سننشئه بالأسفل
+  // رابط الويب-آب الذي أعطيتني إياه:
 
-  const ADMIN_PASSWORD = "PorchMe2025"; // غيّرها فوراً (وللاحتراف: Basic Auth/JWT)
+  const SHEET_WEBAPP_URL = "https://script.google.com/macros/s/AKfycbw0N3eKY62Z4q8UnH0FEhRmi3_7jQGuwclHtsU0IgB_mLbWDHW2cnpp64LBW7F6Gnq3/exec";
+
+  const ADMIN_PASSWORD = "PorchMe2025";        // غيّرها فوراً (لاحقاً نعمل Token أقوى)
 
 
 
@@ -99,25 +100,17 @@
 
 
 
-  function isAuthed(){
-
-    return passInput.value === ADMIN_PASSWORD;
-
-  }
+  function isAuthed(){ return passInput.value === ADMIN_PASSWORD; }
 
 
 
   uploadBtn.addEventListener('click', () => {
 
-    if(!isAuthed()){
+    if(!isAuthed()){ alert("Wrong password."); return; }
 
-      alert("Wrong password.");
 
-      return;
 
-    }
-
-    const myWidget = cloudinary.createUploadWidget({
+    const widget = cloudinary.createUploadWidget({
 
       cloudName: CLOUD_NAME,
 
@@ -127,11 +120,9 @@
 
       multiple: false,
 
-      folder: "porchme/gallery",     // اختياري: يرتب الصور داخل فولدر
+      folder: "porchme/gallery",
 
-      maxFileSize: 10_000_000,       // 10MB
-
-      cropping: false,
+      maxFileSize: 10_000_000,
 
       showPoweredBy: false
 
@@ -143,8 +134,6 @@
 
         preview.innerHTML = `<img src="${url}" alt="uploaded">`;
 
-        // سجّل الرابط في Google Sheet
-
         try {
 
           await fetch(SHEET_WEBAPP_URL, {
@@ -155,7 +144,7 @@
 
             body: JSON.stringify({
 
-              secret: ADMIN_PASSWORD,              // بسيط – استبدله بـ token لاحقاً
+              secret: ADMIN_PASSWORD,
 
               image_url: url,
 
@@ -167,13 +156,13 @@
 
           });
 
-          alert("Uploaded & saved ✅ – now visible on Gallery page.");
+          alert("Uploaded & saved ✅ – now visible on Gallery.");
 
           titleInput.value = "";
 
         } catch(e){
 
-          alert("Uploaded to Cloudinary, but failed to save to list.");
+          alert("Uploaded to Cloudinary, but saving to list failed.");
 
           console.error(e);
 
@@ -185,7 +174,7 @@
 
 
 
-    myWidget.open();
+    widget.open();
 
   });
 
