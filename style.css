@@ -23,13 +23,31 @@
 
 *{box-sizing:border-box}
 
-body{margin:0;background:linear-gradient(180deg,var(--royal-blue),var(--royal-blue-2));color:var(--cream);
+body{
 
-  font-family:ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Arial;line-height:1.6}
+  margin:0;
+
+  background:linear-gradient(180deg,var(--royal-blue),var(--royal-blue-2));
+
+  color:var(--cream);
+
+  font-family:ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Arial;
+
+  line-height:1.6;
+
+}
 
 h1,h2,h3{color:var(--silver);font-family:ui-serif,Georgia,Times,serif}
 
+
+
+/* Topline */
+
 .topline{height:6px;background:linear-gradient(90deg,var(--silver),var(--silver-mid),var(--silver));}
+
+
+
+/* Navbar */
 
 .nav{position:sticky;top:0;z-index:1000;backdrop-filter:saturate(120%) blur(8px);
 
@@ -39,19 +57,15 @@ h1,h2,h3{color:var(--silver);font-family:ui-serif,Georgia,Times,serif}
 
 .brand{display:flex;align-items:center;gap:10px;text-decoration:none}
 
-.brand .logo{width:34px;height:34px;border-radius:50%;overflow:hidden;
-
-  background:radial-gradient(circle at 30% 30%, var(--silver), var(--silver-mid));
-
-  box-shadow:0 0 0 2px rgba(200,210,226,.5),0 4px 14px rgba(120,130,150,.35);display:grid;place-items:center}
-
-.brand .logo img{width:100%;height:100%;object-fit:cover}
-
 .brand span{font-weight:800;letter-spacing:.3px;color:var(--silver)}
 
 .nav a{color:var(--cream);text-decoration:none;opacity:.9;padding:8px 10px;border-radius:8px}
 
 .nav a:hover{background:rgba(200,210,226,.12);opacity:1}
+
+
+
+/* Hero */
 
 .hero{padding:92px 18px 72px;
 
@@ -67,6 +81,10 @@ h1{margin:0;font-size:clamp(32px,5.2vw,54px)}
 
 .btns{display:flex;gap:14px;flex-wrap:wrap;margin-top:6px}
 
+
+
+/* Buttons */
+
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:12px 18px;border-radius:999px;
 
   text-decoration:none;font-weight:700;box-shadow:var(--shadow);transform:translateZ(0);transition:all .3s ease}
@@ -81,15 +99,27 @@ h1{margin:0;font-size:clamp(32px,5.2vw,54px)}
 
 .btn-outline:hover{background:rgba(200,210,226,.12);transform:translateY(-2px)}
 
+
+
+/* Sections */
+
 .section{padding:64px 18px}.section .wrap{max-width:1160px;margin:auto}
 
 .section h2{margin:0 0 22px;font-size:clamp(26px,3.6vw,38px)}
+
+
+
+/* Cards */
 
 .grid{display:grid;gap:18px;grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}
 
 .card{background:rgba(255,255,255,.03);border:1px solid rgba(200,210,226,.2);border-radius:var(--radius);padding:20px;transition:all .3s ease}
 
 .card:hover{border-color:var(--silver);transform:translateY(-4px);box-shadow:0 10px 18px rgba(0,0,0,.4)}
+
+
+
+/* Timeline */
 
 .timeline{display:grid;gap:14px;counter-reset:step}
 
@@ -101,17 +131,33 @@ h1{margin:0;font-size:clamp(32px,5.2vw,54px)}
 
   box-shadow:0 4px 12px rgba(120,130,150,.35)}
 
+
+
+/* Gallery */
+
 .gallery{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(200px,1fr))}
 
 .gallery img{width:100%;height:220px;object-fit:cover;border-radius:12px;border:1px solid rgba(200,210,226,.18);
 
   box-shadow:0 8px 18px rgba(0,0,0,.25)}
 
-.wood{background:linear-gradient(180deg, rgba(12,24,52,.70), rgba(12,24,52,.82)), url('images/wood-grain-silver.jpg');
+
+
+/* Wood sections (تأكد من وجود الصورة في المسار أدناه) */
+
+.wood{
+
+  background:linear-gradient(180deg, rgba(12,24,52,.70), rgba(12,24,52,.82)), url('images/wood-grain-silver.jpg');
 
   background-size:cover;background-position:center;border-top:1px solid rgba(200,210,226,.18);
 
-  border-bottom:1px solid rgba(200,210,226,.18);box-shadow: inset 0 30px 60px rgba(0,0,0,.35)}
+  border-bottom:1px solid rgba(200,210,226,.18);box-shadow: inset 0 30px 60px rgba(0,0,0,.35)
+
+}
+
+
+
+/* Form */
 
 .form{display:grid;gap:12px;grid-template-columns:repeat(12,1fr)}
 
@@ -124,6 +170,10 @@ h1{margin:0;font-size:clamp(32px,5.2vw,54px)}
 @media(min-width:720px){.input.span-6{grid-column:span 6}}
 
 .textarea{min-height:120px;resize:vertical}
+
+
+
+/* Footer */
 
 .footer{padding:28px 18px;border-top:1px solid rgba(200,210,226,.22);
 
