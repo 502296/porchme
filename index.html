@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 
 <html lang="en">
@@ -18,25 +19,9 @@
 
 
 
-  <!-- Favicon (يعمل فوراً عبر SVG data URI) -->
+  <!-- Favicon (من مجلد image/) -->
 
-  <link rel="icon" type="image/svg+xml"
-
-        href='data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 108 108"><defs><radialGradient id="S" cx="35%" cy="35%" r="70%"><stop offset="0%" stop-color="%23c8d2e2"/><stop offset="100%" stop-color="%23a0acc2"/></radialGradient></defs><circle cx="54" cy="54" r="52" fill="url(%23S)"/><circle cx="54" cy="54" r="48" fill="none" stroke="rgba(255,255,255,.65)" stroke-width="2"/><g transform="translate(54,20)"><path d="M-16 12 L-8 0 L0 10 L8 0 L16 12 Z" fill="%23d4af37" stroke="%23b8860b" stroke-width="1"/><circle cx="-8" cy="0" r="1.8" fill="%23ffe08a"/><circle cx="0" cy="10" r="1.8" fill="%23ffe08a"/><circle cx="8" cy="0" r="1.8" fill="%23ffe08a"/></g><g fill="%230b1c3f" transform="translate(0,10)"><polygon points="24,46 84,46 54,22"/><rect x="24" y="46" width="60" height="4"/><rect x="32" y="50" width="10" height="32" rx="1.5"/><rect x="66" y="50" width="10" height="32" rx="1.5"/><rect x="24" y="82" width="60" height="4"/></g></svg>' />
-
-
-
-  <!-- (اختياري) لو رفعت PNGs، فعّل الروابط أدناه واحذف data-uri بالأعلى
-
-  <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32.png">
-
-  <link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16.png">
-
-  <link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png">
-
-  <link rel="manifest" href="site.webmanifest">
-
-  -->
+  <link rel="icon" type="image/svg+xml" href="image/favicon.svg" />
 
 </head>
 
@@ -54,51 +39,9 @@
 
       <a class="brand" href="#top" aria-label="PorchMe Home">
 
-        <!-- الشعار الملكي (SVG مدمج) -->
+        <!-- شعار من الملف الذي رفعته -->
 
-        <svg class="royal-logo" viewBox="0 0 108 108" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-
-          <defs>
-
-            <radialGradient id="S2" cx="35%" cy="35%" r="70%">
-
-              <stop offset="0%" stop-color="#c8d2e2"/><stop offset="100%" stop-color="#a0acc2"/>
-
-            </radialGradient>
-
-          </defs>
-
-          <circle cx="54" cy="54" r="52" fill="url(#S2)"/>
-
-          <circle cx="54" cy="54" r="48" fill="none" stroke="rgba(255,255,255,.65)" stroke-width="2"/>
-
-          <g transform="translate(54,20)">
-
-            <path d="M-16 12 L-8 0 L0 10 L8 0 L16 12 Z" fill="#d4af37" stroke="#b8860b" stroke-width="1"/>
-
-            <circle cx="-8" cy="0" r="1.8" fill="#ffe08a"/>
-
-            <circle cx="0" cy="10" r="1.8" fill="#ffe08a"/>
-
-            <circle cx="8" cy="0" r="1.8" fill="#ffe08a"/>
-
-          </g>
-
-          <g fill="#0b1c3f" transform="translate(0,10)">
-
-            <polygon points="24,46 84,46 54,22" />
-
-            <rect x="24" y="46" width="60" height="4" />
-
-            <rect x="32" y="50" width="10" height="32" rx="1.5" />
-
-            <rect x="66" y="50" width="10" height="32" rx="1.5" />
-
-            <rect x="24" y="82" width="60" height="4" />
-
-          </g>
-
-        </svg>
+        <img src="image/porchme_logo_silliver.svg" alt="PorchMe Logo" class="royal-logo" />
 
         <span class="wordmark">PorchMe</span>
 
@@ -210,7 +153,7 @@
 
 
 
-  <!-- GALLERY (ضع صورك الحقيقية مكان الـsrc) -->
+  <!-- GALLERY (غيّر المسارات لاحقاً لصورك الحقيقية) -->
 
   <section id="gallery" class="section wood">
 
@@ -220,11 +163,11 @@
 
       <div class="gallery">
 
-        <img src="images/sample1.jpg" alt="Classic front porch with painted railings" loading="lazy">
+        <img src="image/sample1.jpg" alt="Porch example 1" loading="lazy">
 
-        <img src="images/sample2.jpg" alt="Composite decking with modern lines" loading="lazy">
+        <img src="image/sample2.jpg" alt="Porch example 2" loading="lazy">
 
-        <img src="images/sample3.jpg" alt="Covered porch with steps and columns" loading="lazy">
+        <img src="image/sample3.jpg" alt="Porch example 3" loading="lazy">
 
       </div>
 
