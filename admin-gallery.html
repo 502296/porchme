@@ -14,21 +14,23 @@
 
   <style>
 
-    body{background:#0e2340;color:#fff;font-family:system-ui,Segoe UI,Roboto,Arial}
+    :root { --card: rgba(255,255,255,.03); --line: rgba(255,255,255,.15); }
 
-    .wrap{max-width:560px;margin:40px auto;padding:24px;border:1px solid rgba(255,255,255,.15);border-radius:12px;background:rgba(255,255,255,.03)}
+    body{background:#0e2340;color:#fff;font-family:system-ui,Segoe UI,Roboto,Arial;margin:0}
 
-    h2{margin-top:0}
+    .wrap{max-width:560px;margin:40px auto;padding:24px;border:1px solid var(--line);border-radius:12px;background:var(--card)}
 
-    button{padding:12px 18px;border-radius:10px;border:1px solid rgba(255,255,255,.2);background:#1b396b;color:#fff;font-weight:600;cursor:pointer}
-
-    input{width:100%;padding:12px;border-radius:10px;border:1px solid rgba(255,255,255,.2);background:rgba(255,255,255,.06);color:#fff}
+    h2{margin:0 0 10px}
 
     .row{margin:12px 0}
 
-    .thumb img{max-width:100%;border-radius:10px;border:1px solid rgba(255,255,255,.15)}
+    input{width:100%;padding:12px;border-radius:10px;border:1px solid rgba(255,255,255,.2);background:rgba(255,255,255,.06);color:#fff}
+
+    button{padding:12px 18px;border-radius:10px;border:1px solid rgba(255,255,255,.2);background:#1b396b;color:#fff;font-weight:600;cursor:pointer}
 
     .note{opacity:.85;font-size:.9rem;margin-top:8px}
+
+    .thumb img{max-width:100%;border-radius:10px;border:1px solid var(--line)}
 
   </style>
 
@@ -36,149 +38,151 @@
 
 <body>
 
-<div class="wrap">
+  <div class="wrap">
 
-  <h2>Admin – Upload to Gallery</h2>
+    <h2>Admin – Upload to Gallery</h2>
 
 
 
-  <div class="row">
+    <div class="row">
 
-    <input id="adminPass" type="password" placeholder="Enter admin password">
+      <input id="adminPass" type="password" placeholder="Enter admin password">
+
+    </div>
+
+
+
+    <div class="row">
+
+      <input id="title" type="text" placeholder="Optional title (e.g., 'Porch example 7')">
+
+    </div>
+
+
+
+    <div class="row">
+
+      <button id="uploadBtn">Upload Image</button>
+
+      <div class="note">JPG/PNG/WebP. Large files will be auto-optimized.</div>
+
+    </div>
+
+
+
+    <div class="thumb" id="preview"></div>
 
   </div>
 
 
 
-  <div class="row">
+  <script>
 
-    <input id="title" type="text" placeholder="Optional title (e.g., 'Porch example 7')">
+    // ===== CONFIG =====
 
-  </div>
+    const CLOUD_NAME       = "dzsear3wr"; // حساب Cloudinary
 
+    const UPLOAD_PRESET    = "porchme_unsigned"; // Unsigned preset
 
+    const SHEET_WEBAPP_URL = "https://script.google.com/macros/s/AKfycbw0N3eKY62Z4q8UnH0FEhRmi3_7jQGuwclHtsU0IgB_mLbWDHW2cnpp64LBW7F6Gnq3/exec";
 
-  <div class="row">
+    const ADMIN_PASSWORD   = "PorchMe2025"; // غيّرها لاحقًا
 
-    <button id="uploadBtn">Upload Image</button>
 
-    <div class="note">JPG/PNG/WebP. Large files will be auto-optimized.</div>
 
-  </div>
+    const passInput = document.getElementById('adminPass');
 
+    const titleInput = document.getElementById('title');
 
+    const preview = document.getElementById('preview');
 
-  <div class="thumb" id="preview"></div>
+    const uploadBtn = document.getElementById('uploadBtn');
 
-</div>
 
 
+    const authed = () => passInput.value === ADMIN_PASSWORD;
 
-<script>
 
-  // === CONFIG – بدّل القيم حسب حسابك في Cloudinary ===
 
-  const CLOUD_NAME = "YOUR_CLOUD_NAME";        // مثال: porchme
+    uploadBtn.addEventListener('click', () => {
 
-  const UPLOAD_PRESET = "porchme_unsigned";    // Unsigned preset من Cloudinary
+      if(!authed()){ alert("Wrong password."); return; }
 
-  // رابط الويب-آب الذي أعطيتني إياه:
 
-  const SHEET_WEBAPP_URL = "https://script.google.com/macros/s/AKfycbw0N3eKY62Z4q8UnH0FEhRmi3_7jQGuwclHtsU0IgB_mLbWDHW2cnpp64LBW7F6Gnq3/exec";
 
-  const ADMIN_PASSWORD = "PorchMe2025";        // غيّرها فوراً (لاحقاً نعمل Token أقوى)
+      const widget = cloudinary.createUploadWidget({
 
+        cloudName: CLOUD_NAME,
 
+        uploadPreset: UPLOAD_PRESET,
 
-  const passInput = document.getElementById('adminPass');
+        sources: ['local','url','camera'],
 
-  const titleInput = document.getElementById('title');
+        multiple: false,
 
-  const preview = document.getElementById('preview');
+        folder: "porchme/gallery",
 
-  const uploadBtn = document.getElementById('uploadBtn');
+        maxFileSize: 10_000_000,
 
+        showPoweredBy: false
 
+      }, async (error, result) => {
 
-  function isAuthed(){ return passInput.value === ADMIN_PASSWORD; }
+        if (error) { console.error(error); alert("Upload error."); return; }
 
+        if (result && result.event === "success") {
 
+          const url = result.info.secure_url;
 
-  uploadBtn.addEventListener('click', () => {
+          preview.innerHTML = `<img src="${url}" alt="uploaded" loading="lazy">`;
 
-    if(!isAuthed()){ alert("Wrong password."); return; }
 
 
+          try {
 
-    const widget = cloudinary.createUploadWidget({
+            await fetch(SHEET_WEBAPP_URL, {
 
-      cloudName: CLOUD_NAME,
+              method: "POST",
 
-      uploadPreset: UPLOAD_PRESET,
+              headers: {"Content-Type": "application/json", "Cache-Control":"no-cache"},
 
-      sources: ['local','url','camera'],
+              body: JSON.stringify({
 
-      multiple: false,
+                secret: ADMIN_PASSWORD,
 
-      folder: "porchme/gallery",
+                image_url: url,
 
-      maxFileSize: 10_000_000,
+                title: titleInput.value || "",
 
-      showPoweredBy: false
+                created_at: new Date().toISOString()
 
-    }, async (error, result) => {
+              })
 
-      if (!error && result && result.event === "success") {
+            });
 
-        const url = result.info.secure_url;
+            alert("Uploaded & saved ✅ – check Recent Work.");
 
-        preview.innerHTML = `<img src="${url}" alt="uploaded">`;
+            titleInput.value = "";
 
-        try {
+          } catch(e){
 
-          await fetch(SHEET_WEBAPP_URL, {
+            console.error(e);
 
-            method: "POST",
+            alert("Uploaded to Cloudinary, but saving to list failed.");
 
-            headers: {"Content-Type": "application/json"},
-
-            body: JSON.stringify({
-
-              secret: ADMIN_PASSWORD,
-
-              image_url: url,
-
-              title: titleInput.value || "",
-
-              created_at: new Date().toISOString()
-
-            })
-
-          });
-
-          alert("Uploaded & saved ✅ – now visible on Gallery.");
-
-          titleInput.value = "";
-
-        } catch(e){
-
-          alert("Uploaded to Cloudinary, but saving to list failed.");
-
-          console.error(e);
+          }
 
         }
 
-      }
+      });
+
+
+
+      widget.open();
 
     });
 
-
-
-    widget.open();
-
-  });
-
-</script>
+  </script>
 
 </body>
 
