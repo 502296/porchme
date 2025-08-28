@@ -29,7 +29,7 @@ body{
 
   color:var(--cream);
 
-  font-family:system-ui,Segoe UI,Roboto,Arial;
+  font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial;
 
   line-height:1.6;
 
@@ -39,27 +39,45 @@ h1,h2,h3{color:var(--silver);font-family:Georgia,serif}
 
 
 
-.topline{height:6px;background:linear-gradient(90deg,var(--silver),var(--silver-mid),var(--silver));}
+/* خط فضّي علوي */
+
+.topline{height:6px;background:linear-gradient(90deg,var(--silver),var(--silver-mid),var(--silver))}
 
 
+
+/* NAV */
 
 .nav{position:sticky;top:0;z-index:1000;backdrop-filter:saturate(120%) blur(8px);
 
-  background:rgba(10,20,45,.7);border-bottom:1px solid rgba(200,210,226,.25)}
+  background:rgba(10,20,45,.70);border-bottom:1px solid rgba(200,210,226,.35);
 
-.nav .wrap{max-width:1160px;margin:auto;display:flex;align-items:center;gap:28px;padding:14px 18px}
+  box-shadow:inset 0 -1px 0 rgba(200,210,226,.25)}
+
+.nav .wrap{max-width:1160px;margin:auto;display:flex;align-items:center;gap:18px;padding:14px 18px}
+
+.brand{display:flex;align-items:center;gap:12px;text-decoration:none;color:var(--silver)}
+
+.wordmark{font-size:1.35rem;font-weight:800;letter-spacing:.4px}
+
+.royal-logo{width:44px;height:44px;flex:0 0 44px}
+
+.nav-links{margin-left:auto;display:flex;gap:8px;flex-wrap:wrap}
 
 .nav a{color:var(--cream);text-decoration:none;opacity:.9;padding:8px 10px;border-radius:8px}
 
 .nav a:hover{background:rgba(200,210,226,.12);opacity:1}
 
-.brand{display:flex;align-items:center;gap:10px;text-decoration:none;font-weight:700;font-size:1.2rem;color:var(--silver)}
-
-.royal-logo{width:44px;height:44px}
+@media (min-width:880px){.wordmark{font-size:1.5rem}.royal-logo{width:50px;height:50px}}
 
 
 
-.hero{padding:92px 18px 72px;text-align:left}
+/* HERO مع إطار فضّي */
+
+.hero{padding:92px 18px 72px;
+
+  background:radial-gradient(1500px 500px at 50% -200px, rgba(200,210,226,.12), transparent 55%);
+
+  border-top:1px solid rgba(200,210,226,.25); border-bottom:1px solid rgba(200,210,226,.25)}
 
 .hero .wrap{max-width:1160px;margin:auto}
 
@@ -73,19 +91,27 @@ h1{margin:0;font-size:clamp(32px,5.2vw,54px)}
 
 
 
+/* BUTTONS */
+
 .btn{display:inline-flex;align-items:center;justify-content:center;padding:12px 18px;border-radius:999px;
 
   text-decoration:none;font-weight:700;box-shadow:var(--shadow);transition:.3s}
 
-.btn-gold{color:#fff;background:linear-gradient(180deg,#d4af37,#b8860b)}
+.btn-gold{color:#fff;background:linear-gradient(180deg,#d4af37,#b8860b);border:1px solid rgba(255,215,0,.6)}
 
 .btn-gold:hover{filter:brightness(1.08);transform:translateY(-3px)}
 
-.btn-silver{color:var(--ink);background:linear-gradient(180deg,var(--silver),var(--silver-mid))}
+.btn-silver{color:var(--ink);background:linear-gradient(180deg,var(--silver),var(--silver-mid));border:1px solid rgba(200,210,226,.6)}
 
-.btn-outline{color:var(--silver);border:1px solid rgba(200,210,226,.5)}
+.btn-silver:hover{filter:brightness(1.06);transform:translateY(-3px)}
+
+.btn-outline{color:var(--silver);border:1px solid rgba(200,210,226,.5);background:rgba(255,255,255,.04)}
+
+.btn-outline:hover{background:rgba(200,210,226,.12);transform:translateY(-2px)}
 
 
+
+/* SECTIONS */
 
 .section{padding:64px 18px}.section .wrap{max-width:1160px;margin:auto}
 
@@ -93,38 +119,74 @@ h1{margin:0;font-size:clamp(32px,5.2vw,54px)}
 
 
 
+/* CARDS */
+
 .grid{display:grid;gap:18px;grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}
 
-.card{background:rgba(255,255,255,.05);border:1px solid rgba(200,210,226,.2);border-radius:var(--radius);padding:20px}
+.card{background:rgba(255,255,255,.03);border:1px solid rgba(200,210,226,.25);border-radius:16px;padding:22px;
+
+  box-shadow:0 10px 18px rgba(0,0,0,.25)}
 
 .card:hover{border-color:var(--silver);transform:translateY(-4px)}
 
 
 
-.timeline{display:grid;gap:14px;counter-reset:step}
+/* TIMELINE */
+
+.timeline{display:grid;gap:14px}
 
 .step{padding:16px;border-left:3px solid var(--silver);background:rgba(255,255,255,.03);border-radius:10px}
 
 
 
+/* GALLERY */
+
 .gallery{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(200px,1fr))}
 
-.gallery img{width:100%;height:220px;object-fit:cover;border-radius:12px}
+.gallery img{width:100%;height:220px;object-fit:cover;border-radius:12px;border:1px solid rgba(200,210,226,.18);
+
+  box-shadow:0 8px 18px rgba(0,0,0,.25)}
 
 
 
-.form{display:grid;gap:12px}
+/* WOOD SECTIONS — تستخدم الصورة التي رفعتها */
 
-.input,.textarea{padding:12px 14px;border-radius:12px;border:1px solid rgba(200,210,226,.35);background:rgba(255,255,255,.06);color:#fff}
+.wood{
 
-.textarea{min-height:120px}
+  background:
+
+    linear-gradient(180deg, rgba(12,24,52,.70), rgba(12,24,52,.82)),
+
+    url("image/image-wood-grain-silver.jpg") center/cover no-repeat;
+
+  border-top:1px solid rgba(200,210,226,.18);
+
+  border-bottom:1px solid rgba(200,210,226,.18);
+
+}
 
 
+
+/* FORM */
+
+.form{display:grid;gap:12px;grid-template-columns:repeat(12,1fr)}
+
+.input,.textarea{grid-column:span 12;padding:12px 14px;border-radius:12px;border:1px solid rgba(200,210,226,.35);
+
+  background:rgba(255,255,255,.06);color:#fff;outline:none}
+
+@media(min-width:720px){.span-6{grid-column:span 6}}
+
+.textarea{min-height:120px;resize:vertical}
+
+
+
+/* FOOTER */
 
 .footer{padding:28px 18px;border-top:1px solid rgba(200,210,226,.22);background:#0b1c3f}
 
-.footer .wrap{max-width:1160px;margin:auto;display:flex;justify-content:space-between;flex-wrap:wrap}
+.footer .wrap{max-width:1160px;margin:auto;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px}
 
-.footer small{color:#e9edf5}
+.footer small{color:#e9edf5;opacity:.95}
 
-.royal-signature{color:var(--silver)}
+.royal-signature{color:var(--silver);font-size:14px;letter-spacing:1px}
