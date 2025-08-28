@@ -1,194 +1,209 @@
+/* ============== Root & Reset ============== */
 
 :root{
 
-  --royal-blue:#0b1c3f;
+  --bg:#0f1216;          /* فحمي داكن */
 
-  --royal-blue-2:#122655;
+  --bg-2:#151a20;        /* طبقة ثانية */
 
-  --silver:#c8d2e2;
+  --text:#e9edf1;        /* نص فاتح */
 
-  --silver-mid:#a0acc2;
+  --muted:#aab3bd;       /* نص ثانوي */
 
-  --cream:#eef1f6;
+  --silver:#cfd6df;      /* فضي */
 
-  --ink:#0f1320;
+  --gold:#caa656;        /* ذهبي فاخر */
+
+  --gold-2:#b8923f;      /* ضغط */
+
+  --border:#2a3038;
+
+  --card:#171c23;
 
   --radius:14px;
 
-  --shadow:0 12px 28px rgba(0,0,0,.25);
+  --shadow:0 10px 30px rgba(0,0,0,.35);
 
 }
 
-*{box-sizing:border-box}
 
-body{
 
-  margin:0;
+*{box-sizing:border-box} html,body{margin:0;padding:0}
 
-  background:linear-gradient(180deg,var(--royal-blue),var(--royal-blue-2));
+body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;background:var(--bg);color:var(--text);line-height:1.5}
 
-  color:var(--cream);
+img{max-width:100%;display:block}
 
-  font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial;
 
-  line-height:1.6;
 
-}
+/* ============== Layout Helpers ============ */
 
-h1,h2,h3{color:var(--silver);font-family:Georgia,serif}
+.wrap{width:min(1150px,92%);margin-inline:auto}
 
+.topline{height:4px;background:linear-gradient(90deg,var(--gold),var(--silver))}
 
+.section{padding:72px 0}
 
-/* خط فضّي علوي */
+.section-alt{background:var(--bg-2)}
 
-.topline{height:6px;background:linear-gradient(90deg,var(--silver),var(--silver-mid),var(--silver))}
+.section-title{font-size:32px;margin:0 0 24px;color:var(--silver);letter-spacing:.5px}
 
 
 
-/* NAV */
+/* ============== Navbar ==================== */
 
-.nav{position:sticky;top:0;z-index:1000;backdrop-filter:saturate(120%) blur(8px);
+.nav{position:sticky;top:0;z-index:40;background:rgba(15,18,22,.88);backdrop-filter:saturate(140%) blur(8px);border-bottom:1px solid var(--border)}
 
-  background:rgba(10,20,45,.70);border-bottom:1px solid rgba(200,210,226,.35);
+.nav .wrap{display:flex;align-items:center;gap:18px;padding:12px 0}
 
-  box-shadow:inset 0 -1px 0 rgba(200,210,226,.25)}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none}
 
-.nav .wrap{max-width:1160px;margin:auto;display:flex;align-items:center;gap:18px;padding:14px 18px}
+.royal-logo{height:38px;width:auto;filter:drop-shadow(0 2px 8px rgba(0,0,0,.35))}
 
-.brand{display:flex;align-items:center;gap:12px;text-decoration:none;color:var(--silver)}
+.wordmark{font-size:22px;font-weight:700;color:var(--text);letter-spacing:.6px}
 
-.wordmark{font-size:1.35rem;font-weight:800;letter-spacing:.4px}
+.nav-links{margin-left:auto;display:flex;align-items:center;gap:18px}
 
-.royal-logo{width:50px;height:50px;display:block;object-fit:contain}
+.nav-links a{color:var(--text);text-decoration:none;opacity:.9}
 
-@media (max-width:480px){.royal-logo{width:40px;height:40px}}
+.nav-links a:hover{opacity:1}
 
-.nav-links{margin-left:auto;display:flex;gap:8px;flex-wrap:wrap}
+.nav-toggle{display:none;margin-left:auto;font-size:22px;background:transparent;border:0;color:var(--text);cursor:pointer}
 
-.nav a{color:var(--cream);text-decoration:none;opacity:.9;padding:8px 10px;border-radius:8px}
 
-.nav a:hover{background:rgba(200,210,226,.12);opacity:1}
 
-@media (min-width:880px){.wordmark{font-size:1.5rem}}
+/* ============== Buttons =================== */
 
+.btn{display:inline-block;padding:10px 18px;border-radius:999px;text-decoration:none;border:1px solid transparent;transition:.2s;box-shadow:var(--shadow)}
 
+.btn-lg{padding:14px 22px;font-weight:700}
 
-/* HERO مع إطار فضّي */
+.btn-gold{background:linear-gradient(180deg,var(--gold),var(--gold-2));color:#222;border-color:#b78b30}
 
-.hero{padding:92px 18px 72px;
+.btn-gold:hover{transform:translateY(-1px);filter:saturate(110%)}
 
-  background:radial-gradient(1500px 500px at 50% -200px, rgba(200,210,226,.12), transparent 55%);
+.btn-outline{background:transparent;color:var(--silver);border-color:var(--silver)}
 
-  border-top:1px solid rgba(200,210,226,.25); border-bottom:1px solid rgba(200,210,226,.25)}
+.btn-outline:hover{background:rgba(207,214,223,.08)}
 
-.hero .wrap{max-width:1160px;margin:auto}
 
-.kicker{color:var(--silver);text-transform:uppercase;letter-spacing:2px;font-weight:700;font-size:.85rem}
 
-h1{margin:0;font-size:clamp(32px,5.2vw,54px)}
+/* ============== Hero ====================== */
 
-.lead{max-width:760px;color:#e9edf5}
+/* محاولة أولى: الصورة الصحيحة بدون النقطتين */
 
-.btns{display:flex;gap:14px;flex-wrap:wrap;margin-top:6px}
+.hero{
 
-
-
-/* BUTTONS */
-
-.btn{display:inline-flex;align-items:center;justify-content:center;padding:12px 18px;border-radius:999px;
-
-  text-decoration:none;font-weight:700;box-shadow:var(--shadow);transition:.3s}
-
-.btn-gold{color:#fff;background:linear-gradient(180deg,#d4af37,#b8860b);border:1px solid rgba(255,215,0,.6)}
-
-.btn-gold:hover{filter:brightness(1.08);transform:translateY(-3px)}
-
-.btn-silver{color:var(--ink);background:linear-gradient(180deg,var(--silver),var(--silver-mid));border:1px solid rgba(200,210,226,.6)}
-
-.btn-silver:hover{filter:brightness(1.06);transform:translateY(-3px)}
-
-.btn-outline{color:var(--silver);border:1px solid rgba(200,210,226,.5);background:rgba(255,255,255,.04)}
-
-.btn-outline:hover{background:rgba(200,210,226,.12);transform:translateY(-2px)}
-
-
-
-/* SECTIONS */
-
-.section{padding:64px 18px}.section .wrap{max-width:1160px;margin:auto}
-
-.section h2{margin:0 0 22px;font-size:clamp(26px,3.6vw,38px)}
-
-
-
-/* CARDS */
-
-.grid{display:grid;gap:18px;grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}
-
-.card{background:rgba(255,255,255,.03);border:1px solid rgba(200,210,226,.25);border-radius:16px;padding:22px;
-
-  box-shadow:0 10px 18px rgba(0,0,0,.25)}
-
-.card:hover{border-color:var(--silver);transform:translateY(-4px)}
-
-
-
-/* TIMELINE */
-
-.timeline{display:grid;gap:14px}
-
-.step{padding:16px;border-left:3px solid var(--silver);background:rgba(255,255,255,.03);border-radius:10px}
-
-
-
-/* GALLERY */
-
-.gallery{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(200px,1fr))}
-
-.gallery img{width:100%;height:220px;object-fit:cover;border-radius:12px;border:1px solid rgba(200,210,226,.18);
-
-  box-shadow:0 8px 18px rgba(0,0,0,.25)}
-
-
-
-/* WOOD SECTIONS — تستخدم الصورة التي رفعتها */
-
-.wood{
+  position:relative;min-height:72vh;display:grid;place-items:center;
 
   background:
 
-    linear-gradient(180deg, rgba(12,24,52,.70), rgba(12,24,52,.82)),
+    linear-gradient(rgba(15,18,22,.45),rgba(15,18,22,.65)),
 
-    url("image/image-wood-grain-silver.jpg") center/cover no-repeat;
-
-  border-top:1px solid rgba(200,210,226,.18);
-
-  border-bottom:1px solid rgba(200,210,226,.18);
+    url("image/wood-grain-silver.jpg") center/cover fixed no-repeat;
 
 }
 
+/* محاولة بديلة تلقائية إذا كان الاسم يحوي نقطتين داخل المستودع */
+
+@supports (background: url("image/image:wood-grain-silver.jpg")){
+
+  .hero{
+
+    background:
+
+      linear-gradient(rgba(15,18,22,.45),rgba(15,18,22,.65)),
+
+      url("image/image:wood-grain-silver.jpg") center/cover fixed no-repeat;
+
+  }
+
+}
+
+.hero .overlay{position:absolute;inset:0;box-shadow:inset 0 -120px 120px rgba(15,18,22,.85)}
+
+.hero-inner{position:relative;text-align:center;padding:80px 0}
+
+.hero-title{font-size:44px;margin:0 0 12px}
+
+.hero-sub{color:var(--muted);max-width:720px;margin:0 auto 22px;font-size:18px}
+
+.hero-cta{display:flex;justify-content:center;gap:14px;flex-wrap:wrap}
 
 
-/* FORM */
 
-.form{display:grid;gap:12px;grid-template-columns:repeat(12,1fr)}
+/* ============== Cards / Grid ============== */
 
-.input,.textarea{grid-column:span 12;padding:12px 14px;border-radius:12px;border:1px solid rgba(200,210,226,.35);
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
 
-  background:rgba(255,255,255,.06);color:#fff;outline:none}
+.card{background:var(--card);border:1px solid var(--border);padding:22px;border-radius:var(--radius);box-shadow:var(--shadow)}
 
-@media(min-width:720px){.span-6{grid-column:span 6}}
-
-.textarea{min-height:120px;resize:vertical}
+.card h3{margin:0 0 8px;color:var(--silver)}
 
 
 
-/* FOOTER */
+/* ============== Process =================== */
 
-.footer{padding:28px 18px;border-top:1px solid rgba(200,210,226,.22);background:#0b1c3f}
+.steps{margin:0;padding-left:20px;color:var(--text)}
 
-.footer .wrap{max-width:1160px;margin:auto;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px}
+.steps li{margin:8px 0}
 
-.footer small{color:#e9edf5;opacity:.95}
 
-.royal-signature{color:var(--silver);font-size:14px;letter-spacing:1px}
+
+/* ============== Gallery =================== */
+
+.gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+
+.ph{aspect-ratio:4/3;border-radius:10px;border:1px dashed var(--border);background:linear-gradient(135deg,#1b2129,#11161c)}
+
+
+
+/* ============== Quote form ================ */
+
+.quote-form{display:flex;flex-direction:column;gap:12px}
+
+.quote-form .row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+
+.quote-form input,.quote-form textarea{
+
+  background:#0f141a;border:1px solid var(--border);color:var(--text);
+
+  padding:12px;border-radius:10px;outline:none
+
+}
+
+.quote-form input:focus,.quote-form textarea:focus{border-color:var(--silver)}
+
+
+
+/* ============== Footer ==================== */
+
+.footer{border-top:1px solid var(--border);padding:28px 0;color:var(--muted);text-align:center}
+
+
+
+/* ============== Responsive ================= */
+
+@media (max-width:900px){
+
+  .grid{grid-template-columns:1fr}
+
+  .gallery{grid-template-columns:1fr 1fr}
+
+}
+
+@media (max-width:760px){
+
+  .nav-toggle{display:block}
+
+  .nav-links{position:absolute;right:4%;top:64px;background:var(--bg-2);
+
+    border:1px solid var(--border);border-radius:12px;padding:10px;display:none;flex-direction:column;gap:10px}
+
+  .nav-links.open{display:flex}
+
+  .quote-form .row{grid-template-columns:1fr}
+
+  .hero-title{font-size:34px}
+
+}
