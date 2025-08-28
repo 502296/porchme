@@ -13,9 +13,149 @@
 
 
 
-  <!-- ربط ملف التنسيقات -->
+  <!-- كل التنسيقات هنا -->
 
-  <link rel="stylesheet" href="style_silver.css" />
+  <style>
+
+    :root{
+
+      --royal-blue:#0b1c3f;
+
+      --royal-blue-2:#122655;
+
+      --silver:#c8d2e2;
+
+      --silver-mid:#a0acc2;
+
+      --cream:#eef1f6;
+
+      --ink:#0f1320;
+
+      --radius:14px;
+
+      --shadow:0 12px 28px rgba(0,0,0,.25);
+
+    }
+
+    *{box-sizing:border-box}
+
+    body{
+
+      margin:0; color:var(--cream);
+
+      background:linear-gradient(180deg,var(--royal-blue),var(--royal-blue-2));
+
+      font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial; line-height:1.6;
+
+    }
+
+    h1,h2,h3{color:var(--silver);font-family:Georgia,serif}
+
+    .topline{height:6px;background:linear-gradient(90deg,var(--silver),var(--silver-mid),var(--silver))}
+
+    /* NAV */
+
+    .nav{position:sticky;top:0;z-index:1000;backdrop-filter:saturate(120%) blur(8px);
+
+      background:rgba(10,20,45,.7);border-bottom:1px solid rgba(200,210,226,.25)}
+
+    .nav .wrap{max-width:1160px;margin:auto;display:flex;align-items:center;gap:18px;padding:14px 18px}
+
+    .brand{display:flex;align-items:center;gap:12px;text-decoration:none;color:var(--silver)}
+
+    .wordmark{font-size:1.35rem;font-weight:800;letter-spacing:.4px}
+
+    .royal-logo{width:44px;height:44px;flex:0 0 44px}
+
+    .nav a{color:var(--cream);text-decoration:none;opacity:.9;padding:8px 10px;border-radius:8px}
+
+    .nav a:hover{background:rgba(200,210,226,.12);opacity:1}
+
+
+
+    /* HERO */
+
+    .hero{padding:92px 18px 72px;background:radial-gradient(1500px 500px at 50% -200px, rgba(200,210,226,.12), transparent 55%)}
+
+    .hero .wrap{max-width:1160px;margin:auto}
+
+    .kicker{color:var(--silver);text-transform:uppercase;letter-spacing:2px;font-weight:700;font-size:.85rem}
+
+    h1{margin:0;font-size:clamp(32px,5.2vw,54px)}
+
+    .lead{max-width:760px;color:#e9edf5}
+
+    .btns{display:flex;gap:14px;flex-wrap:wrap;margin-top:6px}
+
+
+
+    /* BUTTONS */
+
+    .btn{display:inline-flex;align-items:center;justify-content:center;padding:12px 18px;border-radius:999px;
+
+      text-decoration:none;font-weight:700;box-shadow:var(--shadow);transition:.3s}
+
+    .btn-gold{color:#fff;background:linear-gradient(180deg,#d4af37,#b8860b);border:1px solid rgba(255,215,0,.6)}
+
+    .btn-gold:hover{filter:brightness(1.08);transform:translateY(-3px)}
+
+    .btn-silver{color:var(--ink);background:linear-gradient(180deg,var(--silver),var(--silver-mid));border:1px solid rgba(200,210,226,.6)}
+
+    .btn-outline{color:var(--silver);border:1px solid rgba(200,210,226,.5)}
+
+
+
+    /* SECTIONS */
+
+    .section{padding:64px 18px}.section .wrap{max-width:1160px;margin:auto}
+
+    .section h2{margin:0 0 22px;font-size:clamp(26px,3.6vw,38px)}
+
+
+
+    /* CARDS */
+
+    .grid{display:grid;gap:18px;grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}
+
+    .card{background:rgba(255,255,255,.05);border:1px solid rgba(200,210,226,.2);border-radius:var(--radius);padding:20px}
+
+    .card:hover{border-color:var(--silver);transform:translateY(-4px)}
+
+
+
+    /* TIMELINE */
+
+    .timeline{display:grid;gap:14px}
+
+    .step{padding:16px;border-left:3px solid var(--silver);background:rgba(255,255,255,.03);border-radius:10px}
+
+
+
+    /* GALLERY placeholders */
+
+    .gallery{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(200px,1fr))}
+
+    .ph{height:220px;border-radius:12px;border:1px dashed rgba(200,210,226,.35);display:grid;place-items:center;color:#e9edf5;opacity:.85}
+
+
+
+    /* FORM & FOOTER */
+
+    .form{display:grid;gap:12px}
+
+    .input,.textarea{padding:12px 14px;border-radius:12px;border:1px solid rgba(200,210,226,.35);background:rgba(255,255,255,.06);color:#fff}
+
+    .textarea{min-height:120px}
+
+    .footer{padding:28px 18px;border-top:1px solid rgba(200,210,226,.22);background:#0b1c3f}
+
+    .footer .wrap{max-width:1160px;margin:auto;display:flex;justify-content:space-between;flex-wrap:wrap}
+
+    .footer small{color:#e9edf5}.royal-signature{color:var(--silver)}
+
+    @media (min-width:880px){.wordmark{font-size:1.5rem}.royal-logo{width:50px;height:50px}}
+
+  </style>
 
 </head>
 
@@ -31,9 +171,9 @@
 
     <div class="wrap">
 
-      <a class="brand wordmark" href="#top">
+      <a class="brand" href="#top" aria-label="PorchMe Home">
 
-        <!-- شعار SVG داخلي -->
+        <!-- شعار SVG مدمج -->
 
         <svg class="royal-logo" viewBox="0 0 108 108" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
 
@@ -85,7 +225,7 @@
 
         </svg>
 
-        PorchMe
+        <span class="wordmark">PorchMe</span>
 
       </a>
 
@@ -121,13 +261,7 @@
 
       <h1>Build a Porch You’ll Love</h1>
 
-      <p class="lead">
-
-        Premium porch design & craftsmanship—stable structure, code-compliant anchors,
-
-        and a long-lasting royal finish tailored to your home.
-
-      </p>
+      <p class="lead">Premium porch design & craftsmanship—stable structure, code-compliant anchors, and a long-lasting royal finish tailored to your home.</p>
 
       <div class="btns">
 
@@ -145,7 +279,7 @@
 
   <!-- WHAT WE DO -->
 
-  <section id="services" class="section wood">
+  <section id="services" class="section">
 
     <div class="wrap">
 
@@ -195,9 +329,9 @@
 
 
 
-  <!-- GALLERY -->
+  <!-- GALLERY (placeholders حالياً) -->
 
-  <section id="gallery" class="section wood">
+  <section id="gallery" class="section">
 
     <div class="wrap">
 
@@ -205,11 +339,11 @@
 
       <div class="gallery">
 
-        <img src="images/sample1.jpg" alt="Porch example 1" loading="lazy">
+        <div class="ph">Add image: images/sample1.jpg</div>
 
-        <img src="images/sample2.jpg" alt="Porch example 2" loading="lazy">
+        <div class="ph">Add image: images/sample2.jpg</div>
 
-        <img src="images/sample3.jpg" alt="Porch example 3" loading="lazy">
+        <div class="ph">Add image: images/sample3.jpg</div>
 
       </div>
 
@@ -253,13 +387,13 @@
 
       <form class="form" action="#" method="post">
 
-        <input class="input span-6" type="text" placeholder="Full Name" required>
+        <input class="input" type="text" placeholder="Full Name" required>
 
-        <input class="input span-6" type="tel" placeholder="Phone" required>
+        <input class="input" type="tel" placeholder="Phone" required>
 
-        <input class="input span-6" type="email" placeholder="Email">
+        <input class="input" type="email" placeholder="Email">
 
-        <input class="input span-6" type="text" placeholder="Address">
+        <input class="input" type="text" placeholder="Address">
 
         <textarea class="textarea" placeholder="Tell us about your porch (size, style, materials)"></textarea>
 
