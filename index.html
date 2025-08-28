@@ -10,67 +10,95 @@
 
   <title>PorchMe – Royal Porch Design & Craftsmanship</title>
 
-  <meta name="description" content="Premium porch design & craftsmanship in Louisville, KY. Free on-site visit, clear quotes, code-compliant building, and a royal finish." />
 
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-  <link rel="icon" href="images/favicon.png" />
+  <!-- الهوية الأزرق + الفضّي -->
 
-  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="style_silver.css" />
 
-  <!-- Open Graph -->
 
-  <meta property="og:title" content="PorchMe – Royal Porch Design & Craftsmanship" />
 
-  <meta property="og:description" content="Build a porch you'll love. Free visit. Honest quotes. Royal finish." />
-
-  <meta property="og:type" content="website" />
-
-  <meta property="og:url" content="https://porchme.me/" />
-
-  <meta property="og:image" content="images/cover.jpg" />
-
-  <!-- Schema.org (LocalBusiness) -->
-
-  <script type="application/ld+json">
-
-  {
-
-    "@context": "https://schema.org",
-
-    "@type": "HomeAndConstructionBusiness",
-
-    "name": "PorchMe",
-
-    "image": "https://porchme.me/images/cover.jpg",
-
-    "description": "Premium porch design & craftsmanship in Louisville, KY.",
-
-    "address": { "@type": "PostalAddress", "addressLocality": "Louisville", "addressRegion": "KY", "addressCountry": "US" },
-
-    "telephone": "+15022968168",
-
-    "url": "https://porchme.me"
-
-  }
-
-  </script>
+  <!-- تحسينات سريعة: زر ذهبي + تكبير العلامة -->
 
   <style>
 
-    /* OPTIONAL: لطيف لإبقاء روابط الهاتف/الواتساب واضحة إن لم تكن في CSS */
+    /* زر الحجز الذهبي */
 
-    a[href^="tel:"], a[href^="https://wa.me"] { white-space: nowrap; }
+    .btn-gold{
+
+      color:#fff;
+
+      background:linear-gradient(180deg,#d4af37,#b8860b);
+
+      border:1px solid rgba(255,215,0,.6);
+
+      box-shadow:0 6px 14px rgba(212,175,55,.45);
+
+      transition:all .3s ease;
+
+    }
+
+    .btn-gold:hover{
+
+      filter:brightness(1.08);
+
+      transform:translateY(-3px);
+
+      box-shadow:0 8px 18px rgba(212,175,55,.55);
+
+    }
+
+
+
+    /* علامة PorchMe مكبرة ومصطفة مع الشعار */
+
+    .brand{
+
+      gap:14px;
+
+    }
+
+    .brand .wordmark{
+
+      font-size:1.35rem;           /* أكبر من قبل */
+
+      font-weight:800;
+
+      letter-spacing:.4px;
+
+      color:var(--silver);
+
+      display:flex; align-items:center; gap:12px;
+
+      text-decoration:none;
+
+    }
+
+    /* حجم الشعار بجانب الاسم */
+
+    .brand .royal-logo{
+
+      width:44px; height:44px;
+
+      flex:0 0 44px;
+
+      display:block;
+
+    }
+
+    @media (min-width:880px){
+
+      .brand .wordmark{font-size:1.5rem}
+
+      .brand .royal-logo{width:50px;height:50px}
+
+    }
 
   </style>
 
 </head>
 
 <body>
-
-
-
-  <!-- Top golden line -->
 
   <div class="topline"></div>
 
@@ -82,13 +110,71 @@
 
     <div class="wrap">
 
-      <a class="brand" href="#top" aria-label="PorchMe Home">
+      <!-- العلامة: اسم كبير + شعار “Porch Royal” SVG -->
 
-        <div class="logo" aria-hidden="true">P</div>
+      <a class="brand wordmark" href="#top" aria-label="PorchMe Home">
 
-        <span>PorchMe</span>
+        <!-- شعار SVG: جملون + تاج صغير + عمودين (فضّي/أزرق) -->
+
+        <svg class="royal-logo" viewBox="0 0 108 108" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+
+          <!-- دائرة خلفية خفيفة بالفضي -->
+
+          <defs>
+
+            <radialGradient id="S" cx="35%" cy="35%" r="70%">
+
+              <stop offset="0%" stop-color="#c8d2e2"/>
+
+              <stop offset="100%" stop-color="#a0acc2"/>
+
+            </radialGradient>
+
+          </defs>
+
+          <circle cx="54" cy="54" r="52" fill="url(#S)"/>
+
+          <circle cx="54" cy="54" r="48" fill="none" stroke="rgba(255,255,255,.65)" stroke-width="2"/>
+
+          <!-- تاج صغير -->
+
+          <g transform="translate(54,20)">
+
+            <path d="M-16 12 L-8 0 L0 10 L8 0 L16 12 Z" fill="#d4af37" stroke="#b8860b" stroke-width="1"/>
+
+            <circle cx="-8" cy="0" r="1.8" fill="#ffe08a"/>
+
+            <circle cx="0" cy="10" r="1.8" fill="#ffe08a"/>
+
+            <circle cx="8" cy="0" r="1.8" fill="#ffe08a"/>
+
+          </g>
+
+          <!-- جملون + عمودين (أزرق ملكي) -->
+
+          <g fill="#0b1c3f" transform="translate(0,10)">
+
+            <polygon points="24,46 84,46 54,22" />
+
+            <rect x="24" y="46" width="60" height="4" />
+
+            <rect x="32" y="50" width="10" height="32" rx="1.5" />
+
+            <rect x="66" y="50" width="10" height="32" rx="1.5" />
+
+            <rect x="24" y="82" width="60" height="4" />
+
+          </g>
+
+        </svg>
+
+        PorchMe
 
       </a>
+
+
+
+      <!-- روابط -->
 
       <div style="margin-left:auto; display:flex; gap:8px; flex-wrap:wrap">
 
@@ -116,7 +202,7 @@
 
     <div class="wrap">
 
-      <div class="kicker">Royal Porch Craft</div>
+      <div class="kicker">ROYAL PORCH CRAFT</div>
 
       <h1>Build a Porch You’ll Love</h1>
 
@@ -130,9 +216,11 @@
 
       <div class="btns">
 
+        <!-- الذهبي الأساسي + الفضي الثانوي -->
+
         <a href="#quote" class="btn btn-gold" aria-label="Book a Free Visit">Book a Free Visit</a>
 
-        <a href="#gallery" class="btn btn-outline" aria-label="See Recent Work">See Recent Work</a>
+        <a href="#gallery" class="btn btn-silver" aria-label="See Recent Work">See Recent Work</a>
 
       </div>
 
@@ -202,37 +290,13 @@
 
       <div class="timeline">
 
-        <div class="step">
+        <div class="step"><strong>Free on-site visit</strong><div>Measurements & style discussion right at your home.</div></div>
 
-          <strong>Free on-site visit</strong>
+        <div class="step"><strong>Design & Quote</strong><div>Material options, scope, and timeline—clearly documented.</div></div>
 
-          <div>Measurements & style discussion right at your home.</div>
+        <div class="step"><strong>Build & Finishing</strong><div>Quality build with paint/stain and weather protection.</div></div>
 
-        </div>
-
-        <div class="step">
-
-          <strong>Design & Quote</strong>
-
-          <div>Material options, scope, and timeline—clearly documented.</div>
-
-        </div>
-
-        <div class="step">
-
-          <strong>Build & Finishing</strong>
-
-          <div>Quality build with paint/stain and weather protection.</div>
-
-        </div>
-
-        <div class="step">
-
-          <strong>Final Handover</strong>
-
-          <div>Walkthrough, cleanup, and care tips for a porch that lasts.</div>
-
-        </div>
+        <div class="step"><strong>Final Handover</strong><div>Walkthrough, cleanup, and care tips for a porch that lasts.</div></div>
 
       </div>
 
@@ -252,15 +316,11 @@
 
       <div class="gallery">
 
-        <!-- استبدل هذه بصورك الفعلية -->
-
         <img src="images/sample1.jpg" alt="Classic front porch with painted railings" loading="lazy">
 
         <img src="images/sample2.jpg" alt="Composite decking with modern lines" loading="lazy">
 
         <img src="images/sample3.jpg" alt="Covered porch with steps and columns" loading="lazy">
-
-        <img src="images/sample4.jpg" alt="Back porch renovation with stain finish" loading="lazy">
 
       </div>
 
@@ -270,7 +330,7 @@
 
 
 
-  <!-- QUOTE (CTA ثانوي) -->
+  <!-- QUOTE -->
 
   <section id="quote" class="section" aria-labelledby="quote-title">
 
@@ -302,10 +362,6 @@
 
       <h2 id="contact-title">Contact</h2>
 
-
-
-      <!-- يمكن ربطه لاحقًا بـ Formspree أو Google Apps Script -->
-
       <form class="form" action="#" method="post">
 
         <input class="input span-6" type="text" name="name" placeholder="Full Name" required>
@@ -321,8 +377,6 @@
         <button class="btn btn-gold" style="grid-column:span 12; justify-self:start">Send</button>
 
       </form>
-
-
 
       <p style="margin-top:12px; color:#eae7df">
 
@@ -348,13 +402,11 @@
 
       <small>© PorchMe. Crafted with pride.</small>
 
-      <small>Licensed • Insured • Louisville, KY</small>
+      <small class="royal-signature">Royal Porch Design • Louisville, KY</small>
 
     </div>
 
   </footer>
-
-
 
 </body>
 
