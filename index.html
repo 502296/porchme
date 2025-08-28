@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 
 <html lang="en">
@@ -12,17 +13,15 @@
 
 
 
-  <!-- الهوية الأزرق + الفضّي -->
+  <!-- ربط CSS الأزرق + الفضّي -->
 
   <link rel="stylesheet" href="style_silver.css" />
 
 
 
-  <!-- تحسينات سريعة: زر ذهبي + تكبير العلامة -->
+  <!-- تحسينات سريعة للزر الذهبي وتكبير العلامة -->
 
   <style>
-
-    /* زر الحجز الذهبي */
 
     .btn-gold{
 
@@ -48,51 +47,19 @@
 
     }
 
-
-
-    /* علامة PorchMe مكبرة ومصطفة مع الشعار */
-
-    .brand{
-
-      gap:14px;
-
-    }
+    .brand{gap:14px}
 
     .brand .wordmark{
 
-      font-size:1.35rem;           /* أكبر من قبل */
+      font-size:1.35rem;font-weight:800;letter-spacing:.4px;color:var(--silver);
 
-      font-weight:800;
-
-      letter-spacing:.4px;
-
-      color:var(--silver);
-
-      display:flex; align-items:center; gap:12px;
-
-      text-decoration:none;
+      display:flex;align-items:center;gap:12px;text-decoration:none
 
     }
 
-    /* حجم الشعار بجانب الاسم */
+    .brand .royal-logo{width:44px;height:44px;flex:0 0 44px;display:block}
 
-    .brand .royal-logo{
-
-      width:44px; height:44px;
-
-      flex:0 0 44px;
-
-      display:block;
-
-    }
-
-    @media (min-width:880px){
-
-      .brand .wordmark{font-size:1.5rem}
-
-      .brand .royal-logo{width:50px;height:50px}
-
-    }
+    @media (min-width:880px){.brand .wordmark{font-size:1.5rem}.brand .royal-logo{width:50px;height:50px}}
 
   </style>
 
@@ -110,15 +77,11 @@
 
     <div class="wrap">
 
-      <!-- العلامة: اسم كبير + شعار “Porch Royal” SVG -->
+      <!-- الشعار الملكي بجانب الاسم (SVG داخلي لضمان عمله بدون ملفات إضافية) -->
 
       <a class="brand wordmark" href="#top" aria-label="PorchMe Home">
 
-        <!-- شعار SVG: جملون + تاج صغير + عمودين (فضّي/أزرق) -->
-
         <svg class="royal-logo" viewBox="0 0 108 108" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-
-          <!-- دائرة خلفية خفيفة بالفضي -->
 
           <defs>
 
@@ -136,7 +99,7 @@
 
           <circle cx="54" cy="54" r="48" fill="none" stroke="rgba(255,255,255,.65)" stroke-width="2"/>
 
-          <!-- تاج صغير -->
+          <!-- تاج -->
 
           <g transform="translate(54,20)">
 
@@ -173,8 +136,6 @@
       </a>
 
 
-
-      <!-- روابط -->
 
       <div style="margin-left:auto; display:flex; gap:8px; flex-wrap:wrap">
 
@@ -216,11 +177,9 @@
 
       <div class="btns">
 
-        <!-- الذهبي الأساسي + الفضي الثانوي -->
+        <a href="#quote" class="btn btn-gold">Book a Free Visit</a>
 
-        <a href="#quote" class="btn btn-gold" aria-label="Book a Free Visit">Book a Free Visit</a>
-
-        <a href="#gallery" class="btn btn-silver" aria-label="See Recent Work">See Recent Work</a>
+        <a href="#gallery" class="btn btn-silver">See Recent Work</a>
 
       </div>
 
