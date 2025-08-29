@@ -42,7 +42,7 @@ img{max-width:100%;display:block}
 
 .section-title{font-size:32px;margin:0 0 24px;color:var(--silver);letter-spacing:.5px}
 
-.hint{color:var(--muted);font-size:12px;margin-top:10px}
+.hint{color:var(--muted);font-size:12px;margin-top:10px;display:none}
 
 
 
@@ -86,13 +86,7 @@ img{max-width:100%;display:block}
 
 /* ==== تحسين القراءة فوق الخلفية + توهج الزر ==== */
 
-.hero-title{
-
-  text-shadow: 0 10px 30px rgba(0,0,0,.55), 0 2px 0 rgba(0,0,0,.6);
-
-  letter-spacing:.3px;
-
-}
+.hero-title{ text-shadow: 0 10px 30px rgba(0,0,0,.55), 0 2px 0 rgba(0,0,0,.6); letter-spacing:.3px; }
 
 .hero-sub{ text-shadow: 0 8px 24px rgba(0,0,0,.5); }
 
@@ -100,9 +94,7 @@ img{max-width:100%;display:block}
 
   position:absolute;inset:0;
 
-  box-shadow: inset 0 -140px 140px rgba(15,18,22,.85),
-
-              inset 0 120px 120px rgba(15,18,22,.35);
+  box-shadow: inset 0 -140px 140px rgba(15,18,22,.85), inset 0 120px 120px rgba(15,18,22,.35);
 
 }
 
@@ -192,15 +184,45 @@ img{max-width:100%;display:block}
 
 /* ============== Gallery =================== */
 
-.gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.gallery{
 
-.gallery img{
+  display:grid;
 
-  width:100%;border-radius:12px;box-shadow:0 6px 18px rgba(0,0,0,.35);transition:.3s ease
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+
+  gap:14px;
 
 }
 
-.gallery img:hover{ transform:scale(1.03); }
+.gallery img{
+
+  width:100%;
+
+  height:220px;
+
+  object-fit:cover;
+
+  border-radius:12px;
+
+  outline:1px solid rgba(255,255,255,.08);
+
+  box-shadow:0 6px 18px rgba(0,0,0,.35);
+
+  transition: transform .2s ease, box-shadow .2s ease, opacity .2s ease;
+
+  opacity:.98;
+
+}
+
+.gallery img:hover{
+
+  transform: translateY(-2px) scale(1.01);
+
+  box-shadow:0 10px 22px rgba(0,0,0,.45);
+
+  opacity:1;
+
+}
 
 
 
@@ -228,7 +250,113 @@ img{max-width:100%;display:block}
 
 
 
-/* ============== Responsive ================= */
+/* ============== Lightbox ================== */
+
+.lightbox{
+
+  display:none;
+
+  position:fixed;
+
+  inset:0;
+
+  background:rgba(0,0,0,.86);
+
+  justify-content:center;
+
+  align-items:center;
+
+  z-index:1000;
+
+  padding:20px;
+
+}
+
+.lightbox-img{
+
+  max-width:92%;
+
+  max-height:82vh;
+
+  border-radius:12px;
+
+  box-shadow:0 12px 34px rgba(0,0,0,.6);
+
+  animation: zoomIn .22s ease;
+
+  user-select:none;
+
+}
+
+.lightbox .close{
+
+  position:absolute;
+
+  top:18px;
+
+  right:26px;
+
+  font-size:40px;
+
+  color:#fff;
+
+  cursor:pointer;
+
+  user-select:none;
+
+  background:transparent;
+
+  border:0;
+
+  text-shadow:0 3px 12px rgba(0,0,0,.7);
+
+}
+
+.lb-btn{
+
+  position:absolute;
+
+  top:50%;
+
+  transform:translateY(-50%);
+
+  width:48px;
+
+  height:48px;
+
+  border-radius:999px;
+
+  background:rgba(255,255,255,.14);
+
+  border:1px solid rgba(255,255,255,.22);
+
+  color:#fff;
+
+  font-size:26px;
+
+  line-height:46px;
+
+  text-align:center;
+
+  cursor:pointer;
+
+  user-select:none;
+
+  box-shadow:0 8px 24px rgba(0,0,0,.45);
+
+  transition: background .2s ease, transform .15s ease;
+
+}
+
+.lb-btn:hover{ background:rgba(255,255,255,.22); transform:translateY(-50%) scale(1.03); }
+
+.lb-btn:active{ transform:translateY(-50%) scale(.98); }
+
+.lb-btn.prev{ left:18px; }
+
+.lb-btn.next{ right:18px; }
+
+
 
 @media (max-width:900px){
 
@@ -250,65 +378,15 @@ img{max-width:100%;display:block}
 
   .quote-form .row{grid-template-columns:1fr}
 
+  .hero{min-height:60vh}
+
   .hero-title{font-size:34px}
 
-}
+  .lb-btn{ width:42px; height:42px; font-size:22px; line-height:40px; }
 
-/* ====== Lightbox ====== */
+  .lb-btn.prev{ left:10px; }
 
-.lightbox{
-
-  display:none;
-
-  position:fixed;
-
-  inset:0;
-
-  background:rgba(0,0,0,.85);
-
-  justify-content:center;
-
-  align-items:center;
-
-  z-index:1000;
-
-}
-
-
-
-.lightbox-img{
-
-  max-width:90%;
-
-  max-height:80%;
-
-  border-radius:12px;
-
-  box-shadow:0 12px 34px rgba(0,0,0,.6);
-
-  animation: zoomIn .25s ease;
-
-}
-
-
-
-.lightbox .close{
-
-  position:absolute;
-
-  top:20px;
-
-  right:30px;
-
-  font-size:42px;
-
-  color:#fff;
-
-  cursor:pointer;
-
-  user-select:none;
-
-  text-shadow:0 3px 12px rgba(0,0,0,.7);
+  .lb-btn.next{ right:10px; }
 
 }
 
@@ -316,7 +394,7 @@ img{max-width:100%;display:block}
 
 @keyframes zoomIn{
 
-  from{transform:scale(.8);opacity:.4}
+  from{transform:scale(.88);opacity:.5}
 
   to{transform:scale(1);opacity:1}
 
