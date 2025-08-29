@@ -291,3 +291,57 @@
 </body>
 
 </html>
+
+<!-- ====== Lightbox ====== -->
+
+<div id="lightbox" class="lightbox">
+
+  <span class="close">&times;</span>
+
+  <img class="lightbox-img" alt="preview">
+
+</div>
+
+
+
+<script>
+
+  // افتح الصورة داخل الليتبوكس
+
+  document.addEventListener("click", function(e){
+
+    if(e.target.closest(".gallery img")){
+
+      const src = e.target.src;
+
+      const lightbox = document.getElementById("lightbox");
+
+      lightbox.style.display = "flex";
+
+      lightbox.querySelector(".lightbox-img").src = src;
+
+    }
+
+  });
+
+
+
+  // اغلق عند الضغط على X أو على الخلفية
+
+  document.querySelector("#lightbox .close").onclick = () =>
+
+    document.getElementById("lightbox").style.display = "none";
+
+
+
+  document.getElementById("lightbox").onclick = (e) => {
+
+    if(e.target.id === "lightbox"){
+
+      e.currentTarget.style.display = "none";
+
+    }
+
+  };
+
+</script>
