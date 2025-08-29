@@ -14,7 +14,7 @@
 
   <link rel="icon" type="image/svg+xml" href="image/favicon.svg" />
 
-  <link rel="stylesheet" href="style.css?v=4" />
+  <link rel="stylesheet" href="style.css?v=10" />
 
 </head>
 
@@ -34,7 +34,7 @@
 
       <a class="brand" href="#top" aria-label="PorchMe Home">
 
-        <!-- انتبه لإسم الملف: لديك siliver في المستودع -->
+        <!-- تأكد من اسم الملف عندك (siliver vs silver) -->
 
         <img src="image/porchme_logo_siliver.svg" alt="PorchMe Logo" class="royal-logo" />
 
@@ -164,13 +164,13 @@
 
       <h2 class="section-title">Gallery</h2>
 
-      <!-- السكربت يملأه تلقائيًا -->
-
       <div id="galleryBox" class="gallery"></div>
 
       <p class="hint">Upload photos to <code>image/gallery/</code> named
 
         <code>gallery-1.jpg</code>, <code>gallery-2.jpg</code>…</p>
+
+      <noscript><p class="hint">Please enable JavaScript to view the gallery.</p></noscript>
 
     </div>
 
@@ -232,13 +232,11 @@
 
   <script>
 
-    // year + simple mobile menu
-
     document.getElementById('y').textContent = new Date().getFullYear();
 
     const toggle = document.querySelector('.nav-toggle');
 
-    const links = document.querySelector('.nav-links');
+    const links  = document.querySelector('.nav-links');
 
     toggle.addEventListener('click', () => links.classList.toggle('open'));
 
@@ -246,105 +244,113 @@
 
 
 
-  <!-- ===== Auto Gallery Loader (improved) ===== -->
+  <!-- ===== Auto Gallery Loader (HEAD + no-store) ===== -->
 
   <script>
 
     (function () {
 
-      const box = document.getElementById('galleryBox');
+      const box  = document.getElementById('galleryBox');
 
       const hint = document.querySelector('.hint');
-
-      const MAX = 60;                         // عدّلها لو عندك صور أكثر
 
       const base = 'image/gallery/';
 
       const exts = ['jpg','jpeg','webp','png'];
 
-      const version = 'v=5';                  // غيّر الرقم عند استبدال الصور لكسر الكاش
+      const MAX  = 60;
 
-
+      const v    = 'v=12';                 // غيّر الرقم إذا بدّلت الصور لكسر الكاش
 
       let loaded = 0;
 
 
 
-      function addBadge(msg) {
+      function badge(msg){
 
         let b = document.getElementById('gBadge');
 
-        if (!b) {
+        if(!b){
 
           const h2 = document.querySelector('#gallery .section-title');
 
           b = document.createElement('small');
 
-          b.id = 'gBadge';
+          b.id='gBadge';
 
-          b.style.cssText = 'margin-left:10px;color:#aab3bd;font-size:12px;';
+          b.style.cssText='margin-left:10px;color:#aab3bd;font-size:12px;';
 
           h2 && h2.appendChild(b);
 
         }
 
-        if (b) b.textContent = msg;
+        b.textContent = msg;
 
       }
 
 
 
-      function tryExt(n, i) {
+      async function exists(url){
 
-        if (i >= exts.length) return; // لا ملف بهذا الرقم
+        try{
 
-        const ext = exts[i];
+          const res = await fetch(url, { method:'HEAD', cache:'no-store' });
 
-        const img = new Image();
+          return res.ok;
 
-        img.loading = 'lazy';
-
-        img.alt = 'Porch ' + n;
-
-        img.src = `${base}gallery-${n}.${ext}?${version}`;
-
-        img.onload = () => {
-
-          loaded++;
-
-          img.className = 'gimg';
-
-          box.appendChild(img);
-
-          addBadge(`${loaded} photo${loaded>1?'s':''}`);
-
-        };
-
-        img.onerror = () => tryExt(n, i + 1);
+        }catch(_){ return false; }
 
       }
 
 
 
-      for (let n = 1; n <= MAX; n++) tryExt(n, 0);
+      async function addOne(n){
 
+        for (const ext of exts){
 
+          const url = `${base}gallery-${n}.${ext}?${v}`;
 
-      setTimeout(() => {
+          if (await exists(url)){
 
-        if (loaded === 0) {
+            const img = document.createElement('img');
 
-          if (hint) hint.style.display = 'block';
+            img.loading = 'lazy';
 
-          addBadge('no photos found');
+            img.alt = 'Porch ' + n;
 
-        } else {
+            img.src = url;
 
-          if (hint) hint.style.display = 'none';
+            box.appendChild(img);
+
+            loaded++;
+
+            badge(`${loaded} photo${loaded>1?'s':''}`);
+
+            if (hint) hint.style.display = 'none';
+
+            return;
+
+          }
 
         }
 
-      }, 1200);
+      }
+
+
+
+      (async function run(){
+
+        for (let n = 1; n <= MAX; n++) { await addOne(n); }
+
+        if (loaded === 0){
+
+          if (hint) hint.style.display = 'block';
+
+          badge('no photos found');
+
+        }
+
+      })();
 
     })();
 
@@ -392,13 +398,7 @@
 
 
 
-      function collectImages(){
-
-        images = Array.from(document.querySelectorAll('.gallery img'));
-
-      }
-
-
+      function collectImages(){ images = Array.from(document.querySelectorAll('.gallery img')); }
 
       function openAt(index){
 
@@ -422,8 +422,6 @@
 
       }
 
-
-
       function close(){
 
         lb.style.display = 'none';
@@ -433,8 +431,6 @@
         document.body.style.overflow = '';
 
       }
-
-
 
       function next(){ openAt(current + 1); }
 
@@ -458,25 +454,15 @@
 
       });
 
-
-
       btnNext.addEventListener('click', next);
 
       btnPrev.addEventListener('click', prev);
 
       btnClose.addEventListener('click', close);
 
+      lb.addEventListener('click', (e)=>{ if (e.target === lb) close(); });
 
-
-      lb.addEventListener('click', function(e){
-
-        if (e.target === lb) close();
-
-      });
-
-
-
-      document.addEventListener('keydown', function(e){
+      document.addEventListener('keydown', (e)=>{
 
         if (lb.getAttribute('aria-hidden') === 'true') return;
 
@@ -487,8 +473,6 @@
         else if (e.key === 'Escape') close();
 
       });
-
-
 
       lb.addEventListener('touchstart', (e)=>{ touchStartX = e.changedTouches[0].clientX; }, {passive:true});
 
