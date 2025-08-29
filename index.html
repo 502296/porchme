@@ -14,7 +14,7 @@
 
   <link rel="icon" type="image/svg+xml" href="image/favicon.svg" />
 
-  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="style.css?v=4" />
 
 </head>
 
@@ -33,6 +33,8 @@
     <div class="wrap">
 
       <a class="brand" href="#top" aria-label="PorchMe Home">
+
+        <!-- انتبه لإسم الملف: لديك siliver في المستودع -->
 
         <img src="image/porchme_logo_siliver.svg" alt="PorchMe Logo" class="royal-logo" />
 
@@ -72,11 +74,7 @@
 
       <h1 class="hero-title">Royal Porch Design &amp; Build</h1>
 
-      <p class="hero-sub">
-
-        Custom porches with premium woodwork and timeless finishes.
-
-      </p>
+      <p class="hero-sub">Custom porches with premium woodwork and timeless finishes.</p>
 
       <div class="hero-cta">
 
@@ -166,11 +164,13 @@
 
       <h2 class="section-title">Gallery</h2>
 
-      <!-- لا تلمس هذا العنصر؛ السكربت يملأه تلقائيًا -->
+      <!-- السكربت يملأه تلقائيًا -->
 
       <div id="galleryBox" class="gallery"></div>
 
-      <p class="hint">Upload photos to <code>image/gallery/</code> named <code>gallery-1.jpg</code>, <code>gallery-2.jpg</code>…</p>
+      <p class="hint">Upload photos to <code>image/gallery/</code> named
+
+        <code>gallery-1.jpg</code>, <code>gallery-2.jpg</code>…</p>
 
     </div>
 
@@ -228,6 +228,8 @@
 
 
 
+  <!-- ===== Base scripts ===== -->
+
   <script>
 
     // year + simple mobile menu
@@ -240,29 +242,61 @@
 
     toggle.addEventListener('click', () => links.classList.toggle('open'));
 
+  </script>
 
 
-    // ====== Auto Gallery Loader ======
 
-    // ضع صورك في image/gallery/ بأسماء gallery-1.jpg, gallery-2.jpg, … (يدعم jpg/png/webp/jpeg)
+  <!-- ===== Auto Gallery Loader (improved) ===== -->
+
+  <script>
 
     (function () {
 
       const box = document.getElementById('galleryBox');
 
-      const MAX = 200;                         // أقصى تسلسل محتمل
+      const hint = document.querySelector('.hint');
+
+      const MAX = 60;                         // عدّلها لو عندك صور أكثر
 
       const base = 'image/gallery/';
 
       const exts = ['jpg','jpeg','webp','png'];
 
+      const version = 'v=5';                  // غيّر الرقم عند استبدال الصور لكسر الكاش
 
 
-      // helper: جرّب الامتدادات واحداً تلو الآخر لنفس الرقم
 
-      function appendIfExists(n, i = 0) {
+      let loaded = 0;
 
-        if (i >= exts.length) return;          // لا ملف بهذا الرقم
+
+
+      function addBadge(msg) {
+
+        let b = document.getElementById('gBadge');
+
+        if (!b) {
+
+          const h2 = document.querySelector('#gallery .section-title');
+
+          b = document.createElement('small');
+
+          b.id = 'gBadge';
+
+          b.style.cssText = 'margin-left:10px;color:#aab3bd;font-size:12px;';
+
+          h2 && h2.appendChild(b);
+
+        }
+
+        if (b) b.textContent = msg;
+
+      }
+
+
+
+      function tryExt(n, i) {
+
+        if (i >= exts.length) return; // لا ملف بهذا الرقم
 
         const ext = exts[i];
 
@@ -272,17 +306,199 @@
 
         img.alt = 'Porch ' + n;
 
-        img.src = base + 'gallery-' + n + '.' + ext;
+        img.src = `${base}gallery-${n}.${ext}?${version}`;
 
-        img.onload = () => box.appendChild(img);
+        img.onload = () => {
 
-        img.onerror = () => appendIfExists(n, i + 1);
+          loaded++;
+
+          img.className = 'gimg';
+
+          box.appendChild(img);
+
+          addBadge(`${loaded} photo${loaded>1?'s':''}`);
+
+        };
+
+        img.onerror = () => tryExt(n, i + 1);
 
       }
 
 
 
-      for (let n = 1; n <= MAX; n++) appendIfExists(n);
+      for (let n = 1; n <= MAX; n++) tryExt(n, 0);
+
+
+
+      setTimeout(() => {
+
+        if (loaded === 0) {
+
+          if (hint) hint.style.display = 'block';
+
+          addBadge('no photos found');
+
+        } else {
+
+          if (hint) hint.style.display = 'none';
+
+        }
+
+      }, 1200);
+
+    })();
+
+  </script>
+
+
+
+  <!-- ===== Lightbox with Navigation ===== -->
+
+  <div id="lightbox" class="lightbox" aria-hidden="true">
+
+    <button class="lb-btn prev" aria-label="Previous image">❮</button>
+
+    <img class="lightbox-img" alt="preview">
+
+    <button class="lb-btn next" aria-label="Next image">❯</button>
+
+    <button class="close" aria-label="Close lightbox">&times;</button>
+
+  </div>
+
+
+
+  <script>
+
+    (function(){
+
+      const lb = document.getElementById('lightbox');
+
+      const imgEl = lb.querySelector('.lightbox-img');
+
+      const btnPrev = lb.querySelector('.prev');
+
+      const btnNext = lb.querySelector('.next');
+
+      const btnClose = lb.querySelector('.close');
+
+
+
+      let images = [];
+
+      let current = 0;
+
+      let touchStartX = 0;
+
+
+
+      function collectImages(){
+
+        images = Array.from(document.querySelectorAll('.gallery img'));
+
+      }
+
+
+
+      function openAt(index){
+
+        if (!images.length) collectImages();
+
+        if (!images.length) return;
+
+        if (index < 0) index = images.length - 1;
+
+        if (index >= images.length) index = 0;
+
+        current = index;
+
+        imgEl.src = images[current].src;
+
+        lb.style.display = 'flex';
+
+        lb.setAttribute('aria-hidden', 'false');
+
+        document.body.style.overflow = 'hidden';
+
+      }
+
+
+
+      function close(){
+
+        lb.style.display = 'none';
+
+        lb.setAttribute('aria-hidden', 'true');
+
+        document.body.style.overflow = '';
+
+      }
+
+
+
+      function next(){ openAt(current + 1); }
+
+      function prev(){ openAt(current - 1); }
+
+
+
+      document.addEventListener('click', function(e){
+
+        const t = e.target;
+
+        if (t.matches('.gallery img')) {
+
+          collectImages();
+
+          const idx = images.indexOf(t);
+
+          if (idx !== -1) openAt(idx);
+
+        }
+
+      });
+
+
+
+      btnNext.addEventListener('click', next);
+
+      btnPrev.addEventListener('click', prev);
+
+      btnClose.addEventListener('click', close);
+
+
+
+      lb.addEventListener('click', function(e){
+
+        if (e.target === lb) close();
+
+      });
+
+
+
+      document.addEventListener('keydown', function(e){
+
+        if (lb.getAttribute('aria-hidden') === 'true') return;
+
+        if (e.key === 'ArrowRight') next();
+
+        else if (e.key === 'ArrowLeft') prev();
+
+        else if (e.key === 'Escape') close();
+
+      });
+
+
+
+      lb.addEventListener('touchstart', (e)=>{ touchStartX = e.changedTouches[0].clientX; }, {passive:true});
+
+      lb.addEventListener('touchend', (e)=>{
+
+        const dx = e.changedTouches[0].clientX - touchStartX;
+
+        if (Math.abs(dx) > 40){ dx < 0 ? next() : prev(); }
+
+      }, {passive:true});
 
     })();
 
@@ -291,57 +507,3 @@
 </body>
 
 </html>
-
-<!-- ====== Lightbox ====== -->
-
-<div id="lightbox" class="lightbox">
-
-  <span class="close">&times;</span>
-
-  <img class="lightbox-img" alt="preview">
-
-</div>
-
-
-
-<script>
-
-  // افتح الصورة داخل الليتبوكس
-
-  document.addEventListener("click", function(e){
-
-    if(e.target.closest(".gallery img")){
-
-      const src = e.target.src;
-
-      const lightbox = document.getElementById("lightbox");
-
-      lightbox.style.display = "flex";
-
-      lightbox.querySelector(".lightbox-img").src = src;
-
-    }
-
-  });
-
-
-
-  // اغلق عند الضغط على X أو على الخلفية
-
-  document.querySelector("#lightbox .close").onclick = () =>
-
-    document.getElementById("lightbox").style.display = "none";
-
-
-
-  document.getElementById("lightbox").onclick = (e) => {
-
-    if(e.target.id === "lightbox"){
-
-      e.currentTarget.style.display = "none";
-
-    }
-
-  };
-
-</script>
