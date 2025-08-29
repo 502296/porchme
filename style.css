@@ -253,3 +253,71 @@ img{max-width:100%;display:block}
   .hero-title{font-size:34px}
 
 }
+
+/* ====== Lightbox ====== */
+
+.lightbox{
+
+  display:none;
+
+  position:fixed;
+
+  inset:0;
+
+  background:rgba(0,0,0,.85);
+
+  justify-content:center;
+
+  align-items:center;
+
+  z-index:1000;
+
+}
+
+
+
+.lightbox-img{
+
+  max-width:90%;
+
+  max-height:80%;
+
+  border-radius:12px;
+
+  box-shadow:0 12px 34px rgba(0,0,0,.6);
+
+  animation: zoomIn .25s ease;
+
+}
+
+
+
+.lightbox .close{
+
+  position:absolute;
+
+  top:20px;
+
+  right:30px;
+
+  font-size:42px;
+
+  color:#fff;
+
+  cursor:pointer;
+
+  user-select:none;
+
+  text-shadow:0 3px 12px rgba(0,0,0,.7);
+
+}
+
+
+
+@keyframes zoomIn{
+
+  from{transform:scale(.8);opacity:.4}
+
+  to{transform:scale(1);opacity:1}
+
+}
