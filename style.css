@@ -4,8 +4,6 @@
 
   --blue:#0b3b7a;           /* Blueprint blue */
 
-  --overlay:#0b1630cc;      /* Overlay for readability */
-
   --text:#eef3fb;
 
   --muted:#b8c4d9;
@@ -64,11 +62,9 @@ h1,h2{font-family:"Playfair Display", Georgia, "Times New Roman", serif}
 
 .nav-inner{display:flex; align-items:center; gap:16px; height:64px}
 
-.brand{display:flex; align-items:center; gap:10px; color:var(--text); text-decoration:none}
+.brand{display:flex; align-items:center; gap:12px; color:var(--text); text-decoration:none}
 
-.royal-logo{height:28px}
-
-.wordmark{font-weight:900; letter-spacing:.4px}
+.site-logo{height:34px; display:block}
 
 .menu-btn{margin-left:auto; font-size:20px; color:var(--text); background:none; border:0; display:none; cursor:pointer}
 
@@ -226,7 +222,7 @@ h1,h2{font-family:"Playfair Display", Georgia, "Times New Roman", serif}
 
 .footer-inner{display:flex; align-items:center; justify-content:space-between; gap:16px; padding:16px 0; flex-wrap:wrap}
 
-.mini-logo{height:20px; vertical-align:middle}
+.mini-logo{height:22px; vertical-align:middle}
 
 .foot-links a{color:var(--muted); text-decoration:none; margin-left:14px}
 
