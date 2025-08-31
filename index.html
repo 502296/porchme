@@ -1,32 +1,39 @@
+
 <!DOCTYPE html>
 
 <html lang="en">
 
 <head>
 
-  <meta charset="UTF-8" />
+  <meta charset="utf-8" />
 
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <title>PorchMe – Classic Porch Design & Build</title>
 
-  
-
-  <!-- Favicon -->
-
-  <link rel="icon" href="image/favicon.svg" type="image/svg+xml" />
 
 
+  <!-- Main stylesheet -->
 
-  <!-- Styles -->
+  <link rel="stylesheet" href="style.css?v=3" />
 
-  <link rel="stylesheet" href="style.css" />
+  <link rel="icon" type="image/svg+xml" href="image/favicon.svg?v=3" />
+
+  <meta name="description" content="PorchMe delivers blueprint-style conceptual porch design & build — clear, professional, and tailored to your home." />
 
 </head>
 
-<body>
 
-  <!-- Navbar -->
+
+<body id="top">
+
+  <!-- Top accent line -->
+
+  <div class="topline"></div>
+
+
+
+  <!-- NAV -->
 
   <nav class="nav">
 
@@ -34,23 +41,29 @@
 
       <a class="brand" href="#top" aria-label="PorchMe Home">
 
-        <img src="image/porchme_logo.svg" alt="PorchMe Logo" class="site-logo" />
+        <img src="image/porchme_logo_silliver.svg?v=3" alt="PorchMe Logo" class="royal-logo" />
 
         <span class="wordmark">PorchMe</span>
 
       </a>
 
+
+
       <div class="nav-links">
 
-        <a href="#design">Design & Planning</a>
+        <a href="#philosophy">Philosophy</a>
 
-        <a href="#build">Build & Finish</a>
+        <a href="#process">Process</a>
 
-        <a href="#process">Our Process</a>
+        <a href="#gallery">Gallery</a>
 
-        <a href="#contact">Contact</a>
+        <a href="builders.html" class="nav-builder">Builder Portal</a>
+
+        <a href="book.html" class="btn btn-gold nav-cta" aria-label="Book a PorchMe site visit">Book a Visit</a>
 
       </div>
+
+      <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false">☰</button>
 
     </div>
 
@@ -58,73 +71,81 @@
 
 
 
-  <!-- Hero Section -->
+  <!-- HERO -->
 
-  <header class="hero" id="top">
+  <header class="hero hero-blueprint" role="banner" aria-label="PorchMe hero">
 
-    <div class="hero-content">
+    <div class="wrap hero-inner">
 
-      <h1>Classic Porch Design & Build</h1>
+      <h1 class="hero-title">Classic Porch Design &amp; Build</h1>
 
-      <p>Blueprint-style conceptual design by architects — clear, professional, and tailored to your home.</p>
+      <p class="hero-subtitle">
 
-      <a href="#contact" class="btn-gold">Book a Visit – $150 (Louisville Area)</a>
+        Blueprint-style conceptual design by architects — clear, professional, and tailored to your home.
 
-      <a href="#process" class="btn-outline">See Our Process</a>
+      </p>
+
+      <p class="hero-trust">
+
+        We review your site photos before taking on a project to ensure real value for your investment.
+
+      </p>
+
+
+
+      <div class="hero-actions">
+
+        <a href="book.html" class="btn btn-gold" aria-label="Book a PorchMe site visit">Book a Visit</a>
+
+        <a href="#process" class="btn btn-outline">See Our Process</a>
+
+        <a href="builders.html" class="btn btn-quiet builder-entry" aria-label="Open Builder Portal">
+
+          Builder Portal
+
+        </a>
+
+      </div>
 
     </div>
+
+    <div class="hero-gradient" aria-hidden="true"></div>
 
   </header>
 
 
 
-  <!-- Design & Planning -->
+  <!-- PHILOSOPHY -->
 
-  <section id="design" class="section">
+  <section id="philosophy" class="section">
 
-    <h2>Design & Planning</h2>
+    <div class="wrap">
 
-    <p>We focus exclusively on <strong>Conceptual Design</strong>. Permits are handled by the selected Builder awarded with the project.</p>
+      <h2>Our Design Philosophy</h2>
 
-    <h3>Our Design Philosophy</h3>
+      <p>
 
-    <p>We approach every porch as an architectural extension of the home — balanced proportions, timeless detailing, and practical circulation.</p>
+        We draw from America’s rich architectural heritage—Victorian, Federal, Greek Revival,
 
-    <ul>
+        Beaux-Arts, Neo-Classical, and Modern—blending timeless form with modern function.
 
-      <li>Scaled concept drawings with classic proportions</li>
+        Each porch is tailored to your home’s character, site conditions, and budget to achieve a
 
-      <li>Material and trim suggestions to match your architecture</li>
+        refined balance of beauty and practicality.
 
-      <li>Optional 3D mockups available <em>after design fee is paid</em></li>
+      </p>
 
-    </ul>
+      <ul class="pill-list">
 
-    <div class="price-box">
+        <li>Style Selection</li>
 
-      <h4>Design Fee</h4>
+        <li>Spatial Planning</li>
 
-      <p>$350–$500</p>
+        <li>Materials &amp; Color</li>
 
-    </div>
+        <li>Budget</li>
 
-  </section>
-
-
-
-  <!-- Build & Finish -->
-
-  <section id="build" class="section">
-
-    <h2>Build & Finish</h2>
-
-    <p>We <strong>pre-approve top quality builders</strong> in your community who offer expert craftsmanship and use quality materials. After you select a builder, they will coordinate directly with you and carry the required insurance to cover any issues.</p>
-
-    <div class="price-box">
-
-      <h4>Builder Handoff</h4>
-
-      <p>$500 (paid by Builder)</p>
+      </ul>
 
     </div>
 
@@ -132,37 +153,127 @@
 
 
 
-  <!-- Process -->
+  <!-- PROCESS (teaser) -->
 
-  <section id="process" class="section">
+  <section id="process" class="section alt">
 
-    <h2>Our Process</h2>
+    <div class="wrap">
 
-    <ol>
+      <h2>How It Works</h2>
 
-      <li><strong>Book a Visit – $150</strong><br>Site measure and investigation in the Louisville area.</li>
+      <ol class="steps">
 
-      <li><strong>Design Presentation</strong><br>In-person meeting to present design and get approval (Design Fee $350–$500).</li>
+        <li><strong>Share Photos:</strong> send front-elevation/site photos so we can assess fit and feasibility.</li>
 
-      <li><strong>Bidding</strong><br>Design available for our registered builders to bid on.</li>
+        <li><strong>Concept Blueprint:</strong> we prepare a clear, scaled porch concept aligned to your home’s style.</li>
 
-      <li><strong>Builder Selected</strong><br>You select the builder, PorchMe notifies them to start, and the Builder pays PorchMe $500.</li>
+        <li><strong>Refine &amp; Build:</strong> finalize details and coordinate construction with your selected builder.</li>
 
-    </ol>
+      </ol>
+
+      <a href="book.html" class="btn btn-gold">Start Your Project</a>
+
+    </div>
 
   </section>
 
 
 
-  <!-- Contact -->
+  <!-- GALLERY anchor (optional placeholder) -->
 
-  <footer id="contact" class="footer">
+  <section id="gallery" class="section">
 
-    <p>Contact us at: <a href="mailto:contact@porchme.me">contact@porchme.me</a></p>
+    <div class="wrap">
 
-    <p>© 2025 PorchMe. All rights reserved.</p>
+      <h2>Gallery</h2>
+
+      <p class="muted">Coming soon — curated examples of classic porches and details.</p>
+
+    </div>
+
+  </section>
+
+
+
+  <!-- CTA -->
+
+  <section class="cta">
+
+    <div class="wrap">
+
+      <h3>Ready to elevate your front elevation?</h3>
+
+      <a href="book.html" class="btn btn-gold">Book a Visit</a>
+
+      <a href="builders.html" class="btn btn-quiet">Builder Portal</a>
+
+    </div>
+
+  </section>
+
+
+
+  <!-- FOOTER -->
+
+  <footer class="footer">
+
+    <div class="wrap">
+
+      <div class="fbrand">
+
+        <img src="image/porchme_logo_silliver.svg?v=3" alt="PorchMe" />
+
+        <span>PorchMe</span>
+
+      </div>
+
+      <div class="fnav">
+
+        <a href="#philosophy">Philosophy</a>
+
+        <a href="#process">Process</a>
+
+        <a href="#gallery">Gallery</a>
+
+        <a href="book.html">Book a Visit</a>
+
+        <a href="builders.html">Builder Portal</a>
+
+      </div>
+
+      <p class="copy">© <span id="year"></span> PorchMe. All rights reserved.</p>
+
+    </div>
 
   </footer>
+
+
+
+  <script>
+
+    // mobile toggle
+
+    const toggle = document.querySelector('.nav-toggle');
+
+    const links  = document.querySelector('.nav-links');
+
+    if (toggle && links) {
+
+      toggle.addEventListener('click', () => {
+
+        const open = links.classList.toggle('open');
+
+        toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+
+      });
+
+    }
+
+    // year
+
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+  </script>
 
 </body>
 
