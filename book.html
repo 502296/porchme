@@ -1,0 +1,184 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <title>PorchMe – Book a Visit</title>
+
+  <link rel="stylesheet" href="style.css?v=5" />
+
+  <link rel="icon" type="image/png" href="image/favicon.png?v=5" />
+
+</head>
+
+<body>
+
+  <div class="topline"></div>
+
+  <nav class="nav">
+
+    <div class="wrap">
+
+      <a class="brand" href="index.html">
+
+        <img src="image/porchme_logo_silver.svg?v=5" class="royal-logo" alt="PorchMe" />
+
+        <span class="wordmark">PorchMe</span>
+
+      </a>
+
+      <div class="nav-links" id="navLinks">
+
+        <a href="index.html#philosophy">Philosophy</a>
+
+        <a href="index.html#process">Process</a>
+
+        <a href="index.html#gallery">Gallery</a>
+
+        <a href="builders.html" class="nav-builder">Builder Portal</a>
+
+      </div>
+
+      <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="navLinks">☰</button>
+
+    </div>
+
+  </nav>
+
+
+
+  <header class="hero hero-blueprint">
+
+    <div class="wrap hero-inner">
+
+      <h1 class="hero-title">Book a Visit</h1>
+
+      <p class="hero-subtitle">Schedule an on-site review so we can evaluate feasibility and style fit for your porch.</p>
+
+    </div>
+
+  </header>
+
+
+
+  <section class="section">
+
+    <div class="wrap" style="max-width:820px;">
+
+      <div class="note-card" style="margin-bottom:1rem;">
+
+        <strong>Visit Fee:</strong> $150 (Louisville Area). Applied toward design if you proceed.
+
+      </div>
+
+
+
+      <form class="pm-form" action="#" method="post" onsubmit="return false" enctype="multipart/form-data">
+
+        <div class="grid2">
+
+          <label>Full Name<input type="text" required></label>
+
+          <label>Email<input type="email" required></label>
+
+        </div>
+
+        <div class="grid2">
+
+          <label>Phone<input type="tel" required></label>
+
+          <label>Address<input type="text" required></label>
+
+        </div>
+
+        <div class="grid2">
+
+          <label>City<input type="text" required></label>
+
+          <label>ZIP Code<input type="text" required></label>
+
+        </div>
+
+        <div class="grid2">
+
+          <label>Preferred Date<input type="date" required></label>
+
+          <label>Preferred Time<input type="time" required></label>
+
+        </div>
+
+        <label>Upload Site Photos (front elevation, steps, porch area)
+
+          <input type="file" accept="image/*" multiple>
+
+        </label>
+
+        <label>Notes<textarea rows="4" placeholder="Tell us what you envision (style, size, materials)…"></textarea></label>
+
+
+
+        <div class="hero-actions" style="margin-top:1rem;">
+
+          <button class="btn btn-gold" type="submit">Submit Request</button>
+
+        </div>
+
+      </form>
+
+    </div>
+
+  </section>
+
+
+
+  <footer class="footer">
+
+    <div class="wrap">
+
+      <div class="fbrand">
+
+        <img src="image/porchme_logo_silver.svg?v=5" alt="PorchMe" />
+
+        <span>PorchMe</span>
+
+      </div>
+
+      <div class="fnav">
+
+        <a href="index.html#philosophy">Philosophy</a>
+
+        <a href="index.html#process">Process</a>
+
+        <a href="index.html#gallery">Gallery</a>
+
+        <a href="builders.html">Builder Portal</a>
+
+      </div>
+
+      <p class="copy">© <span id="year"></span> PorchMe. All rights reserved.</p>
+
+    </div>
+
+  </footer>
+
+
+
+  <script>
+
+    const t=document.querySelector('.nav-toggle'), l=document.getElementById('navLinks');
+
+    if(t&&l){ t.addEventListener('click',()=>{ const o=l.classList.toggle('open'); t.setAttribute('aria-expanded', o?'true':'false'); }); }
+
+    document.getElementById('year').textContent=new Date().getFullYear();
+
+  </script>
+
+</body>
+
+</html>
