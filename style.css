@@ -1,250 +1,97 @@
+/* ---- Hero blueprint background overlay (keep your current image path) ---- */
 
-/* ===== Root & Reset ===== */
+.hero-blueprint{
 
-:root{
+  position: relative;
 
-  --blue:#0b3b7a;           /* Blueprint blue */
+  background: url("image/blueprint_bg.jpg") center/cover no-repeat fixed;
 
-  --text:#eef3fb;
+  color: var(--text, #e9edf1);
 
-  --muted:#b8c4d9;
+  min-height: 72vh;
 
-  --gold:#caa351;
+  display: grid;
 
-  --gold-2:#e7d39a;
-
-  --card:#101826;
-
-  --card-2:#0c1422;
-
-  --max:1120px;
+  align-items: center;
 
 }
 
-*{box-sizing:border-box}
+.hero-gradient{ position:absolute; inset:0; background: linear-gradient(180deg, rgba(6,12,22,.55), rgba(6,12,22,.75)); }
 
-html,body{margin:0;padding:0}
+.hero-inner{ position: relative; z-index: 1; padding: 5rem 0; }
 
-body{
+.hero-title{ font-size: clamp(2rem, 5vw, 4rem); line-height: 1.1; font-weight: 800; }
 
-  font-family: Inter, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+.hero-subtitle{ font-size: clamp(1rem, 2.2vw, 1.25rem); opacity:.95; max-width: 48rem; }
 
-  color:var(--text); background:#0a1120; line-height:1.65;
+.hero-trust{ margin-top:.75rem; opacity:.9; max-width: 44rem; }
 
-}
+.hero-actions{ display: flex; flex-wrap: wrap; gap: .75rem; margin-top: 1.25rem; }
 
-h1,h2{font-family:"Playfair Display", Georgia, "Times New Roman", serif}
 
-a{color:inherit;}
 
+/* ---- Buttons ---- */
 
+.btn{ display:inline-flex; align-items:center; justify-content:center; padding:.85rem 1.25rem; border-radius:.65rem; border:1px solid transparent; text-decoration:none; font-weight:700; }
 
-/* ===== Helpers ===== */
+.btn-gold{ background:#caa24f; border-color:#caa24f; color:#0e1116; }
 
-.wrap{max-width:var(--max); margin:0 auto; padding:0 20px}
+.btn-gold:focus, .btn-gold:hover{ filter: brightness(1.08); }
 
-.center{text-align:center}
+.btn-outline{ background:transparent; border-color: rgba(255,255,255,.5); color:#e9edf1; }
 
-.small{font-size:.9rem}
+.btn-outline:hover{ border-color:#fff; }
 
-.big{font-size:1.8rem; font-weight:900}
+.btn-quiet{ background:transparent; color:#e9edf1; opacity:.85; }
 
-.muted{color:var(--muted)}
+.btn-quiet:hover{ opacity:1; text-decoration: underline; }
 
-.link{color:#d9e6ff; text-decoration:underline}
 
 
+/* ---- Sections ---- */
 
-/* ===== Navbar ===== */
+.section{ padding: 4rem 0; }
 
-.nav{
+.section.alt{ background: var(--bg-2, #151a20); }
 
-  position:sticky; top:0; z-index:20;
+.pill-list{ display:flex; gap:.5rem; flex-wrap:wrap; margin:1rem 0 0; padding:0; list-style:none;}
 
-  backdrop-filter:saturate(120%) blur(6px);
+.pill-list li{ padding:.5rem .75rem; border:1px solid rgba(255,255,255,.12); border-radius:999px; opacity:.9; }
 
-  background:rgba(10,17,28,.65);
 
-  border-bottom:1px solid rgba(255,255,255,.08);
 
-}
+/* ---- Process steps ---- */
 
-.nav .wrap{display:flex; align-items:center; gap:16px; height:64px}
+.steps{ margin:1rem 0 1.5rem; padding-left:1.25rem; }
 
-.brand{display:flex; align-items:center; gap:12px; text-decoration:none}
+.steps li{ margin:.4rem 0; }
 
-.site-logo{height:34px; display:block}
 
-.nav-links{margin-left:auto; display:flex; gap:18px}
 
-.nav-links a{padding:8px 10px; border-radius:8px; text-decoration:none; opacity:.92}
+/* ---- CTA & Footer tweaks ---- */
 
-.nav-links a:hover{background:rgba(255,255,255,.08)}
+.cta{ padding:3rem 0; text-align:center; background: linear-gradient(180deg, #0f1216, #0b0e12); }
 
+.footer .fbrand{ display:flex; align-items:center; gap:.5rem; opacity:.9; }
 
+.footer .fnav{ display:flex; flex-wrap:wrap; gap:.75rem; margin:.75rem 0; }
 
-/* ===== Buttons ===== */
 
-.btn-gold, .btn-outline{
 
-  display:inline-block; text-decoration:none; padding:12px 18px; border-radius:10px;
+/* ---- Nav: small screens ---- */
 
-  border:1px solid rgba(255,255,255,.18); transition:.2s transform, .2s filter;
+.nav-toggle{ display:none; background:transparent; border:0; font-size:1.25rem; color:#e9edf1; }
 
-  margin-right:10px;
+@media (max-width: 960px){
 
-}
+  .nav-toggle{ display:block; }
 
-.btn-gold{background:var(--gold); color:#111; font-weight:900}
+  .nav .wrap{ display:flex; align-items:center; justify-content:space-between; }
 
-.btn-outline{background:transparent; color:#e7efff}
+  .nav-links{ position:absolute; top:60px; right:1rem; background:#0f1216; border:1px solid rgba(255,255,255,.08); border-radius:.75rem; padding:.75rem; display:none; flex-direction:column; gap:.5rem; }
 
-.btn-gold:hover, .btn-outline:hover{transform:translateY(-1px); filter:brightness(1.06)}
+  .nav-links.open{ display:flex; }
 
-
-
-/* ===== Hero ===== */
-
-.hero{
-
-  position:relative; min-height:74vh;
-
-  background: url("image/porchme_blueprint_highlight.png") center/cover no-repeat fixed;
-
-  border-bottom:1px solid rgba(255,255,255,.08);
-
-}
-
-.hero::before{
-
-  content:""; position:absolute; inset:0;
-
-  background:
-
-    radial-gradient(1200px 400px at 60% 20%, rgba(255,255,255,.08), transparent 55%),
-
-    linear-gradient(180deg, rgba(7,20,45,.65), rgba(7,20,45,.88));
-
-}
-
-.hero .hero-content{
-
-  position:relative; padding:110px 0 90px; max-width:820px; margin:0 auto;
-
-}
-
-.hero h1{
-
-  font-size:clamp(34px, 4.4vw, 60px); line-height:1.1; margin:0;
-
-  text-shadow:0 2px 6px rgba(0,0,0,.55);
-
-}
-
-.hero p{
-
-  margin:12px 0 18px; color:#dbe6fb; max-width:720px;
-
-  text-shadow:0 2px 6px rgba(0,0,0,.5);
-
-}
-
-
-
-/* ===== Sections ===== */
-
-.section{padding:76px 0; background:#0a1120}
-
-.section:nth-of-type(even){background:#0e172a}
-
-.section h2{font-size:clamp(26px,3.2vw,36px); margin:0 0 12px}
-
-.section h3{margin:18px 0 8px}
-
-
-
-/* Cards / Prices */
-
-.price-box, .card{
-
-  background:linear-gradient(180deg, var(--card), var(--card-2));
-
-  border:1px solid rgba(255,255,255,.08); border-radius:14px;
-
-  padding:20px; box-shadow:0 10px 26px rgba(0,0,0,.25);
-
-}
-
-.price-box h4{margin:0 0 6px}
-
-.price-box p{font-size:1.4rem; font-weight:800}
-
-
-
-/* Lists */
-
-ul{padding-left:18px}
-
-ul li{margin:6px 0}
-
-ul li::marker{color:#8ed2ff}
-
-
-
-/* Process */
-
-#process ol{counter-reset:step; list-style:none; padding:0; margin:24px 0 0}
-
-#process ol li{
-
-  position:relative; padding:16px 16px 16px 56px;
-
-  background:rgba(255,255,255,.03); border:1px solid rgba(255,255,255,.08);
-
-  border-radius:12px; margin:14px 0;
-
-}
-
-#process ol li::before{
-
-  counter-increment:step; content:counter(step);
-
-  position:absolute; left:16px; top:16px; width:28px; height:28px; border-radius:50%;
-
-  display:grid; place-items:center; font-weight:900;
-
-  background:var(--gold); color:#111;
-
-}
-
-
-
-/* ===== Footer ===== */
-
-.footer{
-
-  padding:36px 20px; text-align:center; color:var(--muted);
-
-  border-top:1px solid rgba(255,255,255,.08);
-
-}
-
-.footer a{color:#d9e6ff; text-decoration:none}
-
-.footer a:hover{text-decoration:underline}
-
-
-
-/* ===== Responsive ===== */
-
-@media (max-width: 880px){
-
-  .nav-links{display:none}
-
-}
-
-@media (max-width: 720px){
-
-  .hero{min-height:72vh; background-attachment:scroll}
+  .nav-cta{ order:3; }
 
 }
