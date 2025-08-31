@@ -208,3 +208,19 @@ img{max-width:100%;display:block}
   .nav-links.open{display:flex}
 
 }
+
+/* Hide gallery initially */
+
+.gallery-hidden { display: none; margin-top: 2rem; }
+
+.gallery-visible { display: block; animation: fadeIn 0.4s ease; }
+
+
+
+@keyframes fadeIn {
+
+  from { opacity: 0; transform: translateY(10px); }
+
+  to { opacity: 1; transform: translateY(0); }
+
+}
