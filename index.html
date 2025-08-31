@@ -11,23 +11,15 @@
 
   <title>PorchMe – Classic Porch Design & Build</title>
 
+  <meta name="description" content="Blueprint-style conceptual porch design by architects—clear, professional, and tailored to your home." />
 
+  <link rel="stylesheet" href="style.css?v=5" />
 
-  <!-- Main stylesheet -->
-
-  <link rel="stylesheet" href="style.css?v=4" />
-
-  <link rel="icon" type="image/png" href="image/favicon.png?v=4" />
-
-  <meta name="description" content="PorchMe delivers blueprint-style conceptual porch design & build — clear, professional, and tailored to your home." />
+  <link rel="icon" type="image/png" href="image/favicon.png?v=5" />
 
 </head>
 
-
-
 <body id="top">
-
-  <!-- Top accent line -->
 
   <div class="topline"></div>
 
@@ -35,21 +27,19 @@
 
   <!-- NAV -->
 
-  <nav class="nav">
+  <nav class="nav" role="navigation" aria-label="Primary">
 
     <div class="wrap">
 
       <a class="brand" href="#top" aria-label="PorchMe Home">
 
-        <img src="image/porchme_logo_silver.svg?v=4" alt="PorchMe Logo" class="royal-logo" />
+        <img src="image/porchme_logo_silver.svg?v=5" alt="PorchMe Logo" class="royal-logo" />
 
         <span class="wordmark">PorchMe</span>
 
       </a>
 
-
-
-      <div class="nav-links">
+      <div class="nav-links" id="navLinks">
 
         <a href="#philosophy">Philosophy</a>
 
@@ -63,7 +53,7 @@
 
       </div>
 
-      <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false">☰</button>
+      <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="navLinks">☰</button>
 
     </div>
 
@@ -91,19 +81,13 @@
 
       </p>
 
-
-
       <div class="hero-actions">
 
         <a href="book.html" class="btn btn-gold" aria-label="Book a PorchMe site visit">Book a Visit</a>
 
         <a href="#process" class="btn btn-outline">See Our Process</a>
 
-        <a href="builders.html" class="btn btn-quiet builder-entry" aria-label="Open Builder Portal">
-
-          Builder Portal
-
-        </a>
+        <a href="builders.html" class="btn btn-quiet builder-entry" aria-label="Open Builder Portal">Builder Portal</a>
 
       </div>
 
@@ -219,7 +203,7 @@
 
       <div class="fbrand">
 
-        <img src="image/porchme_logo_silver.svg?v=4" alt="PorchMe" />
+        <img src="image/porchme_logo_silver.svg?v=5" alt="PorchMe" />
 
         <span>PorchMe</span>
 
@@ -249,9 +233,11 @@
 
   <script>
 
+    // Mobile nav
+
     const toggle = document.querySelector('.nav-toggle');
 
-    const links  = document.querySelector('.nav-links');
+    const links  = document.getElementById('navLinks');
 
     if (toggle && links) {
 
@@ -264,6 +250,8 @@
       });
 
     }
+
+    // Year
 
     document.getElementById('year').textContent = new Date().getFullYear();
 
