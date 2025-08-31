@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 
 <html lang="en">
@@ -10,9 +11,9 @@
 
   <title>PorchMe – Royal Porch Design</title>
 
-  <link rel="stylesheet" href="style.css?v=6" />
+  <link rel="stylesheet" href="style.css?v=7" />
 
-  <link rel="icon" type="image/png" href="image/favicon.png?v=6" />
+  <link rel="icon" type="image/png" href="image/favicon.png?v=7" />
 
 </head>
 
@@ -26,7 +27,7 @@
 
       <a class="brand" href="index.html">
 
-        <img src="image/porchme_logo_silver.svg?v=6" class="royal-logo" alt="PorchMe" />
+        <img src="image/porchme_logo_silver.svg?v=7" class="royal-logo" alt="PorchMe" />
 
         <span class="wordmark">PorchMe</span>
 
@@ -38,7 +39,7 @@
 
         <a href="#process">Process</a>
 
-        <a href="#gallery">Gallery</a>
+        <a href="#gallery-section">Gallery</a>
 
         <a href="book.html" class="btn btn-gold nav-cta">Book a Visit</a>
 
@@ -52,7 +53,7 @@
 
 
 
-  <!-- Hero Section -->
+  <!-- Hero -->
 
   <header class="hero hero-blueprint">
 
@@ -80,7 +81,7 @@
 
 
 
-  <!-- Design Philosophy -->
+  <!-- Philosophy -->
 
   <section id="philosophy" class="section">
 
@@ -138,55 +139,59 @@
 
 
 
-  <!-- GALLERY -->
+  <!-- Gallery -->
 
-  <section id="gallery" class="section">
+  <section id="gallery-section" class="section">
 
-    <div class="wrap">
+    <div class="wrap" style="text-align:center;">
 
-      <h2>Explore Our Design Vision</h2>
+      <h2>Gallery</h2>
 
-      <p class="muted" style="margin-bottom:1rem;">
+      <p class="muted" style="margin-bottom:1rem;">Explore our porch design concepts</p>
 
-        Classic porch blueprint concepts—clean lines, timeless proportions, and elegant details.
+      <button id="showGalleryBtn" class="btn btn-gold" style="font-size:1.2rem; padding:.9rem 2rem;">View Gallery</button>
 
-      </p>
+    </div>
 
 
 
-      <div class="gallery-grid">
+    <div id="gallery" class="gallery-hidden">
 
-        <a href="image/gallery/porch_blueprint_1.png" class="gallery-item">
+      <div class="wrap">
 
-          <img loading="lazy" src="image/gallery/porch_blueprint_1.png" alt="Blueprint porch concept 1" />
+        <div class="gallery-grid">
 
-        </a>
+          <a href="image/gallery/porch_blueprint_1.png" class="gallery-item">
 
-        <a href="image/gallery/porch_blueprint_2.png" class="gallery-item">
+            <img src="image/gallery/porch_blueprint_1.png" alt="Blueprint porch concept 1" />
 
-          <img loading="lazy" src="image/gallery/porch_blueprint_2.png" alt="Blueprint porch concept 2" />
+          </a>
 
-        </a>
+          <a href="image/gallery/porch_blueprint_2.png" class="gallery-item">
 
-        <a href="image/gallery/porch_blueprint_3.png" class="gallery-item">
+            <img src="image/gallery/porch_blueprint_2.png" alt="Blueprint porch concept 2" />
 
-          <img loading="lazy" src="image/gallery/porch_blueprint_3.png" alt="Blueprint porch concept 3" />
+          </a>
 
-        </a>
+          <a href="image/gallery/porch_blueprint_3.png" class="gallery-item">
 
-        <a href="image/gallery/porch_blueprint_4.png" class="gallery-item">
+            <img src="image/gallery/porch_blueprint_3.png" alt="Blueprint porch concept 3" />
 
-          <img loading="lazy" src="image/gallery/porch_blueprint_4.png" alt="Blueprint porch concept 4" />
+          </a>
 
-        </a>
+          <a href="image/gallery/porch_blueprint_4.png" class="gallery-item">
+
+            <img src="image/gallery/porch_blueprint_4.png" alt="Blueprint porch concept 4" />
+
+          </a>
+
+        </div>
 
       </div>
 
     </div>
 
 
-
-    <!-- Lightbox -->
 
     <div id="pm-lightbox" class="pm-lightbox" aria-hidden="true">
 
@@ -230,7 +235,7 @@
 
       <div class="fbrand">
 
-        <img src="image/porchme_logo_silver.svg?v=6" alt="PorchMe" />
+        <img src="image/porchme_logo_silver.svg?v=7" alt="PorchMe" />
 
         <span>PorchMe</span>
 
@@ -242,7 +247,7 @@
 
         <a href="#process">Process</a>
 
-        <a href="#gallery">Gallery</a>
+        <a href="#gallery-section">Gallery</a>
 
         <a href="book.html">Book a Visit</a>
 
@@ -259,8 +264,6 @@
   <!-- Scripts -->
 
   <script>
-
-    // Year auto
 
     document.getElementById('year').textContent = new Date().getFullYear();
 
@@ -333,6 +336,34 @@
       document.addEventListener('keydown', (e)=>{ if(e.key==='Escape') closeBox(); });
 
     })();
+
+
+
+    // Toggle Gallery
+
+    const showGalleryBtn = document.getElementById('showGalleryBtn');
+
+    const gallery = document.getElementById('gallery');
+
+    if(showGalleryBtn && gallery){
+
+      showGalleryBtn.addEventListener('click', ()=>{
+
+        gallery.classList.toggle('gallery-visible');
+
+        if(gallery.classList.contains('gallery-visible')){
+
+          showGalleryBtn.textContent = 'Hide Gallery';
+
+        } else {
+
+          showGalleryBtn.textContent = 'View Gallery';
+
+        }
+
+      });
+
+    }
 
   </script>
 
