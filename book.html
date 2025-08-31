@@ -1,61 +1,176 @@
-<form class="pm-form" id="bookingForm">
+<!DOCTYPE html>
 
-  <div class="grid2">
+<html lang="en">
 
-    <label>Full Name<input name="fullName" type="text" required></label>
+<head>
 
-    <label>Email<input name="email" type="email" required></label>
+  <meta charset="utf-8" />
 
-  </div>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-  <div class="grid2">
+  <title>PorchMe – Book a Visit</title>
 
-    <label>Phone<input name="phone" type="tel" required></label>
+  <link rel="stylesheet" href="style.css?v=5" />
 
-    <label>Address<input name="address" type="text" required></label>
+  <link rel="icon" type="image/png" href="image/favicon.png?v=5" />
 
-  </div>
+</head>
 
-  <div class="grid2">
+<body>
 
-    <label>City<input name="city" type="text" required></label>
+  <div class="topline"></div>
 
-    <label>ZIP Code<input name="zip" type="text" required></label>
+  <nav class="nav">
 
-  </div>
+    <div class="wrap">
 
-  <div class="grid2">
+      <a class="brand" href="index.html">
 
-    <label>Preferred Date<input name="date" type="date" required></label>
+        <img src="image/porchme_logo_silver.svg?v=5" class="royal-logo" alt="PorchMe" />
 
-    <label>Preferred Time<input name="time" type="time" required></label>
+        <span class="wordmark">PorchMe</span>
 
-  </div>
+      </a>
 
+      <div class="nav-links" id="navLinks">
 
+        <a href="index.html#philosophy">Philosophy</a>
 
-  <!-- الصور اختيارية الآن (نضيف رفع لاحقًا عبر Drive API لو حبيت) -->
+        <a href="index.html#process">Process</a>
 
-  <label>Notes<textarea name="notes" rows="4" placeholder="Tell us your vision…"></textarea></label>
+        <a href="index.html#gallery">Gallery</a>
 
+        <a href="builders.html" class="nav-builder">Builder Portal</a>
 
+      </div>
 
-  <div class="hero-actions" style="margin-top:1rem;">
+      <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="navLinks">☰</button>
 
-    <button class="btn btn-gold" type="submit" id="submitBtn">Submit Request</button>
+    </div>
 
-  </div>
-
-
-
-  <p id="formMsg" class="muted" style="margin-top:.6rem;"></p>
-
-</form>
+  </nav>
 
 
-script>
 
-    // ✅ Google Apps Script Web App endpoint (yours)
+  <header class="hero hero-blueprint">
+
+    <div class="wrap hero-inner">
+
+      <h1 class="hero-title">Book a Visit</h1>
+
+      <p class="hero-subtitle">Schedule an on-site review so we can evaluate feasibility and style fit for your porch.</p>
+
+    </div>
+
+  </header>
+
+
+
+  <section class="section">
+
+    <div class="wrap" style="max-width:820px;">
+
+      <div class="note-card" style="margin-bottom:1rem;">
+
+        <strong>Visit Fee:</strong> $150 (Louisville Area). Applied toward design if you proceed.
+
+      </div>
+
+
+
+      <!-- 🔽 نموذج الحجز -->
+
+      <form class="pm-form" id="bookingForm">
+
+        <div class="grid2">
+
+          <label>Full Name<input name="fullName" type="text" required></label>
+
+          <label>Email<input name="email" type="email" required></label>
+
+        </div>
+
+        <div class="grid2">
+
+          <label>Phone<input name="phone" type="tel" required></label>
+
+          <label>Address<input name="address" type="text" required></label>
+
+        </div>
+
+        <div class="grid2">
+
+          <label>City<input name="city" type="text" required></label>
+
+          <label>ZIP Code<input name="zip" type="text" required></label>
+
+        </div>
+
+        <div class="grid2">
+
+          <label>Preferred Date<input name="date" type="date" required></label>
+
+          <label>Preferred Time<input name="time" type="time" required></label>
+
+        </div>
+
+        <label>Notes<textarea name="notes" rows="4" placeholder="Tell us what you envision (style, size, materials)…"></textarea></label>
+
+
+
+        <div class="hero-actions" style="margin-top:1rem;">
+
+          <button class="btn btn-gold" type="submit" id="submitBtn">Submit Request</button>
+
+        </div>
+
+
+
+        <p id="formMsg" class="muted" style="margin-top:.6rem;"></p>
+
+      </form>
+
+    </div>
+
+  </section>
+
+
+
+  <footer class="footer">
+
+    <div class="wrap">
+
+      <div class="fbrand">
+
+        <img src="image/porchme_logo_silver.svg?v=5" alt="PorchMe" />
+
+        <span>PorchMe</span>
+
+      </div>
+
+      <div class="fnav">
+
+        <a href="index.html#philosophy">Philosophy</a>
+
+        <a href="index.html#process">Process</a>
+
+        <a href="index.html#gallery">Gallery</a>
+
+        <a href="builders.html">Builder Portal</a>
+
+      </div>
+
+      <p class="copy">© <span id="year"></span> PorchMe. All rights reserved.</p>
+
+    </div>
+
+  </footer>
+
+
+
+  <!-- 🔽 سكربت جوجل شيت (وضعه هنا قبل إغلاق body) -->
+
+  <script>
 
     const BOOKING_ENDPOINT = 'https://script.google.com/macros/s/AKfycbyIfJT7FpTSi9ix01cC6QDbmgOehgKE_S9Lj0DN0kov2-EyblyNmonw-F5HJB64Vis3/exec';
 
@@ -125,6 +240,8 @@ script>
 
         msg.textContent = 'Thank you — your request was sent successfully.';
 
+        // لو تفضل تحويله لصفحة شكر:
+
         // window.location.href = 'thank-you.html';
 
       } catch (err) {
@@ -138,6 +255,10 @@ script>
       }
 
     });
+
+
+
+    document.getElementById('year').textContent = new Date().getFullYear();
 
   </script>
 
