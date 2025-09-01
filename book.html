@@ -10,9 +10,13 @@
 
   <title>PorchMe – Book a Visit</title>
 
-  <link rel="stylesheet" href="style.css?v=5" />
 
-  <link rel="icon" type="image/png" href="image/favicon.png?v=5" />
+
+  <!-- Styles -->
+
+  <link rel="stylesheet" href="style.css?v=7" />
+
+  <link rel="icon" type="image/png" href="image/favicon.png?v=7" />
 
 </head>
 
@@ -20,29 +24,37 @@
 
   <div class="topline"></div>
 
+
+
+  <!-- Nav -->
+
   <nav class="nav">
 
     <div class="wrap">
 
       <a class="brand" href="index.html">
 
-        <img src="image/porchme_logo_silver.svg?v=5" class="royal-logo" alt="PorchMe" />
+        <img src="image/porchme_logo_silver.svg?v=7" class="royal-logo" alt="PorchMe" />
 
         <span class="wordmark">PorchMe</span>
 
       </a>
 
+
+
       <div class="nav-links" id="navLinks">
 
-        <a href="index.html#philosophy">Philosophy</a>
+        <a href="index.html#philosophy">Design Ethos</a>
 
-        <a href="index.html#process">Process</a>
+        <a href="index.html#process">Project Roadmap</a>
 
-        <a href="index.html#gallery">Gallery</a>
+        <a href="index.html#gallery-section">Gallery</a>
 
-        <a href="builders.html" class="nav-builder">Builder Portal</a>
+        <a href="builders.html" class="btn btn-outline nav-cta">For Builders</a>
 
       </div>
+
+
 
       <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="navLinks">☰</button>
 
@@ -52,19 +64,27 @@
 
 
 
+  <!-- Hero -->
+
   <header class="hero hero-blueprint">
 
     <div class="wrap hero-inner">
 
       <h1 class="hero-title">Book a Visit</h1>
 
-      <p class="hero-subtitle">Schedule an on-site review so we can evaluate feasibility and style fit for your porch.</p>
+      <p class="hero-subtitle">
+
+        Schedule an on-site review so we can evaluate feasibility and style fit for your porch.
+
+      </p>
 
     </div>
 
   </header>
 
 
+
+  <!-- Booking Form -->
 
   <section class="section">
 
@@ -78,49 +98,99 @@
 
 
 
-      <!-- 🔽 نموذج الحجز -->
-
       <form class="pm-form" id="bookingForm">
 
-        <div class="grid2">
+        <!-- Honeypot (spam trap) -->
 
-          <label>Full Name<input name="fullName" type="text" required></label>
+        <input type="text" name="website" style="position:absolute;left:-9999px;opacity:0" tabindex="-1" autocomplete="off">
 
-          <label>Email<input name="email" type="email" required></label>
 
-        </div>
 
         <div class="grid2">
 
-          <label>Phone<input name="phone" type="tel" required></label>
+          <label>Full Name
 
-          <label>Address<input name="address" type="text" required></label>
+            <input name="fullName" type="text" required>
+
+          </label>
+
+          <label>Email
+
+            <input name="email" type="email" required>
+
+          </label>
 
         </div>
+
+
 
         <div class="grid2">
 
-          <label>City<input name="city" type="text" required></label>
+          <label>Phone
 
-          <label>ZIP Code<input name="zip" type="text" required></label>
+            <input name="phone" type="tel" required>
+
+          </label>
+
+          <label>Address
+
+            <input name="address" type="text" required>
+
+          </label>
 
         </div>
+
+
 
         <div class="grid2">
 
-          <label>Preferred Date<input name="date" type="date" required></label>
+          <label>City
 
-          <label>Preferred Time<input name="time" type="time" required></label>
+            <input name="city" type="text" required>
+
+          </label>
+
+          <label>ZIP Code
+
+            <input name="zip" type="text" required>
+
+          </label>
 
         </div>
 
-        <label>Notes<textarea name="notes" rows="4" placeholder="Tell us what you envision (style, size, materials)…"></textarea></label>
+
+
+        <div class="grid2">
+
+          <label>Preferred Date
+
+            <input name="date" type="date" required>
+
+          </label>
+
+          <label>Preferred Time
+
+            <input name="time" type="time" required>
+
+          </label>
+
+        </div>
+
+
+
+        <label>Notes
+
+          <textarea name="notes" rows="4" placeholder="Tell us what you envision (style, size, materials)…"></textarea>
+
+        </label>
 
 
 
         <div class="hero-actions" style="margin-top:1rem;">
 
           <button class="btn btn-gold" type="submit" id="submitBtn">Submit Request</button>
+
+          <a href="index.html#process" class="btn btn-outline">Explore the Roadmap</a>
 
         </div>
 
@@ -136,13 +206,15 @@
 
 
 
+  <!-- Footer -->
+
   <footer class="footer">
 
     <div class="wrap">
 
       <div class="fbrand">
 
-        <img src="image/porchme_logo_silver.svg?v=5" alt="PorchMe" />
+        <img src="image/porchme_logo_silver.svg?v=7" alt="PorchMe" />
 
         <span>PorchMe</span>
 
@@ -150,11 +222,11 @@
 
       <div class="fnav">
 
-        <a href="index.html#philosophy">Philosophy</a>
+        <a href="index.html#philosophy">Design Ethos</a>
 
-        <a href="index.html#process">Process</a>
+        <a href="index.html#process">Project Roadmap</a>
 
-        <a href="index.html#gallery">Gallery</a>
+        <a href="index.html#gallery-section">Gallery</a>
 
         <a href="builders.html">Builder Portal</a>
 
@@ -168,9 +240,37 @@
 
 
 
-  <!-- 🔽 سكربت جوجل شيت (وضعه هنا قبل إغلاق body) -->
+  <!-- Scripts -->
 
   <script>
+
+    // Year
+
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+
+
+    // Mobile nav
+
+    const navBtn = document.querySelector('.nav-toggle');
+
+    const navLinks = document.querySelector('.nav-links');
+
+    if (navBtn && navLinks){
+
+      navBtn.addEventListener('click', ()=>{
+
+        const open = navLinks.classList.toggle('open');
+
+        navBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
+
+      });
+
+    }
+
+
+
+    // ===== Submit to Google Apps Script and redirect to Thank You =====
 
     const BOOKING_ENDPOINT = 'https://script.google.com/macros/s/AKfycbyIfJT7FpTSi9ix01cC6QDbmgOehgKE_S9Lj0DN0kov2-EyblyNmonw-F5HJB64Vis3/exec';
 
@@ -195,6 +295,22 @@
 
 
       const f = new FormData(form);
+
+
+
+      // Block bots via honeypot
+
+      if (f.get('website')) {
+
+        msg.textContent = 'Submission blocked (spam detected).';
+
+        btn.disabled = false; btn.textContent = 'Submit Request';
+
+        return;
+
+      }
+
+
 
       const payload = {
 
@@ -228,7 +344,7 @@
 
           mode: 'no-cors',
 
-          headers: {'Content-Type':'application/json'},
+          headers: { 'Content-Type': 'application/json' },
 
           body: JSON.stringify(payload)
 
@@ -236,29 +352,19 @@
 
 
 
-        form.reset();
+        // Redirect to Thank You page
 
-        msg.textContent = 'Thank you — your request was sent successfully.';
-
-        // لو تفضل تحويله لصفحة شكر:
-
-        // window.location.href = 'thank-you.html';
+        window.location.href = 'thank-you.html';
 
       } catch (err) {
 
         msg.textContent = 'Something went wrong. Please try again or email us.';
-
-      } finally {
 
         btn.disabled = false; btn.textContent = 'Submit Request';
 
       }
 
     });
-
-
-
-    document.getElementById('year').textContent = new Date().getFullYear();
 
   </script>
 
