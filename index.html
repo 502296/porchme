@@ -2,6 +2,8 @@
 
 <html lang="en">
 
+
+
 <head>
 
   <meta charset="utf-8" />
@@ -15,6 +17,8 @@
   <link rel="icon" type="image/png" href="image/favicon.png" />
 
 </head>
+
+
 
 <body>
 
@@ -34,7 +38,7 @@
 
       <div class="nav-links" id="navLinks">
 
-        <a href="#philosophy">Design Ethos</a>
+        <a href="#philosophy">Design Expertise</a>
 
         <a href="#process">Project Roadmap</a>
 
@@ -80,15 +84,15 @@
 
 
 
-  <!-- Philosophy -->
+  <!-- Design Expertise (was Philosophy) -->
 
   <section id="philosophy" class="section">
 
     <div class="wrap">
 
-      <h2>Design Ethos</h2>
+      <h2>Design Expertise</h2>
 
-      <p>We draw from America’s rich architectural heritage—Victorian, Federal, Greek Revival, Beaux-Arts, Neo-Classical, and Modern—blending timeless form with modern function. Each porch is tailored to your home’s character, site conditions, and budget to achieve a refined balance of beauty and practicality.</p>
+      <p>Our porch designs combine architectural heritage with modern innovation, delivering timeless and elegant outdoor spaces for every home.</p>
 
       <div class="tags">
 
@@ -238,7 +242,7 @@
 
       <div class="fnav">
 
-        <a href="#philosophy">Design Ethos</a>
+        <a href="#philosophy">Design Expertise</a>
 
         <a href="#process">Project Roadmap</a>
 
@@ -264,9 +268,9 @@
 
     const navLinks = document.querySelector('.nav-links');
 
-    if(navBtn && navLinks){
+    if (navBtn && navLinks) {
 
-      navBtn.addEventListener('click', ()=>{
+      navBtn.addEventListener('click', () => {
 
         const open = navLinks.classList.toggle('open');
 
@@ -278,17 +282,17 @@
 
     // Lightbox
 
-    (function(){
+    (function () {
 
-      const box  = document.getElementById('pm-lightbox');
+      const box = document.getElementById('pm-lightbox');
 
-      const img  = document.getElementById('pm-lightbox-img');
+      const img = document.getElementById('pm-lightbox-img');
 
       const btnX = box.querySelector('.pm-close');
 
-      document.querySelectorAll('.gallery-item').forEach(a=>{
+      document.querySelectorAll('.gallery-item').forEach(a => {
 
-        a.addEventListener('click', e=>{
+        a.addEventListener('click', e => {
 
           e.preventDefault();
 
@@ -296,17 +300,17 @@
 
           box.classList.add('open');
 
-          box.setAttribute('aria-hidden','false');
+          box.setAttribute('aria-hidden', 'false');
 
         });
 
       });
 
-      function closeBox(){
+      function closeBox() {
 
         box.classList.remove('open');
 
-        box.setAttribute('aria-hidden','true');
+        box.setAttribute('aria-hidden', 'true');
 
         img.removeAttribute('src');
 
@@ -314,9 +318,9 @@
 
       btnX.addEventListener('click', closeBox);
 
-      box.addEventListener('click', (e)=>{ if(e.target===box) closeBox(); });
+      box.addEventListener('click', (e) => { if (e.target === box) closeBox(); });
 
-      document.addEventListener('keydown', (e)=>{ if(e.key==='Escape') closeBox(); });
+      document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeBox(); });
 
     })();
 
@@ -326,13 +330,13 @@
 
     const gallery = document.getElementById('gallery');
 
-    if(showGalleryBtn && gallery){
+    if (showGalleryBtn && gallery) {
 
-      showGalleryBtn.addEventListener('click', ()=>{
+      showGalleryBtn.addEventListener('click', () => {
 
         gallery.classList.toggle('gallery-visible');
 
-        if(gallery.classList.contains('gallery-visible')){
+        if (gallery.classList.contains('gallery-visible')) {
 
           showGalleryBtn.textContent = 'Hide Gallery';
 
