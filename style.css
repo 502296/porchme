@@ -1,72 +1,150 @@
-/* ===== Headlines & Lead text ===== */
+/* ===== Root & Reset ===== */
+
+:root{
+
+  --bg:#0f1216;
+
+  --bg-2:#151a20;
+
+  --text:#e9edf1;
+
+  --muted:#cfd6e2;
+
+  --gold:#caa24f;
+
+  --line:rgba(255,255,255,.12);
+
+}
+
+*{margin:0;padding:0;box-sizing:border-box}
+
+html,body{height:100%}
+
+body{font-family:system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;background:var(--bg);color:var(--text);line-height:1.6}
+
+img{max-width:100%;display:block}
+
+
+
+/* ===== Topline & Nav ===== */
+
+.topline{height:5px;background:var(--gold)}
+
+.nav{background:#0f1216;color:#fff;position:sticky;top:0;z-index:1000;border-bottom:1px solid rgba(255,255,255,.06)}
+
+.wrap{max-width:1200px;margin:0 auto;padding:0 1rem}
+
+.nav .wrap{display:flex;align-items:center;justify-content:space-between;min-height:60px}
+
+.brand{display:flex;align-items:center;gap:.55rem;text-decoration:none}
+
+.royal-logo{height:36px;width:auto}
+
+.wordmark{font-size:1.3rem;font-weight:800;color:#fff}
+
+.nav-links{display:flex;align-items:center;gap:1rem}
+
+.nav-links a{color:#fff;text-decoration:none;font-weight:600;opacity:.95}
+
+.nav-links a:hover{opacity:1;text-decoration:underline}
+
+.nav-toggle{display:none;background:transparent;border:0;font-size:1.3rem;color:#fff}
+
+
+
+/* ===== Hero ===== */
+
+.hero{position:relative;isolation:isolate}
+
+.hero-blueprint{
+
+  background:
+
+    linear-gradient(180deg,rgba(6,12,22,.55),rgba(6,12,22,.78)),
+
+    url("image/porchme_blueprint_highlight.png") center/cover no-repeat;
+
+  min-height:62vh;display:grid;align-items:center;color:var(--text);
+
+}
+
+.hero-inner{position:relative;z-index:1;padding:5rem 0}
+
+.hero-title{font-size:clamp(2rem,5.6vw,3.6rem);font-weight:800;line-height:1.1;letter-spacing:-.3px}
+
+.hero-subtitle{font-size:1.12rem;opacity:.95;max-width:48rem}
+
+.hero-actions{display:flex;flex-wrap:wrap;gap:.8rem;margin-top:1.2rem}
+
+
+
+/* ===== Buttons ===== */
+
+.btn{display:inline-flex;align-items:center;justify-content:center;padding:1rem 1.2rem;border-radius:.7rem;border:1px solid transparent;text-decoration:none;font-weight:750;transition:.2s}
+
+.btn-gold{background:var(--gold);border-color:var(--gold);color:#0e1116}
+
+.btn-gold:hover{filter:brightness(1.08)}
+
+.btn-outline{background:transparent;border:1px solid rgba(255,255,255,.55);color:#fff}
+
+.btn-outline:hover{border-color:#fff;box-shadow:0 8px 24px rgba(0,0,0,.25)}
+
+.btn-quiet{background:transparent;color:#fff;opacity:.9}
+
+.btn-quiet:hover{opacity:1;text-decoration:underline}
+
+.nav-cta{padding:.6rem .9rem;border-radius:.6rem}
+
+
+
+/* ===== Sections ===== */
+
+.section{padding:4rem 0}
+
+.section.alt{background:var(--bg-2)}
+
+.section h2{font-size:2rem;margin-bottom:1rem;letter-spacing:.2px}
+
+.muted{color:var(--muted);opacity:.9}
+
+.note{color:#d9c8a1;margin:.4rem 0 0}
+
+
+
+/* Lead paragraph + tags */
 
 .lead{color:#cfd6e2;max-width:60rem;line-height:1.55;margin:0 0 1rem}
 
-
-
-/* ===== Tags (pills under Design Ethos) ===== */
-
 .tags{display:flex;gap:.5rem;flex-wrap:wrap;margin-top:.5rem}
 
-.tags span{
-
-  padding:.5rem .75rem;border:1px solid rgba(255,255,255,.12);
-
-  border-radius:999px;opacity:.95;background:rgba(255,255,255,.03)
-
-}
+.tags span{padding:.5rem .75rem;border:1px solid var(--line);border-radius:999px;opacity:.95;background:rgba(255,255,255,.03)}
 
 
 
-/* ===== Builders strip (separate from customers) ===== */
+/* Steps list */
 
-.builders-strip{
+.steps{margin:1rem 0 1.5rem;padding-left:1.25rem}
 
-  background:linear-gradient(180deg,rgba(255,255,255,.02),rgba(255,255,255,0));
-
-  border-top:1px solid rgba(255,255,255,.06);
-
-  padding:3.25rem 0
-
-}
-
-.builders-strip__grid{
-
-  max-width:1200px;margin:0 auto;padding:0 1rem;
-
-  display:flex;align-items:center;justify-content:space-between;gap:1.2rem;flex-wrap:wrap
-
-}
-
-.builders-strip__title{margin:0 0 .35rem;font-size:1.4rem;font-weight:800}
-
-.builders-strip__text{margin:0;color:#d3dae5;max-width:48rem;opacity:.95}
-
-.builders-strip__actions{display:flex;gap:.65rem;flex-wrap:wrap}
+.steps li{margin:.4rem 0}
 
 
 
-/* Outline button already exists; add a subtle hover glow */
+/* ===== Gallery ===== */
 
-.btn-outline:hover{box-shadow:0 8px 24px rgba(0,0,0,.25)}
+.gallery-hidden{display:none;margin-top:2rem}
 
-
-
-/* ===== Gallery grid (when visible) ===== */
+.gallery-visible{display:block;animation:fadeIn .4s ease}
 
 .gallery-visible .wrap{max-width:1200px}
 
-.gallery-grid{
+.gallery-grid{display:grid;gap:.75rem;margin-top:1rem;grid-template-columns:repeat(4,minmax(0,1fr))}
 
-  display:grid;gap:.75rem;margin-top:1rem;
+.gallery-item{border:1px solid var(--line);border-radius:.6rem;overflow:hidden;background:#0f1216}
 
-  grid-template-columns:repeat(4,minmax(0,1fr))
+.gallery-item img{width:100%;height:auto;aspect-ratio:4/3;object-fit:cover;font-size:0}
 
-}
-
-.gallery-item{border:1px solid rgba(255,255,255,.12);border-radius:.6rem;overflow:hidden;background:#0f1216}
-
-.gallery-item img{width:100%;height:auto;display:block;aspect-ratio:4/3;object-fit:cover;font-size:0}
+@keyframes fadeIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
 
 @media (max-width:960px){.gallery-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
 
@@ -74,52 +152,104 @@
 
 
 
-/* ===== Lightbox ===== */
+/* Lightbox */
 
-.pm-lightbox{
-
-  position:fixed;inset:0;background:rgba(0,0,0,.78);
-
-  display:none;align-items:center;justify-content:center;z-index:2000;padding:1rem
-
-}
+.pm-lightbox{position:fixed;inset:0;background:rgba(0,0,0,.78);display:none;align-items:center;justify-content:center;z-index:2000;padding:1rem}
 
 .pm-lightbox.open{display:flex;animation:fadeIn .2s ease}
 
 .pm-lightbox img{max-width:min(1100px,96vw);max-height:88vh;border-radius:.6rem;border:1px solid rgba(255,255,255,.15);background:#0f1216}
 
-.pm-close{
-
-  position:absolute;top:14px;right:16px;background:transparent;color:#fff;border:0;
-
-  font-size:2rem;line-height:1;cursor:pointer;opacity:.9
-
-}
+.pm-close{position:absolute;top:14px;right:16px;background:transparent;color:#fff;border:0;font-size:2rem;line-height:1;cursor:pointer;opacity:.9}
 
 .pm-close:hover{opacity:1}
 
 
 
-/* ===== Nav polish (mobile spacing) ===== */
+/* ===== Forms ===== */
 
-.nav-cta{padding:.6rem .9rem;border-radius:.6rem}
+.pm-form label{display:block;font-weight:600;margin:.65rem 0 .35rem}
 
-@media (max-width:960px){
+.pm-form input,.pm-form textarea,.pm-form select{
 
-  .nav-links a{padding:.35rem .5rem;border-radius:.5rem}
+  width:100%;padding:.85rem .95rem;border-radius:.65rem;border:1px solid var(--line);
+
+  background:#0f1216;color:#e9edf1;outline:none
+
+}
+
+.pm-form input:focus,.pm-form textarea:focus,.pm-form select:focus{
+
+  border-color:var(--gold);box-shadow:0 0 0 2px rgba(202,162,79,.2)
+
+}
+
+.grid2{display:grid;gap:.9rem;grid-template-columns:1fr 1fr}
+
+@media (max-width:720px){.grid2{grid-template-columns:1fr}}
+
+
+
+/* Cards / helpers */
+
+.note-card{padding:1rem;border:1px solid var(--line);border-radius:.8rem;background:rgba(12,16,22,.45)}
+
+
+
+/* ===== Footer ===== */
+
+.footer{background:#0f1216;color:#fff;padding:2rem 0;border-top:1px solid rgba(255,255,255,.06)}
+
+.footer .wrap{display:grid;gap:.5rem}
+
+.footer .fbrand{display:flex;align-items:center;gap:.5rem;opacity:.9}
+
+.footer .fnav{display:flex;flex-wrap:wrap;gap:.85rem;margin:.75rem 0}
+
+.footer a{color:var(--gold)}
+
+.footer a:hover{filter:brightness(1.15);text-decoration:none}
+
+.copy{opacity:.75;font-size:.95rem}
+
+
+
+/* ===== Mobile tweaks ===== */
+
+@media (max-width:480px){
+
+  .hero-inner{padding:4rem 0 3rem}
+
+  .btn{padding:1rem 1.15rem}
+
+  .nav .wrap{gap:.5rem}
 
 }
 
 
 
-/* ===== Section titles spacing ===== */
+/* ===== Mobile nav ===== */
 
-.section h2{letter-spacing:.2px}
+@media (max-width:960px){
 
-.note{color:#d9c8a1;margin:.4rem 0 0}
+  .nav-toggle{display:block}
+
+  .nav .wrap{flex-wrap:wrap}
+
+  .nav-links{
+
+    position:absolute;top:60px;right:1rem;background:#0f1216;border:1px solid rgba(255,255,255,.08);
+
+    border-radius:.75rem;padding:.75rem;display:none;flex-direction:column;gap:.65rem
+
+  }
+
+  .nav-links.open{display:flex}
+
+}
 
 
 
-/* ===== Small accessibility/detail touches ===== */
+/* ===== Focus ring ===== */
 
-a,button,input,select,textarea{outline-color:#caa24f;outline-offset:2px}
+a,button,input,select,textarea{outline-color:var(--gold);outline-offset:2px}
