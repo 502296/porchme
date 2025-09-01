@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 
 <html lang="en">
@@ -11,21 +10,29 @@
 
   <title>PorchMe – Royal Porch Design</title>
 
+
+
   <link rel="stylesheet" href="style.css?v=7" />
 
   <link rel="icon" type="image/png" href="image/favicon.png?v=7" />
 
 </head>
 
+
+
 <body>
 
   <div class="topline"></div>
+
+
+
+  <!-- Nav -->
 
   <nav class="nav">
 
     <div class="wrap">
 
-      <a class="brand" href="index.html">
+      <a class="brand" href="index.html" aria-label="PorchMe Home">
 
         <img src="image/porchme_logo_silver.svg?v=7" class="royal-logo" alt="PorchMe" />
 
@@ -33,17 +40,25 @@
 
       </a>
 
+
+
       <div class="nav-links" id="navLinks">
 
-        <a href="#philosophy">Philosophy</a>
+        <!-- أبقينا نفس الـIDs للحفاظ على التوافق مع CSS الحالي -->
 
-        <a href="#process">Process</a>
+        <a href="#philosophy">Design Ethos</a>
+
+        <a href="#process">Project Roadmap</a>
 
         <a href="#gallery-section">Gallery</a>
 
         <a href="book.html" class="btn btn-gold nav-cta">Book a Visit</a>
 
+        <a href="#builders" class="btn btn-outline nav-cta">For Builders</a>
+
       </div>
+
+
 
       <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="navLinks">☰</button>
 
@@ -61,15 +76,21 @@
 
       <h1 class="hero-title">Classic Porch Design & Build</h1>
 
-      <p class="hero-subtitle">Blueprint-style conceptual design by architects — clear, professional, and tailored to your home.</p>
+      <p class="hero-subtitle">
+
+        Blueprint-style conceptual design by architects — clear, professional, and tailored to your home.
+
+      </p>
 
       <p>We review your site photos before taking on a project to ensure real value for your investment.</p>
+
+
 
       <div class="hero-actions">
 
         <a href="book.html" class="btn btn-gold">Book a Visit</a>
 
-        <a href="#process" class="btn btn-outline">See Our Process</a>
+        <a href="#process" class="btn btn-outline">Explore the Roadmap</a>
 
         <a href="builders.html" class="btn btn-quiet">Builder Portal</a>
 
@@ -81,15 +102,25 @@
 
 
 
-  <!-- Philosophy -->
+  <!-- Design Ethos -->
 
   <section id="philosophy" class="section">
 
     <div class="wrap">
 
-      <h2>Our Design Philosophy</h2>
+      <h2>Design Ethos</h2>
 
-      <p>We draw from America’s rich architectural heritage—Victorian, Federal, Greek Revival, Beaux-Arts, Neo-Classical, and Modern—blending timeless form with modern function. Each porch is tailored to your home’s character, site conditions, and budget to achieve a refined balance of beauty and practicality.</p>
+      <p class="lead">
+
+        We honor America’s architectural heritage—Victorian, Federal, Greek Revival, Beaux-Arts,
+
+        Neo-Classical, and Modern—then tailor proportion, profiles, and materials to your home.
+
+        The result is a porch that feels timeless, functions perfectly, and elevates curb appeal without compromise.
+
+      </p>
+
+
 
       <div class="tags">
 
@@ -109,23 +140,29 @@
 
 
 
-  <!-- How It Works -->
+  <!-- Project Roadmap -->
 
   <section id="process" class="section alt">
 
     <div class="wrap">
 
-      <h2>How It Works</h2>
+      <h2>Project Roadmap</h2>
 
       <ol class="steps">
 
-        <li><strong>Share Photos:</strong> send front-elevation/site photos so we can assess fit and feasibility.</li>
+        <li><strong>Share Site Photos:</strong> front-elevation / entry area so we confirm fit and feasibility.</li>
 
-        <li><strong>Concept Blueprint:</strong> we prepare a clear, scaled porch concept aligned to your home’s style.</li>
+        <li><strong>Concept Blueprint:</strong> a clear, scaled porch concept aligned to your home’s style and budget.</li>
 
         <li><strong>Refine & Build:</strong> finalize details and coordinate construction with your selected builder.</li>
 
       </ol>
+
+
+
+      <p class="note">We only take projects where our work truly adds value.</p>
+
+
 
       <div class="hero-actions">
 
@@ -193,11 +230,47 @@
 
 
 
+    <!-- Lightbox -->
+
     <div id="pm-lightbox" class="pm-lightbox" aria-hidden="true">
 
       <button class="pm-close" aria-label="Close">×</button>
 
       <img id="pm-lightbox-img" alt="PorchMe gallery image" />
+
+    </div>
+
+  </section>
+
+
+
+  <!-- Builders strip (منفصل عن العملاء) -->
+
+  <section class="builders-strip" id="builders">
+
+    <div class="wrap builders-strip__grid">
+
+      <div>
+
+        <h3 class="builders-strip__title">For Licensed Builders</h3>
+
+        <p class="builders-strip__text">
+
+          Join the PorchMe Network. Share your craft, receive ready-to-build concepts, and work on
+
+          homeowner-approved projects with clear scopes and timelines.
+
+        </p>
+
+      </div>
+
+      <div class="builders-strip__actions">
+
+        <a href="builders.html" class="btn btn-outline">Apply as a Builder</a>
+
+        <a href="builder-login.html" class="btn btn-quiet">Builder Sign-In</a>
+
+      </div>
 
     </div>
 
@@ -241,17 +314,21 @@
 
       </div>
 
+
+
       <div class="fnav">
 
-        <a href="#philosophy">Philosophy</a>
+        <a href="#philosophy">Design Ethos</a>
 
-        <a href="#process">Process</a>
+        <a href="#process">Project Roadmap</a>
 
         <a href="#gallery-section">Gallery</a>
 
         <a href="book.html">Book a Visit</a>
 
       </div>
+
+
 
       <p class="copy">© <span id="year"></span> PorchMe. All rights reserved.</p>
 
@@ -275,13 +352,13 @@
 
     const navLinks = document.querySelector('.nav-links');
 
-    if(navBtn && navLinks){
+    if (navBtn && navLinks) {
 
-      navBtn.addEventListener('click', ()=>{
+      navBtn.addEventListener('click', () => {
 
         const open = navLinks.classList.toggle('open');
 
-        navBtn.setAttribute('aria-expanded', open ? 'true':'false');
+        navBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
 
       });
 
@@ -345,21 +422,17 @@
 
     const gallery = document.getElementById('gallery');
 
-    if(showGalleryBtn && gallery){
+    if (showGalleryBtn && gallery) {
 
       showGalleryBtn.addEventListener('click', ()=>{
 
         gallery.classList.toggle('gallery-visible');
 
-        if(gallery.classList.contains('gallery-visible')){
+        showGalleryBtn.textContent = gallery.classList.contains('gallery-visible')
 
-          showGalleryBtn.textContent = 'Hide Gallery';
+          ? 'Hide Gallery'
 
-        } else {
-
-          showGalleryBtn.textContent = 'View Gallery';
-
-        }
+          : 'View Gallery';
 
       });
 
