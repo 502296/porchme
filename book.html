@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 
 <html lang="en">
@@ -12,7 +13,7 @@
 
 
 
-  <!-- الثيم الرئيسي -->
+  <!-- الثيم العام للموقع -->
 
   <link rel="stylesheet" href="style.css?v=1105" />
 
@@ -24,7 +25,7 @@
 
   <style>
 
-    /* هيرو أرفع لهذه الصفحة */
+    /* هيرو أخف */
 
     .book-hero { padding: 64px 0 48px !important; }
 
@@ -140,7 +141,7 @@
 
 
 
-  <!-- Hero أنحف وبدون شعار -->
+  <!-- Hero -->
 
   <header class="hero hero-blueprint book-hero">
 
@@ -174,7 +175,7 @@
 
       <!-- نموذج الطلب -->
 
-      <form class="form-card" action="#" method="post">
+      <form id="visitForm" class="form-card" novalidate>
 
         <div class="form-grid">
 
@@ -262,6 +263,24 @@
 
         </div>
 
+
+
+        <!-- رسائل نجاح/فشل -->
+
+        <p id="form-ok" class="notice" style="display:none;background:#1e7e34;border-left-color:#1e7e34">
+
+          ✅ Thanks! Your request has been sent. We’ll contact you shortly.
+
+        </p>
+
+        <p id="form-err" class="notice" style="display:none;background:#7e1e1e;border-left-color:#7e1e1e">
+
+          ❌ Sorry, something went wrong. Please try again or email us at
+
+          <a href="mailto:contact@porchme.me">contact@porchme.me</a>.
+
+        </p>
+
       </form>
 
     </div>
@@ -330,13 +349,17 @@
 
 
 
-  <!-- JS (سنة الفوتر + قائمة الموبايل) -->
+  <!-- JS -->
 
   <script>
+
+    // سنة الفوتر
 
     document.getElementById('year').textContent = new Date().getFullYear();
 
 
+
+    // قائمة الموبايل
 
     const navBtn = document.querySelector('.nav-toggle');
 
@@ -353,6 +376,76 @@
       });
 
     }
+
+
+
+    // === إرسال إلى Google Apps Script ===
+
+    const SHEET_ENDPOINT = "https://script.google.com/macros/s/AKfycbylfJT7FpTSi9ix01cC6QDbmgOehgKE_S9Lj0DN0kov2-EyblvMnomw-F5HJB64Vis3/exec";
+
+
+
+    const form = document.getElementById('visitForm');
+
+    const okMsg = document.getElementById('form-ok');
+
+    const errMsg = document.getElementById('form-err');
+
+
+
+    form.addEventListener('submit', async (e) => {
+
+      e.preventDefault();
+
+      okMsg.style.display = 'none';
+
+      errMsg.style.display = 'none';
+
+
+
+      try {
+
+        // إرسال بصيغة x-www-form-urlencoded لتصل في e.parameter
+
+        const body = new URLSearchParams(new FormData(form));
+
+
+
+        const res = await fetch(SHEET_ENDPOINT, {
+
+          method: 'POST',
+
+          body,
+
+          headers: { 'Accept': 'application/json' }
+
+        });
+
+
+
+        if (res.ok) {
+
+          form.reset();
+
+          okMsg.style.display = 'block';
+
+          // اختياري: إعادة توجيه بعد النجاح
+
+          // setTimeout(()=>location.href='index.html', 1500);
+
+        } else {
+
+          errMsg.style.display = 'block';
+
+        }
+
+      } catch (err) {
+
+        errMsg.style.display = 'block';
+
+      }
+
+    });
 
   </script>
 
