@@ -10,11 +10,7 @@
 
   <title>PorchMe – Book a Visit</title>
 
-
-
-  <!-- Styles -->
-
-  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="style.css?v=8" />
 
   <link rel="icon" type="image/png" href="image/favicon.png" />
 
@@ -26,13 +22,11 @@
 
 
 
-  <!-- Nav -->
-
   <nav class="nav">
 
     <div class="wrap">
 
-      <a class="brand" href="index.html">
+      <a class="brand" href="index.html" aria-label="PorchMe Home">
 
         <img src="image/porchme_logo_silver.svg" class="royal-logo" alt="PorchMe" />
 
@@ -40,21 +34,17 @@
 
       </a>
 
-
-
       <div class="nav-links" id="navLinks">
 
-        <a href="index.html#philosophy">Design Ethos</a>
+        <a href="index.html#philosophy">Design Expertise</a>
 
         <a href="index.html#process">Project Roadmap</a>
 
         <a href="index.html#gallery-section">Gallery</a>
 
-        <a href="builders.html" class="btn btn-outline nav-cta">For Builders</a>
+        <a href="book.html" class="btn btn--sm">Book a Visit</a>
 
       </div>
-
-
 
       <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="navLinks">☰</button>
 
@@ -64,15 +54,19 @@
 
 
 
-  <!-- Hero -->
+  <!-- Hero نحيف بدون شعار كبير حتى ما يغطي النموذج -->
 
-  <header class="hero hero-blueprint">
+  <header class="hero hero-blueprint hero--slim">
 
     <div class="wrap hero-inner">
 
       <h1 class="hero-title">Book a Visit</h1>
 
-      <p class="hero-subtitle">Schedule an on-site review so we can evaluate feasibility and style fit for your porch.</p>
+      <p class="hero-subtitle">
+
+        Schedule an on-site review so we can evaluate feasibility and style fit for your porch.
+
+      </p>
 
     </div>
 
@@ -80,13 +74,11 @@
 
 
 
-  <!-- Booking Form -->
+  <main class="section">
 
-  <section class="section">
+    <div class="wrap">
 
-    <div class="wrap" style="max-width:820px;">
-
-      <div class="note-card" style="margin-bottom:1rem;">
+      <div class="notice">
 
         <strong>Visit Fee:</strong> $150 (Louisville Area). Applied toward design if you proceed.
 
@@ -94,25 +86,81 @@
 
 
 
-      <form class="pm-form" id="bookingForm">
+      <!-- بطاقة النموذج -->
 
-        <!-- Honeypot (spam trap) -->
+      <form class="form-card" action="#" method="post">
 
-        <input type="text" name="website" style="position:absolute;left:-9999px;opacity:0" tabindex="-1" autocomplete="off">
+        <div class="form-grid">
 
+          <label>
 
+            Full Name
 
-        <div class="grid2">
-
-          <label>Full Name
-
-            <input name="fullName" type="text" required>
+            <input type="text" name="name" autocomplete="name" required>
 
           </label>
 
-          <label>Email
+          <label>
 
-            <input name="email" type="email" required>
+            Email
+
+            <input type="email" name="email" autocomplete="email" required>
+
+          </label>
+
+          <label>
+
+            Phone
+
+            <input type="tel" name="phone" autocomplete="tel" required>
+
+          </label>
+
+          <label>
+
+            Address
+
+            <input type="text" name="address" autocomplete="street-address" required>
+
+          </label>
+
+          <label>
+
+            City
+
+            <input type="text" name="city" autocomplete="address-level2" required>
+
+          </label>
+
+          <label>
+
+            ZIP Code
+
+            <input type="text" name="zip" inputmode="numeric" pattern="[0-9]{5}" autocomplete="postal-code" required>
+
+          </label>
+
+          <label>
+
+            Preferred Date
+
+            <input type="date" name="date">
+
+          </label>
+
+          <label>
+
+            Preferred Time
+
+            <input type="time" name="time">
+
+          </label>
+
+          <label class="full">
+
+            Notes
+
+            <textarea name="notes" rows="4" placeholder="Tell us what you envision (style, size, materials)…"></textarea>
 
           </label>
 
@@ -120,89 +168,21 @@
 
 
 
-        <div class="grid2">
+        <div class="form-actions">
 
-          <label>Phone
+          <button class="btn" type="submit">Submit Request</button>
 
-            <input name="phone" type="tel" required>
-
-          </label>
-
-          <label>Address
-
-            <input name="address" type="text" required>
-
-          </label>
+          <a class="btn btn-outline" href="index.html#roadmap">Explore the Roadmap</a>
 
         </div>
-
-
-
-        <div class="grid2">
-
-          <label>City
-
-            <input name="city" type="text" required>
-
-          </label>
-
-          <label>ZIP Code
-
-            <input name="zip" type="text" required>
-
-          </label>
-
-        </div>
-
-
-
-        <div class="grid2">
-
-          <label>Preferred Date
-
-            <input name="date" type="date" required>
-
-          </label>
-
-          <label>Preferred Time
-
-            <input name="time" type="time" required>
-
-          </label>
-
-        </div>
-
-
-
-        <label>Notes
-
-          <textarea name="notes" rows="4" placeholder="Tell us what you envision (style, size, materials)…"></textarea>
-
-        </label>
-
-
-
-        <div class="hero-actions" style="margin-top:1rem;">
-
-          <button class="btn btn-gold" type="submit" id="submitBtn">Submit Request</button>
-
-          <a href="index.html#process" class="btn btn-outline">Explore the Roadmap</a>
-
-        </div>
-
-
-
-        <p id="formMsg" class="muted" style="margin-top:.6rem;"></p>
 
       </form>
 
     </div>
 
-  </section>
+  </main>
 
 
-
-  <!-- Footer -->
 
   <footer class="footer">
 
@@ -216,19 +196,41 @@
 
       </div>
 
-      <div class="fnav">
 
-        <a href="index.html#philosophy">Design Ethos</a>
 
-        <a href="index.html#process">Project Roadmap</a>
+      <p><strong>Contact:</strong>
 
-        <a href="index.html#gallery-section">Gallery</a>
+        <a href="mailto:contact@porchme.me">contact@porchme.me</a>
 
-        <a href="builders.html">Builder Portal</a>
+      </p>
+
+
+
+      <div class="social-icons">
+
+        <a href="https://instagram.com" target="_blank" aria-label="Instagram">
+
+          <img src="image/icon-instagram.svg" alt="Instagram">
+
+        </a>
+
+        <a href="https://twitter.com" target="_blank" aria-label="Twitter">
+
+          <img src="image/icon-twitter.svg" alt="Twitter">
+
+        </a>
+
+        <a href="https://linkedin.com" target="_blank" aria-label="LinkedIn">
+
+          <img src="image/icon-linkedin.svg" alt="LinkedIn">
+
+        </a>
 
       </div>
 
-      <p class="copy">© <span id="year"></span> PorchMe. All rights reserved.</p>
+
+
+      <p class="copy">© <span id="year"></span> PorchMe. Crafted with passion. All rights reserved.</p>
 
     </div>
 
@@ -236,25 +238,19 @@
 
 
 
-  <!-- Scripts -->
-
   <script>
-
-    // Year
 
     document.getElementById('year').textContent = new Date().getFullYear();
 
 
 
-    // Mobile nav
-
     const navBtn = document.querySelector('.nav-toggle');
 
     const navLinks = document.querySelector('.nav-links');
 
-    if (navBtn && navLinks){
+    if (navBtn && navLinks) {
 
-      navBtn.addEventListener('click', ()=>{
+      navBtn.addEventListener('click', () => {
 
         const open = navLinks.classList.toggle('open');
 
@@ -263,104 +259,6 @@
       });
 
     }
-
-
-
-    // ===== Submit to Google Apps Script and redirect to Thank You =====
-
-    const BOOKING_ENDPOINT = 'https://script.google.com/macros/s/AKfycbyIfJT7FpTSi9ix01cC6QDbmgOehgKE_S9Lj0DN0kov2-EyblyNmonw-F5HJB64Vis3/exec';
-
-
-
-    const form = document.getElementById('bookingForm');
-
-    const msg  = document.getElementById('formMsg');
-
-    const btn  = document.getElementById('submitBtn');
-
-
-
-    form.addEventListener('submit', async (e) => {
-
-      e.preventDefault();
-
-      msg.textContent = '';
-
-      btn.disabled = true; btn.textContent = 'Sending…';
-
-
-
-      const f = new FormData(form);
-
-
-
-      // Block bots via honeypot
-
-      if (f.get('website')) {
-
-        msg.textContent = 'Submission blocked (spam detected).';
-
-        btn.disabled = false; btn.textContent = 'Submit Request';
-
-        return;
-
-      }
-
-
-
-      const payload = {
-
-        fullName: f.get('fullName'),
-
-        email:    f.get('email'),
-
-        phone:    f.get('phone'),
-
-        address:  f.get('address'),
-
-        city:     f.get('city'),
-
-        zip:      f.get('zip'),
-
-        date:     f.get('date'),
-
-        time:     f.get('time'),
-
-        notes:    f.get('notes')
-
-      };
-
-
-
-      try {
-
-        await fetch(BOOKING_ENDPOINT, {
-
-          method: 'POST',
-
-          mode: 'no-cors',
-
-          headers: { 'Content-Type': 'application/json' },
-
-          body: JSON.stringify(payload)
-
-        });
-
-
-
-        // Redirect to Thank You page
-
-        window.location.href = 'thank-you.html';
-
-      } catch (err) {
-
-        msg.textContent = 'Something went wrong. Please try again or email us.';
-
-        btn.disabled = false; btn.textContent = 'Submit Request';
-
-      }
-
-    });
 
   </script>
 
