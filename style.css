@@ -1,4 +1,12 @@
 
+/* =======================================
+
+   PorchMe — Global Styles (FULL)
+
+   ======================================= */
+
+
+
 /* ===== Root & Reset ===== */
 
 :root{
@@ -15,7 +23,25 @@
 
   --line:rgba(255,255,255,.12);
 
+
+
+  /* Slate (under-hero) palette */
+
+  --slate-bg:#f3f5f7;       /* light */
+
+  --slate-bg-2:#e7eaef;     /* slightly darker */
+
+  --slate-panel:#1f242b;    /* dark panel (for steps) */
+
+  --slate-text:#101418;     /* dark body text */
+
+  --slate-muted:#566176;    /* secondary text */
+
+  --slate-line:rgba(0,0,0,.12);
+
 }
+
+
 
 *{margin:0;padding:0;box-sizing:border-box}
 
@@ -25,7 +51,15 @@ body{
 
   font-family:system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;
 
-  background:var(--bg);color:var(--text);line-height:1.6;
+  background:var(--bg);
+
+  color:var(--text);
+
+  line-height:1.6;
+
+  -webkit-font-smoothing:antialiased;
+
+  -moz-osx-font-smoothing:grayscale;
 
 }
 
@@ -37,7 +71,13 @@ img{max-width:100%;display:block}
 
 .topline{height:5px;background:var(--gold)}
 
-.nav{background:#0f1216;color:#fff;position:sticky;top:0;z-index:1000;border-bottom:1px solid rgba(255,255,255,.06)}
+.nav{
+
+  background:#0f1216;color:#fff;position:sticky;top:0;z-index:1000;
+
+  border-bottom:1px solid rgba(255,255,255,.06)
+
+}
 
 .wrap{max-width:1200px;margin:0 auto;padding:0 1rem}
 
@@ -59,13 +99,17 @@ img{max-width:100%;display:block}
 
 
 
-/* ===== Hero ===== */
+/* ===== Hero (kept as-is) ===== */
 
 .hero{position:relative;isolation:isolate}
 
 .hero-blueprint{
 
-  background:linear-gradient(180deg,rgba(6,12,22,.55),rgba(6,12,22,.78)),url("image/porchme_blueprint_highlight.png") center/cover no-repeat;
+  background:
+
+    linear-gradient(180deg,rgba(6,12,22,.55),rgba(6,12,22,.78)),
+
+    url("image/porchme_blueprint_highlight.png") center/cover no-repeat;
 
   min-height:62vh;display:grid;align-items:center;color:var(--text);
 
@@ -81,9 +125,17 @@ img{max-width:100%;display:block}
 
 
 
-/* ===== Buttons ===== */
+/* ===== Buttons (dark theme) ===== */
 
-.btn{display:inline-flex;align-items:center;justify-content:center;padding:1rem 1.2rem;border-radius:.7rem;border:1px solid transparent;text-decoration:none;font-weight:750;transition:.2s}
+.btn{
+
+  display:inline-flex;align-items:center;justify-content:center;
+
+  padding:1rem 1.2rem;border-radius:.7rem;border:1px solid transparent;
+
+  text-decoration:none;font-weight:750;transition:.2s
+
+}
 
 .btn-gold{background:var(--gold);border-color:var(--gold);color:#0e1116}
 
@@ -101,7 +153,7 @@ img{max-width:100%;display:block}
 
 
 
-/* ===== Sections ===== */
+/* ===== Sections (dark) ===== */
 
 .section{padding:4rem 0}
 
@@ -115,17 +167,23 @@ img{max-width:100%;display:block}
 
 
 
-/* Lead paragraph + tags */
+/* Lead + tags */
 
 .lead{color:#cfd6e2;max-width:60rem;line-height:1.55;margin:0 0 1rem}
 
 .tags{display:flex;gap:.5rem;flex-wrap:wrap;margin-top:.5rem}
 
-.tags span{padding:.5rem .75rem;border:1px solid var(--line);border-radius:999px;opacity:.95;background:rgba(255,255,255,.03)}
+.tags span{
+
+  padding:.5rem .75rem;border:1px solid var(--line);border-radius:999px;
+
+  opacity:.95;background:rgba(255,255,255,.03)
+
+}
 
 
 
-/* Steps list */
+/* Steps (dark default) */
 
 .steps{margin:1rem 0 1.5rem;padding-left:1.25rem}
 
@@ -259,13 +317,17 @@ a,button,input,select,textarea{outline-color:var(--gold);outline-offset:2px}
 
 
 
-/* ===== New: Make links clearer ===== */
+/* =======================================================
+
+   Link visibility (do NOT override button text color)
+
+   ======================================================= */
 
 a[href^="mailto:"],
 
-.section a,
+.section a:not(.btn),
 
-main a {
+main a:not(.btn){
 
   color: var(--gold);
 
@@ -277,14 +339,178 @@ main a {
 
 }
 
-a:hover { filter: brightness(1.15); }
+a:hover{ filter: brightness(1.15); }
 
-a:focus-visible {
+a:focus-visible{
 
   outline: 2px solid var(--gold);
 
   outline-offset: 2px;
 
   border-radius: 3px;
+
+}
+
+/* Ensure button text stays readable */
+
+.btn-gold{ color:#0e1116 !important; }
+
+.btn-outline,.btn-quiet{ color:#fff !important; }
+
+
+
+/* =======================================================
+
+   SLATE MODE — everything below the hero
+
+   ======================================================= */
+
+.slate{
+
+  background: linear-gradient(180deg, var(--slate-bg) 0%, var(--slate-bg-2) 100%);
+
+  color: var(--slate-text);
+
+}
+
+.slate .section{ background:transparent; padding:4rem 0; }
+
+
+
+/* Panels (clean, subtle shadow) */
+
+.slate .panel{
+
+  background: linear-gradient(180deg, #fff 0%, #f4f6f9 100%);
+
+  border: 1px solid var(--slate-line);
+
+  border-radius: 14px;
+
+  padding: 2rem;
+
+  box-shadow:
+
+    0 2px 0 rgba(0,0,0,.03),
+
+    0 14px 30px rgba(31,36,43,.08);
+
+}
+
+
+
+/* Titles + lead in slate area */
+
+.slate .slate-title{
+
+  font-weight: 900; letter-spacing:.4px; color: var(--slate-text); margin-bottom:.75rem;
+
+}
+
+.slate .slate-lead{ color: var(--slate-muted); max-width:56rem; }
+
+.slate .slate-muted{ color: var(--slate-muted); }
+
+
+
+/* Tags in slate (lighter pills) */
+
+.slate .tags-slate span{
+
+  background:#fff;border-color:var(--slate-line);color:var(--slate-text);
+
+}
+
+.slate .tags-slate span:hover{ box-shadow:0 0 0 2px rgba(202,162,79,.15) inset }
+
+
+
+/* Steps as dark panel (optional) */
+
+.slate .steps-slate{
+
+  background: linear-gradient(180deg, #252b33 0%, #1f242b 100%);
+
+  color:#e9edf1;
+
+  border:1px solid rgba(255,255,255,.08);
+
+  border-radius:12px; padding:1rem 1.2rem 1rem 2rem; margin:1rem 0 1.5rem;
+
+}
+
+.slate .steps-slate li{ margin:.45rem 0 }
+
+.slate .steps-slate li::marker{ color: var(--gold); }
+
+
+
+/* Slate Buttons (metallic) */
+
+.btn-slate{
+
+  background: linear-gradient(180deg, #d9dee5 0%, #bfc7d0 100%);
+
+  border:1px solid rgba(0,0,0,.12);
+
+  color:#0e1116 !important;
+
+  border-radius:10px;
+
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.6), 0 8px 20px rgba(31,36,43,.15);
+
+}
+
+.btn-slate:hover{
+
+  transform: translateY(-1px);
+
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.7), 0 12px 26px rgba(31,36,43,.2);
+
+}
+
+
+
+/* Ghost (outline) slate button */
+
+.btn-slate-ghost{
+
+  background: linear-gradient(180deg, rgba(255,255,255,.65), rgba(255,255,255,.35));
+
+  color: var(--slate-text) !important;
+
+  border: 1px solid rgba(0,0,0,.25);
+
+  border-radius:10px;
+
+}
+
+.btn-slate-ghost:hover{
+
+  background: linear-gradient(180deg, rgba(255,255,255,.8), rgba(255,255,255,.5));
+
+}
+
+
+
+/* Links inside slate panels use clean blue unless buttons */
+
+.slate a:not(.btn){
+
+  color:#0f62fe;
+
+  text-decoration:underline;
+
+  text-underline-offset:2px;
+
+}
+
+
+
+/* Responsive padding for panels */
+
+@media (max-width:760px){
+
+  .slate .panel{ padding:1.25rem }
 
 }
