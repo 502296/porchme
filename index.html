@@ -22,6 +22,8 @@
 
   <div class="topline"></div>
 
+
+
   <nav class="nav">
 
     <div class="wrap">
@@ -33,6 +35,8 @@
         <span class="wordmark">PorchMe</span>
 
       </a>
+
+
 
       <div class="nav-links" id="navLinks">
 
@@ -46,6 +50,12 @@
 
       </div>
 
+
+
+      <!-- Theme toggle (اختياري) -->
+
+      <button class="theme-toggle" aria-label="Toggle theme" title="Toggle theme">☾</button>
+
       <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="navLinks">☰</button>
 
     </div>
@@ -56,7 +66,7 @@
 
   <!-- Hero -->
 
-  <header class="hero hero-blueprint">
+  <header class="hero hero-blueprint" id="top">
 
     <div class="wrap hero-inner">
 
@@ -77,6 +87,10 @@
       </div>
 
     </div>
+
+    <!-- مؤشر تمرير -->
+
+    <div class="scroll-indicator" aria-hidden="true" title="Scroll"></div>
 
   </header>
 
@@ -120,11 +134,11 @@
 
       <ol class="steps">
 
-        <li><strong>Share Site Photos:</strong> front-elevation / entry area so we confirm fit and feasibility.</li>
+        <li tabindex="0"><strong>Share Site Photos:</strong> front-elevation / entry area so we confirm fit and feasibility.</li>
 
-        <li><strong>Concept Blueprint:</strong> a clear, scaled porch concept aligned to your home’s style and budget.</li>
+        <li tabindex="0"><strong>Concept Blueprint:</strong> a clear, scaled porch concept aligned to your home’s style and budget.</li>
 
-        <li><strong>Refine & Build:</strong> finalize details and coordinate construction with your selected builder.</li>
+        <li tabindex="0"><strong>Refine & Build:</strong> finalize details and coordinate construction with your selected builder.</li>
 
       </ol>
 
@@ -150,7 +164,27 @@
 
       <p class="muted" style="margin-bottom:1rem;">Explore our porch design concepts</p>
 
-      <button id="showGalleryBtn" class="btn btn-gold" style="font-size:1.2rem; padding:.9rem 2rem;">View Gallery</button>
+
+
+      <!-- أزرار الفلترة -->
+
+      <div class="filters" role="tablist" aria-label="Gallery filters">
+
+        <button class="filter-btn active" data-filter="all" role="tab" aria-selected="true">All</button>
+
+        <button class="filter-btn" data-filter="classic" role="tab" aria-selected="false">Classic</button>
+
+        <button class="filter-btn" data-filter="modern" role="tab" aria-selected="false">Modern</button>
+
+        <button class="filter-btn" data-filter="wood" role="tab" aria-selected="false">Wood</button>
+
+        <button class="filter-btn" data-filter="stone" role="tab" aria-selected="false">Stone</button>
+
+      </div>
+
+
+
+      <button id="showGalleryBtn" class="btn btn-gold" style="font-size:1.1rem; padding:.8rem 1.6rem; margin-top:.6rem;">View Gallery</button>
 
     </div>
 
@@ -160,29 +194,31 @@
 
       <div class="wrap">
 
-        <div class="gallery-grid">
+        <div class="gallery-grid" id="galleryGrid">
 
-          <a href="image/gallery/porch_blueprint_1.png" class="gallery-item">
+          <!-- أضفت data-tags كمثال؛ عدّلها لاحقًا حسب صورك الفعلية -->
 
-            <img src="image/gallery/porch_blueprint_1.png" alt="Blueprint porch concept 1" />
+          <a href="image/gallery/porch_blueprint_1.png" class="gallery-item" data-tags="classic wood">
 
-          </a>
-
-          <a href="image/gallery/porch_blueprint_2.png" class="gallery-item">
-
-            <img src="image/gallery/porch_blueprint_2.png" alt="Blueprint porch concept 2" />
+            <img src="image/gallery/porch_blueprint_1.png" alt="Blueprint porch concept 1" loading="lazy" />
 
           </a>
 
-          <a href="image/gallery/porch_blueprint_3.png" class="gallery-item">
+          <a href="image/gallery/porch_blueprint_2.png" class="gallery-item" data-tags="modern stone">
 
-            <img src="image/gallery/porch_blueprint_3.png" alt="Blueprint porch concept 3" />
+            <img src="image/gallery/porch_blueprint_2.png" alt="Blueprint porch concept 2" loading="lazy" />
 
           </a>
 
-          <a href="image/gallery/porch_blueprint_4.png" class="gallery-item">
+          <a href="image/gallery/porch_blueprint_3.png" class="gallery-item" data-tags="classic stone">
 
-            <img src="image/gallery/porch_blueprint_4.png" alt="Blueprint porch concept 4" />
+            <img src="image/gallery/porch_blueprint_3.png" alt="Blueprint porch concept 3" loading="lazy" />
+
+          </a>
+
+          <a href="image/gallery/porch_blueprint_4.png" class="gallery-item" data-tags="modern wood">
+
+            <img src="image/gallery/porch_blueprint_4.png" alt="Blueprint porch concept 4" loading="lazy" />
 
           </a>
 
@@ -194,7 +230,7 @@
 
 
 
-    <div id="pm-lightbox" class="pm-lightbox" aria-hidden="true">
+    <div id="pm-lightbox" class="pm-lightbox" aria-hidden="true" role="dialog" aria-label="Gallery viewer">
 
       <button class="pm-close" aria-label="Close">×</button>
 
@@ -219,6 +255,40 @@
         <a href="book.html" class="btn btn-gold">Book a Visit</a>
 
         <a href="builders.html" class="btn btn-outline">Builder Portal</a>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+
+  <!-- (اختياري) Testimonials - مكان جاهز لو أحببت -->
+
+  <section class="section" id="testimonials">
+
+    <div class="wrap">
+
+      <h2>What Homeowners Say</h2>
+
+      <div class="testi-grid">
+
+        <div class="testi-card">
+
+          <p>“Clear designs and honest guidance. We got exactly what fits our house.”</p>
+
+          <span class="testi-meta">— A. Johnson, Louisville</span>
+
+        </div>
+
+        <div class="testi-card">
+
+          <p>“They first checked our photos and told us what’s worth doing. No push, just value.”</p>
+
+          <span class="testi-meta">— M. Carter, St. Matthews</span>
+
+        </div>
 
       </div>
 
@@ -262,6 +332,12 @@
 
         <a href="builders.html">Builder Portal</a>
 
+        <a href="#" aria-disabled="true">Privacy</a>
+
+        <a href="#" aria-disabled="true">Terms</a>
+
+        <a href="#" aria-disabled="true">FAQ</a>
+
       </nav>
 
 
@@ -271,6 +347,16 @@
         <p class="muted">Questions or project inquiries?</p>
 
         <p><a class="fcontact-link" href="mailto:contact@porchme.me">contact@porchme.me</a></p>
+
+        <!-- Newsletter صغير (اختياري) -->
+
+        <form class="newsletter" onsubmit="return false;">
+
+          <input type="email" placeholder="Your email" aria-label="Email address" />
+
+          <button class="btn btn-gold" type="submit">Subscribe</button>
+
+        </form>
 
       </div>
 
@@ -354,6 +440,42 @@
 
 
 
+    // Theme toggle (اختياري)
+
+    const themeBtn = document.querySelector('.theme-toggle');
+
+    if (themeBtn) {
+
+      themeBtn.addEventListener('click', () => {
+
+        document.body.classList.toggle('light-theme');
+
+        themeBtn.textContent = document.body.classList.contains('light-theme') ? '☀' : '☾';
+
+      });
+
+    }
+
+
+
+    // Parallax Hero (خفيف وناعم)
+
+    const hero = document.querySelector('.hero-blueprint');
+
+    const parallax = () => {
+
+      const y = window.scrollY * 0.25; // الحساسية
+
+      hero.style.backgroundPosition = `center calc(50% + ${y}px)`;
+
+    };
+
+    window.addEventListener('scroll', parallax);
+
+    parallax();
+
+
+
     // Lightbox
 
     (function () {
@@ -417,6 +539,38 @@
       });
 
     }
+
+
+
+    // Gallery Filters
+
+    const filterBtns = document.querySelectorAll('.filter-btn');
+
+    const items = document.querySelectorAll('.gallery-item');
+
+    filterBtns.forEach(btn => {
+
+      btn.addEventListener('click', () => {
+
+        filterBtns.forEach(b => b.classList.remove('active'));
+
+        btn.classList.add('active');
+
+        const key = btn.dataset.filter;
+
+        items.forEach(it => {
+
+          const tags = (it.dataset.tags || '').split(' ');
+
+          const show = key === 'all' || tags.includes(key);
+
+          it.classList.toggle('hide', !show);
+
+        });
+
+      });
+
+    });
 
 
 
