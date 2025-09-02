@@ -2,8 +2,6 @@
 
 <html lang="en">
 
-
-
 <head>
 
   <meta charset="utf-8" />
@@ -18,11 +16,13 @@
 
 </head>
 
-
-
 <body>
 
   <div class="topline"></div>
+
+
+
+  <!-- NAV -->
 
   <nav class="nav">
 
@@ -56,7 +56,7 @@
 
 
 
-  <!-- Hero -->
+  <!-- HERO (يبقى بنفس الأسلوب) -->
 
   <header class="hero hero-blueprint">
 
@@ -84,7 +84,7 @@
 
 
 
-  <!-- MAIN SLATE STYLE -->
+  <!-- كل ما تحت الهيرو بالستايل الرمادي -->
 
   <main class="slate">
 
@@ -120,7 +120,7 @@
 
     <!-- Project Roadmap -->
 
-    <section id="process" class="section alt">
+    <section id="process" class="section">
 
       <div class="wrap panel">
 
@@ -150,7 +150,7 @@
 
 
 
-    <!-- Gallery -->
+    <!-- Gallery section + زر يعمل -->
 
     <section id="gallery-section" class="section">
 
@@ -160,13 +160,13 @@
 
         <p class="slate-muted" style="margin-bottom:1rem;">Explore our porch design concepts</p>
 
-        <button id="showGalleryBtn" class="btn btn-slate" style="font-size:1.05rem;">View Gallery</button>
+        <button id="showGalleryBtn" class="btn btn-slate" type="button">View Gallery</button>
 
       </div>
 
 
 
-      <div id="gallery" class="gallery-hidden">
+      <div id="gallery" class="gallery-hidden" aria-live="polite">
 
         <div class="wrap">
 
@@ -174,25 +174,25 @@
 
             <a href="image/gallery/porch_blueprint_1.png" class="gallery-item">
 
-              <img src="image/gallery/porch_blueprint_1.png" alt="Blueprint porch concept 1" />
+              <img src="image/gallery/porch_blueprint_1.png" alt="Blueprint porch concept 1" loading="lazy" />
 
             </a>
 
             <a href="image/gallery/porch_blueprint_2.png" class="gallery-item">
 
-              <img src="image/gallery/porch_blueprint_2.png" alt="Blueprint porch concept 2" />
+              <img src="image/gallery/porch_blueprint_2.png" alt="Blueprint porch concept 2" loading="lazy" />
 
             </a>
 
             <a href="image/gallery/porch_blueprint_3.png" class="gallery-item">
 
-              <img src="image/gallery/porch_blueprint_3.png" alt="Blueprint porch concept 3" />
+              <img src="image/gallery/porch_blueprint_3.png" alt="Blueprint porch concept 3" loading="lazy" />
 
             </a>
 
             <a href="image/gallery/porch_blueprint_4.png" class="gallery-item">
 
-              <img src="image/gallery/porch_blueprint_4.png" alt="Blueprint porch concept 4" />
+              <img src="image/gallery/porch_blueprint_4.png" alt="Blueprint porch concept 4" loading="lazy" />
 
             </a>
 
@@ -204,7 +204,7 @@
 
 
 
-      <div id="pm-lightbox" class="pm-lightbox" aria-hidden="true">
+      <div id="pm-lightbox" class="pm-lightbox" aria-hidden="true" role="dialog" aria-label="Gallery viewer">
 
         <button class="pm-close" aria-label="Close">×</button>
 
@@ -220,7 +220,7 @@
 
 
 
-  <!-- Footer -->
+  <!-- FOOTER -->
 
   <footer class="footer">
 
@@ -233,6 +233,8 @@
         <span>PorchMe</span>
 
       </div>
+
+
 
       <div class="fnav">
 
@@ -254,17 +256,23 @@
 
       </div>
 
+
+
+      <!-- Newsletter -->
+
       <form class="newsletter" onsubmit="return false;">
 
         <input id="nlEmail" type="email" placeholder="Your email" aria-label="Email address" required />
 
-        <button class="btn btn-gold" type="submit">Subscribe</button>
+        <button id="nlBtn" class="btn btn-gold" type="submit">Subscribe</button>
 
-        <p class="muted" style="margin-top:.3rem;">By subscribing, you agree to our <a href="privacy.html">Privacy Policy</a>.</p>
+        <p class="muted" style="margin-top:.35rem;">By subscribing, you agree to our <a href="privacy.html">Privacy Policy</a>.</p>
 
       </form>
 
-      <p class="copy">© 2025 PorchMe. Crafted with passion. All rights reserved.</p>
+
+
+      <p class="copy">© <span id="year"></span> PorchMe. Crafted with passion. All rights reserved.</p>
 
     </div>
 
@@ -272,9 +280,13 @@
 
 
 
+  <!-- SCRIPTS -->
+
   <script>
 
-    document.getElementById('year')?.textContent = new Date().getFullYear();
+    // Year + mobile nav
+
+    document.getElementById('year').textContent = new Date().getFullYear();
 
     const navBtn = document.querySelector('.nav-toggle');
 
@@ -322,11 +334,7 @@
 
       function closeBox() {
 
-        box.classList.remove('open');
-
-        box.setAttribute('aria-hidden', 'true');
-
-        img.removeAttribute('src');
+        box.classList.remove('open'); box.setAttribute('aria-hidden', 'true'); img.removeAttribute('src');
 
       }
 
@@ -340,37 +348,45 @@
 
 
 
-    // Gallery toggle
+    // Gallery toggle (يعمل الآن)
 
-    const showGalleryBtn = document.getElementById('showGalleryBtn');
+    (function(){
 
-    const gallery = document.getElementById('gallery');
+      const btn = document.getElementById('showGalleryBtn');
 
-    if (showGalleryBtn && gallery) {
+      const gallery = document.getElementById('gallery');
 
-      showGalleryBtn.addEventListener('click', () => {
+      if(!btn || !gallery) return;
 
-        gallery.classList.toggle('gallery-visible');
+      btn.addEventListener('click', () => {
 
-        showGalleryBtn.textContent = gallery.classList.contains('gallery-visible') ? 'Hide Gallery' : 'View Gallery';
+        const visible = gallery.classList.toggle('gallery-visible');
+
+        btn.textContent = visible ? 'Hide Gallery' : 'View Gallery';
+
+        if (visible) gallery.scrollIntoView({behavior:'smooth', block:'start'});
 
       });
 
-    }
+    })();
 
 
 
-    // Newsletter script
+    // Newsletter (تم وضع رابطك الحقيقي)
 
-    (function () {
+    (function(){
 
       const form = document.querySelector('.newsletter');
 
-      if (!form) return;
+      if(!form) return;
 
       const emailInput = document.getElementById('nlEmail');
 
-      const WEB_APP_URL = 'YOUR_GOOGLE_WEB_APP_URL_HERE';
+      const btn = document.getElementById('nlBtn');
+
+
+
+      const WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbws4YL5oZrWWDTk9QGg4x5HTyrxALp8W3Ko_orKszI-XJMYgbHnfgHchzfmHYntIJ0g5A/exec';
 
 
 
@@ -378,19 +394,19 @@
 
         const email = (emailInput.value || '').trim();
 
-        if (!email) return;
+        if(!email || !email.includes('@')) { emailInput.focus(); return; }
 
+        try{
 
+          btn.disabled = true; btn.textContent = 'Sending…';
 
-        try {
+          const body = new URLSearchParams({ email, source:'porchme.me' }).toString();
 
-          const body = new URLSearchParams({ email, source: 'porchme.me' }).toString();
+          const res  = await fetch(WEB_APP_URL, {
 
-          const res = await fetch(WEB_APP_URL, {
+            method:'POST',
 
-            method: 'POST',
-
-            headers: { 'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8' },
+            headers:{ 'Content-Type':'application/x-www-form-urlencoded;charset=UTF-8' },
 
             body
 
@@ -398,19 +414,23 @@
 
           const data = await res.json();
 
-          if (data.ok) {
+          if(data.ok){
 
             form.innerHTML = '<span class="note">Subscribed! Please check your inbox.</span>';
 
-          } else {
+          }else{
 
             alert('Subscription failed: ' + (data.error || 'Unknown error'));
 
+            btn.disabled = false; btn.textContent = 'Subscribe';
+
           }
 
-        } catch (err) {
+        }catch(err){
 
           alert('Network error. Please try again.');
+
+          btn.disabled = false; btn.textContent = 'Subscribe';
 
         }
 
