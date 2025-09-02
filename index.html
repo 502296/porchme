@@ -52,8 +52,6 @@
 
 
 
-      <!-- Theme toggle (اختياري) -->
-
       <button class="theme-toggle" aria-label="Toggle theme" title="Toggle theme">☾</button>
 
       <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="navLinks">☰</button>
@@ -87,8 +85,6 @@
       </div>
 
     </div>
-
-    <!-- مؤشر تمرير -->
 
     <div class="scroll-indicator" aria-hidden="true" title="Scroll"></div>
 
@@ -166,8 +162,6 @@
 
 
 
-      <!-- أزرار الفلترة -->
-
       <div class="filters" role="tablist" aria-label="Gallery filters">
 
         <button class="filter-btn active" data-filter="all" role="tab" aria-selected="true">All</button>
@@ -195,8 +189,6 @@
       <div class="wrap">
 
         <div class="gallery-grid" id="galleryGrid">
-
-          <!-- أضفت data-tags كمثال؛ عدّلها لاحقًا حسب صورك الفعلية -->
 
           <a href="image/gallery/porch_blueprint_1.png" class="gallery-item" data-tags="classic wood">
 
@@ -248,28 +240,6 @@
 
     <div class="wrap" style="text-align:center;">
 
-      <h2>Ready to elevate your front elevation?</h2>
-
-      <div class="hero-actions" style="justify-content:center;">
-
-        <a href="book.html" class="btn btn-gold">Book a Visit</a>
-
-        <a href="builders.html" class="btn btn-outline">Builder Portal</a>
-
-      </div>
-
-    </div>
-
-  </section>
-
-
-
-  <!-- (اختياري) Testimonials - مكان جاهز لو أحببت -->
-
-  <section class="section" id="testimonials">
-
-    <div class="wrap">
-
       <h2>What Homeowners Say</h2>
 
       <div class="testi-grid">
@@ -292,13 +262,21 @@
 
       </div>
 
+      <div class="hero-actions" style="justify-content:center; margin-top:1rem;">
+
+        <a href="book.html" class="btn btn-gold">Book a Visit</a>
+
+        <a href="builders.html" class="btn btn-outline">Builder Portal</a>
+
+      </div>
+
     </div>
 
   </section>
 
 
 
-  <!-- Footer (enhanced) -->
+  <!-- Footer -->
 
   <footer class="footer">
 
@@ -332,9 +310,9 @@
 
         <a href="builders.html">Builder Portal</a>
 
-        <a href="#" aria-disabled="true">Privacy</a>
+        <a href="privacy.html">Privacy</a>
 
-        <a href="#" aria-disabled="true">Terms</a>
+        <a href="terms.html">Terms</a>
 
         <a href="#" aria-disabled="true">FAQ</a>
 
@@ -348,15 +326,19 @@
 
         <p><a class="fcontact-link" href="mailto:contact@porchme.me">contact@porchme.me</a></p>
 
-        <!-- Newsletter صغير (اختياري) -->
+
+
+        <!-- Newsletter -->
 
         <form class="newsletter" onsubmit="return false;">
 
-          <input type="email" placeholder="Your email" aria-label="Email address" />
+          <input id="nlEmail" type="email" placeholder="Your email" aria-label="Email address" required />
 
-          <button class="btn btn-gold" type="submit">Subscribe</button>
+          <button id="nlBtn" class="btn btn-gold" type="submit">Subscribe</button>
 
         </form>
+
+        <p class="muted" style="font-size:.9rem;">By subscribing, you agree to our <a href="privacy.html">Privacy Policy</a>.</p>
 
       </div>
 
@@ -412,6 +394,8 @@
 
 
 
+  <!-- ===== SCRIPTS (ضع كل السكربتات هنا) ===== -->
+
   <script>
 
     // Year
@@ -440,7 +424,7 @@
 
 
 
-    // Theme toggle (اختياري)
+    // Theme toggle
 
     const themeBtn = document.querySelector('.theme-toggle');
 
@@ -458,21 +442,13 @@
 
 
 
-    // Parallax Hero (خفيف وناعم)
+    // Parallax Hero
 
     const hero = document.querySelector('.hero-blueprint');
 
-    const parallax = () => {
+    const parallax = () => { const y = window.scrollY * 0.25; hero.style.backgroundPosition = `center calc(50% + ${y}px)`; };
 
-      const y = window.scrollY * 0.25; // الحساسية
-
-      hero.style.backgroundPosition = `center calc(50% + ${y}px)`;
-
-    };
-
-    window.addEventListener('scroll', parallax);
-
-    parallax();
+    window.addEventListener('scroll', parallax); parallax();
 
 
 
@@ -504,11 +480,7 @@
 
       function closeBox() {
 
-        box.classList.remove('open');
-
-        box.setAttribute('aria-hidden', 'true');
-
-        img.removeAttribute('src');
+        box.classList.remove('open'); box.setAttribute('aria-hidden', 'true'); img.removeAttribute('src');
 
       }
 
@@ -578,85 +550,83 @@
 
     const up = document.querySelector('.back-to-top');
 
-    const showUp = () => {
+    const showUp = () => { if (window.scrollY > 500) up.classList.add('show'); else up.classList.remove('show'); };
 
-      if (window.scrollY > 500) up.classList.add('show'); else up.classList.remove('show');
-
-    };
-
-    window.addEventListener('scroll', showUp);
-
-    up.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
-
-    showUp();
-
-  </script>
-
-  (function(){
-
-    const form = document.querySelector('.newsletter');
-
-    if(!form) return;
-
-    const emailInput = document.getElementById('nlEmail');
+    window.addEventListener('scroll', showUp); up.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' })); showUp();
 
 
 
-    const WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbws4YL5oZrWWDTk9QGg4x5HTyrxALp8W3Ko_orKszI-XJMYgbHnfgHchzfmHYntIJ0g5A/exec';
+    // ===== Newsletter (Web App) =====
+
+    (function(){
+
+      const form = document.querySelector('.newsletter');
+
+      if(!form) return;
+
+      const emailInput = document.getElementById('nlEmail');
+
+      const btn = document.getElementById('nlBtn');
 
 
 
-    form.addEventListener('submit', async () => {
+      // رابط الويب آب الخاص بك
 
-      const email = (emailInput.value || '').trim();
-
-      if(!email) return;
+      const WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbws4YL5oZrWWDTk9QGg4x5HTyrxALp8W3Ko_orKszI-XJMYgbHnfgHchzfmHYntIJ0g5A/exec';
 
 
 
-      try{
+      form.addEventListener('submit', async () => {
 
-        // نرسل بصيغة x-www-form-urlencoded لتفادي مشاكل CORS
+        const email = (emailInput.value || '').trim();
 
-        const body = new URLSearchParams({ email, source:'porchme.me' }).toString();
-
-
-
-        const res = await fetch(WEB_APP_URL, {
-
-          method:'POST',
-
-          headers:{ 'Content-Type':'application/x-www-form-urlencoded;charset=UTF-8' },
-
-          body
-
-        });
+        if(!email){ emailInput.focus(); return; }
 
 
 
-        const data = await res.json();
+        try{
 
-        if(data.ok){
+          btn.disabled = true; btn.textContent = 'Sending…';
 
-          form.innerHTML = '<span class="note">Subscribed! Please check your inbox.</span>';
+          const body = new URLSearchParams({ email, source:'porchme.me' }).toString();
 
-        } else {
+          const res = await fetch(WEB_APP_URL, {
 
-          alert('Subscription failed: ' + (data.error || 'Unknown error'));
+            method:'POST',
+
+            headers:{ 'Content-Type':'application/x-www-form-urlencoded;charset=UTF-8' },
+
+            body
+
+          });
+
+          const data = await res.json();
+
+          if(data.ok){
+
+            form.innerHTML = '<span class="note">Subscribed! Please check your inbox.</span>';
+
+          }else{
+
+            alert('Subscription failed: ' + (data.error || 'Unknown error'));
+
+            btn.disabled = false; btn.textContent = 'Subscribe';
+
+          }
+
+        }catch(err){
+
+          alert('Network error. Please try again.');
+
+          btn.disabled = false; btn.textContent = 'Subscribe';
 
         }
 
-      }catch(err){
+      });
 
-        alert('Network error. Please try again.');
+    })();
 
-      }
-
-    });
-
-  })();
-
-</script>
+  </script>
 
 </body>
 
