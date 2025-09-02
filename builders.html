@@ -10,7 +10,7 @@
 
   <title>PorchMe – Builder Portal</title>
 
-  <link rel="stylesheet" href="style.css?v=1207" />
+  <link rel="stylesheet" href="style.css?v=1208" />
 
   <link rel="icon" type="image/png" href="image/favicon.png" />
 
@@ -45,6 +45,12 @@
     .btn-dark:hover{background:#3a3a3a}
 
     .fee{background:#0f0f0f;border:1px dashed rgba(255,255,255,.2);border-radius:12px;padding:14px}
+
+    .notice{background:#222;color:#fff;border-left:4px solid var(--gold);border-radius:10px;padding:10px 14px;margin-top:12px}
+
+    #b-ok{display:none;background:#1e7e34;border-left-color:#1e7e34}
+
+    #b-err{display:none;background:#7e1e1e;border-left-color:#7e1e1e}
 
   </style>
 
@@ -140,9 +146,9 @@
 
           </div>
 
-          <p id="b-ok" class="notice" style="display:none;background:#1e7e34;border-left-color:#1e7e34">✅ Thanks! We’ll review and respond shortly.</p>
+          <p id="b-ok" class="notice">✅ Thanks! We’ll review and respond shortly.</p>
 
-          <p id="b-err" class="notice" style="display:none;background:#7e1e1e;border-left-color:#7e1e1e">❌ Could not submit. Please try again.</p>
+          <p id="b-err" class="notice">❌ Could not submit. Please try again.</p>
 
         </form>
 
@@ -244,11 +250,35 @@
 
 
 
-    // نموذج التسجيل (ديمو محلي؛ إذا أردته إلى Sheets أخبرني أضيف endpoint منفصل)
+    // === رابط Apps Script (builders) ===
+
+    const BUILDERS_ENDPOINT = "https://script.google.com/macros/s/AKfycbwLtayBC11uOzd35aPNEoXBIo4Gep5qNWL5vE3T1AE8rNfdF1Kf1G7U7f2EmZ8WTxbw/exec";
+
+
+
+    // إرسال نموذج البنّائين إلى Google Sheets
 
     const bf=document.getElementById('builderForm'), bok=document.getElementById('b-ok'), berr=document.getElementById('b-err');
 
-    bf.addEventListener('submit', (e)=>{ e.preventDefault(); bok.style.display='block'; berr.style.display='none'; bf.reset(); });
+    bf.addEventListener('submit', async (e)=>{
+
+      e.preventDefault(); bok.style.display='none'; berr.style.display='none';
+
+      try{
+
+        const body=new URLSearchParams(new FormData(bf));
+
+        const res=await fetch(BUILDERS_ENDPOINT,{method:'POST',body,headers:{'Accept':'application/json'}});
+
+        let data=null; try{data=await res.json();}catch(_){}
+
+        if(res.ok && data && data.ok===true){ bf.reset(); bok.style.display='block'; }
+
+        else{ if(data && data.error){ berr.textContent='❌ '+data.error; } berr.style.display='block'; }
+
+      }catch(_){ berr.textContent='❌ Network error. Please try again.'; berr.style.display='block'; }
+
+    });
 
   </script>
 
