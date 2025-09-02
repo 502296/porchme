@@ -10,7 +10,7 @@
 
   <title>PorchMe – Classic Porch Design & Build</title>
 
-  <link rel="stylesheet" href="style.css?v=1003" />
+  <link rel="stylesheet" href="style.css?v=1105" />
 
   <link rel="icon" type="image/png" href="image/favicon.png" />
 
@@ -32,7 +32,7 @@
 
     <div class="wrap">
 
-      <a class="brand" href="index.html">
+      <a class="brand" href="index.html" aria-label="PorchMe Home">
 
         <img src="image/porchme_logo_silver.svg" class="royal-logo" alt="PorchMe" />
 
@@ -66,7 +66,7 @@
 
     <div class="wrap hero-inner">
 
-      <!-- الشعار كان هنا وتم إخفاؤه عبر CSS -->
+      <!-- شعار الـHero مخفي عبر CSS (hero-logo{display:none}) -->
 
       <h1 class="hero-title">Classic Porch Design &amp; Build</h1>
 
@@ -132,7 +132,7 @@
 
         <li><strong>Concept Blueprint:</strong> a clear, scaled porch concept aligned to your home’s style and budget.</li>
 
-        <li><strong>Refine & Build:</strong> finalize details and coordinate construction with your selected builder.</li>
+        <li><strong>Refine &amp; Build:</strong> finalize details and coordinate construction with your selected builder.</li>
 
       </ol>
 
@@ -165,8 +165,6 @@
     </div>
 
 
-
-    <!-- يبدأ مخفي -->
 
     <div id="gallery" class="gallery-hidden">
 
@@ -205,8 +203,6 @@
     </div>
 
 
-
-    <!-- Lightbox -->
 
     <div id="pm-lightbox" class="pm-lightbox" aria-hidden="true">
 
@@ -256,6 +252,8 @@
 
       </div>
 
+
+
       <div class="fnav">
 
         <a href="#philosophy">Design Expertise</a>
@@ -274,7 +272,11 @@
 
       </div>
 
+
+
       <p><strong>Contact:</strong> <a href="mailto:contact@porchme.me">contact@porchme.me</a></p>
+
+
 
       <div class="social-icons">
 
@@ -285,6 +287,8 @@
         <a href="https://linkedin.com" target="_blank" aria-label="LinkedIn"><img src="image/icon-linkedin.svg" alt="LinkedIn"></a>
 
       </div>
+
+
 
       <p class="copy">© <span id="year"></span> PorchMe. Crafted with passion. All rights reserved.</p>
 
@@ -308,7 +312,7 @@
 
     const navBtn = document.querySelector('.nav-toggle');
 
-    const navLinks = document.querySelector('.nav-links');
+    const navLinks = document.getElementById('navLinks');
 
     if (navBtn && navLinks) {
 
@@ -324,7 +328,7 @@
 
 
 
-    // Gallery toggle (يبدأ مخفيًا)
+    // Gallery toggle (starts hidden)
 
     const showGalleryBtn = document.getElementById('showGalleryBtn');
 
