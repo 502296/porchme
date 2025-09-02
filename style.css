@@ -1,26 +1,26 @@
-/* ============== Theme Colors (Dark) ============== */
+/* ================= Theme (Dark) ================= */
 
 :root{
 
-  --bg:#121212;
+  --bg:#121212;          /* خلفية عامة داكنة */
 
-  --bg-2:#1e1e1e;
+  --bg-2:#1e1e1e;        /* طبقة ثانوية */
 
-  --card:#d5d5d5;
+  --card:#d5d5d5;        /* بطاقات فاتحة RAL7035 */
 
-  --text:#f5f5f5;
+  --text:#f5f5f5;        /* نص فاتح */
 
-  --muted:#cccccc;
+  --muted:#cccccc;       /* نص ثانوي */
 
-  --accent:#d4af37;
+  --accent:#d4af37;      /* ذهبي ملكي */
 
-  --line:#2a2a2a;
+  --line:#2a2a2a;        /* خط فاصل خفيف */
 
 }
 
 
 
-/* ============== Reset & Base ============== */
+/* ================= Reset & Base ================= */
 
 *{box-sizing:border-box;margin:0;padding:0}
 
@@ -48,7 +48,7 @@ a:hover{color:#b5942f;text-decoration:underline}
 
 
 
-/* ============== Topline & Navbar ============== */
+/* ================= Navbar ================= */
 
 .topline{height:4px;background:var(--accent)}
 
@@ -74,29 +74,57 @@ a:hover{color:#b5942f;text-decoration:underline}
 
 
 
-/* ============== Hero ============== */
+/* ================= Hero ================= */
 
-.hero{position:relative;text-align:center;padding:80px 0 70px;border-bottom:1px solid var(--line);overflow:hidden}
+.hero{
 
-.hero-blueprint{background:url("image/porchme_blueprint_highlight.png?v=4") center 22%/cover no-repeat}
+  position:relative;text-align:center;overflow:hidden;
+
+  padding:90px 0 80px;border-bottom:1px solid var(--line);
+
+}
+
+.hero-blueprint{
+
+  background:url("image/porchme_blueprint_highlight.png?v=5") center 24%/cover no-repeat;
+
+}
+
+/* طبقة تغميق بسيطة لتوحيد اللون */
 
 .hero-blueprint::before{content:"";position:absolute;inset:0;background:rgba(18,18,18,.85)}
 
 .hero-inner{position:relative;z-index:1;max-width:950px;margin:0 auto;padding:0 20px}
 
-/* اخفاء الشعار الكبير */
+/* إخفاء الشعار الكبير */
 
 .hero-logo{display:none}
 
-.hero-title{font-family:Georgia,serif;font-size:clamp(28px,5vw,54px);font-weight:800;color:#fff;margin-bottom:12px;text-shadow:0 2px 8px rgba(0,0,0,.35)}
+.hero-title{
+
+  font-family:Georgia,serif;font-size:clamp(28px,5vw,54px);
+
+  font-weight:800;color:#fff;margin-bottom:12px;
+
+  text-shadow:0 2px 8px rgba(0,0,0,.35);
+
+}
 
 .hero-subtitle{color:#ddd}
 
 
 
-/* ============== Buttons ============== */
+/* ================= Buttons ================= */
 
-.btn{display:inline-block;border:none;border-radius:8px;padding:12px 22px;font-weight:700;background:var(--accent);color:#000;transition:transform .2s ease,opacity .2s ease}
+.btn{
+
+  display:inline-block;border:none;border-radius:8px;
+
+  padding:12px 22px;font-weight:700;background:var(--accent);color:#000;
+
+  transition:transform .2s ease,opacity .2s ease;
+
+}
 
 .btn:hover{transform:translateY(-2px);opacity:.95}
 
@@ -110,9 +138,9 @@ a:hover{color:#b5942f;text-decoration:underline}
 
 
 
-/* ============== Sections & Cards ============== */
+/* ================= Sections & Cards ================= */
 
-.section{padding:60px 0}
+.section{padding:60px 0; scroll-margin-top: 90px;}
 
 .section h2{font-family:Georgia,serif;font-size:clamp(24px,3vw,36px);font-weight:800;color:#fff;margin-bottom:10px}
 
@@ -120,9 +148,25 @@ a:hover{color:#b5942f;text-decoration:underline}
 
 .card{background:var(--card);color:#111;padding:22px;border-radius:12px;box-shadow:0 8px 18px rgba(0,0,0,.25)}
 
-.tags{display:flex;flex-wrap:wrap;gap:10px;margin-top:12px}
 
-.tags span{background:#eee;color:#111;padding:6px 10px;border-radius:999px;font-weight:700}
+
+/* Tags كـBadges غير قابلة للنقر */
+
+.tags{display:flex;flex-wrap:wrap;gap:12px;margin-top:12px}
+
+.tags span{
+
+  background:#ECECEC;color:#1b1d22;border:1px solid #DFDFDF;
+
+  border-radius:999px;padding:8px 14px;font-weight:700;letter-spacing:.2px;
+
+  box-shadow:none;cursor:default;
+
+}
+
+
+
+/* Steps */
 
 .steps{margin:14px 0 0 20px}
 
@@ -130,7 +174,7 @@ a:hover{color:#b5942f;text-decoration:underline}
 
 
 
-/* ============== Gallery ============== */
+/* ================= Gallery ================= */
 
 .gallery-hidden{display:none}
 
@@ -156,33 +200,65 @@ a:hover{color:#b5942f;text-decoration:underline}
 
 
 
-/* ============== Footer (ألوان مريحة) ============== */
+/* ================= Footer (مريح وأيقونات مرتبة) ================= */
 
-.footer{background:#111;color:#ccc;text-align:center;padding:40px 0;margin-top:50px;border-top:1px solid var(--line)}
+.footer{
+
+  background:#0f1114;color:#cfd3db;text-align:center;
+
+  padding:40px 0;margin-top:50px;border-top:1px solid rgba(255,255,255,.07);
+
+}
 
 .footer .fbrand{display:flex;align-items:center;justify-content:center;gap:10px;margin-bottom:10px}
 
 .footer .fbrand img{width:30px;height:30px}
 
-.footer .fbrand span{color:#FFD700;font-weight:800;font-size:1.1rem}
+.footer .fbrand span{color:#E8C766;font-weight:800;font-size:1.1rem}
 
-.footer .fnav{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin:12px 0}
+.footer .fnav{display:flex;gap:18px;justify-content:center;flex-wrap:wrap;margin:12px 0}
 
-.footer .fnav a{color:#ccc;font-weight:600}
+.footer .fnav a{color:#C7CBD3;font-weight:600;letter-spacing:.2px}
 
-.footer .fnav a:hover{color:#FFD700}
+.footer .fnav a:hover{color:#E8C766}
 
-.footer p strong{color:#fff}
+.footer p strong{color:#F3F5F8}
 
-.social-icons{margin:10px 0}
+.social-icons{display:flex;align-items:center;justify-content:center;gap:16px;margin:12px 0 0}
 
-.social-icons img{width:28px;height:28px;margin:0 6px}
+.social-icons a{width:32px;height:32px;display:inline-flex;align-items:center;justify-content:center}
 
-.copy{margin-top:10px;color:#aaa;font-size:.85rem}
+.social-icons img{width:22px;height:22px;filter:brightness(0) invert(1) opacity(.92);transition:transform .15s ease,opacity .15s ease}
+
+.social-icons a:hover img{transform:translateY(-1px);opacity:1}
+
+.copy{margin-top:10px;color:#AEB4BE;font-size:.85rem}
 
 
 
-/* ============== Responsive ============== */
+/* ================= Desktop Tweaks ================= */
+
+@media (min-width: 992px){
+
+  .hero{
+
+    padding-top: 140px;
+
+    padding-bottom: 140px;
+
+    min-height: 72vh;
+
+  }
+
+  .hero-blueprint{ background-position: center 30%; }
+
+  #philosophy.section{ margin-top: 20px; }
+
+}
+
+
+
+/* ================= Mobile ================= */
 
 @media (max-width:820px){
 
