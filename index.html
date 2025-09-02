@@ -2,8 +2,6 @@
 
 <html lang="en">
 
-
-
 <head>
 
   <meta charset="utf-8" />
@@ -84,7 +82,7 @@
 
 
 
-  <!-- Design Expertise (was Philosophy) -->
+  <!-- Design Expertise -->
 
   <section id="philosophy" class="section">
 
@@ -156,6 +154,8 @@
 
     </div>
 
+
+
     <div id="gallery" class="gallery-hidden">
 
       <div class="wrap">
@@ -192,6 +192,8 @@
 
     </div>
 
+
+
     <div id="pm-lightbox" class="pm-lightbox" aria-hidden="true">
 
       <button class="pm-close" aria-label="Close">×</button>
@@ -226,21 +228,29 @@
 
 
 
-  <!-- Footer -->
+  <!-- Footer (enhanced) -->
 
   <footer class="footer">
 
-    <div class="wrap">
+    <div class="wrap footer-grid">
 
       <div class="fbrand">
 
         <img src="image/porchme_logo_silver.svg" alt="PorchMe" />
 
-        <span>PorchMe</span>
+        <div>
+
+          <span class="fbrand-title">PorchMe</span>
+
+          <p class="fbrand-tagline">Royal Porch Design for Every Home</p>
+
+        </div>
 
       </div>
 
-      <div class="fnav">
+
+
+      <nav class="fnav" aria-label="Footer">
 
         <a href="#philosophy">Design Expertise</a>
 
@@ -250,9 +260,59 @@
 
         <a href="book.html">Book a Visit</a>
 
+        <a href="builders.html">Builder Portal</a>
+
+      </nav>
+
+
+
+      <div class="fcontact">
+
+        <p class="muted">Questions or project inquiries?</p>
+
+        <p><a class="fcontact-link" href="mailto:contact@porchme.me">contact@porchme.me</a></p>
+
       </div>
 
-      <p class="copy">© <span id="year"></span> PorchMe. All rights reserved.</p>
+
+
+      <div class="fsocial" aria-label="Social links">
+
+        <a href="#" aria-label="Instagram" class="social-ico" title="Instagram">
+
+          <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true">
+
+            <path fill="currentColor" d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5Zm0 2a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3H7Zm5 3.5A5.5 5.5 0 1 1 6.5 13 5.5 5.5 0 0 1 12 7.5Zm0 2A3.5 3.5 0 1 0 15.5 13 3.5 3.5 0 0 0 12 9.5Zm5.75-3a1.25 1.25 0 1 1-1.25 1.25A1.25 1.25 0 0 1 17.75 6.5Z"/>
+
+          </svg>
+
+        </a>
+
+        <a href="#" aria-label="TikTok" class="social-ico" title="TikTok">
+
+          <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true">
+
+            <path fill="currentColor" d="M14.5 2h2.1a5.9 5.9 0 0 0 4 3.9v2.1a8 8 0 0 1-4-1.2v7.2a6.5 6.5 0 1 1-6.5-6.5 6.7 6.7 0 0 1 1.6.2V10a4.7 4.7 0 1 0 3.2 4.4V2Z"/>
+
+          </svg>
+
+        </a>
+
+        <a href="#" aria-label="LinkedIn" class="social-ico" title="LinkedIn">
+
+          <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true">
+
+            <path fill="currentColor" d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5ZM3 9h4v12H3V9Zm7 0h3.8v1.7h.1A4.2 4.2 0 0 1 18 9c3 0 5 2 5 6.1V21h-4v-5.4c0-1.9-.7-3.3-2.4-3.3-1.3 0-2 .9-2.3 1.8-.1.2-.1.6-.1.9V21h-4V9Z"/>
+
+          </svg>
+
+        </a>
+
+      </div>
+
+
+
+      <p class="copy">© <span id="year"></span> PorchMe. Crafted with passion. All rights reserved.</p>
 
     </div>
 
@@ -260,9 +320,21 @@
 
 
 
+  <!-- Back to top -->
+
+  <button class="back-to-top" aria-label="Back to top" title="Back to top">↑</button>
+
+
+
   <script>
 
+    // Year
+
     document.getElementById('year').textContent = new Date().getFullYear();
+
+
+
+    // Mobile nav
 
     const navBtn = document.querySelector('.nav-toggle');
 
@@ -279,6 +351,8 @@
       });
 
     }
+
+
 
     // Lightbox
 
@@ -324,6 +398,8 @@
 
     })();
 
+
+
     // Gallery toggle
 
     const showGalleryBtn = document.getElementById('showGalleryBtn');
@@ -336,19 +412,29 @@
 
         gallery.classList.toggle('gallery-visible');
 
-        if (gallery.classList.contains('gallery-visible')) {
-
-          showGalleryBtn.textContent = 'Hide Gallery';
-
-        } else {
-
-          showGalleryBtn.textContent = 'View Gallery';
-
-        }
+        showGalleryBtn.textContent = gallery.classList.contains('gallery-visible') ? 'Hide Gallery' : 'View Gallery';
 
       });
 
     }
+
+
+
+    // Back-to-top
+
+    const up = document.querySelector('.back-to-top');
+
+    const showUp = () => {
+
+      if (window.scrollY > 500) up.classList.add('show'); else up.classList.remove('show');
+
+    };
+
+    window.addEventListener('scroll', showUp);
+
+    up.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+    showUp();
 
   </script>
 
