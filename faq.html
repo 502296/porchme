@@ -1,0 +1,404 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <title>FAQ – PorchMe</title>
+
+  <link rel="stylesheet" href="style.css" />
+
+  <link rel="icon" type="image/png" href="image/favicon.png" />
+
+  <style>
+
+    /* Accordion (خفيف ويعتمد على نفس ألوان style.css) */
+
+    .faq { max-width: 900px; margin: 0 auto; }
+
+    .faq-item{border:1px solid rgba(255,255,255,.1); border-radius:.8rem; margin:.75rem 0; overflow:hidden; background:#11161b;}
+
+    .faq-q{width:100%; text-align:left; padding:1rem 1.1rem; background:transparent; color:#e9edf1; border:0; font-weight:800; font-size:1.05rem; display:flex; align-items:center; justify-content:space-between; cursor:pointer}
+
+    .faq-q:hover{background:rgba(255,255,255,.04)}
+
+    .faq-a{display:none; padding:0 1.1rem 1rem; color:#cfd6e2}
+
+    .faq-item.open .faq-a{display:block}
+
+    .faq-item.open .faq-q{background:rgba(255,255,255,.06)}
+
+    .faq-icon{flex:0 0 auto; font-size:1.2rem; opacity:.9}
+
+    @media (prefers-color-scheme: light){
+
+      .faq-item{border-color:#e5e7eb;background:#f7f8fa}
+
+      .faq-q{color:#101418}
+
+      .faq-q:hover{background:#eef0f4}
+
+      .faq-a{color:#3a4658}
+
+      .faq-item.open .faq-q{background:#e9edf2}
+
+    }
+
+  </style>
+
+</head>
+
+<body>
+
+  <div class="topline"></div>
+
+  <nav class="nav">
+
+    <div class="wrap">
+
+      <a class="brand" href="index.html">
+
+        <img src="image/porchme_logo_silver.svg" class="royal-logo" alt="PorchMe" />
+
+        <span class="wordmark">PorchMe</span>
+
+      </a>
+
+      <div class="nav-links" id="navLinks">
+
+        <a href="index.html#philosophy">Design Expertise</a>
+
+        <a href="index.html#process">Project Roadmap</a>
+
+        <a href="index.html#gallery-section">Gallery</a>
+
+        <a href="book.html" class="btn btn-gold nav-cta">Book a Visit</a>
+
+      </div>
+
+      <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="navLinks">☰</button>
+
+    </div>
+
+  </nav>
+
+
+
+  <main class="section alt" style="padding:3rem 1rem;">
+
+    <div class="wrap faq">
+
+      <h1>Frequently Asked Questions</h1>
+
+      <p class="muted" style="margin:.25rem 0 1rem">Didn’t find your answer? Email us at
+
+        <a href="mailto:contact@porchme.me">contact@porchme.me</a>.
+
+      </p>
+
+
+
+      <!-- Item 1 -->
+
+      <div class="faq-item">
+
+        <button class="faq-q" aria-expanded="false">
+
+          What exactly does PorchMe deliver?
+
+          <span class="faq-icon">＋</span>
+
+        </button>
+
+        <div class="faq-a">
+
+          We produce a clear concept blueprint aligned to your home’s style and budget, plus guidance on materials and proportions. We can also coordinate with your selected builder to move from concept to build.
+
+        </div>
+
+      </div>
+
+
+
+      <!-- Item 2 -->
+
+      <div class="faq-item">
+
+        <button class="faq-q" aria-expanded="false">
+
+          Are you a general contractor?
+
+          <span class="faq-icon">＋</span>
+
+        </button>
+
+        <div class="faq-a">
+
+          No. We handle design and coordination. Construction is performed by independent, licensed builders that you choose.
+
+        </div>
+
+      </div>
+
+
+
+      <!-- Item 3 -->
+
+      <div class="faq-item">
+
+        <button class="faq-q" aria-expanded="false">
+
+          What do you need to get started?
+
+          <span class="faq-icon">＋</span>
+
+        </button>
+
+        <div class="faq-a">
+
+          Front-elevation photos, a few basic measurements, and any style preferences. We’ll confirm feasibility before we begin.
+
+        </div>
+
+      </div>
+
+
+
+      <!-- Item 4 -->
+
+      <div class="faq-item">
+
+        <button class="faq-q" aria-expanded="false">
+
+          How long does the concept phase take?
+
+          <span class="faq-icon">＋</span>
+
+        </button>
+
+        <div class="faq-a">
+
+          Typically 3–7 business days after we receive your site photos and details. Timelines may vary based on scope and feedback cycles.
+
+        </div>
+
+      </div>
+
+
+
+      <!-- Item 5 -->
+
+      <div class="faq-item">
+
+        <button class="faq-q" aria-expanded="false">
+
+          Do you help with permits and HOA?
+
+          <span class="faq-icon">＋</span>
+
+        </button>
+
+        <div class="faq-a">
+
+          We’ll design with typical guidelines in mind and provide drawings you can share. Final permitting/HOA submittals are coordinated with your builder and local requirements.
+
+        </div>
+
+      </div>
+
+
+
+      <!-- Item 6 -->
+
+      <div class="faq-item">
+
+        <button class="faq-q" aria-expanded="false">
+
+          How much does it cost?
+
+          <span class="faq-icon">＋</span>
+
+        </button>
+
+        <div class="faq-a">
+
+          Pricing depends on scope and complexity. Book a visit to receive a clear estimate for your home and desired style.
+
+        </div>
+
+      </div>
+
+
+
+      <!-- Item 7 -->
+
+      <div class="faq-item">
+
+        <button class="faq-q" aria-expanded="false">
+
+          Can you work with my existing builder?
+
+          <span class="faq-icon">＋</span>
+
+        </button>
+
+        <div class="faq-a">
+
+          Absolutely. We frequently collaborate with homeowners’ preferred contractors and adjust details to their build methods.
+
+        </div>
+
+      </div>
+
+
+
+      <!-- Item 8 -->
+
+      <div class="faq-item">
+
+        <button class="faq-q" aria-expanded="false">
+
+          What if I need changes after the concept?
+
+          <span class="faq-icon">＋</span>
+
+        </button>
+
+        <div class="faq-a">
+
+          We include a round of refinements. Additional revisions beyond the agreed scope can be quoted as needed.
+
+        </div>
+
+      </div>
+
+
+
+      <p style="margin-top:1.5rem">
+
+        Still need help? <a href="mailto:contact@porchme.me">contact@porchme.me</a> — we’ll get back to you quickly.
+
+      </p>
+
+    </div>
+
+  </main>
+
+
+
+  <!-- Footer -->
+
+  <footer class="footer">
+
+    <div class="wrap">
+
+      <div class="fbrand">
+
+        <img src="image/porchme_logo_silver.svg" alt="PorchMe" />
+
+        <span>PorchMe</span>
+
+      </div>
+
+
+
+      <div class="fnav">
+
+        <a href="index.html#philosophy">Design Expertise</a>
+
+        <a href="index.html#process">Project Roadmap</a>
+
+        <a href="index.html#gallery-section">Gallery</a>
+
+        <a href="book.html">Book a Visit</a>
+
+        <a href="privacy.html">Privacy</a>
+
+        <a href="terms.html">Terms</a>
+
+        <a href="faq.html">FAQ</a>
+
+      </div>
+
+
+
+      <p style="margin:.5rem 0;"><strong>Contact:</strong>
+
+        <a href="mailto:contact@porchme.me">contact@porchme.me</a>
+
+      </p>
+
+
+
+      <div class="social-icons">
+
+        <a href="https://instagram.com" target="_blank" aria-label="Instagram"><img src="image/icon-instagram.svg" alt="Instagram"></a>
+
+        <a href="https://tiktok.com" target="_blank" aria-label="TikTok"><img src="image/icon-tiktok.svg" alt="TikTok"></a>
+
+        <a href="https://linkedin.com" target="_blank" aria-label="LinkedIn"><img src="image/icon-linkedin.svg" alt="LinkedIn"></a>
+
+      </div>
+
+
+
+      <p class="copy">© <span id="year"></span> PorchMe. Crafted with passion. All rights reserved.</p>
+
+    </div>
+
+  </footer>
+
+
+
+  <script>
+
+    // year + mobile nav
+
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    const navBtn = document.querySelector('.nav-toggle');
+
+    const navLinks = document.querySelector('.nav-links');
+
+    if (navBtn && navLinks) {
+
+      navBtn.addEventListener('click', () => {
+
+        const open = navLinks.classList.toggle('open');
+
+        navBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
+
+      });
+
+    }
+
+
+
+    // Accordion
+
+    document.querySelectorAll('.faq-q').forEach(btn=>{
+
+      btn.addEventListener('click', ()=>{
+
+        const item = btn.closest('.faq-item');
+
+        const open = item.classList.toggle('open');
+
+        btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+
+        btn.querySelector('.faq-icon').textContent = open ? '−' : '＋';
+
+      });
+
+    });
+
+  </script>
+
+</body>
+
+</html>
