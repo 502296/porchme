@@ -1,4 +1,3 @@
-
 /* =======================================
 
    PorchMe — Global Styles (FULL)
@@ -7,9 +6,11 @@
 
 
 
-/* ===== Root & Reset ===== */
+/* ===== Root (عدّل الألوان من هنا) ===== */
 
 :root{
+
+  /* Dark header/hero */
 
   --bg:#0f1216;
 
@@ -25,23 +26,25 @@
 
 
 
-  /* Slate (under-hero) palette */
+  /* Slate (under-hero) palette — يمكنك تفتيح/تغميق هنا */
 
-  --slate-bg:#f3f5f7;       /* light */
+  --slate-bg:#f3f5f7;       /* خلفية أساسية فاتحة */
 
-  --slate-bg-2:#e7eaef;     /* slightly darker */
+  --slate-bg-2:#e7eaef;     /* تدرّج أخف */
 
-  --slate-panel:#1f242b;    /* dark panel (for steps) */
+  --slate-panel:#1f242b;    /* بانل غامق لخطوات */
 
-  --slate-text:#101418;     /* dark body text */
+  --slate-text:#101418;     /* نص */
 
-  --slate-muted:#566176;    /* secondary text */
+  --slate-muted:#566176;    /* نص ثانوي */
 
   --slate-line:rgba(0,0,0,.12);
 
 }
 
 
+
+/* Reset */
 
 *{margin:0;padding:0;box-sizing:border-box}
 
@@ -51,15 +54,9 @@ body{
 
   font-family:system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;
 
-  background:var(--bg);
+  background:var(--bg); color:var(--text); line-height:1.6;
 
-  color:var(--text);
-
-  line-height:1.6;
-
-  -webkit-font-smoothing:antialiased;
-
-  -moz-osx-font-smoothing:grayscale;
+  -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;
 
 }
 
@@ -67,17 +64,11 @@ img{max-width:100%;display:block}
 
 
 
-/* ===== Topline & Nav ===== */
+/* Topline & Nav */
 
 .topline{height:5px;background:var(--gold)}
 
-.nav{
-
-  background:#0f1216;color:#fff;position:sticky;top:0;z-index:1000;
-
-  border-bottom:1px solid rgba(255,255,255,.06)
-
-}
+.nav{background:#0f1216;color:#fff;position:sticky;top:0;z-index:1000;border-bottom:1px solid rgba(255,255,255,.06)}
 
 .wrap{max-width:1200px;margin:0 auto;padding:0 1rem}
 
@@ -99,7 +90,7 @@ img{max-width:100%;display:block}
 
 
 
-/* ===== Hero (kept as-is) ===== */
+/* Hero */
 
 .hero{position:relative;isolation:isolate}
 
@@ -125,17 +116,9 @@ img{max-width:100%;display:block}
 
 
 
-/* ===== Buttons (dark theme) ===== */
+/* Buttons (dark) */
 
-.btn{
-
-  display:inline-flex;align-items:center;justify-content:center;
-
-  padding:1rem 1.2rem;border-radius:.7rem;border:1px solid transparent;
-
-  text-decoration:none;font-weight:750;transition:.2s
-
-}
+.btn{display:inline-flex;align-items:center;justify-content:center;padding:1rem 1.2rem;border-radius:.7rem;border:1px solid transparent;text-decoration:none;font-weight:750;transition:.2s}
 
 .btn-gold{background:var(--gold);border-color:var(--gold);color:#0e1116}
 
@@ -153,7 +136,7 @@ img{max-width:100%;display:block}
 
 
 
-/* ===== Sections (dark) ===== */
+/* Sections (dark) */
 
 .section{padding:4rem 0}
 
@@ -165,25 +148,11 @@ img{max-width:100%;display:block}
 
 .note{color:#d9c8a1;margin:.4rem 0 0}
 
-
-
-/* Lead + tags */
-
 .lead{color:#cfd6e2;max-width:60rem;line-height:1.55;margin:0 0 1rem}
 
 .tags{display:flex;gap:.5rem;flex-wrap:wrap;margin-top:.5rem}
 
-.tags span{
-
-  padding:.5rem .75rem;border:1px solid var(--line);border-radius:999px;
-
-  opacity:.95;background:rgba(255,255,255,.03)
-
-}
-
-
-
-/* Steps (dark default) */
+.tags span{padding:.5rem .75rem;border:1px solid var(--line);border-radius:999px;opacity:.95;background:rgba(255,255,255,.03)}
 
 .steps{margin:1rem 0 1.5rem;padding-left:1.25rem}
 
@@ -191,7 +160,7 @@ img{max-width:100%;display:block}
 
 
 
-/* ===== Gallery ===== */
+/* Gallery */
 
 .gallery-hidden{display:none;margin-top:2rem}
 
@@ -203,7 +172,7 @@ img{max-width:100%;display:block}
 
 .gallery-item{border:1px solid var(--line);border-radius:.6rem;overflow:hidden;background:#0f1216}
 
-.gallery-item img{width:100%;height:auto;aspect-ratio:4/3;object-fit:cover;font-size:0}
+.gallery-item img{width:100%;height:auto;aspect-ratio:4/3;object-fit:cover}
 
 @keyframes fadeIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
 
@@ -227,55 +196,45 @@ img{max-width:100%;display:block}
 
 
 
-/* ===== Forms ===== */
+/* Forms */
 
 .pm-form label{display:block;font-weight:600;margin:.65rem 0 .35rem}
 
-.pm-form input,.pm-form textarea,.pm-form select{
+.pm-form input,.pm-form textarea,.pm-form select{width:100%;padding:.85rem .95rem;border-radius:.65rem;border:1px solid var(--line);background:#0f1216;color:#e9edf1;outline:none}
 
-  width:100%;padding:.85rem .95rem;border-radius:.65rem;border:1px solid var(--line);
-
-  background:#0f1216;color:#e9edf1;outline:none
-
-}
-
-.pm-form input:focus,.pm-form textarea:focus,.pm-form select:focus{
-
-  border-color:var(--gold);box-shadow:0 0 0 2px rgba(202,162,79,.2)
-
-}
+.pm-form input:focus,.pm-form textarea:focus,.pm-form select:focus{border-color:var(--gold);box-shadow:0 0 0 2px rgba(202,162,79,.2)}
 
 .grid2{display:grid;gap:.9rem;grid-template-columns:1fr 1fr}
 
 @media (max-width:720px){.grid2{grid-template-columns:1fr}}
 
-
-
-/* Cards / helpers */
-
 .note-card{padding:1rem;border:1px solid var(--line);border-radius:.8rem;background:rgba(12,16,22,.45)}
 
 
 
-/* ===== Footer ===== */
+/* Footer */
 
 .footer{background:#0f1216;color:#fff;padding:2rem 0;border-top:1px solid rgba(255,255,255,.06)}
 
 .footer .wrap{display:grid;gap:.5rem}
 
-.footer .fbrand{display:flex;align-items:center;gap:.5rem;opacity:.9}
+.footer .fbrand{display:flex;align-items:center;gap:.55rem;justify-content:center;margin-bottom:.75rem}
 
-.footer .fnav{display:flex;flex-wrap:wrap;gap:.85rem;margin:.75rem 0}
+.footer .fbrand img{height:36px;width:auto;max-width:none;display:block}
+
+@media (max-width:480px){.footer .fbrand img{height:32px}}
+
+.footer .fnav{display:flex;flex-wrap:wrap;gap:.85rem;margin:.75rem 0;justify-content:center}
 
 .footer a{color:var(--gold)}
 
 .footer a:hover{filter:brightness(1.15);text-decoration:none}
 
-.copy{opacity:.75;font-size:.95rem}
+.copy{opacity:.75;font-size:.95rem;text-align:center}
 
 
 
-/* ===== Mobile tweaks ===== */
+/* Mobile tweaks */
 
 @media (max-width:480px){
 
@@ -289,7 +248,7 @@ img{max-width:100%;display:block}
 
 
 
-/* ===== Mobile nav ===== */
+/* Mobile nav */
 
 @media (max-width:960px){
 
@@ -311,17 +270,13 @@ img{max-width:100%;display:block}
 
 
 
-/* ===== Focus ring ===== */
+/* Focus ring */
 
 a,button,input,select,textarea{outline-color:var(--gold);outline-offset:2px}
 
 
 
-/* =======================================================
-
-   Link visibility (do NOT override button text color)
-
-   ======================================================= */
+/* Link visibility (لا تؤثر على نص الأزرار) */
 
 a[href^="mailto:"],
 
@@ -339,31 +294,19 @@ main a:not(.btn){
 
 }
 
-a:hover{ filter: brightness(1.15); }
+a:hover{filter:brightness(1.15)}
 
-a:focus-visible{
+.btn-gold{color:#0e1116 !important}
 
-  outline: 2px solid var(--gold);
-
-  outline-offset: 2px;
-
-  border-radius: 3px;
-
-}
-
-/* Ensure button text stays readable */
-
-.btn-gold{ color:#0e1116 !important; }
-
-.btn-outline,.btn-quiet{ color:#fff !important; }
+.btn-outline,.btn-quiet{color:#fff !important}
 
 
 
-/* =======================================================
+/* ===========================
 
-   SLATE MODE — everything below the hero
+   SLATE MODE (تحت الهيرو)
 
-   ======================================================= */
+   =========================== */
 
 .slate{
 
@@ -373,11 +316,11 @@ a:focus-visible{
 
 }
 
-.slate .section{ background:transparent; padding:4rem 0; }
+.slate .section{background:transparent;padding:4rem 0}
 
 
 
-/* Panels (clean, subtle shadow) */
+/* Panels */
 
 .slate .panel{
 
@@ -389,63 +332,49 @@ a:focus-visible{
 
   padding: 2rem;
 
-  box-shadow:
-
-    0 2px 0 rgba(0,0,0,.03),
-
-    0 14px 30px rgba(31,36,43,.08);
+  box-shadow: 0 2px 0 rgba(0,0,0,.03), 0 14px 30px rgba(31,36,43,.08);
 
 }
 
 
 
-/* Titles + lead in slate area */
+/* Titles & lead */
 
-.slate .slate-title{
+.slate .slate-title{font-weight:900;letter-spacing:.4px;color:var(--slate-text);margin-bottom:.75rem}
 
-  font-weight: 900; letter-spacing:.4px; color: var(--slate-text); margin-bottom:.75rem;
+.slate .slate-lead{color:var(--slate-muted);max-width:56rem}
 
-}
-
-.slate .slate-lead{ color: var(--slate-muted); max-width:56rem; }
-
-.slate .slate-muted{ color: var(--slate-muted); }
+.slate .slate-muted{color:var(--slate-muted)}
 
 
 
-/* Tags in slate (lighter pills) */
+/* Tags */
 
-.slate .tags-slate span{
+.slate .tags-slate span{background:#fff;border-color:var(--slate-line);color:var(--slate-text)}
 
-  background:#fff;border-color:var(--slate-line);color:var(--slate-text);
-
-}
-
-.slate .tags-slate span:hover{ box-shadow:0 0 0 2px rgba(202,162,79,.15) inset }
+.slate .tags-slate span:hover{box-shadow:0 0 0 2px rgba(202,162,79,.15) inset}
 
 
 
-/* Steps as dark panel (optional) */
+/* Steps (dark panel) */
 
 .slate .steps-slate{
 
   background: linear-gradient(180deg, #252b33 0%, #1f242b 100%);
 
-  color:#e9edf1;
+  color:#e9edf1;border:1px solid rgba(255,255,255,.08);
 
-  border:1px solid rgba(255,255,255,.08);
-
-  border-radius:12px; padding:1rem 1.2rem 1rem 2rem; margin:1rem 0 1.5rem;
+  border-radius:12px;padding:1rem 1.2rem 1rem 2rem;margin:1rem 0 1.5rem
 
 }
 
-.slate .steps-slate li{ margin:.45rem 0 }
+.slate .steps-slate li{margin:.45rem 0}
 
-.slate .steps-slate li::marker{ color: var(--gold); }
+.slate .steps-slate li::marker{color:var(--gold)}
 
 
 
-/* Slate Buttons (metallic) */
+/* Slate buttons */
 
 .btn-slate{
 
@@ -453,9 +382,7 @@ a:focus-visible{
 
   border:1px solid rgba(0,0,0,.12);
 
-  color:#0e1116 !important;
-
-  border-radius:10px;
+  color:#0e1116 !important;border-radius:10px;
 
   box-shadow: inset 0 1px 0 rgba(255,255,255,.6), 0 8px 20px rgba(31,36,43,.15);
 
@@ -463,54 +390,32 @@ a:focus-visible{
 
 .btn-slate:hover{
 
-  transform: translateY(-1px);
+  transform:translateY(-1px);
 
   box-shadow: inset 0 1px 0 rgba(255,255,255,.7), 0 12px 26px rgba(31,36,43,.2);
 
 }
 
-
-
-/* Ghost (outline) slate button */
-
 .btn-slate-ghost{
 
   background: linear-gradient(180deg, rgba(255,255,255,.65), rgba(255,255,255,.35));
 
-  color: var(--slate-text) !important;
-
-  border: 1px solid rgba(0,0,0,.25);
+  color: var(--slate-text) !important;border:1px solid rgba(0,0,0,.25);
 
   border-radius:10px;
 
 }
 
-.btn-slate-ghost:hover{
-
-  background: linear-gradient(180deg, rgba(255,255,255,.8), rgba(255,255,255,.5));
-
-}
+.btn-slate-ghost:hover{background: linear-gradient(180deg, rgba(255,255,255,.8), rgba(255,255,255,.5))}
 
 
 
-/* Links inside slate panels use clean blue unless buttons */
+/* Links inside slate panels */
 
-.slate a:not(.btn){
-
-  color:#0f62fe;
-
-  text-decoration:underline;
-
-  text-underline-offset:2px;
-
-}
+.slate a:not(.btn){color:#0f62fe;text-decoration:underline;text-underline-offset:2px}
 
 
 
-/* Responsive padding for panels */
+/* Responsive panel padding */
 
-@media (max-width:760px){
-
-  .slate .panel{ padding:1.25rem }
-
-}
+@media (max-width:760px){ .slate .panel{padding:1.25rem} }
