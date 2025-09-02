@@ -1,50 +1,23 @@
-/* =======================================
 
-   PorchMe — Global Styles (FULL)
+/* ===== Root & Reset ===== */
 
-   ======================================= */
+:root {
 
+  --bg: #0f1216;
 
+  --bg-2: #151a20;
 
-/* ===== Root (عدّل الألوان من هنا) ===== */
+  --text: #e9edf1;
 
-:root{
+  --muted: #cfd6e2;
 
-  /* Dark header/hero */
+  --gold: #caa24f;
 
-  --bg:#0f1216;
-
-  --bg-2:#151a20;
-
-  --text:#e9edf1;
-
-  --muted:#cfd6e2;
-
-  --gold:#caa24f;
-
-  --line:rgba(255,255,255,.12);
-
-
-
-  /* Slate (under-hero) palette — يمكنك تفتيح/تغميق هنا */
-
-  --slate-bg:#f3f5f7;       /* خلفية أساسية فاتحة */
-
-  --slate-bg-2:#e7eaef;     /* تدرّج أخف */
-
-  --slate-panel:#1f242b;    /* بانل غامق لخطوات */
-
-  --slate-text:#101418;     /* نص */
-
-  --slate-muted:#566176;    /* نص ثانوي */
-
-  --slate-line:rgba(0,0,0,.12);
+  --line: rgba(255,255,255,.12);
 
 }
 
 
-
-/* Reset */
 
 *{margin:0;padding:0;box-sizing:border-box}
 
@@ -54,9 +27,7 @@ body{
 
   font-family:system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;
 
-  background:var(--bg); color:var(--text); line-height:1.6;
-
-  -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;
+  background:var(--bg);color:var(--text);line-height:1.6
 
 }
 
@@ -64,7 +35,7 @@ img{max-width:100%;display:block}
 
 
 
-/* Topline & Nav */
+/* ===== Topline & Nav ===== */
 
 .topline{height:5px;background:var(--gold)}
 
@@ -76,7 +47,7 @@ img{max-width:100%;display:block}
 
 .brand{display:flex;align-items:center;gap:.55rem;text-decoration:none}
 
-.royal-logo{height:36px;width:auto}
+.royal-logo{height:34px;width:auto}
 
 .wordmark{font-size:1.3rem;font-weight:800;color:#fff}
 
@@ -90,23 +61,21 @@ img{max-width:100%;display:block}
 
 
 
-/* Hero */
+/* ===== Hero ===== */
 
 .hero{position:relative;isolation:isolate}
 
 .hero-blueprint{
 
-  background:
+  background:linear-gradient(180deg,rgba(6,12,22,.55),rgba(6,12,22,.78)),
 
-    linear-gradient(180deg,rgba(6,12,22,.55),rgba(6,12,22,.78)),
-
-    url("image/porchme_blueprint_highlight.png") center/cover no-repeat;
+             url("image/porchme_blueprint_highlight.png") center/cover no-repeat;
 
   min-height:62vh;display:grid;align-items:center;color:var(--text);
 
 }
 
-.hero-inner{position:relative;z-index:1;padding:5rem 0}
+.hero-inner{position:relative;z-index:1;padding:5rem 0;text-align:left}
 
 .hero-title{font-size:clamp(2rem,5.6vw,3.6rem);font-weight:800;line-height:1.1;letter-spacing:-.3px}
 
@@ -116,7 +85,7 @@ img{max-width:100%;display:block}
 
 
 
-/* Buttons (dark) */
+/* ===== Buttons ===== */
 
 .btn{display:inline-flex;align-items:center;justify-content:center;padding:1rem 1.2rem;border-radius:.7rem;border:1px solid transparent;text-decoration:none;font-weight:750;transition:.2s}
 
@@ -136,7 +105,7 @@ img{max-width:100%;display:block}
 
 
 
-/* Sections (dark) */
+/* ===== Sections ===== */
 
 .section{padding:4rem 0}
 
@@ -146,13 +115,43 @@ img{max-width:100%;display:block}
 
 .muted{color:var(--muted);opacity:.9}
 
-.note{color:#d9c8a1;margin:.4rem 0 0}
+.center{text-align:center}
 
-.lead{color:#cfd6e2;max-width:60rem;line-height:1.55;margin:0 0 1rem}
+
+
+/* Card design */
+
+.card {
+
+  background: #f4f5f7;
+
+  color: #222;
+
+  border-radius: 1rem;
+
+  padding: 2rem;
+
+  box-shadow: 0 4px 18px rgba(0,0,0,0.15);
+
+  margin-bottom: 2rem;
+
+}
+
+
+
+/* Tags */
 
 .tags{display:flex;gap:.5rem;flex-wrap:wrap;margin-top:.5rem}
 
-.tags span{padding:.5rem .75rem;border:1px solid var(--line);border-radius:999px;opacity:.95;background:rgba(255,255,255,.03)}
+.tags span{
+
+  padding:.5rem .75rem;border:1px solid #ddd;border-radius:999px;background:#fff;color:#333;font-weight:500;
+
+}
+
+
+
+/* Steps list */
 
 .steps{margin:1rem 0 1.5rem;padding-left:1.25rem}
 
@@ -160,7 +159,7 @@ img{max-width:100%;display:block}
 
 
 
-/* Gallery */
+/* ===== Gallery ===== */
 
 .gallery-hidden{display:none;margin-top:2rem}
 
@@ -172,7 +171,7 @@ img{max-width:100%;display:block}
 
 .gallery-item{border:1px solid var(--line);border-radius:.6rem;overflow:hidden;background:#0f1216}
 
-.gallery-item img{width:100%;height:auto;aspect-ratio:4/3;object-fit:cover}
+.gallery-item img{width:100%;height:auto;aspect-ratio:4/3;object-fit:cover;font-size:0}
 
 @keyframes fadeIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
 
@@ -196,41 +195,31 @@ img{max-width:100%;display:block}
 
 
 
-/* Forms */
-
-.pm-form label{display:block;font-weight:600;margin:.65rem 0 .35rem}
-
-.pm-form input,.pm-form textarea,.pm-form select{width:100%;padding:.85rem .95rem;border-radius:.65rem;border:1px solid var(--line);background:#0f1216;color:#e9edf1;outline:none}
-
-.pm-form input:focus,.pm-form textarea:focus,.pm-form select:focus{border-color:var(--gold);box-shadow:0 0 0 2px rgba(202,162,79,.2)}
-
-.grid2{display:grid;gap:.9rem;grid-template-columns:1fr 1fr}
-
-@media (max-width:720px){.grid2{grid-template-columns:1fr}}
-
-.note-card{padding:1rem;border:1px solid var(--line);border-radius:.8rem;background:rgba(12,16,22,.45)}
-
-
-
 /* Footer */
 
-.footer{background:#0f1216;color:#fff;padding:2rem 0;border-top:1px solid rgba(255,255,255,.06)}
+.footer{background:#0f1216;color:#fff;padding:2rem 0;border-top:1px solid rgba(255,255,255,.06);text-align:center}
 
-.footer .wrap{display:grid;gap:.5rem}
+.footer .wrap{display:flex;flex-direction:column;align-items:center;gap:1rem}
 
-.footer .fbrand{display:flex;align-items:center;gap:.55rem;justify-content:center;margin-bottom:.75rem}
+.footer .fbrand img{height:40px;width:auto}
 
-.footer .fbrand img{height:36px;width:auto;max-width:none;display:block}
-
-@media (max-width:480px){.footer .fbrand img{height:32px}}
-
-.footer .fnav{display:flex;flex-wrap:wrap;gap:.85rem;margin:.75rem 0;justify-content:center}
+.footer .fnav{display:flex;flex-wrap:wrap;gap:.85rem;margin:.5rem 0}
 
 .footer a{color:var(--gold)}
 
 .footer a:hover{filter:brightness(1.15);text-decoration:none}
 
-.copy{opacity:.75;font-size:.95rem;text-align:center}
+.copy{opacity:.75;font-size:.95rem}
+
+
+
+/* Social icons */
+
+.social-icons{display:flex;gap:1rem;justify-content:center;margin:.5rem 0}
+
+.social-icons img{height:28px;width:28px;transition:transform .2s ease}
+
+.social-icons img:hover{transform:scale(1.1);filter:brightness(1.2)}
 
 
 
@@ -245,10 +234,6 @@ img{max-width:100%;display:block}
   .nav .wrap{gap:.5rem}
 
 }
-
-
-
-/* Mobile nav */
 
 @media (max-width:960px){
 
@@ -270,152 +255,6 @@ img{max-width:100%;display:block}
 
 
 
-/* Focus ring */
+/* Focus */
 
 a,button,input,select,textarea{outline-color:var(--gold);outline-offset:2px}
-
-
-
-/* Link visibility (لا تؤثر على نص الأزرار) */
-
-a[href^="mailto:"],
-
-.section a:not(.btn),
-
-main a:not(.btn){
-
-  color: var(--gold);
-
-  text-decoration: underline;
-
-  font-weight: 700;
-
-  text-underline-offset: 2px;
-
-}
-
-a:hover{filter:brightness(1.15)}
-
-.btn-gold{color:#0e1116 !important}
-
-.btn-outline,.btn-quiet{color:#fff !important}
-
-
-
-/* ===========================
-
-   SLATE MODE (تحت الهيرو)
-
-   =========================== */
-
-.slate{
-
-  background: linear-gradient(180deg, var(--slate-bg) 0%, var(--slate-bg-2) 100%);
-
-  color: var(--slate-text);
-
-}
-
-.slate .section{background:transparent;padding:4rem 0}
-
-
-
-/* Panels */
-
-.slate .panel{
-
-  background: linear-gradient(180deg, #fff 0%, #f4f6f9 100%);
-
-  border: 1px solid var(--slate-line);
-
-  border-radius: 14px;
-
-  padding: 2rem;
-
-  box-shadow: 0 2px 0 rgba(0,0,0,.03), 0 14px 30px rgba(31,36,43,.08);
-
-}
-
-
-
-/* Titles & lead */
-
-.slate .slate-title{font-weight:900;letter-spacing:.4px;color:var(--slate-text);margin-bottom:.75rem}
-
-.slate .slate-lead{color:var(--slate-muted);max-width:56rem}
-
-.slate .slate-muted{color:var(--slate-muted)}
-
-
-
-/* Tags */
-
-.slate .tags-slate span{background:#fff;border-color:var(--slate-line);color:var(--slate-text)}
-
-.slate .tags-slate span:hover{box-shadow:0 0 0 2px rgba(202,162,79,.15) inset}
-
-
-
-/* Steps (dark panel) */
-
-.slate .steps-slate{
-
-  background: linear-gradient(180deg, #252b33 0%, #1f242b 100%);
-
-  color:#e9edf1;border:1px solid rgba(255,255,255,.08);
-
-  border-radius:12px;padding:1rem 1.2rem 1rem 2rem;margin:1rem 0 1.5rem
-
-}
-
-.slate .steps-slate li{margin:.45rem 0}
-
-.slate .steps-slate li::marker{color:var(--gold)}
-
-
-
-/* Slate buttons */
-
-.btn-slate{
-
-  background: linear-gradient(180deg, #d9dee5 0%, #bfc7d0 100%);
-
-  border:1px solid rgba(0,0,0,.12);
-
-  color:#0e1116 !important;border-radius:10px;
-
-  box-shadow: inset 0 1px 0 rgba(255,255,255,.6), 0 8px 20px rgba(31,36,43,.15);
-
-}
-
-.btn-slate:hover{
-
-  transform:translateY(-1px);
-
-  box-shadow: inset 0 1px 0 rgba(255,255,255,.7), 0 12px 26px rgba(31,36,43,.2);
-
-}
-
-.btn-slate-ghost{
-
-  background: linear-gradient(180deg, rgba(255,255,255,.65), rgba(255,255,255,.35));
-
-  color: var(--slate-text) !important;border:1px solid rgba(0,0,0,.25);
-
-  border-radius:10px;
-
-}
-
-.btn-slate-ghost:hover{background: linear-gradient(180deg, rgba(255,255,255,.8), rgba(255,255,255,.5))}
-
-
-
-/* Links inside slate panels */
-
-.slate a:not(.btn){color:#0f62fe;text-decoration:underline;text-underline-offset:2px}
-
-
-
-/* Responsive panel padding */
-
-@media (max-width:760px){ .slate .panel{padding:1.25rem} }
