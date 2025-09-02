@@ -10,17 +10,103 @@
 
   <title>PorchMe – Book a Visit</title>
 
-  <link rel="stylesheet" href="style.css?v=8" />
+
+
+  <!-- الثيم الرئيسي -->
+
+  <link rel="stylesheet" href="style.css?v=1105" />
 
   <link rel="icon" type="image/png" href="image/favicon.png" />
+
+
+
+  <!-- تحسينات خاصة بهذه الصفحة (نحافة الهيرو + تنسيق النموذج) -->
+
+  <style>
+
+    /* هيرو أرفع لهذه الصفحة */
+
+    .book-hero { padding: 64px 0 48px !important; }
+
+    @media (min-width: 992px){
+
+      .book-hero { padding: 90px 0 70px !important; }
+
+    }
+
+    /* إشعار الرسوم */
+
+    .notice{
+
+      background:#222; color:#fff;
+
+      border-left:4px solid var(--accent); border-radius:10px;
+
+      padding:12px 16px; margin-bottom:16px;
+
+    }
+
+    /* بطاقة النموذج */
+
+    .form-card{
+
+      background:#fff; color:#111;
+
+      border-radius:14px; padding:22px;
+
+      box-shadow:0 14px 30px rgba(0,0,0,.35);
+
+      max-width:900px; margin:0 auto;
+
+    }
+
+    .form-grid{
+
+      display:grid; gap:16px;
+
+      grid-template-columns: repeat(2, minmax(220px, 1fr));
+
+    }
+
+    .form-grid label{ display:flex; flex-direction:column; font-weight:700; font-size:.95rem }
+
+    .form-grid input, .form-grid textarea{
+
+      margin-top:6px; padding:12px 14px;
+
+      border:1px solid #d0d4e0; border-radius:10px; font-size:1rem; outline:none;
+
+      background:#fff; color:#111;
+
+    }
+
+    .form-grid input:focus, .form-grid textarea:focus{
+
+      border-color:#b7bcd3; box-shadow:0 0 0 3px rgba(180,186,210,.35);
+
+    }
+
+    .form-grid .full{ grid-column:1 / -1 }
+
+    .form-actions{ display:flex; gap:12px; margin-top:14px; flex-wrap:wrap }
+
+    @media (max-width:820px){ .form-grid{ grid-template-columns:1fr } }
+
+  </style>
 
 </head>
 
 <body>
 
+
+
+  <!-- Topline -->
+
   <div class="topline"></div>
 
 
+
+  <!-- Navbar -->
 
   <nav class="nav">
 
@@ -42,7 +128,7 @@
 
         <a href="index.html#gallery-section">Gallery</a>
 
-        <a href="book.html" class="btn btn--sm">Book a Visit</a>
+        <a href="book.html" class="btn nav-cta">Book a Visit</a>
 
       </div>
 
@@ -54,9 +140,9 @@
 
 
 
-  <!-- Hero نحيف بدون شعار كبير حتى ما يغطي النموذج -->
+  <!-- Hero أنحف وبدون شعار -->
 
-  <header class="hero hero-blueprint hero--slim">
+  <header class="hero hero-blueprint book-hero">
 
     <div class="wrap hero-inner">
 
@@ -86,7 +172,7 @@
 
 
 
-      <!-- بطاقة النموذج -->
+      <!-- نموذج الطلب -->
 
       <form class="form-card" action="#" method="post">
 
@@ -172,7 +258,7 @@
 
           <button class="btn" type="submit">Submit Request</button>
 
-          <a class="btn btn-outline" href="index.html#roadmap">Explore the Roadmap</a>
+          <a class="btn btn-outline" href="index.html#process">Explore the Roadmap</a>
 
         </div>
 
@@ -183,6 +269,8 @@
   </main>
 
 
+
+  <!-- Footer -->
 
   <footer class="footer">
 
@@ -198,33 +286,37 @@
 
 
 
-      <p><strong>Contact:</strong>
+      <div class="fnav">
 
-        <a href="mailto:contact@porchme.me">contact@porchme.me</a>
+        <a href="index.html#philosophy">Design Expertise</a>
 
-      </p>
+        <a href="index.html#process">Project Roadmap</a>
+
+        <a href="index.html#gallery-section">Gallery</a>
+
+        <a href="book.html">Book a Visit</a>
+
+        <a href="privacy.html">Privacy</a>
+
+        <a href="terms.html">Terms</a>
+
+        <a href="faq.html">FAQ</a>
+
+      </div>
+
+
+
+      <p><strong>Contact:</strong> <a href="mailto:contact@porchme.me">contact@porchme.me</a></p>
 
 
 
       <div class="social-icons">
 
-        <a href="https://instagram.com" target="_blank" aria-label="Instagram">
+        <a href="https://instagram.com" target="_blank" aria-label="Instagram"><img src="image/icon-instagram.svg" alt="Instagram"></a>
 
-          <img src="image/icon-instagram.svg" alt="Instagram">
+        <a href="https://twitter.com" target="_blank" aria-label="Twitter"><img src="image/icon-twitter.svg" alt="Twitter"></a>
 
-        </a>
-
-        <a href="https://twitter.com" target="_blank" aria-label="Twitter">
-
-          <img src="image/icon-twitter.svg" alt="Twitter">
-
-        </a>
-
-        <a href="https://linkedin.com" target="_blank" aria-label="LinkedIn">
-
-          <img src="image/icon-linkedin.svg" alt="LinkedIn">
-
-        </a>
+        <a href="https://linkedin.com" target="_blank" aria-label="LinkedIn"><img src="image/icon-linkedin.svg" alt="LinkedIn"></a>
 
       </div>
 
@@ -238,6 +330,8 @@
 
 
 
+  <!-- JS (سنة الفوتر + قائمة الموبايل) -->
+
   <script>
 
     document.getElementById('year').textContent = new Date().getFullYear();
@@ -246,7 +340,7 @@
 
     const navBtn = document.querySelector('.nav-toggle');
 
-    const navLinks = document.querySelector('.nav-links');
+    const navLinks = document.getElementById('navLinks');
 
     if (navBtn && navLinks) {
 
