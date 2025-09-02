@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 
 <html lang="en">
@@ -11,87 +10,37 @@
 
   <title>PorchMe – Book a Visit</title>
 
-
-
-  <!-- الثيم العام للموقع -->
-
-  <link rel="stylesheet" href="style.css?v=1105" />
+  <link rel="stylesheet" href="style.css?v=1207" />
 
   <link rel="icon" type="image/png" href="image/favicon.png" />
 
-
-
-  <!-- تحسينات خاصة بهذه الصفحة (نحافة الهيرو + تنسيق النموذج) -->
-
   <style>
 
-    /* هيرو أخف */
+    .book-hero{padding:64px 0 48px}
 
-    .book-hero { padding: 64px 0 48px !important; }
+    @media(min-width:992px){.book-hero{padding:90px 0 70px}}
 
-    @media (min-width: 992px){
+    .notice{background:#222;color:#fff;border-left:4px solid var(--gold);border-radius:10px;padding:12px 16px;margin-bottom:16px}
 
-      .book-hero { padding: 90px 0 70px !important; }
+    .form-card{background:#fff;color:#111;border-radius:14px;padding:22px;box-shadow:0 14px 30px rgba(0,0,0,.35);max-width:900px;margin:0 auto}
 
-    }
+    .form-grid{display:grid;gap:16px;grid-template-columns:repeat(2,minmax(220px,1fr))}
 
-    /* إشعار الرسوم */
+    .form-grid label{display:flex;flex-direction:column;font-weight:700;font-size:.95rem}
 
-    .notice{
+    .form-grid input,.form-grid textarea{margin-top:6px;padding:12px 14px;border:1px solid #d0d4e0;border-radius:10px;font-size:1rem;background:#fff;color:#111;outline:none}
 
-      background:#222; color:#fff;
+    .form-grid input:focus,.form-grid textarea:focus{border-color:#b7bcd3;box-shadow:0 0 0 3px rgba(180,186,210,.35)}
 
-      border-left:4px solid var(--accent); border-radius:10px;
+    .form-grid .full{grid-column:1/-1}
 
-      padding:12px 16px; margin-bottom:16px;
+    .form-actions{display:flex;gap:12px;margin-top:14px;flex-wrap:wrap}
 
-    }
+    #form-ok{display:none;background:#1e7e34;border-left-color:#1e7e34}
 
-    /* بطاقة النموذج */
+    #form-err{display:none;background:#7e1e1e;border-left-color:#7e1e1e}
 
-    .form-card{
-
-      background:#fff; color:#111;
-
-      border-radius:14px; padding:22px;
-
-      box-shadow:0 14px 30px rgba(0,0,0,.35);
-
-      max-width:900px; margin:0 auto;
-
-    }
-
-    .form-grid{
-
-      display:grid; gap:16px;
-
-      grid-template-columns: repeat(2, minmax(220px, 1fr));
-
-    }
-
-    .form-grid label{ display:flex; flex-direction:column; font-weight:700; font-size:.95rem }
-
-    .form-grid input, .form-grid textarea{
-
-      margin-top:6px; padding:12px 14px;
-
-      border:1px solid #d0d4e0; border-radius:10px; font-size:1rem; outline:none;
-
-      background:#fff; color:#111;
-
-    }
-
-    .form-grid input:focus, .form-grid textarea:focus{
-
-      border-color:#b7bcd3; box-shadow:0 0 0 3px rgba(180,186,210,.35);
-
-    }
-
-    .form-grid .full{ grid-column:1 / -1 }
-
-    .form-actions{ display:flex; gap:12px; margin-top:14px; flex-wrap:wrap }
-
-    @media (max-width:820px){ .form-grid{ grid-template-columns:1fr } }
+    @media(max-width:820px){.form-grid{grid-template-columns:1fr}}
 
   </style>
 
@@ -99,27 +48,15 @@
 
 <body>
 
-
-
-  <!-- Topline -->
-
   <div class="topline"></div>
 
 
-
-  <!-- Navbar -->
 
   <nav class="nav">
 
     <div class="wrap">
 
-      <a class="brand" href="index.html" aria-label="PorchMe Home">
-
-        <img src="image/porchme_logo_silver.svg" class="royal-logo" alt="PorchMe" />
-
-        <span class="wordmark">PorchMe</span>
-
-      </a>
+      <a class="brand" href="index.html"><img src="image/porchme_logo_silver.svg" class="royal-logo" alt="PorchMe" /><span class="wordmark">PorchMe</span></a>
 
       <div class="nav-links" id="navLinks">
 
@@ -141,19 +78,13 @@
 
 
 
-  <!-- Hero -->
-
-  <header class="hero hero-blueprint book-hero">
+  <header class="hero book-hero">
 
     <div class="wrap hero-inner">
 
       <h1 class="hero-title">Book a Visit</h1>
 
-      <p class="hero-subtitle">
-
-        Schedule an on-site review so we can evaluate feasibility and style fit for your porch.
-
-      </p>
+      <p class="hero-subtitle">Schedule an on-site review so we can evaluate feasibility and style fit for your porch.</p>
 
     </div>
 
@@ -165,91 +96,31 @@
 
     <div class="wrap">
 
-      <div class="notice">
-
-        <strong>Visit Fee:</strong> $150 (Louisville Area). Applied toward design if you proceed.
-
-      </div>
+      <div class="notice"><strong>Visit Fee:</strong> $150 (Louisville Area). Applied toward design if you proceed.</div>
 
 
-
-      <!-- نموذج الطلب -->
 
       <form id="visitForm" class="form-card" novalidate>
 
         <div class="form-grid">
 
-          <label>
+          <label>Full Name<input type="text" name="name" autocomplete="name" required></label>
 
-            Full Name
+          <label>Email<input type="email" name="email" autocomplete="email" required></label>
 
-            <input type="text" name="name" autocomplete="name" required>
+          <label>Phone<input type="tel" name="phone" autocomplete="tel" required></label>
 
-          </label>
+          <label>Address<input type="text" name="address" autocomplete="street-address" required></label>
 
-          <label>
+          <label>City<input type="text" name="city" autocomplete="address-level2" required></label>
 
-            Email
+          <label>ZIP Code<input type="text" name="zip" inputmode="numeric" pattern="[0-9]{5}" autocomplete="postal-code" required></label>
 
-            <input type="email" name="email" autocomplete="email" required>
+          <label>Preferred Date<input type="date" name="date"></label>
 
-          </label>
+          <label>Preferred Time<input type="time" name="time"></label>
 
-          <label>
-
-            Phone
-
-            <input type="tel" name="phone" autocomplete="tel" required>
-
-          </label>
-
-          <label>
-
-            Address
-
-            <input type="text" name="address" autocomplete="street-address" required>
-
-          </label>
-
-          <label>
-
-            City
-
-            <input type="text" name="city" autocomplete="address-level2" required>
-
-          </label>
-
-          <label>
-
-            ZIP Code
-
-            <input type="text" name="zip" inputmode="numeric" pattern="[0-9]{5}" autocomplete="postal-code" required>
-
-          </label>
-
-          <label>
-
-            Preferred Date
-
-            <input type="date" name="date">
-
-          </label>
-
-          <label>
-
-            Preferred Time
-
-            <input type="time" name="time">
-
-          </label>
-
-          <label class="full">
-
-            Notes
-
-            <textarea name="notes" rows="4" placeholder="Tell us what you envision (style, size, materials)…"></textarea>
-
-          </label>
+          <label class="full">Notes<textarea name="notes" rows="4" placeholder="Tell us what you envision (style, size, materials)…"></textarea></label>
 
         </div>
 
@@ -257,7 +128,7 @@
 
         <div class="form-actions">
 
-          <button class="btn" type="submit">Submit Request</button>
+          <button class="btn btn-gold" type="submit">Submit Request</button>
 
           <a class="btn btn-outline" href="index.html#process">Explore the Roadmap</a>
 
@@ -265,21 +136,11 @@
 
 
 
-        <!-- رسائل نجاح/فشل -->
+        <!-- رسائل فقط (لا يوجد صندوق إضافي تحت الزر) -->
 
-        <p id="form-ok" class="notice" style="display:none;background:#1e7e34;border-left-color:#1e7e34">
+        <p id="form-ok" class="notice">✅ Thanks! Your request has been sent. We’ll contact you shortly.</p>
 
-          ✅ Thanks! Your request has been sent. We’ll contact you shortly.
-
-        </p>
-
-        <p id="form-err" class="notice" style="display:none;background:#7e1e1e;border-left-color:#7e1e1e">
-
-          ❌ Sorry, something went wrong. Please try again or email us at
-
-          <a href="mailto:contact@porchme.me">contact@porchme.me</a>.
-
-        </p>
+        <p id="form-err" class="notice">❌ Sorry, something went wrong. Please try again or email us at <a href="mailto:contact@porchme.me">contact@porchme.me</a>.</p>
 
       </form>
 
@@ -289,21 +150,11 @@
 
 
 
-  <!-- Footer -->
-
   <footer class="footer">
 
     <div class="wrap">
 
-      <div class="fbrand">
-
-        <img src="image/porchme_logo_silver.svg" alt="PorchMe" />
-
-        <span>PorchMe</span>
-
-      </div>
-
-
+      <div class="fbrand"><img src="image/porchme_logo_silver.svg" alt="PorchMe" /><span>PorchMe</span></div>
 
       <div class="fnav">
 
@@ -323,23 +174,21 @@
 
       </div>
 
-
-
       <p><strong>Contact:</strong> <a href="mailto:contact@porchme.me">contact@porchme.me</a></p>
-
-
 
       <div class="social-icons">
 
         <a href="https://instagram.com" target="_blank" aria-label="Instagram"><img src="image/icon-instagram.svg" alt="Instagram"></a>
 
+        <a href="https://www.tiktok.com" target="_blank" aria-label="TikTok"><img src="image/icon-tiktok.svg" alt="TikTok"></a>
+
         <a href="https://twitter.com" target="_blank" aria-label="Twitter"><img src="image/icon-twitter.svg" alt="Twitter"></a>
+
+        <a href="https://facebook.com" target="_blank" aria-label="Facebook"><img src="image/icon-facebook.svg" alt="Facebook"></a>
 
         <a href="https://linkedin.com" target="_blank" aria-label="LinkedIn"><img src="image/icon-linkedin.svg" alt="LinkedIn"></a>
 
       </div>
-
-
 
       <p class="copy">© <span id="year"></span> PorchMe. Crafted with passion. All rights reserved.</p>
 
@@ -349,101 +198,39 @@
 
 
 
-  <!-- JS -->
-
   <script>
-
-    // سنة الفوتر
 
     document.getElementById('year').textContent = new Date().getFullYear();
 
+    const navBtn=document.querySelector('.nav-toggle');const navLinks=document.getElementById('navLinks');
 
-
-    // قائمة الموبايل
-
-    const navBtn = document.querySelector('.nav-toggle');
-
-    const navLinks = document.getElementById('navLinks');
-
-    if (navBtn && navLinks) {
-
-      navBtn.addEventListener('click', () => {
-
-        const open = navLinks.classList.toggle('open');
-
-        navBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
-
-      });
-
-    }
+    if(navBtn&&navLinks){navBtn.addEventListener('click',()=>{const open=navLinks.classList.toggle('open');navBtn.setAttribute('aria-expanded',open?'true':'false');});}
 
 
 
-    // === إرسال إلى Google Apps Script ===
+    // إرسال إلى Apps Script
 
-    const SHEET_ENDPOINT = "https://script.google.com/macros/s/AKfycbylfJT7FpTSi9ix01cC6QDbmgOehgKE_S9Lj0DN0kov2-EyblvMnomw-F5HJB64Vis3/exec";
+    const SHEET_ENDPOINT="https://script.google.com/macros/s/AKfycbw8RI4fDHKbyZW-EVLesraqe7-eZ71wtHUz_cN-0bgXbjKldqFrkptM2Dt6RbaBn7Kg/exec";
 
-
-
-    const form = document.getElementById('visitForm');
-
-    const okMsg = document.getElementById('form-ok');
-
-    const errMsg = document.getElementById('form-err');
+    const form=document.getElementById('visitForm'), okMsg=document.getElementById('form-ok'), errMsg=document.getElementById('form-err');
 
 
 
-    form.addEventListener('submit', async (e) => {
+    form.addEventListener('submit',async(e)=>{e.preventDefault(); okMsg.style.display='none'; errMsg.style.display='none';
 
-      e.preventDefault();
+      try{
 
-      okMsg.style.display = 'none';
+        const body=new URLSearchParams(new FormData(form));
 
-      errMsg.style.display = 'none';
+        const res=await fetch(SHEET_ENDPOINT,{method:'POST',body,headers:{'Accept':'application/json'}});
 
+        let data=null; try{data=await res.json();}catch(_){}
 
+        if(res.ok && data && (data.ok===true || data.result==='success')){ form.reset(); okMsg.style.display='block'; }
 
-      try {
+        else { if(data && data.error){ errMsg.textContent='❌ '+data.error; } errMsg.style.display='block'; }
 
-        // إرسال بصيغة x-www-form-urlencoded لتصل في e.parameter
-
-        const body = new URLSearchParams(new FormData(form));
-
-
-
-        const res = await fetch(SHEET_ENDPOINT, {
-
-          method: 'POST',
-
-          body,
-
-          headers: { 'Accept': 'application/json' }
-
-        });
-
-
-
-        if (res.ok) {
-
-          form.reset();
-
-          okMsg.style.display = 'block';
-
-          // اختياري: إعادة توجيه بعد النجاح
-
-          // setTimeout(()=>location.href='index.html', 1500);
-
-        } else {
-
-          errMsg.style.display = 'block';
-
-        }
-
-      } catch (err) {
-
-        errMsg.style.display = 'block';
-
-      }
+      }catch{ errMsg.textContent='❌ Network error. Please try again.'; errMsg.style.display='block'; }
 
     });
 
