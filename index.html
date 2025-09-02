@@ -8,9 +8,9 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-  <title>PorchMe – Royal Porch Design</title>
+  <title>PorchMe – Classic Porch Design & Build</title>
 
-  <link rel="stylesheet" href="style.css?v=902" />
+  <link rel="stylesheet" href="style.css?v=1003" />
 
   <link rel="icon" type="image/png" href="image/favicon.png" />
 
@@ -48,7 +48,7 @@
 
         <a href="#gallery-section">Gallery</a>
 
-        <a href="book.html" class="btn btn-gold nav-cta">Book a Visit</a>
+        <a href="book.html" class="btn nav-cta">Book a Visit</a>
 
       </div>
 
@@ -66,9 +66,9 @@
 
     <div class="wrap hero-inner">
 
-      <img src="image/porchme_logo_silver.svg" alt="PorchMe" class="hero-logo" />
+      <!-- الشعار كان هنا وتم إخفاؤه عبر CSS -->
 
-      <h1 class="hero-title">Classic Porch Design & Build</h1>
+      <h1 class="hero-title">Classic Porch Design &amp; Build</h1>
 
       <p class="hero-subtitle">Blueprint-style conceptual design by architects — clear, professional, and tailored to your home.</p>
 
@@ -106,7 +106,7 @@
 
         <span>Spatial Planning</span>
 
-        <span>Materials & Finishes</span>
+        <span>Materials &amp; Finishes</span>
 
         <span>Budget</span>
 
@@ -164,6 +164,10 @@
 
     </div>
 
+
+
+    <!-- يبدأ مخفي -->
+
     <div id="gallery" class="gallery-hidden">
 
       <div class="wrap">
@@ -199,6 +203,10 @@
       </div>
 
     </div>
+
+
+
+    <!-- Lightbox -->
 
     <div id="pm-lightbox" class="pm-lightbox" aria-hidden="true">
 
@@ -270,11 +278,11 @@
 
       <div class="social-icons">
 
-        <a href="https://instagram.com" target="_blank"><img src="image/icon-instagram.svg" alt="Instagram"></a>
+        <a href="https://instagram.com" target="_blank" aria-label="Instagram"><img src="image/icon-instagram.svg" alt="Instagram"></a>
 
-        <a href="https://tiktok.com" target="_blank"><img src="image/icon-tiktok.svg" alt="TikTok"></a>
+        <a href="https://twitter.com" target="_blank" aria-label="Twitter"><img src="image/icon-twitter.svg" alt="Twitter"></a>
 
-        <a href="https://linkedin.com" target="_blank"><img src="image/icon-linkedin.svg" alt="LinkedIn"></a>
+        <a href="https://linkedin.com" target="_blank" aria-label="LinkedIn"><img src="image/icon-linkedin.svg" alt="LinkedIn"></a>
 
       </div>
 
@@ -290,19 +298,51 @@
 
   <script>
 
+    // Year
+
     document.getElementById('year').textContent = new Date().getFullYear();
+
+
+
+    // Mobile nav
 
     const navBtn = document.querySelector('.nav-toggle');
 
     const navLinks = document.querySelector('.nav-links');
 
-    if(navBtn && navLinks){
+    if (navBtn && navLinks) {
 
-      navBtn.addEventListener('click',()=>{
+      navBtn.addEventListener('click', () => {
 
-        const open=navLinks.classList.toggle('open');
+        const open = navLinks.classList.toggle('open');
 
-        navBtn.setAttribute('aria-expanded',open?'true':'false');
+        navBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
+
+      });
+
+    }
+
+
+
+    // Gallery toggle (يبدأ مخفيًا)
+
+    const showGalleryBtn = document.getElementById('showGalleryBtn');
+
+    const gallery = document.getElementById('gallery');
+
+    if (showGalleryBtn && gallery) {
+
+      gallery.classList.remove('gallery-visible');
+
+      gallery.classList.add('gallery-hidden');
+
+      showGalleryBtn.addEventListener('click', () => {
+
+        const visible = gallery.classList.toggle('gallery-visible');
+
+        if (visible) gallery.classList.remove('gallery-hidden'); else gallery.classList.add('gallery-hidden');
+
+        showGalleryBtn.textContent = visible ? 'Hide Gallery' : 'View Gallery';
 
       });
 
@@ -314,19 +354,23 @@
 
     (function(){
 
-      const box=document.getElementById('pm-lightbox');
+      const box = document.getElementById('pm-lightbox');
 
-      const img=document.getElementById('pm-lightbox-img');
+      const img = document.getElementById('pm-lightbox-img');
 
-      const btnX=box.querySelector('.pm-close');
+      const btnX = box.querySelector('.pm-close');
 
       document.querySelectorAll('.gallery-item').forEach(a=>{
 
         a.addEventListener('click',e=>{
 
-          e.preventDefault(); img.src=a.getAttribute('href');
+          e.preventDefault();
 
-          box.classList.add('open'); box.setAttribute('aria-hidden','false');
+          img.src = a.getAttribute('href');
+
+          box.classList.add('open');
+
+          box.setAttribute('aria-hidden','false');
 
         });
 
@@ -334,39 +378,21 @@
 
       function closeBox(){
 
-        box.classList.remove('open'); box.setAttribute('aria-hidden','true');
+        box.classList.remove('open');
+
+        box.setAttribute('aria-hidden','true');
 
         img.removeAttribute('src');
 
       }
 
-      btnX.addEventListener('click',closeBox);
+      btnX.addEventListener('click', closeBox);
 
-      box.addEventListener('click',e=>{if(e.target===box)closeBox();});
+      box.addEventListener('click', e=>{ if(e.target===box) closeBox(); });
 
-      document.addEventListener('keydown',e=>{if(e.key==='Escape')closeBox();});
+      document.addEventListener('keydown', e=>{ if(e.key==='Escape') closeBox(); });
 
     })();
-
-
-
-    // Gallery toggle
-
-    const showGalleryBtn=document.getElementById('showGalleryBtn');
-
-    const gallery=document.getElementById('gallery');
-
-    if(showGalleryBtn && gallery){
-
-      showGalleryBtn.addEventListener('click',()=>{
-
-        gallery.classList.toggle('gallery-visible');
-
-        showGalleryBtn.textContent=gallery.classList.contains('gallery-visible')?'Hide Gallery':'View Gallery';
-
-      });
-
-    }
 
   </script>
 
