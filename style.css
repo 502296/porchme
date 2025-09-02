@@ -1,171 +1,250 @@
-
 /* ============== Root Colors ============== */
 
-:root {
+:root{
 
-  --bg: #8c92ac;        /* الخلفية الرئيسية الجديدة */
+  --bg:#8c92ac;      /* الخلفية الرئيسية الجديدة */
 
-  --bg-2: #9ba1ba;      /* طبقة ثانية أفتح */
+  --bg-2:#9ba1ba;    /* طبقة ثانية أفتح */
 
-  --text: #ffffff;      /* نص أبيض */
+  --text:#ffffff;
 
-  --muted: #d1d4e0;     /* نص باهت */
+  --muted:#e3e6f0;
 
-  --accent: #d4af37;    /* ذهبي ملكي */
+  --accent:#d4af37;  /* الذهبي الملكي */
 
-}
-
-
-
-/* ============== Reset & Base ============== */
-
-* {
-
-  margin: 0;
-
-  padding: 0;
-
-  box-sizing: border-box;
+  --ink:#0e1320;     /* نص داكن داخل البطاقات البيضاء */
 
 }
 
 
 
-body {
+/* ============== Reset ============== */
 
-  font-family: 'Inter', sans-serif;
+*{box-sizing:border-box;margin:0;padding:0}
 
-  background-color: var(--bg);
+html,body{height:100%}
 
-  color: var(--text);
+body{
 
-  line-height: 1.6;
+  background:var(--bg);
 
-}
+  color:var(--text);
 
+  font-family:"Inter",system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
 
+  line-height:1.6;
 
-/* ============== Navbar ============== */
-
-.topline {
-
-  height: 5px;
-
-  background: var(--accent);
+  -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;
 
 }
 
 
 
-.nav {
-
-  display: flex;
-
-  justify-content: center;
-
-  align-items: center;
-
-  background-color: var(--bg);
-
-  padding: 15px 0;
-
-}
+.wrap{max-width:1100px;margin:0 auto;padding:0 20px}
 
 
 
-.nav a {
+/* ============== Topline & Navbar ============== */
 
-  color: var(--text);
+.topline{height:5px;background:var(--accent)}
 
-  margin: 0 15px;
+.nav{
 
-  text-decoration: none;
+  position:sticky; top:0; z-index:30;
 
-  font-weight: bold;
+  background:linear-gradient(0deg, rgba(0,0,0,.00) 0%, rgba(0,0,0,.15) 100%);
 
-  transition: color 0.3s ease;
+  backdrop-filter:saturate(140%) blur(6px);
 
 }
 
+.nav .wrap{display:flex;align-items:center;justify-content:space-between;padding:14px 0}
+
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none}
+
+.royal-logo{width:34px;height:34px}
+
+.wordmark{font-weight:800;color:#fff;letter-spacing:.3px}
 
 
-.nav a:hover {
 
-  color: var(--accent);
+.nav-links{display:flex;gap:18px;align-items:center}
+
+.nav-links a{color:#fff;text-decoration:none;font-weight:700}
+
+.nav-links a:hover{color:var(--accent)}
+
+.nav-cta{margin-left:6px}
+
+.nav-toggle{display:none;background:transparent;border:none;color:#fff;font-size:26px;line-height:1}
+
+
+
+/* ============== Hero (+ blueprint + شعار كبير) ============== */
+
+.hero{position:relative;text-align:center;padding:90px 0 70px;border-bottom:1px solid rgba(0,0,0,.08)}
+
+/* إن كانت لديك صورة blueprint.jpg ضعها هنا؛ وإلا فعّل المقطع البديل بالأسفل */
+
+.hero-blueprint{
+
+  background:
+
+    linear-gradient(rgba(140,146,172,.92), rgba(140,146,172,.92)),
+
+    url("image/blueprint.jpg");
+
+  background-size:cover;background-position:center;
+
+}
+
+.hero-inner{max-width:900px;margin:0 auto;padding:0 20px}
+
+.hero-logo{
+
+  width:320px; max-width:60vw; height:auto;
+
+  filter: drop-shadow(0 4px 18px rgba(0,0,0,.35));
+
+  margin:0 auto 22px; display:block;
 
 }
 
+.hero-title{
 
+  font-family:Georgia,"Times New Roman",serif;
 
-/* ============== Hero Section ============== */
+  font-size:clamp(28px,5vw,52px);
 
-.hero {
-
-  text-align: center;
-
-  padding: 100px 20px;
-
-  background: linear-gradient(180deg, var(--bg), var(--bg-2));
+  letter-spacing:.4px;margin:8px 0 10px;color:#fff;
 
 }
 
-
-
-.hero h1 {
-
-  font-size: 3rem;
-
-  margin-bottom: 20px;
-
-  color: var(--text);
-
-}
+.hero-subtitle{color:var(--muted);font-size:clamp(14px,2.2vw,18px);margin-bottom:10px}
 
 
 
-.hero p {
+/* بديل بدون صورة: شبكة blueprint بالـCSS فقط */
 
-  font-size: 1.2rem;
+/*
 
-  color: var(--muted);
+.hero-blueprint{
+
+  background:
+
+    linear-gradient(rgba(140,146,172,.92), rgba(140,146,172,.92)),
+
+    repeating-linear-gradient(0deg, rgba(255,255,255,.12) 0 1px, transparent 1px 32px),
+
+    repeating-linear-gradient(90deg, rgba(255,255,255,.10) 0 1px, transparent 1px 32px);
 
 }
+
+*/
 
 
 
 /* ============== Buttons ============== */
 
-.btn {
+.btn{
 
-  background-color: var(--accent);
+  display:inline-block;background:var(--accent);color:#000;border:none;
 
-  color: #000;
+  padding:12px 22px;border-radius:6px;font-weight:800;text-decoration:none;
 
-  border: none;
+  box-shadow:0 6px 14px rgba(0,0,0,.18);
 
-  padding: 12px 25px;
-
-  border-radius: 5px;
-
-  font-size: 1rem;
-
-  cursor: pointer;
-
-  transition: all 0.3s ease;
-
-  text-decoration: none;
-
-  font-weight: bold;
+  transition:transform .18s ease, box-shadow .18s ease, opacity .18s ease;
 
 }
 
+.btn:hover{transform:translateY(-2px);box-shadow:0 10px 18px rgba(0,0,0,.22);opacity:.95}
+
+.btn-outline{background:transparent;border:2px solid var(--accent);color:#fff}
+
+.btn-outline:hover{background:rgba(212,175,55,.15)}
+
+.btn-quiet{background:rgba(0,0,0,.22);color:#fff}
+
+.btn-quiet:hover{background:rgba(0,0,0,.30)}
 
 
-.btn:hover {
 
-  opacity: 0.9;
+/* ============== Sections / Cards / Tags / Steps ============== */
 
-  transform: scale(1.05);
+.section{padding:60px 0}
+
+.section.alt{background:transparent}
+
+.card{
+
+  background:var(--bg-2); color:#fff; border-radius:12px; padding:22px;
+
+  box-shadow:0 6px 16px rgba(0,0,0,.18);
+
+}
+
+.tags{display:flex;flex-wrap:wrap;gap:10px;margin-top:12px}
+
+.tags span{
+
+  background:rgba(255,255,255,.14); padding:6px 10px; border-radius:999px; font-weight:700
+
+}
+
+.steps{margin-left:20px;margin-top:12px}
+
+.steps li{margin-bottom:8px}
+
+
+
+/* ============== Gallery + Lightbox ============== */
+
+.gallery-hidden{display:none}
+
+.gallery-visible{display:block}
+
+.gallery-grid{
+
+  display:grid;gap:14px;margin-top:16px;
+
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+
+}
+
+.gallery-item img{
+
+  width:100%;height:auto;border-radius:10px;display:block;
+
+  box-shadow:0 6px 16px rgba(0,0,0,.18);
+
+  transition:transform .2s ease, opacity .2s ease;
+
+}
+
+.gallery-item img:hover{transform:scale(1.02);opacity:.95}
+
+
+
+/* Lightbox */
+
+.pm-lightbox{
+
+  position:fixed;inset:0;background:rgba(0,0,0,.8);
+
+  display:none;justify-content:center;align-items:center;z-index:100;
+
+}
+
+.pm-lightbox.open{display:flex}
+
+.pm-lightbox img{max-width:92vw;max-height:86vh;border-radius:10px}
+
+.pm-close{
+
+  position:absolute;top:18px;right:22px;width:40px;height:40px;border:none;border-radius:999px;
+
+  background:#fff;color:#000;font-size:24px;font-weight:900;cursor:pointer
 
 }
 
@@ -173,100 +252,56 @@ body {
 
 /* ============== Footer ============== */
 
-footer {
+.footer{background:transparent;color:#e9ecf5;text-align:center;padding:36px 0;margin-top:50px}
 
-  background-color: var(--bg);
+.footer a{color:var(--accent);text-decoration:none}
 
-  color: var(--muted);
+.footer a:hover{text-decoration:underline}
 
-  text-align: center;
+.fbrand{display:flex;align-items:center;gap:10px;justify-content:center;margin-bottom:10px}
 
-  padding: 30px 20px;
+.fbrand img{width:30px;height:30px}
 
-  font-size: 0.9rem;
+.fbrand span{font-weight:800}
 
-  margin-top: 50px;
-
-}
+.fnav{display:flex;gap:14px;flex-wrap:wrap;justify-content:center;margin:12px 0}
 
 
 
-footer a {
+/* Social icons: تحويل أيقونات PNG/SVG السوداء إلى بيضاء */
 
-  color: var(--accent);
+.social-icons{margin:10px 0}
 
-  text-decoration: none;
+.social-icons img{
 
-}
+  width:28px;height:28px;margin:0 8px;filter:brightness(0) invert(1);
 
-
-
-footer a:hover {
-
-  text-decoration: underline;
+  transition:transform .2s ease, opacity .2s ease
 
 }
 
-
-
-/* ============== Social Icons ============== */
-
-.social-icons {
-
-  margin: 15px 0;
-
-}
+.social-icons img:hover{transform:scale(1.12);opacity:.85}
 
 
 
-.social-icons img {
-
-  width: 28px;
-
-  height: 28px;
-
-  margin: 0 8px;
-
-  filter: brightness(0) invert(1); /* يجعل الأيقونات بيضاء */
-
-  transition: transform 0.3s ease, opacity 0.3s ease;
-
-}
+.copy{margin-top:8px}
 
 
 
-.social-icons img:hover {
+/* ============== Responsive (Mobile) ============== */
 
-  transform: scale(1.2);
+@media (max-width:820px){
 
-  opacity: 0.8;
+  .nav .wrap{padding:12px 0}
 
-}
+  .nav-links{display:none;flex-direction:column;gap:10px;padding:10px 0}
 
+  .nav-links.open{display:flex}
 
+  .nav-toggle{display:block}
 
-/* ============== Cards (اختياري) ============== */
+  .hero{padding:70px 0 50px}
 
-.card {
-
-  background: var(--bg-2);
-
-  color: var(--text);
-
-  padding: 20px;
-
-  border-radius: 10px;
-
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-
-  transition: transform 0.3s ease;
-
-}
-
-
-
-.card:hover {
-
-  transform: translateY(-5px);
+  .hero-logo{width:260px}
 
 }
