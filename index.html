@@ -8,9 +8,9 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-  <title>PorchMe – Classic Porch Design & Build</title>
+  <title>PorchMe – Royal Porch Design</title>
 
-  <link rel="stylesheet" href="style.css?v=1105" />
+  <link rel="stylesheet" href="style.css" />
 
   <link rel="icon" type="image/png" href="image/favicon.png" />
 
@@ -18,21 +18,15 @@
 
 <body>
 
-
-
-  <!-- Topline -->
+  <!-- Top bar -->
 
   <div class="topline"></div>
-
-
-
-  <!-- Navbar -->
 
   <nav class="nav">
 
     <div class="wrap">
 
-      <a class="brand" href="index.html" aria-label="PorchMe Home">
+      <a class="brand" href="index.html">
 
         <img src="image/porchme_logo_silver.svg" class="royal-logo" alt="PorchMe" />
 
@@ -48,7 +42,7 @@
 
         <a href="#gallery-section">Gallery</a>
 
-        <a href="book.html" class="btn nav-cta">Book a Visit</a>
+        <a href="book.html" class="btn btn-gold nav-cta">Book a Visit</a>
 
       </div>
 
@@ -66,9 +60,7 @@
 
     <div class="wrap hero-inner">
 
-      <!-- شعار الـHero مخفي عبر CSS (hero-logo{display:none}) -->
-
-      <h1 class="hero-title">Classic Porch Design &amp; Build</h1>
+      <h1 class="hero-title">Classic Porch Design & Build</h1>
 
       <p class="hero-subtitle">Blueprint-style conceptual design by architects — clear, professional, and tailored to your home.</p>
 
@@ -76,7 +68,7 @@
 
       <div class="hero-actions">
 
-        <a href="book.html" class="btn">Book a Visit</a>
+        <a href="book.html" class="btn btn-gold">Book a Visit</a>
 
         <a href="#process" class="btn btn-outline">See Our Process</a>
 
@@ -106,7 +98,7 @@
 
         <span>Spatial Planning</span>
 
-        <span>Materials &amp; Finishes</span>
+        <span>Materials & Finishes</span>
 
         <span>Budget</span>
 
@@ -118,9 +110,9 @@
 
 
 
-  <!-- Project Roadmap -->
+  <!-- Process -->
 
-  <section id="process" class="section">
+  <section id="process" class="section alt">
 
     <div class="wrap card">
 
@@ -132,13 +124,13 @@
 
         <li><strong>Concept Blueprint:</strong> a clear, scaled porch concept aligned to your home’s style and budget.</li>
 
-        <li><strong>Refine &amp; Build:</strong> finalize details and coordinate construction with your selected builder.</li>
+        <li><strong>Refine & Build:</strong> finalize details and coordinate construction with your selected builder.</li>
 
       </ol>
 
       <div class="hero-actions">
 
-        <a href="book.html" class="btn">Start Your Project</a>
+        <a href="book.html" class="btn btn-gold">Start Your Project</a>
 
         <a href="#gallery-section" class="btn btn-outline">Explore Gallery</a>
 
@@ -160,11 +152,9 @@
 
       <p class="muted">Explore our porch design concepts</p>
 
-      <button id="showGalleryBtn" class="btn">View Gallery</button>
+      <button id="showGalleryBtn" class="btn btn-gold">View Gallery</button>
 
     </div>
-
-
 
     <div id="gallery" class="gallery-hidden">
 
@@ -202,8 +192,6 @@
 
     </div>
 
-
-
     <div id="pm-lightbox" class="pm-lightbox" aria-hidden="true">
 
       <button class="pm-close" aria-label="Close">×</button>
@@ -218,7 +206,7 @@
 
   <!-- CTA -->
 
-  <section class="section">
+  <section class="section alt">
 
     <div class="wrap center">
 
@@ -226,7 +214,7 @@
 
       <div class="hero-actions" style="justify-content:center;">
 
-        <a href="book.html" class="btn">Book a Visit</a>
+        <a href="book.html" class="btn btn-gold">Book a Visit</a>
 
         <a href="builders.html" class="btn btn-outline">Builder Portal</a>
 
@@ -274,17 +262,21 @@
 
 
 
-      <p><strong>Contact:</strong> <a href="mailto:contact@porchme.me">contact@porchme.me</a></p>
+      <p><strong>Contact:</strong> 
+
+        <a href="mailto:contact@porchme.me">contact@porchme.me</a>
+
+      </p>
 
 
 
       <div class="social-icons">
 
-        <a href="https://instagram.com" target="_blank" aria-label="Instagram"><img src="image/icon-instagram.svg" alt="Instagram"></a>
+        <a href="https://instagram.com" target="_blank"><img src="image/icon-instagram.svg" alt="Instagram"></a>
 
-        <a href="https://twitter.com" target="_blank" aria-label="Twitter"><img src="image/icon-twitter.svg" alt="Twitter"></a>
+        <a href="https://tiktok.com" target="_blank"><img src="image/icon-tiktok.svg" alt="TikTok"></a>
 
-        <a href="https://linkedin.com" target="_blank" aria-label="LinkedIn"><img src="image/icon-linkedin.svg" alt="LinkedIn"></a>
+        <a href="https://linkedin.com" target="_blank"><img src="image/icon-linkedin.svg" alt="LinkedIn"></a>
 
       </div>
 
@@ -298,21 +290,17 @@
 
 
 
-  <!-- JS -->
-
   <script>
-
-    // Year
 
     document.getElementById('year').textContent = new Date().getFullYear();
 
 
 
-    // Mobile nav
+    // Nav toggle
 
     const navBtn = document.querySelector('.nav-toggle');
 
-    const navLinks = document.getElementById('navLinks');
+    const navLinks = document.querySelector('.nav-links');
 
     if (navBtn && navLinks) {
 
@@ -328,35 +316,9 @@
 
 
 
-    // Gallery toggle (starts hidden)
-
-    const showGalleryBtn = document.getElementById('showGalleryBtn');
-
-    const gallery = document.getElementById('gallery');
-
-    if (showGalleryBtn && gallery) {
-
-      gallery.classList.remove('gallery-visible');
-
-      gallery.classList.add('gallery-hidden');
-
-      showGalleryBtn.addEventListener('click', () => {
-
-        const visible = gallery.classList.toggle('gallery-visible');
-
-        if (visible) gallery.classList.remove('gallery-hidden'); else gallery.classList.add('gallery-hidden');
-
-        showGalleryBtn.textContent = visible ? 'Hide Gallery' : 'View Gallery';
-
-      });
-
-    }
-
-
-
     // Lightbox
 
-    (function(){
+    (function () {
 
       const box = document.getElementById('pm-lightbox');
 
@@ -364,9 +326,9 @@
 
       const btnX = box.querySelector('.pm-close');
 
-      document.querySelectorAll('.gallery-item').forEach(a=>{
+      document.querySelectorAll('.gallery-item').forEach(a => {
 
-        a.addEventListener('click',e=>{
+        a.addEventListener('click', e => {
 
           e.preventDefault();
 
@@ -374,17 +336,17 @@
 
           box.classList.add('open');
 
-          box.setAttribute('aria-hidden','false');
+          box.setAttribute('aria-hidden', 'false');
 
         });
 
       });
 
-      function closeBox(){
+      function closeBox() {
 
         box.classList.remove('open');
 
-        box.setAttribute('aria-hidden','true');
+        box.setAttribute('aria-hidden', 'true');
 
         img.removeAttribute('src');
 
@@ -392,15 +354,33 @@
 
       btnX.addEventListener('click', closeBox);
 
-      box.addEventListener('click', e=>{ if(e.target===box) closeBox(); });
+      box.addEventListener('click', e => { if (e.target === box) closeBox(); });
 
-      document.addEventListener('keydown', e=>{ if(e.key==='Escape') closeBox(); });
+      document.addEventListener('keydown', e => { if (e.key === 'Escape') closeBox(); });
 
     })();
 
+
+
+    // Gallery toggle
+
+    const showGalleryBtn = document.getElementById('showGalleryBtn');
+
+    const gallery = document.getElementById('gallery');
+
+    if (showGalleryBtn && gallery) {
+
+      showGalleryBtn.addEventListener('click', () => {
+
+        gallery.classList.toggle('gallery-visible');
+
+        showGalleryBtn.textContent = gallery.classList.contains('gallery-visible') ? 'Hide Gallery' : 'View Gallery';
+
+      });
+
+    }
+
   </script>
-
-
 
 </body>
 
