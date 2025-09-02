@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 
 <html lang="en">
@@ -62,6 +61,10 @@
   <header class="hero hero-blueprint">
 
     <div class="wrap hero-inner">
+
+      <!-- الشعار الكبير المُضاف -->
+
+      <img class="hero-logo" src="image/porchme_logo_silver.svg" alt="PorchMe Logo" />
 
       <h1 class="hero-title">Classic Porch Design & Build</h1>
 
@@ -297,6 +300,8 @@
 
     document.getElementById('year').textContent = new Date().getFullYear();
 
+
+
     const navBtn = document.querySelector('.nav-toggle');
 
     const navLinks = document.querySelector('.nav-links');
@@ -312,6 +317,8 @@
       });
 
     }
+
+
 
     // Lightbox
 
@@ -356,6 +363,8 @@
       document.addEventListener('keydown', e => { if (e.key === 'Escape') closeBox(); });
 
     })();
+
+
 
     // Gallery toggle
 
