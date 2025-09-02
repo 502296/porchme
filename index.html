@@ -592,6 +592,72 @@
 
   </script>
 
+  (function(){
+
+    const form = document.querySelector('.newsletter');
+
+    if(!form) return;
+
+    const emailInput = document.getElementById('nlEmail');
+
+
+
+    const WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbws4YL5oZrWWDTk9QGg4x5HTyrxALp8W3Ko_orKszI-XJMYgbHnfgHchzfmHYntIJ0g5A/exec';
+
+
+
+    form.addEventListener('submit', async () => {
+
+      const email = (emailInput.value || '').trim();
+
+      if(!email) return;
+
+
+
+      try{
+
+        // نرسل بصيغة x-www-form-urlencoded لتفادي مشاكل CORS
+
+        const body = new URLSearchParams({ email, source:'porchme.me' }).toString();
+
+
+
+        const res = await fetch(WEB_APP_URL, {
+
+          method:'POST',
+
+          headers:{ 'Content-Type':'application/x-www-form-urlencoded;charset=UTF-8' },
+
+          body
+
+        });
+
+
+
+        const data = await res.json();
+
+        if(data.ok){
+
+          form.innerHTML = '<span class="note">Subscribed! Please check your inbox.</span>';
+
+        } else {
+
+          alert('Subscription failed: ' + (data.error || 'Unknown error'));
+
+        }
+
+      }catch(err){
+
+        alert('Network error. Please try again.');
+
+      }
+
+    });
+
+  })();
+
+</script>
+
 </body>
 
 </html>
