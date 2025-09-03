@@ -4,25 +4,41 @@
 
 <head>
 
-  <meta charset="utf-8" />
+  <meta charset="utf-8"/>
 
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
 
   <title>PorchMe – Royal Porch Design</title>
 
-  <link rel="stylesheet" href="style.css?v=1" />
 
-  <link rel="preload" as="image" href="image/porch_hero.jpg" imagesrcset="image/porch_hero.jpg" />
 
-  <link rel="icon" type="image/png" href="image/favicon.png" />
+  <!-- CSS + cache-busting -->
 
-  <meta name="theme-color" content="#0c0c0c" />
+  <link rel="stylesheet" href="style.css?v=14"/>
+
+
+
+  <!-- Preload hero image -->
+
+  <link rel="preload" as="image" href="image/porch_hero.jpg" imagesrcset="image/porch_hero.jpg"/>
+
+
+
+  <link rel="icon" type="image/png" href="image/favicon.png"/>
+
+  <meta name="theme-color" content="#0c0c0c"/>
 
 </head>
 
 <body>
 
+  <!-- Top bar -->
+
   <div class="topline"></div>
+
+
+
+  <!-- Nav -->
 
   <nav class="nav" aria-label="Main">
 
@@ -30,11 +46,13 @@
 
       <a class="brand" href="index.html" aria-label="PorchMe Home">
 
-        <img src="image/porchme_logo_silver.svg" class="royal-logo" alt="PorchMe" />
+        <img src="image/porchme_logo_silver.svg" class="royal-logo" alt="PorchMe"/>
 
         <span class="wordmark">PorchMe</span>
 
       </a>
+
+
 
       <div class="nav-links" id="navLinks">
 
@@ -48,6 +66,8 @@
 
       </div>
 
+
+
       <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="navLinks">☰</button>
 
     </div>
@@ -55,6 +75,8 @@
   </nav>
 
 
+
+  <!-- Hero -->
 
   <header class="hero">
 
@@ -65,6 +87,8 @@
       <p class="hero-subtitle">Blueprint-style conceptual design by architects — clear, professional, and tailored to your home.</p>
 
       <p>We review your site photos before taking on a project to ensure real value for your investment.</p>
+
+
 
       <div class="hero-actions">
 
@@ -81,6 +105,8 @@
   </header>
 
 
+
+  <!-- Design Expertise -->
 
   <section id="philosophy" class="section">
 
@@ -108,6 +134,8 @@
 
 
 
+  <!-- Process -->
+
   <section id="process" class="section alt">
 
     <div class="wrap card">
@@ -124,11 +152,11 @@
 
       </ol>
 
-      <div class="hero-actions">
+      <div class="hero-actions" style="justify-content:center;">
 
         <a href="book.html" class="btn btn-gold">Start Your Project</a>
 
-        <a href="#gallery-section" class="btn btn-outline">Explore Gallery</a>
+        <!-- Removed the transparent secondary box that didn’t match the theme -->
 
       </div>
 
@@ -137,6 +165,8 @@
   </section>
 
 
+
+  <!-- Gallery -->
 
   <section id="gallery-section" class="section">
 
@@ -150,35 +180,21 @@
 
     </div>
 
+
+
     <div id="gallery" class="gallery-hidden">
 
       <div class="wrap">
 
         <div class="gallery-grid">
 
-          <a href="image/gallery/porch_blueprint_1.png" class="gallery-item">
+          <a href="image/gallery/porch_blueprint_1.png" class="gallery-item"><img src="image/gallery/porch_blueprint_1.png" alt="Blueprint porch concept 1"/></a>
 
-            <img src="image/gallery/porch_blueprint_1.png" alt="Blueprint porch concept 1" />
+          <a href="image/gallery/porch_blueprint_2.png" class="gallery-item"><img src="image/gallery/porch_blueprint_2.png" alt="Blueprint porch concept 2"/></a>
 
-          </a>
+          <a href="image/gallery/porch_blueprint_3.png" class="gallery-item"><img src="image/gallery/porch_blueprint_3.png" alt="Blueprint porch concept 3"/></a>
 
-          <a href="image/gallery/porch_blueprint_2.png" class="gallery-item">
-
-            <img src="image/gallery/porch_blueprint_2.png" alt="Blueprint porch concept 2" />
-
-          </a>
-
-          <a href="image/gallery/porch_blueprint_3.png" class="gallery-item">
-
-            <img src="image/gallery/porch_blueprint_3.png" alt="Blueprint porch concept 3" />
-
-          </a>
-
-          <a href="image/gallery/porch_blueprint_4.png" class="gallery-item">
-
-            <img src="image/gallery/porch_blueprint_4.png" alt="Blueprint porch concept 4" />
-
-          </a>
+          <a href="image/gallery/porch_blueprint_4.png" class="gallery-item"><img src="image/gallery/porch_blueprint_4.png" alt="Blueprint porch concept 4"/></a>
 
         </div>
 
@@ -186,17 +202,21 @@
 
     </div>
 
+
+
     <div id="pm-lightbox" class="pm-lightbox" aria-hidden="true">
 
       <button class="pm-close" aria-label="Close">×</button>
 
-      <img id="pm-lightbox-img" alt="PorchMe gallery image" />
+      <img id="pm-lightbox-img" alt="PorchMe gallery image"/>
 
     </div>
 
   </section>
 
 
+
+  <!-- CTA -->
 
   <section class="section alt">
 
@@ -218,17 +238,21 @@
 
 
 
+  <!-- Footer -->
+
   <footer class="footer">
 
     <div class="wrap">
 
       <div class="fbrand">
 
-        <img src="image/porchme_logo_silver.svg" alt="PorchMe" />
+        <img src="image/porchme_logo_silver.svg" alt="PorchMe"/>
 
         <span>PorchMe</span>
 
       </div>
+
+
 
       <div class="fnav">
 
@@ -248,7 +272,15 @@
 
       </div>
 
-      <p><strong>Contact:</strong> <a href="mailto:contact@porchme.me">contact@porchme.me</a></p>
+
+
+      <p><strong>Contact:</strong>
+
+        <a class="footer-mail" href="mailto:contact@porchme.me">contact@porchme.me</a>
+
+      </p>
+
+
 
       <div class="social-icons">
 
@@ -260,6 +292,8 @@
 
       </div>
 
+
+
       <p class="copy">© <span id="year"></span> PorchMe. Crafted with passion. All rights reserved.</p>
 
     </div>
@@ -270,95 +304,93 @@
 
   <script>
 
-    document.getElementById("year").textContent = new Date().getFullYear();
+    document.getElementById('year').textContent = new Date().getFullYear();
 
-    const navBtn = document.querySelector(".nav-toggle"),
 
-      navLinks = document.getElementById("navLinks");
 
-    navBtn && navLinks &&
+    // Nav toggle
 
-      navBtn.addEventListener("click", () => {
+    const navBtn = document.querySelector('.nav-toggle');
 
-        const open = navLinks.classList.toggle("open");
+    const navLinks = document.getElementById('navLinks');
 
-        navBtn.setAttribute("aria-expanded", open ? "true" : "false");
+    if (navBtn && navLinks) {
+
+      navBtn.addEventListener('click', () => {
+
+        const open = navLinks.classList.toggle('open');
+
+        navBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
 
       });
 
+    }
 
+
+
+    // Lightbox
 
     (function () {
 
-      const box = document.getElementById("pm-lightbox"),
+      const box = document.getElementById('pm-lightbox');
 
-        img = document.getElementById("pm-lightbox-img"),
+      const img = document.getElementById('pm-lightbox-img');
 
-        btnX = box.querySelector(".pm-close");
+      const btnX = box.querySelector('.pm-close');
 
-      function closeBox() {
+      document.querySelectorAll('.gallery-item').forEach(a => {
 
-        box.classList.remove("open");
-
-        box.setAttribute("aria-hidden", "true");
-
-        img.removeAttribute("src");
-
-      }
-
-      document.querySelectorAll(".gallery-item").forEach((a) => {
-
-        a.addEventListener("click", (e) => {
+        a.addEventListener('click', e => {
 
           e.preventDefault();
 
-          img.src = a.getAttribute("href");
+          img.src = a.getAttribute('href');
 
-          box.classList.add("open");
+          box.classList.add('open');
 
-          box.setAttribute("aria-hidden", "false");
+          box.setAttribute('aria-hidden', 'false');
 
         });
 
       });
 
-      btnX.addEventListener("click", closeBox);
+      function closeBox() {
 
-      box.addEventListener("click", (e) => {
+        box.classList.remove('open');
 
-        if (e.target === box) closeBox();
+        box.setAttribute('aria-hidden', 'true');
 
-      });
+        img.removeAttribute('src');
 
-      document.addEventListener("keydown", (e) => {
+      }
 
-        if (e.key === "Escape") closeBox();
+      btnX.addEventListener('click', closeBox);
 
-      });
+      box.addEventListener('click', e => { if (e.target === box) closeBox(); });
+
+      document.addEventListener('keydown', e => { if (e.key === 'Escape') closeBox(); });
 
     })();
 
 
 
-    const showGalleryBtn = document.getElementById("showGalleryBtn"),
+    // Gallery toggle
 
-      gallery = document.getElementById("gallery");
+    const showGalleryBtn = document.getElementById('showGalleryBtn');
 
-    showGalleryBtn &&
+    const gallery = document.getElementById('gallery');
 
-      gallery &&
+    if (showGalleryBtn && gallery) {
 
-      showGalleryBtn.addEventListener("click", () => {
+      showGalleryBtn.addEventListener('click', () => {
 
-        gallery.classList.toggle("gallery-visible");
+        gallery.classList.toggle('gallery-visible');
 
-        showGalleryBtn.textContent = gallery.classList.contains("gallery-visible")
-
-          ? "Hide Gallery"
-
-          : "View Gallery";
+        showGalleryBtn.textContent = gallery.classList.contains('gallery-visible') ? 'Hide Gallery' : 'View Gallery';
 
       });
+
+    }
 
   </script>
 
