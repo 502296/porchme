@@ -124,7 +124,7 @@ a{color:inherit;text-decoration:none}
 
   position:relative;isolation:isolate;
 
-  min-height:85vh; /* ارتفاع أكبر لعرض السقف */
+  min-height:92vh; /* ارتفاع أكبر لإظهار السقف */
 
   display:flex;align-items:center;
 
