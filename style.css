@@ -34,7 +34,7 @@
 
   /* تركيز الصورة */
 
-  --hero-y-desktop:68%;
+  --hero-y-desktop:60%;
 
   --hero-y-mobile:50%;
 
@@ -124,7 +124,9 @@ a{color:inherit;text-decoration:none}
 
   position:relative;isolation:isolate;
 
-  min-height:80vh;display:flex;align-items:center;
+  min-height:85vh; /* ارتفاع أكبر لعرض السقف */
+
+  display:flex;align-items:center;
 
   background:
 
@@ -170,13 +172,13 @@ a{color:inherit;text-decoration:none}
 
 @media (min-width:1200px){
 
-  .hero{background-position:center 66%;}
+  .hero{background-position:center 58%;}
 
 }
 
 @media (min-width:1600px){
 
-  .hero{background-position:center 62%;}
+  .hero{background-position:center 55%;}
 
 }
 
