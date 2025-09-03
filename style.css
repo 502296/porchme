@@ -1,3 +1,4 @@
+
 /* ================== PorchMe – Royal Porch Design (style.css) ================== */
 
 /* Palette & tokens */
@@ -26,21 +27,15 @@
 
 
 
-  /* مسار صورة الهيرو – عدّلها لو اسم الملف مختلف */
+  /* صورة الهيرو */
 
-  --hero-url:url("image/hero.jpg");
+  --hero-url:url("image/porch_hero.jpg");
 
 
 
-  /* تركيز الهيرو على الشاشات الكبيرة:
-
-     80% ≈ نزول ~30% عن الوسط ليظهر الكراسي بوضوح.
-
-     زِدها أو قلّلها حسب ما تحب (70%، 85%، …) */
+  /* تركيز الصورة */
 
   --hero-y-desktop:80%;
-
-  /* بالموبايل نخليها أقرب للوسط حتى ما تنقص الصورة */
 
   --hero-y-mobile:50%;
 
@@ -48,7 +43,7 @@
 
 
 
-/* Reset خفيف */
+/* Reset */
 
 *{box-sizing:border-box}
 
@@ -132,8 +127,6 @@ a{color:inherit;text-decoration:none}
 
   min-height:72vh;display:flex;align-items:center;
 
-  /* نحدد الصورة والخلفية والتوسيط */
-
   background:
 
     linear-gradient(180deg, rgba(0,0,0,.45), rgba(0,0,0,.45)),
@@ -144,15 +137,13 @@ a{color:inherit;text-decoration:none}
 
   background-size:cover;
 
-  /* موبايل أولاً */
-
   background-position:center var(--hero-y-mobile);
 
   border-bottom:1px solid var(--line);
 
 }
 
-.hero::after{ /* ظل سفلي لطيف */
+.hero::after{
 
   content:"";position:absolute;inset:auto 0 0 0;height:80px;
 
@@ -173,8 +164,6 @@ a{color:inherit;text-decoration:none}
 
 
 @media (min-width:961px){
-
-  /* هنا التعديل الأساسي لعرض الكمبيوتر */
 
   .hero{background-position:center var(--hero-y-desktop);}
 
@@ -216,7 +205,7 @@ h2{font-size:clamp(20px,3.2vw,30px);margin:0 0 14px}
 
 
 
-/* Steps (Project Roadmap) */
+/* Steps */
 
 .steps{margin:0 0 6px;padding-left:20px}
 
