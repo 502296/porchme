@@ -8,51 +8,13 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-  <title>PorchMe – Builder Portal</title>
+  <title>Builder Portal – PorchMe</title>
 
-  <link rel="stylesheet" href="style.css?v=1208" />
+  <link rel="stylesheet" href="style.css?v=12" />
 
-  <link rel="icon" type="image/png" href="image/favicon.png" />
+  <link rel="icon" type="image/png" href="/image/favicon.png" />
 
-  <style>
-
-    .portal-hero{padding:70px 0 54px}
-
-    .portal-wrap{max-width:1000px}
-
-    .grid-2{display:grid;grid-template-columns:1.2fr .8fr;gap:18px}
-
-    @media(max-width:900px){.grid-2{grid-template-columns:1fr}}
-
-    .panel{background:#1b1b1b;border:1px solid rgba(255,255,255,.06);border-radius:14px;padding:18px;color:#eaeaea}
-
-    .panel h3{margin-bottom:8px}
-
-    .form-grid{display:grid;gap:12px;grid-template-columns:repeat(2,minmax(200px,1fr))}
-
-    .form-grid label{display:flex;flex-direction:column;font-weight:700}
-
-    .form-grid input,.form-grid textarea{margin-top:6px;border-radius:10px;border:1px solid #2c2c2c;background:#101010;color:#fff;padding:12px 14px}
-
-    .form-grid .full{grid-column:1/-1}
-
-    .muted{opacity:.85}
-
-    .cta-row{display:flex;gap:12px;flex-wrap:wrap;margin-top:10px}
-
-    .btn-dark{background:#2a2a2a;color:#fff;border:2px solid #3a3a3a}
-
-    .btn-dark:hover{background:#3a3a3a}
-
-    .fee{background:#0f0f0f;border:1px dashed rgba(255,255,255,.2);border-radius:12px;padding:14px}
-
-    .notice{background:#222;color:#fff;border-left:4px solid var(--gold);border-radius:10px;padding:10px 14px;margin-top:12px}
-
-    #b-ok{display:none;background:#1e7e34;border-left-color:#1e7e34}
-
-    #b-err{display:none;background:#7e1e1e;border-left-color:#7e1e1e}
-
-  </style>
+  <meta name="theme-color" content="#0c0c0c"/>
 
 </head>
 
@@ -62,11 +24,19 @@
 
 
 
-  <nav class="nav">
+  <!-- Nav -->
+
+  <nav class="nav" aria-label="Main">
 
     <div class="wrap">
 
-      <a class="brand" href="index.html"><img src="image/porchme_logo_silver.svg" class="royal-logo" alt="PorchMe" /><span class="wordmark">PorchMe</span></a>
+      <a class="brand" href="index.html" aria-label="PorchMe Home">
+
+        <img src="/image/porchme_logo_silver.png?v=4" class="royal-logo" alt="PorchMe" />
+
+        <span class="wordmark">PorchMe</span>
+
+      </a>
 
       <div class="nav-links" id="navLinks">
 
@@ -76,7 +46,7 @@
 
         <a href="index.html#gallery-section">Gallery</a>
 
-        <a href="book.html" class="btn nav-cta">Book a Visit</a>
+        <a href="book.html" class="btn btn-gold nav-cta">Book a Visit</a>
 
       </div>
 
@@ -88,115 +58,57 @@
 
 
 
-  <header class="hero portal-hero">
+  <!-- Content -->
 
-    <div class="wrap portal-wrap">
+  <section class="section">
 
-      <h1 class="hero-title">Builder Portal</h1>
+    <div class="wrap card">
 
-      <p class="hero-subtitle">Register your company, coordinate projects, and handle payments securely.</p>
+      <h2>Builder Portal</h2>
 
-    </div>
-
-  </header>
+      <p class="muted">Materials for licensed builders partnering with PorchMe.</p>
 
 
 
-  <main class="section">
+      <div style="display:grid;gap:12px;margin-top:8px">
 
-    <div class="wrap portal-wrap grid-2">
+        <a class="btn btn-outline" href="/docs/PorchMe_Builder_Guide.pdf" target="_blank" rel="noopener">Download Builder Guide (PDF)</a>
 
+        <a class="btn btn-outline" href="/docs/PorchMe_Spec_Sheet.pdf" target="_blank" rel="noopener">Standard Specs (PDF)</a>
 
+        <a class="btn btn-gold" href="mailto:contact@porchme.me?subject=PorchMe%20Builder%20Onboarding&body=Company%20name%3A%20___%0ALicense%23%3A%20___%0ACity%2FState%3A%20___%0AWebsite%3A%20___">Request Onboarding</a>
 
-      <!-- التسجيل -->
-
-      <section class="panel">
-
-        <h3>Register as a Builder</h3>
-
-        <p class="muted">Qualified professionals only. We review applications for craftsmanship, reliability, and communication.</p>
+      </div>
 
 
 
-        <form id="builderForm" class="form" novalidate>
-
-          <div class="form-grid">
-
-            <label>Company Name<input type="text" name="company" required></label>
-
-            <label>Contact Name<input type="text" name="contact" required></label>
-
-            <label>Email<input type="email" name="email" required></label>
-
-            <label>Phone<input type="tel" name="phone" required></label>
-
-            <label>License # (optional)<input type="text" name="license"></label>
-
-            <label>Service Area (City/ZIP)<input type="text" name="service_area" required></label>
-
-            <label class="full">Notes<textarea name="notes" rows="4" placeholder="Tell us about recent porch projects…"></textarea></label>
-
-          </div>
-
-          <div class="cta-row">
-
-            <button type="submit" class="btn btn-gold">Create Account</button>
-
-            <a class="btn btn-outline" href="#payments">Pay Annual Registration</a>
-
-          </div>
-
-          <p id="b-ok" class="notice">✅ Thanks! We’ll review and respond shortly.</p>
-
-          <p id="b-err" class="notice">❌ Could not submit. Please try again.</p>
-
-        </form>
-
-      </section>
+      <hr style="border:0;border-top:1px solid #223040;margin:20px 0">
 
 
 
-      <!-- الرسوم وعمليات الدفع -->
+      <h3 style="margin:0 0 8px">Share Project Photos / RFIs</h3>
 
-      <aside id="payments" class="panel">
-
-        <h3>Payments</h3>
-
-        <div class="fee">
-
-          <p><strong>Annual Registration:</strong> $250</p>
-
-          <p class="muted">Covers verification and access to the Builder Portal tools.</p>
-
-          <a class="btn btn-gold" href="#" aria-disabled="true">Pay Annual Registration</a>
-
-        </div>
-
-        <div class="fee" style="margin-top:12px">
-
-          <p><strong>Project Fee (Internal):</strong> $500 after a contract is awarded.</p>
-
-          <p class="muted">Handled here in the portal — not on the public site.</p>
-
-          <a class="btn btn-dark" href="#" aria-disabled="true">Pay $500 (Awarded Contract)</a>
-
-        </div>
-
-      </aside>
-
-
+      <p class="muted">Email drawings, site photos, or RFIs to <a href="mailto:contact@porchme.me">contact@porchme.me</a>. Please include project address and contact info.</p>
 
     </div>
 
-  </main>
+  </section>
 
 
+
+  <!-- Footer -->
 
   <footer class="footer">
 
     <div class="wrap">
 
-      <div class="fbrand"><img src="image/porchme_logo_silver.svg" alt="PorchMe" /><span>PorchMe</span></div>
+      <div class="fbrand">
+
+        <img src="/image/porchme_logo_silver.png?v=4" alt="PorchMe" />
+
+        <span>PorchMe</span>
+
+      </div>
 
       <div class="fnav">
 
@@ -220,15 +132,11 @@
 
       <div class="social-icons">
 
-        <a href="https://instagram.com" target="_blank" aria-label="Instagram"><img src="image/icon-instagram.svg" alt="Instagram"></a>
+        <a href="https://instagram.com" target="_blank"><img src="/image/icon-instagram.svg" alt="Instagram"></a>
 
-        <a href="https://www.tiktok.com" target="_blank" aria-label="TikTok"><img src="image/icon-tiktok.svg" alt="TikTok"></a>
+        <a href="https://tiktok.com" target="_blank"><img src="/image/icon-tiktok.svg" alt="TikTok"></a>
 
-        <a href="https://twitter.com" target="_blank" aria-label="Twitter"><img src="image/icon-twitter.svg" alt="Twitter"></a>
-
-        <a href="https://facebook.com" target="_blank" aria-label="Facebook"><img src="image/icon-facebook.svg" alt="Facebook"></a>
-
-        <a href="https://linkedin.com" target="_blank" aria-label="LinkedIn"><img src="image/icon-linkedin.svg" alt="LinkedIn"></a>
+        <a href="https://linkedin.com" target="_blank"><img src="/image/icon-linkedin.svg" alt="LinkedIn"></a>
 
       </div>
 
@@ -242,41 +150,15 @@
 
   <script>
 
-    document.getElementById('year').textContent = new Date().getFullYear();
+    document.getElementById("year").textContent = (new Date).getFullYear();
 
-    const navBtn=document.querySelector('.nav-toggle');const navLinks=document.getElementById('navLinks');
+    const navBtn = document.querySelector(".nav-toggle"), navLinks = document.getElementById("navLinks");
 
-    if(navBtn&&navLinks){navBtn.addEventListener('click',()=>{const open=navLinks.classList.toggle('open');navBtn.setAttribute('aria-expanded',open?'true':'false');});}
+    navBtn && navLinks && navBtn.addEventListener("click", () => {
 
+      const e = navLinks.classList.toggle("open");
 
-
-    // === رابط Apps Script (builders) ===
-
-    const BUILDERS_ENDPOINT = "https://script.google.com/macros/s/AKfycbwLtayBC11uOzd35aPNEoXBIo4Gep5qNWL5vE3T1AE8rNfdF1Kf1G7U7f2EmZ8WTxbw/exec";
-
-
-
-    // إرسال نموذج البنّائين إلى Google Sheets
-
-    const bf=document.getElementById('builderForm'), bok=document.getElementById('b-ok'), berr=document.getElementById('b-err');
-
-    bf.addEventListener('submit', async (e)=>{
-
-      e.preventDefault(); bok.style.display='none'; berr.style.display='none';
-
-      try{
-
-        const body=new URLSearchParams(new FormData(bf));
-
-        const res=await fetch(BUILDERS_ENDPOINT,{method:'POST',body,headers:{'Accept':'application/json'}});
-
-        let data=null; try{data=await res.json();}catch(_){}
-
-        if(res.ok && data && data.ok===true){ bf.reset(); bok.style.display='block'; }
-
-        else{ if(data && data.error){ berr.textContent='❌ '+data.error; } berr.style.display='block'; }
-
-      }catch(_){ berr.textContent='❌ Network error. Please try again.'; berr.style.display='block'; }
+      navBtn.setAttribute("aria-expanded", e ? "true" : "false");
 
     });
 
