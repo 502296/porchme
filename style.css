@@ -1,240 +1,297 @@
+/* ================== PorchMe – Royal Porch Design (style.css) ================== */
 
-/* ===== Theme ===== */
+/* Palette & tokens */
 
 :root{
 
-  --gold:#d4af37; --gold-700:#b8952e;
+  --bg:#0f1216;           /* خلفية مخملية داكنة */
 
-  --ink:#0c0c0c; --ink-2:#151515;
+  --bg-2:#151a20;         /* طبقة ثانية */
 
-  --card:#f2f2f2; --text:#ffffff; --text-dark:#111111; --muted:#3a3a3a;
+  --card:#11161c;         /* بطاقات */
+
+  --text:#e9edf1;         /* نص فاتح */
+
+  --muted:#9aa6b2;        /* نص ثانوي */
+
+  --gold:#d4af37;         /* ذهبي ملكي */
+
+  --gold-2:#b8932c;       /* ذهبي داكن */
+
+  --line:#223040;         /* حدود خفيفة */
+
+  --shadow:rgba(0,0,0,.35);
+
+  --radius:14px;
+
+
+
+  /* مسار صورة الهيرو – عدّلها لو اسم الملف مختلف */
+
+  --hero-url:url("image/hero.jpg");
+
+
+
+  /* تركيز الهيرو على الشاشات الكبيرة:
+
+     80% ≈ نزول ~30% عن الوسط ليظهر الكراسي بوضوح.
+
+     زِدها أو قلّلها حسب ما تحب (70%، 85%، …) */
+
+  --hero-y-desktop:80%;
+
+  /* بالموبايل نخليها أقرب للوسط حتى ما تنقص الصورة */
+
+  --hero-y-mobile:50%;
 
 }
 
 
 
-/* ===== Reset ===== */
+/* Reset خفيف */
 
-*{margin:0;padding:0;box-sizing:border-box}
+*{box-sizing:border-box}
 
-html,body{font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;background:var(--ink);color:var(--text);line-height:1.65;scroll-behavior:smooth}
+html,body{margin:0;padding:0;background:var(--bg);color:var(--text);font-family:Inter,system-ui,Segoe UI,Roboto,Arial,sans-serif;line-height:1.6}
 
 img{max-width:100%;display:block}
 
+a{color:inherit;text-decoration:none}
 
-
-/* ===== Layout ===== */
-
-.wrap{max-width:1100px;margin:0 auto;padding:0 1rem}
-
-.section{padding:3rem 1rem}
-
-.section.alt{background:var(--ink)}
-
-.topline{height:4px;background:var(--gold)}
+.wrap{max-width:1100px;margin-inline:auto;padding:0 18px}
 
 
 
-/* ===== Nav ===== */
+/* Top line */
 
-.nav{background:var(--ink-2);border-bottom:1px solid rgba(255,255,255,.06)}
-
-.nav .wrap{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:.8rem 1rem}
-
-.brand{display:flex;align-items:center;gap:.5rem;color:var(--text);text-decoration:none;font-weight:800}
-
-.brand img{width:34px;height:auto}
-
-.wordmark{font-size:1.125rem}
-
-.nav-links{display:flex;align-items:center;gap:18px}
-
-.nav-links a{color:var(--text);text-decoration:none;opacity:.9}
-
-.nav-links a:hover{color:var(--gold)}
-
-.nav-cta{background:var(--gold);color:#000;border-radius:8px;padding:.45rem .9rem;font-weight:800;text-decoration:none}
-
-.nav-toggle{display:none;appearance:none;border:1px solid rgba(255,255,255,.2);background:transparent;color:var(--text);padding:.35rem .6rem;border-radius:8px}
+.topline{height:6px;background:linear-gradient(90deg, #1f2a36, #2a3a4c)}
 
 
 
-@media (max-width:880px){
+/* ================== Nav ================== */
+
+.nav{position:sticky;top:0;z-index:1000;background:rgba(15,18,22,.72);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+
+.nav .wrap{display:flex;align-items:center;justify-content:space-between;min-height:64px}
+
+.brand{display:flex;align-items:center;gap:10px}
+
+.royal-logo{height:30px;width:auto}
+
+.wordmark{font-weight:700;letter-spacing:.5px}
+
+.nav-links{display:flex;gap:18px;align-items:center}
+
+.nav-links a{opacity:.9}
+
+.nav-cta{margin-left:6px}
+
+.nav-toggle{display:none;background:none;border:0;color:var(--text);font-size:26px;line-height:1}
+
+
+
+@media (max-width:860px){
 
   .nav-toggle{display:block}
 
-  .nav-links{position:absolute;right:16px;top:64px;background:var(--ink-2);border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:12px;flex-direction:column;gap:10px;display:none;z-index:50}
+  .nav-links{position:fixed;inset:64px 0 auto 0;background:rgba(15,18,22,.96);
 
-  .nav-links.open{display:flex}
+    transform:translateY(-10px);opacity:0;pointer-events:none;transition:.25s;flex-direction:column;padding:18px;border-bottom:1px solid var(--line)}
+
+  .nav-links.open{transform:translateY(0);opacity:1;pointer-events:auto}
 
 }
 
 
 
-/* ===== Hero (photo strong + bright for daylight) ===== */
+/* ================== Buttons ================== */
+
+.btn{display:inline-flex;align-items:center;justify-content:center;
+
+  padding:12px 16px;border-radius:12px;border:1px solid transparent;font-weight:600;box-shadow:0 6px 18px -8px var(--shadow);transition:.2s}
+
+.btn-gold{background:var(--gold);color:#1a1200;border-color:#00000020}
+
+.btn-gold:hover{background:var(--gold-2)}
+
+.btn-outline{background:transparent;border-color:#ffffff33}
+
+.btn-outline:hover{background:#ffffff12}
+
+.btn-quiet{background:#ffffff12;color:#fff}
+
+.btn-quiet:hover{background:#ffffff1f}
+
+
+
+/* ================== Hero ================== */
 
 .hero{
 
-  position:relative;
+  position:relative;isolation:isolate;
 
-  min-height:90vh;
+  min-height:72vh;display:flex;align-items:center;
 
-  display:flex;align-items:center;justify-content:center;
-
-  text-align:center;color:#fff;
-
-  padding:6rem 1rem 3rem;
-
-  /* brighter image + less darkness, cover to avoid gaps */
+  /* نحدد الصورة والخلفية والتوسيط */
 
   background:
 
-    linear-gradient(0deg, rgba(12,12,12,.28), rgba(12,12,12,.28)),
+    linear-gradient(180deg, rgba(0,0,0,.45), rgba(0,0,0,.45)),
 
-    url("image/porch_hero.jpg") center 18% / cover no-repeat;
+    var(--hero-url);
+
+  background-repeat:no-repeat;
+
+  background-size:cover;
+
+  /* موبايل أولاً */
+
+  background-position:center var(--hero-y-mobile);
+
+  border-bottom:1px solid var(--line);
+
+}
+
+.hero::after{ /* ظل سفلي لطيف */
+
+  content:"";position:absolute;inset:auto 0 0 0;height:80px;
+
+  background:linear-gradient(180deg, transparent, #0f1216 65%);
+
+  pointer-events:none;z-index:-1;
+
+}
+
+.hero-inner{padding:64px 0 72px}
+
+.hero-title{font-size:clamp(28px,5vw,54px);line-height:1.1;margin:0 0 14px;font-weight:800;text-shadow:0 3px 16px rgba(0,0,0,.55)}
+
+.hero-subtitle{color:#f2f5f8;opacity:.92;margin:0 0 8px}
+
+.hero .hero-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:10px}
+
+
+
+@media (min-width:961px){
+
+  /* هنا التعديل الأساسي لعرض الكمبيوتر */
+
+  .hero{background-position:center var(--hero-y-desktop);}
 
 }
 
 
 
-/* Show more of the porch on tall/wide screens */
+/* ================== Sections / Cards ================== */
 
-@media (min-width:1100px){
+.section{padding:56px 0}
 
-  .hero{background-position:50% 16%}
+.section.alt{background:var(--bg-2);border-block:1px solid var(--line)}
 
-}
+.card{
 
-@media (min-width:1400px){
+  background:linear-gradient(180deg, #0f141a, #0d1217);
 
-  .hero{background-position:50% 14%}
+  border:1px solid var(--line);border-radius:var(--radius);
 
-}
-
-
-
-/* Mobile: make text readable, but image still bright */
-
-@media (max-width:768px){
-
-  .hero{min-height:86vh;padding:4.5rem 1rem 3rem;
-
-    background:
-
-      linear-gradient(0deg, rgba(12,12,12,.36), rgba(12,12,12,.36)),
-
-      url("image/porch_hero.jpg") center 20% / cover no-repeat;
-
-  }
+  box-shadow:0 20px 40px -28px var(--shadow);padding:24px
 
 }
 
+h2{font-size:clamp(20px,3.2vw,30px);margin:0 0 14px}
 
-
-.hero-title{font-size:clamp(2rem,4vw,3rem);font-weight:900;letter-spacing:.3px;margin-bottom:.7rem;text-shadow:0 3px 10px rgba(0,0,0,.6)}
-
-.hero-subtitle{max-width:860px;margin:.25rem auto 1.1rem;opacity:.98;text-shadow:0 2px 8px rgba(0,0,0,.55)}
-
-.hero .hero-actions{display:flex;justify-content:center;gap:12px;flex-wrap:wrap}
+.muted{color:var(--muted)}
 
 
 
-/* ===== Buttons ===== */
+/* Tags */
 
-.btn{display:inline-block;padding:.65rem 1.2rem;border-radius:10px;border:2px solid transparent;font-weight:800;cursor:pointer;transition:.2s}
+.tags{display:flex;flex-wrap:wrap;gap:10px;margin-top:10px}
 
-.btn-gold{background:var(--gold);color:#000}
+.tags span{
 
-.btn-gold:hover{background:var(--gold-700);color:#fff}
-
-.btn-outline{background:transparent;border-color:var(--gold);color:#fff}
-
-.btn-outline:hover{background:var(--gold);color:#000}
-
-.btn-quiet{background:#2a2a2a;color:#fff}
-
-.btn-quiet:hover{background:#3a3a3a}
-
-
-
-/* ===== Cards / Content ===== */
-
-.card{background:var(--card);color:var(--text-dark);border-radius:16px;padding:1.6rem;box-shadow:0 10px 28px rgba(0,0,0,.28)}
-
-.card h2{font-size:clamp(1.4rem,2.5vw,1.9rem);color:#111;font-weight:900;margin-bottom:.6rem}
-
-.card p{color:var(--muted)}
-
-.tags{display:flex;flex-wrap:wrap;gap:.6rem;margin-top:1rem}
-
-.tags span{background:#fff;border:1px solid #dedede;border-radius:999px;padding:.4rem .85rem;font-weight:800;color:#111}
-
-
-
-/* ===== Gallery ===== */
-
-#gallery-section .muted{color:#222!important}
-
-#gallery{display:none}
-
-.gallery-visible{display:block!important}
-
-.gallery-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px;margin-top:1rem}
-
-.gallery-item img{border-radius:12px;box-shadow:0 10px 24px rgba(0,0,0,.25);transition:transform .25s}
-
-.gallery-item img:hover{transform:scale(1.03)}
-
-.pm-lightbox{position:fixed;inset:0;background:rgba(0,0,0,.85);display:none;align-items:center;justify-content:center;z-index:9999}
-
-.pm-lightbox.open{display:flex}
-
-.pm-lightbox img{max-width:90%;max-height:80%;border-radius:10px}
-
-.pm-close{position:absolute;top:16px;right:16px;background:#fff;color:#000;border:none;border-radius:8px;padding:.35rem .7rem;cursor:pointer}
-
-
-
-/* ===== Footer ===== */
-
-.footer{background:var(--ink-2);padding:2.4rem 1rem;color:#ddd;border-top:1px solid rgba(255,255,255,.06)}
-
-.footer .wrap{text-align:center}
-
-.fbrand{display:flex;align-items:center;justify-content:center;gap:.55rem;margin-bottom:.6rem}
-
-.fbrand img{width:36px}
-
-.fbrand span{font-weight:900}
-
-.fnav{display:flex;flex-wrap:wrap;gap:14px;justify-content:center;margin:10px 0 14px}
-
-.fnav a{color:#ddd;text-decoration:none}
-
-.fnav a:hover{color:var(--gold)}
-
-.footer-mail{color:#fff;text-decoration:underline}
-
-.copy{opacity:.8;margin-top:8px}
-
-
-
-/* Social icons (fixed size) */
-
-.social-icons{display:flex;justify-content:center;align-items:center;gap:14px;margin:10px 0 6px}
-
-.social-icons a{width:30px;height:30px;display:inline-flex;align-items:center;justify-content:center;border-radius:8px;background:#1d1d1d;border:1px solid rgba(255,255,255,.06)}
-
-.social-icons img, .social-icons svg{width:18px;height:18px;object-fit:contain;filter:brightness(0) invert(1);opacity:.95;transition:transform .2s,opacity .2s}
-
-.social-icons a:hover img, .social-icons a:hover svg{transform:scale(1.1);opacity:1}
-
-
-
-@media (max-width:768px){
-
-  .btn{padding:.62rem 1.05rem}
-
-  .social-icons{gap:12px}
+  padding:8px 10px;border-radius:999px;background:#121921;border:1px solid #1f2a36;color:#cdd6df;font-weight:600;font-size:14px
 
 }
+
+
+
+/* Steps (Project Roadmap) */
+
+.steps{margin:0 0 6px;padding-left:20px}
+
+.steps li{margin:10px 0;color:#d9e1ea}
+
+
+
+/* ================== Gallery & Lightbox ================== */
+
+#gallery{margin-top:16px}
+
+.gallery-hidden{display:none}
+
+.gallery-visible{display:block}
+
+
+
+.gallery-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+
+@media (min-width:860px){.gallery-grid{grid-template-columns:repeat(4,1fr)}}
+
+.gallery-item{border-radius:12px;overflow:hidden;border:1px solid #1e2a36}
+
+.gallery-item img{width:100%;height:180px;object-fit:cover;transition:transform .25s ease}
+
+.gallery-item:hover img{transform:scale(1.04)}
+
+
+
+.pm-lightbox{
+
+  position:fixed;inset:0;background:rgba(0,0,0,.88);display:flex;align-items:center;justify-content:center;
+
+  opacity:0;pointer-events:none;transition:.2s;z-index:1200;padding:16px
+
+}
+
+.pm-lightbox.open{opacity:1;pointer-events:auto}
+
+.pm-lightbox img{max-width:min(1100px,96vw);max-height:88vh;border-radius:14px;box-shadow:0 30px 80px -20px rgba(0,0,0,.6)}
+
+.pm-close{position:absolute;top:14px;right:14px;background:#ffffff18;border:1px solid #ffffff30;color:#fff;
+
+  font-size:28px;line-height:1;border-radius:12px;padding:6px 10px}
+
+
+
+/* ================== Footer ================== */
+
+.footer{background:#0c1015;border-top:1px solid var(--line);padding:28px 0}
+
+.footer .wrap{display:grid;gap:14px}
+
+.fbrand{display:flex;align-items:center;gap:10px}
+
+.fbrand img{height:26px}
+
+.fnav{display:flex;flex-wrap:wrap;gap:14px}
+
+.social-icons{display:flex;gap:12px}
+
+.social-icons img{width:22px;height:22px;opacity:.9;filter:drop-shadow(0 2px 6px rgba(0,0,0,.5))}
+
+.copy{color:#a9b4bf;font-size:14px}
+
+
+
+/* ================== Accessibility tweaks ================== */
+
+:focus-visible{outline:2px solid #8ab4ff;outline-offset:2px}
+
+a:hover{opacity:1}
+
+
+
+/* ================== Small polish ================== */
+
+.hero .btn{min-width:150px}
