@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 
 <html lang="en">
@@ -8,41 +9,13 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-  <title>PorchMe – Book a Visit</title>
+  <title>Book a Visit – PorchMe</title>
 
-  <link rel="stylesheet" href="style.css?v=1207" />
+  <link rel="stylesheet" href="style.css?v=12" />
 
-  <link rel="icon" type="image/png" href="image/favicon.png" />
+  <link rel="icon" type="image/png" href="/image/favicon.png" />
 
-  <style>
-
-    .book-hero{padding:64px 0 48px}
-
-    @media(min-width:992px){.book-hero{padding:90px 0 70px}}
-
-    .notice{background:#222;color:#fff;border-left:4px solid var(--gold);border-radius:10px;padding:12px 16px;margin-bottom:16px}
-
-    .form-card{background:#fff;color:#111;border-radius:14px;padding:22px;box-shadow:0 14px 30px rgba(0,0,0,.35);max-width:900px;margin:0 auto}
-
-    .form-grid{display:grid;gap:16px;grid-template-columns:repeat(2,minmax(220px,1fr))}
-
-    .form-grid label{display:flex;flex-direction:column;font-weight:700;font-size:.95rem}
-
-    .form-grid input,.form-grid textarea{margin-top:6px;padding:12px 14px;border:1px solid #d0d4e0;border-radius:10px;font-size:1rem;background:#fff;color:#111;outline:none}
-
-    .form-grid input:focus,.form-grid textarea:focus{border-color:#b7bcd3;box-shadow:0 0 0 3px rgba(180,186,210,.35)}
-
-    .form-grid .full{grid-column:1/-1}
-
-    .form-actions{display:flex;gap:12px;margin-top:14px;flex-wrap:wrap}
-
-    #form-ok{display:none;background:#1e7e34;border-left-color:#1e7e34}
-
-    #form-err{display:none;background:#7e1e1e;border-left-color:#7e1e1e}
-
-    @media(max-width:820px){.form-grid{grid-template-columns:1fr}}
-
-  </style>
+  <meta name="theme-color" content="#0c0c0c"/>
 
 </head>
 
@@ -52,11 +25,19 @@
 
 
 
-  <nav class="nav">
+  <!-- Nav (root-relative logo) -->
+
+  <nav class="nav" aria-label="Main">
 
     <div class="wrap">
 
-      <a class="brand" href="index.html"><img src="image/porchme_logo_silver.svg" class="royal-logo" alt="PorchMe" /><span class="wordmark">PorchMe</span></a>
+      <a class="brand" href="index.html" aria-label="PorchMe Home">
+
+        <img src="/image/porchme_logo_silver.png?v=4" class="royal-logo" alt="PorchMe" />
+
+        <span class="wordmark">PorchMe</span>
+
+      </a>
 
       <div class="nav-links" id="navLinks">
 
@@ -66,7 +47,7 @@
 
         <a href="index.html#gallery-section">Gallery</a>
 
-        <a href="book.html" class="btn nav-cta">Book a Visit</a>
+        <a href="book.html" class="btn btn-gold nav-cta">Book a Visit</a>
 
       </div>
 
@@ -78,83 +59,87 @@
 
 
 
-  <header class="hero book-hero">
+  <!-- Page content -->
 
-    <div class="wrap hero-inner">
+  <section class="section">
 
-      <h1 class="hero-title">Book a Visit</h1>
+    <div class="wrap card">
 
-      <p class="hero-subtitle">Schedule an on-site review so we can evaluate feasibility and style fit for your porch.</p>
+      <h2>Book a Design Visit</h2>
 
-    </div>
-
-  </header>
+      <p class="muted">Send us your address and a couple of front-elevation photos. We’ll confirm fit & value before taking the project.</p>
 
 
 
-  <main class="section">
+      <!-- Simple mailto form -->
 
-    <div class="wrap">
+      <form id="bookForm" class="book-form" onsubmit="return sendBookingEmail(event)" style="display:grid;gap:12px;max-width:680px">
 
-      <div class="notice"><strong>Visit Fee:</strong> $150 (Louisville Area). Applied toward design if you proceed.</div>
+        <label>
+
+          <strong>Full Name</strong>
+
+          <input type="text" id="bf_name" required placeholder="Your name" style="width:100%;padding:12px;border-radius:10px;border:1px solid #253445;background:#0e141b;color:#e9edf1">
+
+        </label>
+
+        <label>
+
+          <strong>Email</strong>
+
+          <input type="email" id="bf_email" required placeholder="you@example.com" style="width:100%;padding:12px;border-radius:10px;border:1px solid #253445;background:#0e141b;color:#e9edf1">
+
+        </label>
+
+        <label>
+
+          <strong>Project Address</strong>
+
+          <input type="text" id="bf_address" required placeholder="Street, City" style="width:100%;padding:12px;border-radius:10px;border:1px solid #253445;background:#0e141b;color:#e9edf1">
+
+        </label>
+
+        <label>
+
+          <strong>Notes (optional)</strong>
+
+          <textarea id="bf_notes" rows="4" placeholder="Tell us about style, budget, timeline…" style="width:100%;padding:12px;border-radius:10px;border:1px solid #253445;background:#0e141b;color:#e9edf1"></textarea>
+
+        </label>
 
 
 
-      <form id="visitForm" class="form-card" novalidate>
+        <div class="hero-actions" style="margin-top:6px">
 
-        <div class="form-grid">
+          <button type="submit" class="btn btn-gold">Send Request</button>
 
-          <label>Full Name<input type="text" name="name" autocomplete="name" required></label>
-
-          <label>Email<input type="email" name="email" autocomplete="email" required></label>
-
-          <label>Phone<input type="tel" name="phone" autocomplete="tel" required></label>
-
-          <label>Address<input type="text" name="address" autocomplete="street-address" required></label>
-
-          <label>City<input type="text" name="city" autocomplete="address-level2" required></label>
-
-          <label>ZIP Code<input type="text" name="zip" inputmode="numeric" pattern="[0-9]{5}" autocomplete="postal-code" required></label>
-
-          <label>Preferred Date<input type="date" name="date"></label>
-
-          <label>Preferred Time<input type="time" name="time"></label>
-
-          <label class="full">Notes<textarea name="notes" rows="4" placeholder="Tell us what you envision (style, size, materials)…"></textarea></label>
+          <a class="btn btn-outline" href="mailto:contact@porchme.me?subject=PorchMe%20Booking&body=Hi%20PorchMe%2C%0A%0AMy%20name%3A%20___%0AEmail%3A%20___%0AAddress%3A%20___%0ANotes%3A%20___" rel="noopener">Email Instead</a>
 
         </div>
 
-
-
-        <div class="form-actions">
-
-          <button class="btn btn-gold" type="submit">Submit Request</button>
-
-          <a class="btn btn-outline" href="index.html#process">Explore the Roadmap</a>
-
-        </div>
-
-
-
-        <!-- رسائل فقط (لا يوجد صندوق إضافي تحت الزر) -->
-
-        <p id="form-ok" class="notice">✅ Thanks! Your request has been sent. We’ll contact you shortly.</p>
-
-        <p id="form-err" class="notice">❌ Sorry, something went wrong. Please try again or email us at <a href="mailto:contact@porchme.me">contact@porchme.me</a>.</p>
+        <p class="muted" style="margin:4px 0 0">After sending your request, reply to the confirmation email with 2–3 photos of your entry/porch area.</p>
 
       </form>
 
     </div>
 
-  </main>
+  </section>
 
 
+
+  <!-- Footer -->
 
   <footer class="footer">
 
     <div class="wrap">
 
-      <div class="fbrand"><img src="image/porchme_logo_silver.svg" alt="PorchMe" /><span>PorchMe</span></div>
+      <div class="fbrand">
+
+        <img src="/image/porchme_logo_silver.png?v=4" alt="PorchMe" />
+
+        <span>PorchMe</span>
+
+      </div>
 
       <div class="fnav">
 
@@ -178,15 +163,11 @@
 
       <div class="social-icons">
 
-        <a href="https://instagram.com" target="_blank" aria-label="Instagram"><img src="image/icon-instagram.svg" alt="Instagram"></a>
+        <a href="https://instagram.com" target="_blank"><img src="/image/icon-instagram.svg" alt="Instagram"></a>
 
-        <a href="https://www.tiktok.com" target="_blank" aria-label="TikTok"><img src="image/icon-tiktok.svg" alt="TikTok"></a>
+        <a href="https://tiktok.com" target="_blank"><img src="/image/icon-tiktok.svg" alt="TikTok"></a>
 
-        <a href="https://twitter.com" target="_blank" aria-label="Twitter"><img src="image/icon-twitter.svg" alt="Twitter"></a>
-
-        <a href="https://facebook.com" target="_blank" aria-label="Facebook"><img src="image/icon-facebook.svg" alt="Facebook"></a>
-
-        <a href="https://linkedin.com" target="_blank" aria-label="LinkedIn"><img src="image/icon-linkedin.svg" alt="LinkedIn"></a>
+        <a href="https://linkedin.com" target="_blank"><img src="/image/icon-linkedin.svg" alt="LinkedIn"></a>
 
       </div>
 
@@ -200,39 +181,43 @@
 
   <script>
 
-    document.getElementById('year').textContent = new Date().getFullYear();
+    document.getElementById("year").textContent = (new Date).getFullYear();
 
-    const navBtn=document.querySelector('.nav-toggle');const navLinks=document.getElementById('navLinks');
+    const navBtn = document.querySelector(".nav-toggle"), navLinks = document.getElementById("navLinks");
 
-    if(navBtn&&navLinks){navBtn.addEventListener('click',()=>{const open=navLinks.classList.toggle('open');navBtn.setAttribute('aria-expanded',open?'true':'false');});}
+    navBtn && navLinks && navBtn.addEventListener("click", () => {
 
+      const e = navLinks.classList.toggle("open");
 
-
-    // إرسال إلى Apps Script
-
-    const SHEET_ENDPOINT="https://script.google.com/macros/s/AKfycbw8RI4fDHKbyZW-EVLesraqe7-eZ71wtHUz_cN-0bgXbjKldqFrkptM2Dt6RbaBn7Kg/exec";
-
-    const form=document.getElementById('visitForm'), okMsg=document.getElementById('form-ok'), errMsg=document.getElementById('form-err');
-
-
-
-    form.addEventListener('submit',async(e)=>{e.preventDefault(); okMsg.style.display='none'; errMsg.style.display='none';
-
-      try{
-
-        const body=new URLSearchParams(new FormData(form));
-
-        const res=await fetch(SHEET_ENDPOINT,{method:'POST',body,headers:{'Accept':'application/json'}});
-
-        let data=null; try{data=await res.json();}catch(_){}
-
-        if(res.ok && data && (data.ok===true || data.result==='success')){ form.reset(); okMsg.style.display='block'; }
-
-        else { if(data && data.error){ errMsg.textContent='❌ '+data.error; } errMsg.style.display='block'; }
-
-      }catch{ errMsg.textContent='❌ Network error. Please try again.'; errMsg.style.display='block'; }
+      navBtn.setAttribute("aria-expanded", e ? "true" : "false");
 
     });
+
+
+
+    function sendBookingEmail(ev){
+
+      ev.preventDefault();
+
+      const n = encodeURIComponent(document.getElementById('bf_name').value.trim());
+
+      const e = encodeURIComponent(document.getElementById('bf_email').value.trim());
+
+      const a = encodeURIComponent(document.getElementById('bf_address').value.trim());
+
+      const notes = encodeURIComponent(document.getElementById('bf_notes').value.trim());
+
+      const subject = encodeURIComponent('PorchMe Booking Request');
+
+      const body =
+
+        `Hi PorchMe,%0A%0AMy name: ${n}%0AEmail: ${e}%0AAddress: ${a}%0ANotes: ${notes}%0A%0A(Photos to follow in a reply)`;
+
+      window.location.href = `mailto:contact@porchme.me?subject=${subject}&body=${body}`;
+
+      return false;
+
+    }
 
   </script>
 
