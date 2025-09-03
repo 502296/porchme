@@ -13,7 +13,7 @@
 
   <link rel="stylesheet" href="style.css?v=2"/>
 
-  <link rel="preload" as="image" href="image/porch_hero.jpg"/>
+  <link rel="preload" as="image" href="image/porch_hero.jpg" imagesrcset="image/porch_hero.jpg"/>
 
   <link rel="icon" type="image/png" href="image/favicon.png"/>
 
@@ -93,13 +93,7 @@
 
       <div class="tags">
 
-        <span>Style Selection</span>
-
-        <span>Spatial Planning</span>
-
-        <span>Materials & Finishes</span>
-
-        <span>Budget</span>
+        <span>Style Selection</span><span>Spatial Planning</span><span>Materials & Finishes</span><span>Budget</span>
 
       </div>
 
@@ -128,6 +122,8 @@
       <div class="hero-actions">
 
         <a href="book.html" class="btn btn-gold">Start Your Project</a>
+
+        <a href="#gallery-section" class="btn btn-outline">Explore Gallery</a>
 
       </div>
 
@@ -181,6 +177,26 @@
 
 
 
+  <section class="section alt">
+
+    <div class="wrap center">
+
+      <h2>Ready to elevate your front elevation?</h2>
+
+      <div class="hero-actions" style="justify-content:center;">
+
+        <a href="book.html" class="btn btn-gold">Book a Visit</a>
+
+        <a href="builders.html" class="btn btn-outline">Builder Portal</a>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+
   <footer class="footer">
 
     <div class="wrap">
@@ -211,7 +227,7 @@
 
       </div>
 
-      <p><strong>Contact:</strong> <a href="mailto:contact@porchme.me" class="email-link">contact@porchme.me</a></p>
+      <p><strong>Contact:</strong> <a class="email-link" href="mailto:contact@porchme.me">contact@porchme.me</a></p>
 
       <div class="social-icons">
 
@@ -235,45 +251,99 @@
 
     document.getElementById("year").textContent = (new Date).getFullYear();
 
-    const navBtn = document.querySelector(".nav-toggle"), navLinks = document.getElementById("navLinks");
 
-    navBtn && navLinks && navBtn.addEventListener("click", () => {
 
-      const e = navLinks.classList.toggle("open");
+    const navBtn = document.querySelector(".nav-toggle"),
 
-      navBtn.setAttribute("aria-expanded", e ? "true" : "false");
+          navLinks = document.getElementById("navLinks");
 
-    });
+    if (navBtn && navLinks) {
 
-    (function(){
+      navBtn.addEventListener("click", () => {
 
-      const e = document.getElementById("pm-lightbox"), t = document.getElementById("pm-lightbox-img"), n = e.querySelector(".pm-close");
+        const open = navLinks.classList.toggle("open");
 
-      function o(){e.classList.remove("open"),e.setAttribute("aria-hidden","true"),t.removeAttribute("src")}
-
-      document.querySelectorAll(".gallery-item").forEach(a => {
-
-        a.addEventListener("click", n => {
-
-          n.preventDefault(),t.src=a.getAttribute("href"),e.classList.add("open"),e.setAttribute("aria-hidden","false")
-
-        })
+        navBtn.setAttribute("aria-expanded", open ? "true" : "false");
 
       });
 
-      n.addEventListener("click", o),e.addEventListener("click", t => {"pm-lightbox"===t.target.id&&o()}),document.addEventListener("keydown", e => {"Escape"===e.key&&o()})
+    }
+
+
+
+    (function() {
+
+      const lightbox = document.getElementById("pm-lightbox"),
+
+            lightboxImg = document.getElementById("pm-lightbox-img"),
+
+            closeBtn = lightbox.querySelector(".pm-close");
+
+
+
+      function closeLightbox() {
+
+        lightbox.classList.remove("open");
+
+        lightbox.setAttribute("aria-hidden", "true");
+
+        lightboxImg.removeAttribute("src");
+
+      }
+
+
+
+      document.querySelectorAll(".gallery-item").forEach(item => {
+
+        item.addEventListener("click", e => {
+
+          e.preventDefault();
+
+          lightboxImg.src = item.getAttribute("href");
+
+          lightbox.classList.add("open");
+
+          lightbox.setAttribute("aria-hidden", "false");
+
+        });
+
+      });
+
+
+
+      closeBtn.addEventListener("click", closeLightbox);
+
+      lightbox.addEventListener("click", e => {
+
+        if (e.target.id === "pm-lightbox") closeLightbox();
+
+      });
+
+      document.addEventListener("keydown", e => {
+
+        if (e.key === "Escape") closeLightbox();
+
+      });
 
     })();
 
-    const showGalleryBtn=document.getElementById("showGalleryBtn"),gallery=document.getElementById("gallery");
 
-    showGalleryBtn&&gallery&&showGalleryBtn.addEventListener("click",()=>{
 
-      gallery.classList.toggle("gallery-visible"),
+    const showGalleryBtn = document.getElementById("showGalleryBtn"),
 
-      showGalleryBtn.textContent=gallery.classList.contains("gallery-visible")?"Hide Gallery":"View Gallery"
+          gallery = document.getElementById("gallery");
 
-    });
+    if (showGalleryBtn && gallery) {
+
+      showGalleryBtn.addEventListener("click", () => {
+
+        gallery.classList.toggle("gallery-visible");
+
+        showGalleryBtn.textContent = gallery.classList.contains("gallery-visible") ? "Hide Gallery" : "View Gallery";
+
+      });
+
+    }
 
   </script>
 
