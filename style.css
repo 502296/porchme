@@ -1,28 +1,15 @@
-/* ================== PorchMe – Royal Porch Design (style.css) ================== */
 
-/* Palette & tokens */
+/* ================== PorchMe – Royal Porch Design (style.css) ================== */
 
 :root{
 
-  --bg:#0f1216;           /* خلفية مخملية داكنة */
+  --bg:#0f1216; --bg-2:#151a20; --card:#11161c;
 
-  --bg-2:#151a20;         /* طبقة ثانية */
+  --text:#e9edf1; --muted:#9aa6b2;
 
-  --card:#11161c;         /* بطاقات */
+  --gold:#d4af37; --gold-2:#b8932c;
 
-  --text:#e9edf1;         /* نص فاتح */
-
-  --muted:#9aa6b2;        /* نص ثانوي */
-
-  --gold:#d4af37;         /* ذهبي ملكي */
-
-  --gold-2:#b8932c;       /* ذهبي داكن */
-
-  --line:#223040;         /* حدود خفيفة */
-
-  --shadow:rgba(0,0,0,.35);
-
-  --radius:14px;
+  --line:#223040; --shadow:rgba(0,0,0,.35); --radius:14px;
 
 
 
@@ -32,9 +19,9 @@
 
 
 
-  /* تركيز الصورة */
+  /* تركيز الصورة (أعلى = رقم أصغر) */
 
-  --hero-y-desktop:60%;
+  --hero-y-desktop:52%;   /* كان 60% */
 
   --hero-y-mobile:50%;
 
@@ -46,7 +33,9 @@
 
 *{box-sizing:border-box}
 
-html,body{margin:0;padding:0;background:var(--bg);color:var(--text);font-family:Inter,system-ui,Segoe UI,Roboto,Arial,sans-serif;line-height:1.6}
+html,body{margin:0;padding:0;background:var(--bg);color:var(--text);
+
+  font-family:Inter,system-ui,Segoe UI,Roboto,Arial,sans-serif;line-height:1.6}
 
 img{max-width:100%;display:block}
 
@@ -58,31 +47,29 @@ a{color:inherit;text-decoration:none}
 
 /* Top line */
 
-.topline{height:6px;background:linear-gradient(90deg, #1f2a36, #2a3a4c)}
+.topline{height:6px;background:linear-gradient(90deg,#1f2a36,#2a3a4c)}
 
 
 
-/* ================== Nav ================== */
+/* Nav */
 
-.nav{position:sticky;top:0;z-index:1000;background:rgba(15,18,22,.72);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.nav{position:sticky;top:0;z-index:1000;background:rgba(15,18,22,.72);
+
+  backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
 
 .nav .wrap{display:flex;align-items:center;justify-content:space-between;min-height:64px}
 
 .brand{display:flex;align-items:center;gap:10px}
 
-.royal-logo{height:30px;width:auto}
+.royal-logo{height:30px}
 
 .wordmark{font-weight:700;letter-spacing:.5px}
 
 .nav-links{display:flex;gap:18px;align-items:center}
 
-.nav-links a{opacity:.9}
-
 .nav-cta{margin-left:6px}
 
-.nav-toggle{display:none;background:none;border:0;color:var(--text);font-size:26px;line-height:1}
-
-
+.nav-toggle{display:none;background:none;border:0;color:var(--text);font-size:26px}
 
 @media (max-width:860px){
 
@@ -90,7 +77,9 @@ a{color:inherit;text-decoration:none}
 
   .nav-links{position:fixed;inset:64px 0 auto 0;background:rgba(15,18,22,.96);
 
-    transform:translateY(-10px);opacity:0;pointer-events:none;transition:.25s;flex-direction:column;padding:18px;border-bottom:1px solid var(--line)}
+    transform:translateY(-10px);opacity:0;pointer-events:none;transition:.25s;
+
+    flex-direction:column;padding:18px;border-bottom:1px solid var(--line)}
 
   .nav-links.open{transform:translateY(0);opacity:1;pointer-events:auto}
 
@@ -98,11 +87,13 @@ a{color:inherit;text-decoration:none}
 
 
 
-/* ================== Buttons ================== */
+/* Buttons */
 
 .btn{display:inline-flex;align-items:center;justify-content:center;
 
-  padding:12px 16px;border-radius:12px;border:1px solid transparent;font-weight:600;box-shadow:0 6px 18px -8px var(--shadow);transition:.2s}
+  padding:12px 16px;border-radius:12px;border:1px solid transparent;font-weight:600;
+
+  box-shadow:0 6px 18px -8px var(--shadow);transition:.2s}
 
 .btn-gold{background:var(--gold);color:#1a1200;border-color:#00000020}
 
@@ -124,7 +115,7 @@ a{color:inherit;text-decoration:none}
 
   position:relative;isolation:isolate;
 
-  min-height:92vh; /* ارتفاع أكبر لإظهار السقف */
+  min-height:100vh;             /* أكبر لعرض السقف */
 
   display:flex;align-items:center;
 
@@ -154,7 +145,7 @@ a{color:inherit;text-decoration:none}
 
 }
 
-.hero-inner{padding:64px 0 72px}
+.hero-inner{padding:8vh 0 72px}   /* حشوة علوية للنص */
 
 .hero-title{font-size:clamp(28px,5vw,54px);line-height:1.1;margin:0 0 14px;font-weight:800;text-shadow:0 3px 16px rgba(0,0,0,.55)}
 
@@ -172,33 +163,29 @@ a{color:inherit;text-decoration:none}
 
 @media (min-width:1200px){
 
-  .hero{background-position:center 58%;}
+  .hero{background-position:center 50%;}
 
 }
 
 @media (min-width:1600px){
 
-  .hero{background-position:center 55%;}
+  .hero{background-position:center 48%;}
 
 }
 
 
 
-/* ================== Sections / Cards ================== */
+/* Sections / Cards */
 
 .section{padding:56px 0}
 
 .section.alt{background:var(--bg-2);border-block:1px solid var(--line)}
 
-.card{
-
-  background:linear-gradient(180deg, #0f141a, #0d1217);
+.card{background:linear-gradient(180deg,#0f141a,#0d1217);
 
   border:1px solid var(--line);border-radius:var(--radius);
 
-  box-shadow:0 20px 40px -28px var(--shadow);padding:24px
-
-}
+  box-shadow:0 20px 40px -28px var(--shadow);padding:24px}
 
 h2{font-size:clamp(20px,3.2vw,30px);margin:0 0 14px}
 
@@ -210,11 +197,7 @@ h2{font-size:clamp(20px,3.2vw,30px);margin:0 0 14px}
 
 .tags{display:flex;flex-wrap:wrap;gap:10px;margin-top:10px}
 
-.tags span{
-
-  padding:8px 10px;border-radius:999px;background:#121921;border:1px solid #1f2a36;color:#cdd6df;font-weight:600;font-size:14px
-
-}
+.tags span{padding:8px 10px;border-radius:999px;background:#121921;border:1px solid #1f2a36;color:#cdd6df;font-weight:600;font-size:14px}
 
 
 
@@ -226,7 +209,7 @@ h2{font-size:clamp(20px,3.2vw,30px);margin:0 0 14px}
 
 
 
-/* ================== Gallery & Lightbox ================== */
+/* Gallery & Lightbox */
 
 #gallery{margin-top:16px}
 
@@ -234,39 +217,29 @@ h2{font-size:clamp(20px,3.2vw,30px);margin:0 0 14px}
 
 .gallery-visible{display:block}
 
-
-
 .gallery-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
 
 @media (min-width:860px){.gallery-grid{grid-template-columns:repeat(4,1fr)}}
 
 .gallery-item{border-radius:12px;overflow:hidden;border:1px solid #1e2a36}
 
-.gallery-item img{width:100%;height:180px;object-fit:cover;transition:transform .25s ease}
+.gallery-item img{width:100%;height:180px;object-fit:cover;transition:transform .25s}
 
 .gallery-item:hover img{transform:scale(1.04)}
 
+.pm-lightbox{position:fixed;inset:0;background:rgba(0,0,0,.88);display:flex;align-items:center;justify-content:center;
 
-
-.pm-lightbox{
-
-  position:fixed;inset:0;background:rgba(0,0,0,.88);display:flex;align-items:center;justify-content:center;
-
-  opacity:0;pointer-events:none;transition:.2s;z-index:1200;padding:16px
-
-}
+  opacity:0;pointer-events:none;transition:.2s;z-index:1200;padding:16px}
 
 .pm-lightbox.open{opacity:1;pointer-events:auto}
 
 .pm-lightbox img{max-width:min(1100px,96vw);max-height:88vh;border-radius:14px;box-shadow:0 30px 80px -20px rgba(0,0,0,.6)}
 
-.pm-close{position:absolute;top:14px;right:14px;background:#ffffff18;border:1px solid #ffffff30;color:#fff;
-
-  font-size:28px;line-height:1;border-radius:12px;padding:6px 10px}
+.pm-close{position:absolute;top:14px;right:14px;background:#ffffff18;border:1px solid #ffffff30;color:#fff;font-size:28px;line-height:1;border-radius:12px;padding:6px 10px}
 
 
 
-/* ================== Footer ================== */
+/* Footer */
 
 .footer{background:#0c1015;border-top:1px solid var(--line);padding:28px 0}
 
@@ -286,14 +259,10 @@ h2{font-size:clamp(20px,3.2vw,30px);margin:0 0 14px}
 
 
 
-/* ================== Accessibility tweaks ================== */
+/* A11y & polish */
 
 :focus-visible{outline:2px solid #8ab4ff;outline-offset:2px}
 
 a:hover{opacity:1}
-
-
-
-/* ================== Small polish ================== */
 
 .hero .btn{min-width:150px}
