@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 
 <html lang="en">
@@ -10,19 +11,9 @@
 
   <title>PorchMe – Royal Porch Design</title>
 
+  <link rel="stylesheet" href="style.css?v=2"/>
 
-
-  <!-- CSS + cache-busting -->
-
-  <link rel="stylesheet" href="style.css?v=14"/>
-
-
-
-  <!-- Preload hero image -->
-
-  <link rel="preload" as="image" href="image/porch_hero.jpg" imagesrcset="image/porch_hero.jpg"/>
-
-
+  <link rel="preload" as="image" href="image/porch_hero.jpg"/>
 
   <link rel="icon" type="image/png" href="image/favicon.png"/>
 
@@ -32,13 +23,7 @@
 
 <body>
 
-  <!-- Top bar -->
-
   <div class="topline"></div>
-
-
-
-  <!-- Nav -->
 
   <nav class="nav" aria-label="Main">
 
@@ -52,8 +37,6 @@
 
       </a>
 
-
-
       <div class="nav-links" id="navLinks">
 
         <a href="#philosophy">Design Expertise</a>
@@ -66,8 +49,6 @@
 
       </div>
 
-
-
       <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="navLinks">☰</button>
 
     </div>
@@ -75,8 +56,6 @@
   </nav>
 
 
-
-  <!-- Hero -->
 
   <header class="hero">
 
@@ -87,8 +66,6 @@
       <p class="hero-subtitle">Blueprint-style conceptual design by architects — clear, professional, and tailored to your home.</p>
 
       <p>We review your site photos before taking on a project to ensure real value for your investment.</p>
-
-
 
       <div class="hero-actions">
 
@@ -105,8 +82,6 @@
   </header>
 
 
-
-  <!-- Design Expertise -->
 
   <section id="philosophy" class="section">
 
@@ -134,8 +109,6 @@
 
 
 
-  <!-- Process -->
-
   <section id="process" class="section alt">
 
     <div class="wrap card">
@@ -152,11 +125,9 @@
 
       </ol>
 
-      <div class="hero-actions" style="justify-content:center;">
+      <div class="hero-actions">
 
         <a href="book.html" class="btn btn-gold">Start Your Project</a>
-
-        <!-- Removed the transparent secondary box that didn’t match the theme -->
 
       </div>
 
@@ -165,8 +136,6 @@
   </section>
 
 
-
-  <!-- Gallery -->
 
   <section id="gallery-section" class="section">
 
@@ -179,8 +148,6 @@
       <button id="showGalleryBtn" class="btn btn-gold">View Gallery</button>
 
     </div>
-
-
 
     <div id="gallery" class="gallery-hidden">
 
@@ -202,8 +169,6 @@
 
     </div>
 
-
-
     <div id="pm-lightbox" class="pm-lightbox" aria-hidden="true">
 
       <button class="pm-close" aria-label="Close">×</button>
@@ -216,30 +181,6 @@
 
 
 
-  <!-- CTA -->
-
-  <section class="section alt">
-
-    <div class="wrap center">
-
-      <h2>Ready to elevate your front elevation?</h2>
-
-      <div class="hero-actions" style="justify-content:center;">
-
-        <a href="book.html" class="btn btn-gold">Book a Visit</a>
-
-        <a href="builders.html" class="btn btn-outline">Builder Portal</a>
-
-      </div>
-
-    </div>
-
-  </section>
-
-
-
-  <!-- Footer -->
-
   <footer class="footer">
 
     <div class="wrap">
@@ -251,8 +192,6 @@
         <span>PorchMe</span>
 
       </div>
-
-
 
       <div class="fnav">
 
@@ -272,15 +211,7 @@
 
       </div>
 
-
-
-      <p><strong>Contact:</strong>
-
-        <a class="footer-mail" href="mailto:contact@porchme.me">contact@porchme.me</a>
-
-      </p>
-
-
+      <p><strong>Contact:</strong> <a href="mailto:contact@porchme.me" class="email-link">contact@porchme.me</a></p>
 
       <div class="social-icons">
 
@@ -292,8 +223,6 @@
 
       </div>
 
-
-
       <p class="copy">© <span id="year"></span> PorchMe. Crafted with passion. All rights reserved.</p>
 
     </div>
@@ -304,93 +233,47 @@
 
   <script>
 
-    document.getElementById('year').textContent = new Date().getFullYear();
+    document.getElementById("year").textContent = (new Date).getFullYear();
 
+    const navBtn = document.querySelector(".nav-toggle"), navLinks = document.getElementById("navLinks");
 
+    navBtn && navLinks && navBtn.addEventListener("click", () => {
 
-    // Nav toggle
+      const e = navLinks.classList.toggle("open");
 
-    const navBtn = document.querySelector('.nav-toggle');
+      navBtn.setAttribute("aria-expanded", e ? "true" : "false");
 
-    const navLinks = document.getElementById('navLinks');
+    });
 
-    if (navBtn && navLinks) {
+    (function(){
 
-      navBtn.addEventListener('click', () => {
+      const e = document.getElementById("pm-lightbox"), t = document.getElementById("pm-lightbox-img"), n = e.querySelector(".pm-close");
 
-        const open = navLinks.classList.toggle('open');
+      function o(){e.classList.remove("open"),e.setAttribute("aria-hidden","true"),t.removeAttribute("src")}
 
-        navBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
+      document.querySelectorAll(".gallery-item").forEach(a => {
 
-      });
+        a.addEventListener("click", n => {
 
-    }
+          n.preventDefault(),t.src=a.getAttribute("href"),e.classList.add("open"),e.setAttribute("aria-hidden","false")
 
-
-
-    // Lightbox
-
-    (function () {
-
-      const box = document.getElementById('pm-lightbox');
-
-      const img = document.getElementById('pm-lightbox-img');
-
-      const btnX = box.querySelector('.pm-close');
-
-      document.querySelectorAll('.gallery-item').forEach(a => {
-
-        a.addEventListener('click', e => {
-
-          e.preventDefault();
-
-          img.src = a.getAttribute('href');
-
-          box.classList.add('open');
-
-          box.setAttribute('aria-hidden', 'false');
-
-        });
+        })
 
       });
 
-      function closeBox() {
-
-        box.classList.remove('open');
-
-        box.setAttribute('aria-hidden', 'true');
-
-        img.removeAttribute('src');
-
-      }
-
-      btnX.addEventListener('click', closeBox);
-
-      box.addEventListener('click', e => { if (e.target === box) closeBox(); });
-
-      document.addEventListener('keydown', e => { if (e.key === 'Escape') closeBox(); });
+      n.addEventListener("click", o),e.addEventListener("click", t => {"pm-lightbox"===t.target.id&&o()}),document.addEventListener("keydown", e => {"Escape"===e.key&&o()})
 
     })();
 
+    const showGalleryBtn=document.getElementById("showGalleryBtn"),gallery=document.getElementById("gallery");
 
+    showGalleryBtn&&gallery&&showGalleryBtn.addEventListener("click",()=>{
 
-    // Gallery toggle
+      gallery.classList.toggle("gallery-visible"),
 
-    const showGalleryBtn = document.getElementById('showGalleryBtn');
+      showGalleryBtn.textContent=gallery.classList.contains("gallery-visible")?"Hide Gallery":"View Gallery"
 
-    const gallery = document.getElementById('gallery');
-
-    if (showGalleryBtn && gallery) {
-
-      showGalleryBtn.addEventListener('click', () => {
-
-        gallery.classList.toggle('gallery-visible');
-
-        showGalleryBtn.textContent = gallery.classList.contains('gallery-visible') ? 'Hide Gallery' : 'View Gallery';
-
-      });
-
-    }
+    });
 
   </script>
 
