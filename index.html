@@ -1,20 +1,19 @@
+
 <!DOCTYPE html>
 
 <html lang="en">
 
 <head>
 
-  <meta charset="utf-8"/>
+  <meta charset="utf-8" />
 
-  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <title>PorchMe – Royal Porch Design</title>
 
-  <link rel="stylesheet" href="style.css?v=2"/>
+  <link rel="stylesheet" href="style.css?v=6" />
 
-  <link rel="preload" as="image" href="image/porch_hero.jpg" imagesrcset="image/porch_hero.jpg"/>
-
-  <link rel="icon" type="image/png" href="image/favicon.png"/>
+  <link rel="icon" type="image/png" href="image/favicon.png" />
 
   <meta name="theme-color" content="#0c0c0c"/>
 
@@ -30,7 +29,7 @@
 
       <a class="brand" href="index.html" aria-label="PorchMe Home">
 
-        <img src="image/porchme_logo_silver.svg" class="royal-logo" alt="PorchMe"/>
+        <img src="image/porchme_logo_silver.svg" class="royal-logo" alt="PorchMe" />
 
         <span class="wordmark">PorchMe</span>
 
@@ -108,9 +107,9 @@
 
 
 
-  <section id="process" class="section alt">
+  <section id="process" class="section">
 
-    <div class="wrap card no-bg">
+    <div class="wrap card">
 
       <h2>Project Roadmap</h2>
 
@@ -124,7 +123,7 @@
 
       </ol>
 
-      <div class="hero-actions">
+      <div class="hero-actions" style="justify-content:center;">
 
         <a href="book.html" class="btn btn-gold">Start Your Project</a>
 
@@ -182,26 +181,6 @@
 
 
 
-  <section class="section alt">
-
-    <div class="wrap center">
-
-      <h2>Ready to elevate your front elevation?</h2>
-
-      <div class="hero-actions" style="justify-content:center;">
-
-        <a href="book.html" class="btn btn-gold">Book a Visit</a>
-
-        <a href="builders.html" class="btn btn-outline">Builder Portal</a>
-
-      </div>
-
-    </div>
-
-  </section>
-
-
-
   <footer class="footer">
 
     <div class="wrap">
@@ -232,7 +211,7 @@
 
       </div>
 
-      <p><strong>Contact:</strong> <a href="mailto:contact@porchme.me" class="email-link">contact@porchme.me</a></p>
+      <p><strong>Contact:</strong> <a href="mailto:contact@porchme.me" class="footer-email">contact@porchme.me</a></p>
 
       <div class="social-icons">
 
@@ -256,7 +235,9 @@
 
     document.getElementById("year").textContent = (new Date).getFullYear();
 
-    const navBtn = document.querySelector(".nav-toggle"), navLinks = document.getElementById("navLinks");
+    const navBtn = document.querySelector(".nav-toggle"),
+
+          navLinks = document.getElementById("navLinks");
 
     navBtn && navLinks && navBtn.addEventListener("click", () => {
 
@@ -266,31 +247,55 @@
 
     });
 
+
+
     (function () {
 
       const e = document.getElementById("pm-lightbox"),
 
-        t = document.getElementById("pm-lightbox-img"),
+            t = document.getElementById("pm-lightbox-img"),
 
-        n = e.querySelector(".pm-close");
+            n = e.querySelector(".pm-close");
 
-      function o() { e.classList.remove("open"), e.setAttribute("aria-hidden", "true"), t.removeAttribute("src") }
+      function o() {
+
+        e.classList.remove("open"), e.setAttribute("aria-hidden", "true"), t.removeAttribute("src");
+
+      }
 
       document.querySelectorAll(".gallery-item").forEach(e => {
 
-        e.addEventListener("click", n => { n.preventDefault(), t.src = e.getAttribute("href"), e = document.getElementById("pm-lightbox"); e.classList.add("open"), e.setAttribute("aria-hidden", "false") })
+        e.addEventListener("click", n => {
 
-      }), n.addEventListener("click", o), e.addEventListener("click", t => { "pm-lightbox" === t.target.id && o() }), document.addEventListener("keydown", e => { "Escape" === e.key && o() })
+          n.preventDefault(), t.src = e.getAttribute("href"),
+
+          e = document.getElementById("pm-lightbox");
+
+          e.classList.add("open"), e.setAttribute("aria-hidden", "false");
+
+        });
+
+      });
+
+      n.addEventListener("click", o),
+
+      e.addEventListener("click", t => { "pm-lightbox" === t.target.id && o() }),
+
+      document.addEventListener("keydown", e => { "Escape" === e.key && o() });
 
     })();
 
-    const showGalleryBtn = document.getElementById("showGalleryBtn"), gallery = document.getElementById("gallery");
+
+
+    const showGalleryBtn = document.getElementById("showGalleryBtn"),
+
+          gallery = document.getElementById("gallery");
 
     showGalleryBtn && gallery && showGalleryBtn.addEventListener("click", () => {
 
       gallery.classList.toggle("gallery-visible"),
 
-        showGalleryBtn.textContent = gallery.classList.contains("gallery-visible") ? "Hide Gallery" : "View Gallery"
+      showGalleryBtn.textContent = gallery.classList.contains("gallery-visible") ? "Hide Gallery" : "View Gallery";
 
     });
 
