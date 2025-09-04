@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 
 <html lang="en">
@@ -18,6 +17,8 @@
   <meta name="theme-color" content="#0c0c0c"/>
 
 </head>
+
+
 
 <body>
 
@@ -71,51 +72,143 @@
 
 
 
-      <!-- Simple mailto form -->
+      <!-- NEW: direct-to-Sheets form -->
 
-      <form id="bookForm" class="book-form" onsubmit="return sendBookingEmail(event)" style="display:grid;gap:12px;max-width:680px">
+      <form id="booking-form" class="book-form" style="display:grid;gap:12px;max-width:680px">
 
         <label>
 
           <strong>Full Name</strong>
 
-          <input type="text" id="bf_name" required placeholder="Your name" style="width:100%;padding:12px;border-radius:10px;border:1px solid #253445;background:#0e141b;color:#e9edf1">
+          <input name="fullName" type="text" required placeholder="Your name"
+
+                 style="width:100%;padding:12px;border-radius:10px;border:1px solid #253445;background:#0e141b;color:#e9edf1">
 
         </label>
+
+
 
         <label>
 
           <strong>Email</strong>
 
-          <input type="email" id="bf_email" required placeholder="you@example.com" style="width:100%;padding:12px;border-radius:10px;border:1px solid #253445;background:#0e141b;color:#e9edf1">
+          <input name="email" type="email" required placeholder="you@example.com"
+
+                 style="width:100%;padding:12px;border-radius:10px;border:1px solid #253445;background:#0e141b;color:#e9edf1">
 
         </label>
+
+
+
+        <label>
+
+          <strong>Phone</strong>
+
+          <input name="phone" type="tel" placeholder="(502) 123-4567"
+
+                 style="width:100%;padding:12px;border-radius:10px;border:1px solid #253445;background:#0e141b;color:#e9edf1">
+
+        </label>
+
+
 
         <label>
 
           <strong>Project Address</strong>
 
-          <input type="text" id="bf_address" required placeholder="Street, City" style="width:100%;padding:12px;border-radius:10px;border:1px solid #253445;background:#0e141b;color:#e9edf1">
+          <input name="address" type="text" required placeholder="Street"
+
+                 style="width:100%;padding:12px;border-radius:10px;border:1px solid #253445;background:#0e141b;color:#e9edf1">
 
         </label>
+
+
+
+        <div style="display:grid;grid-template-columns:1fr 140px 120px;gap:12px">
+
+          <label>
+
+            <strong>City</strong>
+
+            <input name="city" type="text" placeholder="City"
+
+                   style="width:100%;padding:12px;border-radius:10px;border:1px solid #253445;background:#0e141b;color:#e9edf1">
+
+          </label>
+
+
+
+          <label>
+
+            <strong>ZIP Code</strong>
+
+            <input name="zip" type="text" placeholder="40218"
+
+                   style="width:100%;padding:12px;border-radius:10px;border:1px solid #253445;background:#0e141b;color:#e9edf1">
+
+          </label>
+
+
+
+          <span></span>
+
+        </div>
+
+
+
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+
+          <label>
+
+            <strong>Preferred Date</strong>
+
+            <input name="preferredDate" type="date"
+
+                   style="width:100%;padding:12px;border-radius:10px;border:1px solid #253445;background:#0e141b;color:#e9edf1">
+
+          </label>
+
+
+
+          <label>
+
+            <strong>Preferred Time</strong>
+
+            <input name="preferredTime" type="time"
+
+                   style="width:100%;padding:12px;border-radius:10px;border:1px solid #253445;background:#0e141b;color:#e9edf1">
+
+          </label>
+
+        </div>
+
+
 
         <label>
 
           <strong>Notes (optional)</strong>
 
-          <textarea id="bf_notes" rows="4" placeholder="Tell us about style, budget, timeline…" style="width:100%;padding:12px;border-radius:10px;border:1px solid #253445;background:#0e141b;color:#e9edf1"></textarea>
+          <textarea name="notes" rows="4" placeholder="Tell us about style, budget, timeline…"
+
+                    style="width:100%;padding:12px;border-radius:10px;border:1px solid #253445;background:#0e141b;color:#e9edf1"></textarea>
 
         </label>
 
 
 
-        <div class="hero-actions" style="margin-top:6px">
+        <div class="hero-actions" style="margin-top:6px;display:flex;gap:10px;flex-wrap:wrap">
 
-          <button type="submit" class="btn btn-gold">Send Request</button>
+          <button id="sendBtn" type="submit" class="btn btn-gold">Send Request</button>
 
-          <a class="btn btn-outline" href="mailto:contact@porchme.me?subject=PorchMe%20Booking&body=Hi%20PorchMe%2C%0A%0AMy%20name%3A%20___%0AEmail%3A%20___%0AAddress%3A%20___%0ANotes%3A%20___" rel="noopener">Email Instead</a>
+          <a class="btn btn-outline"
+
+             href="mailto:contact@porchme.me?subject=PorchMe%20Booking%20Request&body=Hi%20PorchMe%2C%0A%0AMy%20name%3A%20___%0AEmail%3A%20___%0AAddress%3A%20___%0ACity%3A%20___%0AZIP%3A%20___%0APreferred%20Date%3A%20___%0APreferred%20Time%3A%20___%0ANotes%3A%20___%0A%0A(Photos%20to%20follow%20in%20a%20reply)" rel="noopener">Email Instead</a>
 
         </div>
+
+
+
+        <p id="status" class="muted" style="margin:6px 0 0"></p>
 
         <p class="muted" style="margin:4px 0 0">After sending your request, reply to the confirmation email with 2–3 photos of your entry/porch area.</p>
 
@@ -181,43 +274,85 @@
 
   <script>
 
+    // footer year + mobile nav
+
     document.getElementById("year").textContent = (new Date).getFullYear();
 
     const navBtn = document.querySelector(".nav-toggle"), navLinks = document.getElementById("navLinks");
 
     navBtn && navLinks && navBtn.addEventListener("click", () => {
 
-      const e = navLinks.classList.toggle("open");
+      const open = navLinks.classList.toggle("open");
 
-      navBtn.setAttribute("aria-expanded", e ? "true" : "false");
+      navBtn.setAttribute("aria-expanded", open ? "true" : "false");
 
     });
 
 
 
-    function sendBookingEmail(ev){
+    // === Direct submit to Google Apps Script (Sheets) ===
 
-      ev.preventDefault();
+    const GAS_URL = 'https://script.google.com/macros/s/AKfycbwH8FZpPZRJxlGvDc7RO7qbhq9xDt1Yjbuji6PSheNJiQ9B-1gMQ-FYyWu79hnaPcaH/exec';
 
-      const n = encodeURIComponent(document.getElementById('bf_name').value.trim());
 
-      const e = encodeURIComponent(document.getElementById('bf_email').value.trim());
 
-      const a = encodeURIComponent(document.getElementById('bf_address').value.trim());
+    const form = document.getElementById('booking-form');
 
-      const notes = encodeURIComponent(document.getElementById('bf_notes').value.trim());
+    const statusEl = document.getElementById('status');
 
-      const subject = encodeURIComponent('PorchMe Booking Request');
+    const sendBtn = document.getElementById('sendBtn');
 
-      const body =
 
-        `Hi PorchMe,%0A%0AMy name: ${n}%0AEmail: ${e}%0AAddress: ${a}%0ANotes: ${notes}%0A%0A(Photos to follow in a reply)`;
 
-      window.location.href = `mailto:contact@porchme.me?subject=${subject}&body=${body}`;
+    form.addEventListener('submit', async (e) => {
 
-      return false;
+      e.preventDefault();             // لا تغادر الصفحة
 
-    }
+      sendBtn.disabled = true;
+
+      statusEl.textContent = 'Sending…';
+
+
+
+      const data = Object.fromEntries(new FormData(form).entries());
+
+
+
+      try {
+
+        const res = await fetch(GAS_URL, {
+
+          method: 'POST',
+
+          headers: { 'Content-Type': 'application/json' },
+
+          body: JSON.stringify(data)
+
+        });
+
+        const out = await res.json().catch(() => ({}));
+
+        if (!res.ok || !out.ok) throw new Error(out.error || `HTTP ${res.status}`);
+
+
+
+        statusEl.textContent = '✅ Request received! We’ll follow up by email.';
+
+        form.reset();
+
+      } catch (err) {
+
+        console.error('Submit error:', err);
+
+        statusEl.textContent = '❌ Network error. Please try again.';
+
+      } finally {
+
+        sendBtn.disabled = false;
+
+      }
+
+    });
 
   </script>
 
