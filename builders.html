@@ -1,169 +1,287 @@
-<!DOCTYPE html>
+<section class="card builder-portal">
 
-<html lang="en">
+  <h2>Builder Portal</h2>
 
-<head>
-
-  <meta charset="utf-8" />
-
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-
-  <title>Builder Portal – PorchMe</title>
-
-  <link rel="stylesheet" href="style.css?v=12" />
-
-  <link rel="icon" type="image/png" href="/image/favicon.png" />
-
-  <meta name="theme-color" content="#0c0c0c"/>
-
-</head>
-
-<body>
-
-  <div class="topline"></div>
+  <p class="muted">Materials for licensed builders partnering with PorchMe.</p>
 
 
 
-  <!-- Nav -->
+  <!-- Quick actions -->
 
-  <nav class="nav" aria-label="Main">
+  <div class="btn-row">
 
-    <div class="wrap">
+    <a class="btn btn-outline" href="docs/PorchMe_Builder_Guide.pdf" target="_blank">Download Builder Guide (PDF)</a>
 
-      <a class="brand" href="index.html" aria-label="PorchMe Home">
+    <a class="btn btn-outline" href="docs/PorchMe_Standard_Specs.pdf" target="_blank">Standard Specs (PDF)</a>
 
-        <img src="/image/porchme_logo_silver.png?v=4" class="royal-logo" alt="PorchMe" />
+  </div>
 
-        <span class="wordmark">PorchMe</span>
 
-      </a>
 
-      <div class="nav-links" id="navLinks">
+  <hr class="divider" />
 
-        <a href="index.html#philosophy">Design Expertise</a>
 
-        <a href="index.html#process">Project Roadmap</a>
 
-        <a href="index.html#gallery-section">Gallery</a>
+  <h3>Request Onboarding</h3>
 
-        <a href="book.html" class="btn btn-gold nav-cta">Book a Visit</a>
+  <p class="muted">Interested in partnering with PorchMe? Complete the form below to join our builder network.</p>
 
-      </div>
 
-      <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="navLinks">☰</button>
+
+  <form id="builderForm" class="form-grid">
+
+    <!-- anti-bot honeypot -->
+
+    <input type="text" name="company_url" autocomplete="off" tabindex="-1" class="hidden" />
+
+
+
+    <div class="form-field">
+
+      <label>Full Name</label>
+
+      <input name="full_name" type="text" required placeholder="Your name" />
 
     </div>
 
-  </nav>
 
 
+    <div class="form-field">
 
-  <!-- Content -->
+      <label>Company (optional)</label>
 
-  <section class="section">
-
-    <div class="wrap card">
-
-      <h2>Builder Portal</h2>
-
-      <p class="muted">Materials for licensed builders partnering with PorchMe.</p>
-
-
-
-      <div style="display:grid;gap:12px;margin-top:8px">
-
-        <a class="btn btn-outline" href="/docs/PorchMe_Builder_Guide.pdf" target="_blank" rel="noopener">Download Builder Guide (PDF)</a>
-
-        <a class="btn btn-outline" href="/docs/PorchMe_Spec_Sheet.pdf" target="_blank" rel="noopener">Standard Specs (PDF)</a>
-
-        <a class="btn btn-gold" href="mailto:contact@porchme.me?subject=PorchMe%20Builder%20Onboarding&body=Company%20name%3A%20___%0ALicense%23%3A%20___%0ACity%2FState%3A%20___%0AWebsite%3A%20___">Request Onboarding</a>
-
-      </div>
-
-
-
-      <hr style="border:0;border-top:1px solid #223040;margin:20px 0">
-
-
-
-      <h3 style="margin:0 0 8px">Share Project Photos / RFIs</h3>
-
-      <p class="muted">Email drawings, site photos, or RFIs to <a href="mailto:contact@porchme.me">contact@porchme.me</a>. Please include project address and contact info.</p>
+      <input name="company" type="text" placeholder="Company name" />
 
     </div>
 
-  </section>
 
 
+    <div class="form-field">
 
-  <!-- Footer -->
+      <label>Email</label>
 
-  <footer class="footer">
-
-    <div class="wrap">
-
-      <div class="fbrand">
-
-        <img src="/image/porchme_logo_silver.png?v=4" alt="PorchMe" />
-
-        <span>PorchMe</span>
-
-      </div>
-
-      <div class="fnav">
-
-        <a href="index.html#philosophy">Design Expertise</a>
-
-        <a href="index.html#process">Project Roadmap</a>
-
-        <a href="index.html#gallery-section">Gallery</a>
-
-        <a href="book.html">Book a Visit</a>
-
-        <a href="privacy.html">Privacy</a>
-
-        <a href="terms.html">Terms</a>
-
-        <a href="faq.html">FAQ</a>
-
-      </div>
-
-      <p><strong>Contact:</strong> <a href="mailto:contact@porchme.me">contact@porchme.me</a></p>
-
-      <div class="social-icons">
-
-        <a href="https://instagram.com" target="_blank"><img src="/image/icon-instagram.svg" alt="Instagram"></a>
-
-        <a href="https://tiktok.com" target="_blank"><img src="/image/icon-tiktok.svg" alt="TikTok"></a>
-
-        <a href="https://linkedin.com" target="_blank"><img src="/image/icon-linkedin.svg" alt="LinkedIn"></a>
-
-      </div>
-
-      <p class="copy">© <span id="year"></span> PorchMe. Crafted with passion. All rights reserved.</p>
+      <input name="email" type="email" required placeholder="you@example.com" />
 
     </div>
 
-  </footer>
+
+
+    <div class="form-field">
+
+      <label>Phone</label>
+
+      <input name="phone" type="tel" required placeholder="(502) 123-4567" />
+
+    </div>
 
 
 
-  <script>
+    <div class="form-field">
 
-    document.getElementById("year").textContent = (new Date).getFullYear();
+      <label>Work Area (City)</label>
 
-    const navBtn = document.querySelector(".nav-toggle"), navLinks = document.getElementById("navLinks");
+      <input name="city" type="text" required placeholder="Louisville" />
 
-    navBtn && navLinks && navBtn.addEventListener("click", () => {
+    </div>
 
-      const e = navLinks.classList.toggle("open");
 
-      navBtn.setAttribute("aria-expanded", e ? "true" : "false");
 
-    });
+    <div class="form-field">
 
-  </script>
+      <label>ZIP Code</label>
 
-</body>
+      <input name="zip" type="text" required placeholder="40218" />
 
-</html>
+    </div>
+
+
+
+    <div class="form-field">
+
+      <label>Years of Experience</label>
+
+      <input name="years" type="number" min="0" required placeholder="e.g., 8" />
+
+    </div>
+
+
+
+    <div class="form-field">
+
+      <label>License / Insurance (PDF/JPG/PNG) – optional</label>
+
+      <input name="credentials" type="file" accept=".pdf,.jpg,.jpeg,.png" />
+
+    </div>
+
+
+
+    <div class="form-field form-span">
+
+      <label>Notes (optional)</label>
+
+      <textarea name="notes" rows="4" placeholder="Tell us about your specialties, crew size, coverage area..."></textarea>
+
+    </div>
+
+
+
+    <label class="check-row form-span">
+
+      <input type="checkbox" name="agree" required />
+
+      <span>I confirm I’m a licensed/insured contractor and agree to be contacted by PorchMe.</span>
+
+    </label>
+
+
+
+    <div class="actions form-span">
+
+      <button class="btn btn-gold" id="submitBtn" type="submit">Request Onboarding</button>
+
+      <button class="btn btn-outline" type="reset">Clear</button>
+
+    </div>
+
+
+
+    <p id="status" class="status muted"></p>
+
+  </form>
+
+</section>
+
+
+
+<script>
+
+  // ====== SET THIS ======
+
+  const SCRIPT_URL = 'PASTE_YOUR_WEB_APP_URL_HERE'; // from Apps Script Deploy > Web app
+
+  // ======================
+
+
+
+  const formEl = document.getElementById('builderForm');
+
+  const statusEl = document.getElementById('status');
+
+  const submitBtn = document.getElementById('submitBtn');
+
+
+
+  formEl.addEventListener('submit', async (e) => {
+
+    e.preventDefault();
+
+    statusEl.textContent = '';
+
+    submitBtn.disabled = true;
+
+    submitBtn.textContent = 'Submitting...';
+
+
+
+    // honeypot
+
+    if (formEl.company_url && formEl.company_url.value.trim() !== '') {
+
+      submitBtn.disabled = false;
+
+      submitBtn.textContent = 'Request Onboarding';
+
+      return;
+
+    }
+
+
+
+    try {
+
+      const fd = new FormData(formEl);
+
+      const res = await fetch(SCRIPT_URL, { method: 'POST', body: fd });
+
+      const data = await res.json();
+
+
+
+      if (data.ok) {
+
+        formEl.reset();
+
+        statusEl.classList.remove('error');
+
+        statusEl.textContent = '✅ Request received. Our team will contact you shortly.';
+
+      } else {
+
+        throw new Error(data.message || 'Unknown error');
+
+      }
+
+    } catch (err) {
+
+      statusEl.classList.add('error');
+
+      statusEl.textContent = '❌ Submission failed. Please try again later.';
+
+      console.error(err);
+
+    } finally {
+
+      submitBtn.disabled = false;
+
+      submitBtn.textContent = 'Request Onboarding';
+
+    }
+
+  });
+
+</script>
+
+
+
+<style>
+
+  /* minimal styles; blends with your current theme */
+
+  .builder-portal .btn-row { display:flex; gap:.75rem; flex-wrap:wrap; margin-bottom:1rem; }
+
+  .divider{border:0;border-top:1px solid rgba(255,255,255,.08); margin:1rem 0;}
+
+  .form-grid{display:grid; grid-template-columns:1fr 1fr; gap:1rem;}
+
+  .form-span{grid-column:1 / -1;}
+
+  .form-field label{display:block; font-size:.9rem; opacity:.9; margin-bottom:.35rem;}
+
+  .form-field input, .form-field textarea{
+
+    width:100%; background:#0e141b; color:#fff; border:1px solid rgba(255,255,255,.12);
+
+    border-radius:.5rem; padding:.8rem .9rem; outline:none;
+
+  }
+
+  .check-row{display:flex; gap:.6rem; align-items:flex-start; line-height:1.3;}
+
+  .btn{display:inline-block; padding:.8rem 1rem; border-radius:.6rem; text-decoration:none; cursor:pointer}
+
+  .btn-outline{border:1px solid rgba(255,255,255,.18); color:#fff; background:transparent}
+
+  .btn-gold{background:#c9a64b; color:#0b0f14; border:none; font-weight:600}
+
+  .muted{opacity:.75}
+
+  .status{margin-top:.5rem}
+
+  .status.error{color:#ff8a8a}
+
+  .hidden{position:absolute !important; left:-9999px !important; height:0 !important; width:0 !important; opacity:0}
+
+  @media (max-width: 720px){ .form-grid{grid-template-columns:1fr;} }
+
+</style>
