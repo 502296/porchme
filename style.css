@@ -1,25 +1,26 @@
-
 /* ================== PorchMe – Royal Porch Design (style.css) ================== */
+
+
 
 /* Palette & tokens */
 
 :root{
 
-  --bg:#0f1216;           /* خلفية مخملية داكنة */
+  --bg:#0f1216;            /* خلفية مخملية داكنة */
 
-  --bg-2:#151a20;         /* طبقة ثانية */
+  --bg-2:#151a20;          /* طبقة ثانية */
 
-  --card:#11161c;         /* بطاقات */
+  --card:#11161c;          /* بطاقات */
 
-  --text:#e9edf1;         /* نص فاتح */
+  --text:#e9edf1;          /* نص فاتح */
 
-  --muted:#9aa6b2;        /* نص ثانوي */
+  --muted:#9aa6b2;         /* نص ثانوي */
 
-  --gold:#d4af37;         /* ذهبي ملكي */
+  --gold:#d4af37;          /* ذهبي ملكي */
 
-  --gold-2:#b8932c;       /* ذهبي داكن */
+  --gold-2:#b8932c;        /* ذهبي داكن */
 
-  --line:#223040;         /* حدود خفيفة */
+  --line:#223040;          /* حدود خفيفة */
 
   --shadow:rgba(0,0,0,.35);
 
@@ -30,10 +31,6 @@
   /* صورة الهيرو */
 
   --hero-url:url("image/porch_hero.jpg");
-
-
-
-  /* تركيز الصورة */
 
   --hero-y-desktop:52%;
 
@@ -47,7 +44,15 @@
 
 *{box-sizing:border-box}
 
-html,body{margin:0;padding:0;background:var(--bg);color:var(--text);font-family:Inter,system-ui,Segoe UI,Roboto,Arial,sans-serif;line-height:1.6}
+html,body{
+
+  margin:0;padding:0;background:var(--bg);color:var(--text);
+
+  font-family:Inter,system-ui,Segoe UI,Roboto,Arial,sans-serif;
+
+  line-height:1.6
+
+}
 
 img{max-width:100%;display:block}
 
@@ -97,7 +102,9 @@ a{color:inherit;text-decoration:none}
 
   .nav-links{position:fixed;inset:64px 0 auto 0;background:rgba(15,18,22,.96);
 
-    transform:translateY(-10px);opacity:0;pointer-events:none;transition:.25s;flex-direction:column;padding:18px;border-bottom:1px solid var(--line)}
+    transform:translateY(-10px);opacity:0;pointer-events:none;transition:.25s;
+
+    flex-direction:column;padding:18px;border-bottom:1px solid var(--line)}
 
   .nav-links.open{transform:translateY(0);opacity:1;pointer-events:auto}
 
@@ -109,7 +116,9 @@ a{color:inherit;text-decoration:none}
 
 .btn{display:inline-flex;align-items:center;justify-content:center;
 
-  padding:12px 16px;border-radius:12px;border:1px solid transparent;font-weight:600;box-shadow:0 6px 18px -8px var(--shadow);transition:.2s}
+  padding:12px 16px;border-radius:12px;border:1px solid transparent;font-weight:600;
+
+  box-shadow:0 6px 18px -8px var(--shadow);transition:.2s}
 
 .btn-gold{background:var(--gold);color:#1a1200;border-color:#00000020}
 
@@ -129,21 +138,13 @@ a{color:inherit;text-decoration:none}
 
 .hero{
 
-  position:relative;isolation:isolate;
-
-  min-height:100vh;
+  position:relative;isolation:isolate;min-height:100vh;
 
   display:flex;align-items:center;
 
-  background:
+  background:linear-gradient(180deg, rgba(0,0,0,.45), rgba(0,0,0,.45)), var(--hero-url);
 
-    linear-gradient(180deg, rgba(0,0,0,.45), rgba(0,0,0,.45)),
-
-    var(--hero-url);
-
-  background-repeat:no-repeat;
-
-  background-size:cover;
+  background-repeat:no-repeat;background-size:cover;
 
   background-position:center var(--hero-y-mobile);
 
@@ -171,23 +172,11 @@ a{color:inherit;text-decoration:none}
 
 
 
-@media (min-width:961px){
+@media (min-width:961px){.hero{background-position:center var(--hero-y-desktop);}}
 
-  .hero{background-position:center var(--hero-y-desktop);}
+@media (min-width:1200px){.hero{background-position:center 50%;}}
 
-}
-
-@media (min-width:1200px){
-
-  .hero{background-position:center 50%;}
-
-}
-
-@media (min-width:1600px){
-
-  .hero{background-position:center 48%;}
-
-}
+@media (min-width:1600px){.hero{background-position:center 48%;}}
 
 
 
@@ -213,35 +202,13 @@ h2{font-size:clamp(20px,3.2vw,30px);margin:0 0 14px}
 
 
 
-/* Tags */
-
-.tags{display:flex;flex-wrap:wrap;gap:10px;margin-top:10px}
-
-.tags span{
-
-  padding:8px 10px;border-radius:999px;background:#121921;border:1px solid #1f2a36;color:#cdd6df;font-weight:600;font-size:14px
-
-}
-
-
-
-/* Steps */
-
-.steps{margin:0 0 6px;padding-left:20px}
-
-.steps li{margin:10px 0;color:#d9e1ea}
-
-
-
-/* ================== Gallery & Lightbox ================== */
+/* ================== Gallery ================== */
 
 #gallery{margin-top:16px}
 
 .gallery-hidden{display:none}
 
 .gallery-visible{display:block}
-
-
 
 .gallery-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
 
@@ -293,14 +260,76 @@ h2{font-size:clamp(20px,3.2vw,30px);margin:0 0 14px}
 
 
 
-/* ================== Accessibility tweaks ================== */
+/* ================== Forms (Customer & Builder) ================== */
+
+.h3{margin:10px 0 6px;font-size:clamp(18px,2.4vw,22px);font-weight:700}
+
+.divider{border:0;border-top:1px solid var(--line);margin:16px 0}
+
+.form--grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:10px}
+
+.form__item--span{grid-column:1 / -1}
+
+.form__label{display:block;margin:4px 0 6px;font-size:.95rem;opacity:.9}
+
+.req{color:var(--gold)}
+
+.form__control{
+
+  width:100%;background:#0b1016;color:#ffffff;border:1px solid rgba(255,255,255,.14);
+
+  border-radius:12px;padding:.9rem 1rem;outline:none;
+
+  transition:border-color .15s, box-shadow .15s;
+
+}
+
+.form__control:focus{border-color:var(--gold);box-shadow:0 0 0 3px rgba(212,175,55,.25)}
+
+.form__control--file{padding:.6rem;color:#cfd6de}
+
+.form__control--file::-webkit-file-upload-button{
+
+  background:var(--bg-2);color:#fff;border:1px solid rgba(255,255,255,.18);
+
+  border-radius:10px;padding:.5rem .8rem;margin-right:.6rem;cursor:pointer;
+
+}
+
+.check{display:flex;gap:.6rem;align-items:flex-start;line-height:1.35}
+
+.actions{display:flex;gap:10px;align-items:center}
+
+.btn--gold{background:var(--gold);color:#1a1200;border:1px solid #00000020}
+
+.btn--gold:hover{background:var(--gold-2)}
+
+.btn--ghost{background:transparent;border:1px solid transparent;color:#fff}
+
+.status{margin-top:6px}
+
+.status.error{color:#ff8a8a}
+
+.honeypot{position:absolute;left:-9999px;opacity:0;height:0;width:0}
+
+
+
+@media (max-width:760px){
+
+  .form--grid{grid-template-columns:1fr;gap:12px}
+
+  .btn-row{flex-direction:column}
+
+  .btn-row .btn,.actions .btn{width:100%}
+
+}
+
+
+
+/* Accessibility & polish */
 
 :focus-visible{outline:2px solid #8ab4ff;outline-offset:2px}
 
 a:hover{opacity:1}
-
-
-
-/* ================== Small polish ================== */
 
 .hero .btn{min-width:150px}
