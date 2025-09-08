@@ -10,23 +10,15 @@
 
   <title>Builder Portal – PorchMe</title>
 
-
-
-  <!-- CSS العام للموقع (الملف الذي أرسلته لك سابقًا) -->
-
-  <link rel="stylesheet" href="style.css?v=8" />
+  <link rel="stylesheet" href="style.css?v=9" />
 
 </head>
 
 <body>
 
-  <!-- شريط علوي بسيط -->
-
   <div class="topline"></div>
 
 
-
-  <!-- ناڤبار مختصر (عدّل الروابط حسب صفحاتك) -->
 
   <nav class="nav">
 
@@ -56,8 +48,6 @@
 
 
 
-  <!-- ===== Builder Portal ===== -->
-
   <section class="section">
 
     <div class="wrap">
@@ -71,8 +61,6 @@
 
 
         <div class="btn-row" style="margin-top:12px">
-
-          <!-- حدّث مسارات الـPDF حسب مجلدك -->
 
           <a class="btn btn-outline" href="files/Builder_Guide.pdf" target="_blank" rel="noopener">Download Builder Guide (PDF)</a>
 
@@ -94,7 +82,7 @@
 
         <form id="builderForm" class="form form--grid" enctype="multipart/form-data">
 
-          <!-- honeypot لمكافحة السبام -->
+          <!-- honeypot -->
 
           <input type="text" name="company_url" autocomplete="off" tabindex="-1" class="honeypot" />
 
@@ -242,17 +230,15 @@
 
 
 
-  <!-- ===== JS: إرسال النموذج إلى Google Apps Script (محدّث) ===== -->
+  <!-- ===== JS ===== -->
 
   <script>
 
-    // رابط الويب آب الذي أرسلته لي
+    // Web App URL من Google Apps Script
 
     const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxTsz0NbMynVVojb2izAMZhSX9kKhabh1hzJjxzcQbtsS9PL16FtscA61_Nu3Bi0lqb/exec';
 
 
-
-    // عناصر DOM
 
     const formEl    = document.getElementById('builderForm');
 
@@ -264,7 +250,7 @@
 
 
 
-    // (اختياري) تعطيل الزر إلى أن يوافق المستخدم
+    // (اختياري) لا تُمكّن الإرسال إلا بعد الموافقة
 
     submitBtn.disabled = true;
 
@@ -294,23 +280,19 @@
 
 
 
-        // نقرأ كنص ثم نحاول JSON.parse لتفادي أعطال non-JSON
+        // نقرأ كنص ثم نحاول تحويله إلى JSON (لرصد أخطاء السيرفر)
 
         const text = await res.text();
 
         let data = {};
 
-        try { data = JSON.parse(text); } catch (_) {
+        try { data = JSON.parse(text); }
 
-          throw new Error('Non-JSON response: ' + text.slice(0, 180));
-
-        }
+        catch (_) { throw new Error('Non-JSON response from server: ' + text.slice(0, 300)); }
 
 
 
         if (res.ok && data.ok) {
-
-          // نجاح: حوّل لصفحة الشكر (أنشئ thanks.html)
 
           window.location.href = '/thanks.html';
 
@@ -318,15 +300,17 @@
 
         }
 
-        throw new Error(data.message || 'Server returned an error');
+        throw new Error(data.message || 'Server returned an error.');
 
       } catch (err) {
+
+        // ✅ نعرض الخطأ الحقيقي هنا
 
         statusEl.classList.add('error');
 
         statusEl.style.color = '#ff8a8a';
 
-        statusEl.textContent = '❌ Submission failed. Please try again.';
+        statusEl.textContent = '❌ ' + (err.message || String(err));
 
         console.error('[Submission error]', err);
 
@@ -340,7 +324,7 @@
 
 
 
-    // قائمة الموبايل (اختياري)
+    // قائمة الموبايل
 
     const toggle = document.querySelector('.nav-toggle');
 
