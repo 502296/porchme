@@ -10,13 +10,23 @@
 
   <title>Builder Portal – PorchMe</title>
 
+
+
+  <!-- CSS العام للموقع (الملف الذي أرسلته لك سابقًا) -->
+
   <link rel="stylesheet" href="style.css?v=8" />
 
 </head>
 
 <body>
 
+  <!-- شريط علوي بسيط -->
+
   <div class="topline"></div>
+
+
+
+  <!-- ناڤبار مختصر (عدّل الروابط حسب صفحاتك) -->
 
   <nav class="nav">
 
@@ -32,11 +42,11 @@
 
       <div class="nav-links">
 
-        <a href="index.html#expertise">Design Expertise</a>
+        <a class="navlink" href="index.html#expertise">Design Expertise</a>
 
-        <a href="gallery.html">Gallery</a>
+        <a class="navlink" href="gallery.html">Gallery</a>
 
-        <a href="book.html" class="btn btn-gold">Book a Visit</a>
+        <a class="btn btn-gold" href="book.html">Book a Visit</a>
 
       </div>
 
@@ -46,11 +56,13 @@
 
 
 
+  <!-- ===== Builder Portal ===== -->
+
   <section class="section">
 
     <div class="wrap">
 
-      <div class="card card--dark">
+      <div class="card">
 
         <h2>Builder Portal</h2>
 
@@ -58,11 +70,13 @@
 
 
 
-        <div class="actions" style="margin-top:14px;">
+        <div class="btn-row" style="margin-top:12px">
 
-          <a class="btn btn-outline" href="files/Builder_Guide.pdf" target="_blank">Download Builder Guide (PDF)</a>
+          <!-- حدّث مسارات الـPDF حسب مجلدك -->
 
-          <a class="btn btn-outline" href="files/Standard_Specs.pdf" target="_blank">Standard Specs (PDF)</a>
+          <a class="btn btn-outline" href="files/Builder_Guide.pdf" target="_blank" rel="noopener">Download Builder Guide (PDF)</a>
+
+          <a class="btn btn-outline" href="files/Standard_Specs.pdf" target="_blank" rel="noopener">Standard Specs (PDF)</a>
 
         </div>
 
@@ -80,19 +94,27 @@
 
         <form id="builderForm" class="form form--grid" enctype="multipart/form-data">
 
+          <!-- honeypot لمكافحة السبام -->
+
+          <input type="text" name="company_url" autocomplete="off" tabindex="-1" class="honeypot" />
+
+
+
           <div class="form__item">
 
             <label class="form__label">Full Name <span class="req">*</span></label>
 
-            <input class="form__control" name="full_name" required />
+            <input class="form__control" name="full_name" required placeholder="Your name" />
 
           </div>
+
+
 
           <div class="form__item">
 
             <label class="form__label">Company (optional)</label>
 
-            <input class="form__control" name="company" />
+            <input class="form__control" name="company" placeholder="Company name" />
 
           </div>
 
@@ -102,9 +124,11 @@
 
             <label class="form__label">Email <span class="req">*</span></label>
 
-            <input class="form__control" type="email" name="email" required />
+            <input class="form__control" type="email" name="email" required placeholder="you@example.com" />
 
           </div>
+
+
 
           <div class="form__item">
 
@@ -120,15 +144,17 @@
 
             <label class="form__label">Work Area (City) <span class="req">*</span></label>
 
-            <input class="form__control" name="city" required />
+            <input class="form__control" name="city" required placeholder="Louisville" />
 
           </div>
+
+
 
           <div class="form__item">
 
             <label class="form__label">ZIP Code <span class="req">*</span></label>
 
-            <input class="form__control" name="zip" required />
+            <input class="form__control" name="zip" required placeholder="40218" />
 
           </div>
 
@@ -141,6 +167,8 @@
             <input class="form__control" name="years" required placeholder="e.g., 8" />
 
           </div>
+
+
 
           <div class="form__item">
 
@@ -156,23 +184,23 @@
 
             <label class="form__label">Notes (optional)</label>
 
-            <textarea class="form__control" name="notes" placeholder="Tell us about specialties, crew size, coverage area..."></textarea>
+            <textarea class="form__control" name="notes" rows="4" placeholder="Tell us about specialties, crew size, coverage area…"></textarea>
 
           </div>
 
 
 
-          <div class="form__item form__item--span check">
+          <label class="check form__item--span">
 
             <input type="checkbox" id="agree" name="agree" required />
 
-            <label for="agree">I confirm I’m a licensed/insured contractor and agree to be contacted by PorchMe.</label>
+            <span>I confirm I’m a licensed/insured contractor and agree to be contacted by PorchMe.</span>
 
-          </div>
+          </label>
 
 
 
-          <div class="form__item form__item--span actions btn-row">
+          <div class="actions form__item--span">
 
             <button id="submitBtn" class="btn btn-gold" type="submit">Request Onboarding</button>
 
@@ -182,7 +210,7 @@
 
 
 
-          <div id="status" class="status"></div>
+          <p id="status" class="status muted"></p>
 
         </form>
 
@@ -200,9 +228,9 @@
 
       <div class="fbrand">
 
-        <img src="image/porchme_logo_silver.png" alt="PorchMe logo" />
+        <img src="image/porchme_logo_silver.png" alt="PorchMe" />
 
-        <span>PorchMe</span>
+        <strong>PorchMe</strong>
 
       </div>
 
@@ -214,23 +242,41 @@
 
 
 
+  <!-- ===== JS: إرسال النموذج إلى Google Apps Script (محدّث) ===== -->
+
   <script>
+
+    // رابط الويب آب الذي أرسلته لي
 
     const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxTsz0NbMynVVojb2izAMZhSX9kKhabh1hzJjxzcQbtsS9PL16FtscA61_Nu3Bi0lqb/exec';
 
 
 
-    const formEl = document.getElementById('builderForm');
+    // عناصر DOM
 
-    const statusEl = document.getElementById('status');
+    const formEl    = document.getElementById('builderForm');
+
+    const statusEl  = document.getElementById('status');
 
     const submitBtn = document.getElementById('submitBtn');
+
+    const agree     = document.getElementById('agree');
+
+
+
+    // (اختياري) تعطيل الزر إلى أن يوافق المستخدم
+
+    submitBtn.disabled = true;
+
+    agree.addEventListener('change', () => submitBtn.disabled = !agree.checked);
 
 
 
     formEl.addEventListener('submit', async (e) => {
 
       e.preventDefault();
+
+      statusEl.classList.remove('error');
 
       statusEl.textContent = '';
 
@@ -246,27 +292,43 @@
 
         const res = await fetch(SCRIPT_URL, { method: 'POST', body: fd });
 
-        const data = await res.json();
+
+
+        // نقرأ كنص ثم نحاول JSON.parse لتفادي أعطال non-JSON
+
+        const text = await res.text();
+
+        let data = {};
+
+        try { data = JSON.parse(text); } catch (_) {
+
+          throw new Error('Non-JSON response: ' + text.slice(0, 180));
+
+        }
 
 
 
-        if (data.ok) {
+        if (res.ok && data.ok) {
+
+          // نجاح: حوّل لصفحة الشكر (أنشئ thanks.html)
 
           window.location.href = '/thanks.html';
 
-        } else {
-
-          throw new Error(data.message || 'Submission failed.');
+          return;
 
         }
+
+        throw new Error(data.message || 'Server returned an error');
 
       } catch (err) {
 
         statusEl.classList.add('error');
 
+        statusEl.style.color = '#ff8a8a';
+
         statusEl.textContent = '❌ Submission failed. Please try again.';
 
-        console.error(err);
+        console.error('[Submission error]', err);
 
         submitBtn.disabled = false;
 
@@ -275,6 +337,16 @@
       }
 
     });
+
+
+
+    // قائمة الموبايل (اختياري)
+
+    const toggle = document.querySelector('.nav-toggle');
+
+    const links  = document.querySelector('.nav-links');
+
+    if (toggle && links) toggle.addEventListener('click', () => links.classList.toggle('open'));
 
   </script>
 
