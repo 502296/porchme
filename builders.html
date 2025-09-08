@@ -1,165 +1,277 @@
-<section class="section">
+<!DOCTYPE html>
 
-  <div class="wrap">
+<html lang="en">
 
-    <div class="card card--dark">
+<head>
 
-      <header class="card__head">
+  <meta charset="utf-8" />
 
-        <h2 class="card__title">Builder Portal</h2>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-        <p class="card__sub">Materials for licensed builders partnering with PorchMe.</p>
+  <title>PorchMe – Builder Portal</title>
 
-      </header>
 
 
+  <!-- اربط الـCSS (ضع الملف بجانب هذه الصفحة أو داخل مجلد css/) -->
 
-      <!-- Quick actions -->
+  <link rel="stylesheet" href="style.css?v=7" />
 
-      <div class="btn-row">
+  <!-- <link rel="stylesheet" href="css/style.css?v=7" /> -->
 
-        <a class="btn btn--outline" href="docs/PorchMe_Builder_Guide.pdf" target="_blank">Download Builder Guide (PDF)</a>
 
-        <a class="btn btn--outline" href="docs/PorchMe_Standard_Specs.pdf" target="_blank">Standard Specs (PDF)</a>
 
-      </div>
+</head>
 
+<body>
 
+  <div class="topline"></div>
 
-      <hr class="divider" />
+  <nav class="nav">
 
+    <div class="wrap">
 
+      <a class="brand" href="index.html">
 
-      <h3 class="h3">Request Onboarding</h3>
+        <img src="image/porchme_logo_silver.png" class="royal-logo" alt="PorchMe" />
 
-      <p class="muted">Interested in partnering with PorchMe? Complete the form below to join our builder network.</p>
+      </a>
 
+      <a class="navlink" href="index.html#services">Design Expertise</a>
 
+      <a class="navlink" href="index.html#gallery">Gallery</a>
 
-      <form id="builderForm" class="form form--grid">
-
-        <!-- honeypot -->
-
-        <input type="text" name="company_url" autocomplete="off" tabindex="-1" class="honeypot" />
-
-
-
-        <div class="form__item">
-
-          <label class="form__label">Full Name <span class="req">*</span></label>
-
-          <input class="form__control" name="full_name" type="text" required placeholder="Your name" />
-
-        </div>
-
-
-
-        <div class="form__item">
-
-          <label class="form__label">Company (optional)</label>
-
-          <input class="form__control" name="company" type="text" placeholder="Company name" />
-
-        </div>
-
-
-
-        <div class="form__item">
-
-          <label class="form__label">Email <span class="req">*</span></label>
-
-          <input class="form__control" name="email" type="email" required placeholder="you@example.com" />
-
-        </div>
-
-
-
-        <div class="form__item">
-
-          <label class="form__label">Phone <span class="req">*</span></label>
-
-          <input class="form__control" name="phone" type="tel" required placeholder="(502) 123-4567" />
-
-        </div>
-
-
-
-        <div class="form__item">
-
-          <label class="form__label">Work Area (City) <span class="req">*</span></label>
-
-          <input class="form__control" name="city" type="text" required placeholder="Louisville" />
-
-        </div>
-
-
-
-        <div class="form__item">
-
-          <label class="form__label">ZIP Code <span class="req">*</span></label>
-
-          <input class="form__control" name="zip" type="text" required placeholder="40218" />
-
-        </div>
-
-
-
-        <div class="form__item">
-
-          <label class="form__label">Years of Experience <span class="req">*</span></label>
-
-          <input class="form__control" name="years" type="number" min="0" required placeholder="e.g., 8" />
-
-        </div>
-
-
-
-        <div class="form__item">
-
-          <label class="form__label">License / Insurance (PDF/JPG/PNG) – optional</label>
-
-          <input class="form__control form__control--file" name="credentials" type="file" accept=".pdf,.jpg,.jpeg,.png" />
-
-        </div>
-
-
-
-        <div class="form__item form__item--span">
-
-          <label class="form__label">Notes (optional)</label>
-
-          <textarea class="form__control" name="notes" rows="4" placeholder="Tell us about specialties, crew size, coverage area…"></textarea>
-
-        </div>
-
-
-
-        <label class="check form__item--span">
-
-          <input type="checkbox" name="agree" required />
-
-          <span>I confirm I’m a licensed/insured contractor and agree to be contacted by PorchMe.</span>
-
-        </label>
-
-
-
-        <div class="actions form__item--span">
-
-          <button class="btn btn--gold" id="submitBtn" type="submit">Request Onboarding</button>
-
-          <button class="btn btn--ghost" type="reset">Clear</button>
-
-        </div>
-
-
-
-        <p id="status" class="status muted"></p>
-
-      </form>
+      <a class="navlink" href="book.html">Book a Visit</a>
 
     </div>
 
-  </div>
+  </nav>
 
-</section>
+
+
+  <!-- ===== Builder Portal ===== -->
+
+  <section class="section">
+
+    <div class="wrap">
+
+      <div class="card card--dark">
+
+        <header class="card__head">
+
+          <h2 class="card__title">Builder Portal</h2>
+
+          <p class="card__sub">Materials for licensed builders partnering with PorchMe.</p>
+
+        </header>
+
+
+
+        <div class="btn-row">
+
+          <a class="btn btn--outline" href="docs/PorchMe_Builder_Guide.pdf" target="_blank">Download Builder Guide (PDF)</a>
+
+          <a class="btn btn--outline" href="docs/PorchMe_Standard_Specs.pdf" target="_blank">Standard Specs (PDF)</a>
+
+        </div>
+
+
+
+        <hr class="divider" />
+
+
+
+        <h3 class="h3">Request Onboarding</h3>
+
+        <p class="muted">Interested in partnering with PorchMe? Complete the form below to join our builder network.</p>
+
+
+
+        <form id="builderForm" class="form form--grid">
+
+          <!-- honeypot -->
+
+          <input type="text" name="company_url" autocomplete="off" tabindex="-1" class="honeypot" />
+
+
+
+          <div class="form__item">
+
+            <label class="form__label">Full Name <span class="req">*</span></label>
+
+            <input class="form__control" name="full_name" type="text" required placeholder="Your name" />
+
+          </div>
+
+
+
+          <div class="form__item">
+
+            <label class="form__label">Company (optional)</label>
+
+            <input class="form__control" name="company" type="text" placeholder="Company name" />
+
+          </div>
+
+
+
+          <div class="form__item">
+
+            <label class="form__label">Email <span class="req">*</span></label>
+
+            <input class="form__control" name="email" type="email" required placeholder="you@example.com" />
+
+          </div>
+
+
+
+          <div class="form__item">
+
+            <label class="form__label">Phone <span class="req">*</span></label>
+
+            <input class="form__control" name="phone" type="tel" required placeholder="(502) 123-4567" />
+
+          </div>
+
+
+
+          <div class="form__item">
+
+            <label class="form__label">Work Area (City) <span class="req">*</span></label>
+
+            <input class="form__control" name="city" type="text" required placeholder="Louisville" />
+
+          </div>
+
+
+
+          <div class="form__item">
+
+            <label class="form__label">ZIP Code <span class="req">*</span></label>
+
+            <input class="form__control" name="zip" type="text" required placeholder="40218" />
+
+          </div>
+
+
+
+          <div class="form__item">
+
+            <label class="form__label">Years of Experience <span class="req">*</span></label>
+
+            <input class="form__control" name="years" type="number" min="0" required placeholder="e.g., 8" />
+
+          </div>
+
+
+
+          <div class="form__item">
+
+            <label class="form__label">License / Insurance (PDF/JPG/PNG) – optional</label>
+
+            <input class="form__control form__control--file" name="credentials" type="file" accept=".pdf,.jpg,.jpeg,.png" />
+
+          </div>
+
+
+
+          <div class="form__item form__item--span">
+
+            <label class="form__label">Notes (optional)</label>
+
+            <textarea class="form__control" name="notes" rows="4" placeholder="Tell us about specialties, crew size, coverage area…"></textarea>
+
+          </div>
+
+
+
+          <label class="check form__item--span">
+
+            <input type="checkbox" name="agree" required />
+
+            <span>I confirm I’m a licensed/insured contractor and agree to be contacted by PorchMe.</span>
+
+          </label>
+
+
+
+          <div class="actions form__item--span">
+
+            <button class="btn btn--gold" id="submitBtn" type="submit">Request Onboarding</button>
+
+            <button class="btn btn--ghost" type="reset">Clear</button>
+
+          </div>
+
+
+
+          <p id="status" class="status muted"></p>
+
+        </form>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+
+  <footer class="footer">
+
+    <div class="wrap">
+
+      <p class="muted">© PorchMe</p>
+
+    </div>
+
+  </footer>
+
+
+
+  <script>
+
+    // ضع رابط الـWeb App من Google Apps Script هنا:
+
+    const SCRIPT_URL = 'PASTE_YOUR_WEB_APP_URL_HERE';
+
+
+
+    const formEl   = document.getElementById('builderForm');
+
+    const statusEl = document.getElementById('status');
+
+    const submitBtn= document.getElementById('submitBtn');
+
+
+
+    formEl.addEventListener('submit', async (e) => {
+
+      e.preventDefault();
+
+      statusEl.textContent = '';
+
+      submitBtn.disabled = true;
+
+      submitBtn.textContent = 'Submitting...';
+
+
+
+      // honeypot
+
+      if (formEl.company_url && formEl.company_url.value.trim() !== '') {
+
+        submitBtn.disabled = false;
+
+        submitBtn.textContent = 'Request Onboarding';
+
+        return;
+
+      }
+
+
+
+      try {
+
+        const fd = new FormData(formEl);
+
+        const res = await fetch(SCRIPT_URL, { method: '
