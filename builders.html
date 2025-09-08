@@ -1,107 +1,283 @@
-<!-- أضف سكربت reCAPTCHA v3 في <head> -->
+<!DOCTYPE html>
 
-<script src="https://www.google.com/recaptcha/api.js?render=YOUR_RECAPTCHA_SITE_KEY"></script>
+<html lang="en">
 
+<head>
 
+  <meta charset="utf-8" />
 
-<!-- داخل الفورم: غيّر حقل الملف واجعله يدعم multiple -->
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-<div class="form__item">
+  <title>Builder Portal – PorchMe</title>
 
-  <label class="form__label">Licenses / Insurance (PDF/JPG/PNG) – optional</label>
+  <link rel="stylesheet" href="style.css?v=8" />
 
-  <input class="form__control form__control--file" name="credentials" type="file" accept=".pdf,.jpg,.jpeg,.png" multiple />
+</head>
 
-</div>
+<body>
 
+  <div class="topline"></div>
 
+  <nav class="nav">
 
-<!-- تحت الصفحة (أو في سكربت الإرسال الموجود لديك) -->
+    <div class="wrap">
 
-<script>
+      <a class="brand" href="index.html">
 
-  const SCRIPT_URL = 'YOUR_WEB_APP_URL';
+        <img src="image/porchme_logo_silver.png" class="royal-logo" alt="PorchMe" />
 
+      </a>
 
+      <button class="nav-toggle" aria-label="Menu">☰</button>
 
-  const formEl    = document.getElementById('builderForm');
+      <div class="nav-links">
 
-  const statusEl  = document.getElementById('status');
+        <a href="index.html#expertise">Design Expertise</a>
 
-  const submitBtn = document.getElementById('submitBtn');
+        <a href="gallery.html">Gallery</a>
 
+        <a href="book.html" class="btn btn-gold">Book a Visit</a>
 
+      </div>
 
-  formEl.addEventListener('submit', async (e) => {
+    </div>
 
-    e.preventDefault();
-
-    statusEl.textContent = '';
-
-    submitBtn.disabled = true; submitBtn.textContent = 'Submitting...';
-
-
-
-    // honeypot
-
-    if (formEl.company_url && formEl.company_url.value.trim() !== '') {
-
-      submitBtn.disabled = false; submitBtn.textContent = 'Request Onboarding';
-
-      return;
-
-    }
+  </nav>
 
 
 
-    try {
+  <section class="section">
 
-      // 1) احصل على توكن reCAPTCHA v3
+    <div class="wrap">
 
-      const token = await grecaptcha.execute('YOUR_RECAPTCHA_SITE_KEY', {action: 'submit'});
+      <div class="card card--dark">
 
-      // 2) جهّز FormData وأضف التوكن
+        <h2>Builder Portal</h2>
 
-      const fd = new FormData(formEl);
-
-      fd.append('recaptcha_token', token);
-
-      fd.append('recaptcha_action', 'submit');
+        <p class="muted">Materials for licensed builders partnering with PorchMe.</p>
 
 
 
-      // 3) أرسل للويب آب
+        <div class="actions" style="margin-top:14px;">
 
-      const res = await fetch(SCRIPT_URL, { method: 'POST', body: fd });
+          <a class="btn btn-outline" href="files/Builder_Guide.pdf" target="_blank">Download Builder Guide (PDF)</a>
 
-      const data = await res.json();
+          <a class="btn btn-outline" href="files/Standard_Specs.pdf" target="_blank">Standard Specs (PDF)</a>
+
+        </div>
 
 
 
-      if (data.ok) {
+        <hr class="divider" />
 
-        // توجيه لصفحة شكر
 
-        window.location.href = '/thanks.html';
 
-      } else {
+        <h3 class="h3">Request Onboarding</h3>
 
-        throw new Error(data.message || 'Unknown error');
+        <p class="muted">Interested in partnering with PorchMe? Complete the form below to join our builder network.</p>
+
+
+
+        <form id="builderForm" class="form form--grid" enctype="multipart/form-data">
+
+          <div class="form__item">
+
+            <label class="form__label">Full Name <span class="req">*</span></label>
+
+            <input class="form__control" name="full_name" required />
+
+          </div>
+
+          <div class="form__item">
+
+            <label class="form__label">Company (optional)</label>
+
+            <input class="form__control" name="company" />
+
+          </div>
+
+
+
+          <div class="form__item">
+
+            <label class="form__label">Email <span class="req">*</span></label>
+
+            <input class="form__control" type="email" name="email" required />
+
+          </div>
+
+          <div class="form__item">
+
+            <label class="form__label">Phone <span class="req">*</span></label>
+
+            <input class="form__control" type="tel" name="phone" required placeholder="(502) 123-4567" />
+
+          </div>
+
+
+
+          <div class="form__item">
+
+            <label class="form__label">Work Area (City) <span class="req">*</span></label>
+
+            <input class="form__control" name="city" required />
+
+          </div>
+
+          <div class="form__item">
+
+            <label class="form__label">ZIP Code <span class="req">*</span></label>
+
+            <input class="form__control" name="zip" required />
+
+          </div>
+
+
+
+          <div class="form__item">
+
+            <label class="form__label">Years of Experience <span class="req">*</span></label>
+
+            <input class="form__control" name="years" required placeholder="e.g., 8" />
+
+          </div>
+
+          <div class="form__item">
+
+            <label class="form__label">License / Insurance (PDF/JPG/PNG) – optional</label>
+
+            <input class="form__control form__control--file" name="credentials" type="file" multiple accept=".pdf,.jpg,.jpeg,.png" />
+
+          </div>
+
+
+
+          <div class="form__item form__item--span">
+
+            <label class="form__label">Notes (optional)</label>
+
+            <textarea class="form__control" name="notes" placeholder="Tell us about specialties, crew size, coverage area..."></textarea>
+
+          </div>
+
+
+
+          <div class="form__item form__item--span check">
+
+            <input type="checkbox" id="agree" name="agree" required />
+
+            <label for="agree">I confirm I’m a licensed/insured contractor and agree to be contacted by PorchMe.</label>
+
+          </div>
+
+
+
+          <div class="form__item form__item--span actions btn-row">
+
+            <button id="submitBtn" class="btn btn-gold" type="submit">Request Onboarding</button>
+
+            <button class="btn btn-quiet" type="reset">Clear</button>
+
+          </div>
+
+
+
+          <div id="status" class="status"></div>
+
+        </form>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+
+  <footer class="footer">
+
+    <div class="wrap">
+
+      <div class="fbrand">
+
+        <img src="image/porchme_logo_silver.png" alt="PorchMe logo" />
+
+        <span>PorchMe</span>
+
+      </div>
+
+      <div class="copy">© 2025 PorchMe. All rights reserved.</div>
+
+    </div>
+
+  </footer>
+
+
+
+  <script>
+
+    const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxTsz0NbMynVVojb2izAMZhSX9kKhabh1hzJjxzcQbtsS9PL16FtscA61_Nu3Bi0lqb/exec';
+
+
+
+    const formEl = document.getElementById('builderForm');
+
+    const statusEl = document.getElementById('status');
+
+    const submitBtn = document.getElementById('submitBtn');
+
+
+
+    formEl.addEventListener('submit', async (e) => {
+
+      e.preventDefault();
+
+      statusEl.textContent = '';
+
+      submitBtn.disabled = true;
+
+      submitBtn.textContent = 'Submitting...';
+
+
+
+      try {
+
+        const fd = new FormData(formEl);
+
+        const res = await fetch(SCRIPT_URL, { method: 'POST', body: fd });
+
+        const data = await res.json();
+
+
+
+        if (data.ok) {
+
+          window.location.href = '/thanks.html';
+
+        } else {
+
+          throw new Error(data.message || 'Submission failed.');
+
+        }
+
+      } catch (err) {
+
+        statusEl.classList.add('error');
+
+        statusEl.textContent = '❌ Submission failed. Please try again.';
+
+        console.error(err);
+
+        submitBtn.disabled = false;
+
+        submitBtn.textContent = 'Request Onboarding';
 
       }
 
-    } catch (err) {
+    });
 
-      statusEl.classList.add('error');
+  </script>
 
-      statusEl.textContent = '❌ Submission failed. Please try again later.';
+</body>
 
-      console.error(err);
-
-      submitBtn.disabled = false; submitBtn.textContent = 'Request Onboarding';
-
-    }
-
-  });
-
-</script>
+</html>
