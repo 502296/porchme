@@ -80,7 +80,19 @@
 
 
 
-        <form id="builderForm" class="form form--grid" enctype="multipart/form-data">
+        <!-- IMPORTANT: action + method + enctype موجودة -->
+
+        <form id="builderForm"
+
+              class="form form--grid"
+
+              action="https://script.google.com/macros/s/AKfycbxLv7HbgL8RV2DwFlgsvJ8CRVQS06P4gSqClQwr-k16yOpUJNvj2IDpGT_-euIVh1bd/exec"
+
+              method="POST"
+
+              enctype="multipart/form-data">
+
+
 
           <!-- honeypot -->
 
@@ -92,7 +104,7 @@
 
             <label class="form__label">Full Name <span class="req">*</span></label>
 
-            <input class="form__control" name="full_name" required placeholder="Your name" />
+            <input class="form__control" name="fullName" required placeholder="Your name" />
 
           </div>
 
@@ -132,7 +144,7 @@
 
             <label class="form__label">Work Area (City) <span class="req">*</span></label>
 
-            <input class="form__control" name="city" required placeholder="Louisville" />
+            <input class="form__control" name="workArea" required placeholder="Louisville" />
 
           </div>
 
@@ -152,7 +164,7 @@
 
             <label class="form__label">Years of Experience <span class="req">*</span></label>
 
-            <input class="form__control" name="years" required placeholder="e.g., 8" />
+            <input class="form__control" name="yearsExperience" required placeholder="e.g., 8" />
 
           </div>
 
@@ -162,7 +174,9 @@
 
             <label class="form__label">License / Insurance (PDF/JPG/PNG) – optional</label>
 
-            <input class="form__control form__control--file" name="credentials" type="file" multiple accept=".pdf,.jpg,.jpeg,.png" />
+            <!-- name يجب أن يكون 'license' ليُحفظ في Drive -->
+
+            <input class="form__control form__control--file" name="license" type="file" multiple accept=".pdf,.jpg,.jpeg,.png" />
 
           </div>
 
@@ -234,9 +248,9 @@
 
   <script>
 
-    // Web App URL من Google Apps Script
+    // نفس الرابط في action لا مشكلة؛ نستخدمه هنا أيضًا مع fetch
 
-    const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxTsz0NbMynVVojb2izAMZhSX9kKhabh1hzJjxzcQbtsS9PL16FtscA61_Nu3Bi0lqb/exec';
+    const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxLv7HbgL8RV2DwFlgsvJ8CRVQS06P4gSqClQwr-k16yOpUJNvj2IDpGT_-euIVh1bd/exec';
 
 
 
@@ -250,7 +264,7 @@
 
 
 
-    // (اختياري) لا تُمكّن الإرسال إلا بعد الموافقة
+    // اختياري: منع الإرسال قبل الموافقة
 
     submitBtn.disabled = true;
 
@@ -259,6 +273,8 @@
 
 
     formEl.addEventListener('submit', async (e) => {
+
+      // سنحاول الإرسال عبر fetch أولاً (AJAX)
 
       e.preventDefault();
 
@@ -274,37 +290,49 @@
 
       try {
 
-        const fd = new FormData(formEl);
+        const fd  = new FormData(formEl);
 
         const res = await fetch(SCRIPT_URL, { method: 'POST', body: fd });
 
 
 
-        // نقرأ كنص ثم نحاول تحويله إلى JSON (لرصد أخطاء السيرفر)
-
         const text = await res.text();
 
         let data = {};
 
-        try { data = JSON.parse(text); }
-
-        catch (_) { throw new Error('Non-JSON response from server: ' + text.slice(0, 300)); }
+        try { data = JSON.parse(text); } catch (_) { /* ignore */ }
 
 
 
-        if (res.ok && data.ok) {
+        // ✅ يتوافق مع Code.gs: { result: 'success' }
 
-          window.location.href = '/thanks.html';
+        if (res.ok && data.result === 'success') {
+
+          // إعادة التعيين أو تحويل لصفحة شكر
+
+          formEl.reset();
+
+          agree.checked = false;
+
+          submitBtn.disabled = true;
+
+          submitBtn.textContent = 'Request Onboarding';
+
+          statusEl.style.color = '#8ef5a7';
+
+          statusEl.textContent = '✅ Submitted successfully. We will contact you soon.';
 
           return;
 
         }
 
-        throw new Error(data.message || 'Server returned an error.');
+
+
+        throw new Error((data && data.message) ? data.message : ('Server error: ' + text.slice(0, 200)));
 
       } catch (err) {
 
-        // ✅ نعرض الخطأ الحقيقي هنا
+        // عرض الخطأ للمستخدم
 
         statusEl.classList.add('error');
 
@@ -314,9 +342,15 @@
 
         console.error('[Submission error]', err);
 
+
+
+        // فallback: لو فشل fetch بسبب CORS/نت، أرسل بالطريقة التقليدية
+
         submitBtn.disabled = false;
 
         submitBtn.textContent = 'Request Onboarding';
+
+        formEl.submit(); // يرسل عبر action مباشرة
 
       }
 
