@@ -86,7 +86,7 @@
 
               class="form form--grid"
 
-              action="https://script.google.com/macros/s/AKfycbxLv7HbgL8RV2DwFlgsvJ8CRVQS06P4gSqClQwr-k16yOpUJNvj2IDpGT_-euIVh1bd/exec"
+              action="https://script.google.com/macros/s/AKfycbxNMLeHe9RMs7ApY4hS9NtSfT25EtNealDQ7Vxc5eCe2tgy3CWxIaOozzecYfO8GyTU/exec"
 
               method="POST"
 
@@ -256,7 +256,7 @@
 
 
 
-    // Disable submit until agreement
+    // Disable submit until checkbox is checked
 
     submitBtn.disabled = true;
 
@@ -310,6 +310,8 @@
 
         }
 
+
+
         throw new Error(data.message || 'Server error: ' + text.slice(0, 200));
 
       } catch (err) {
@@ -325,10 +327,6 @@
         submitBtn.disabled = false;
 
         submitBtn.textContent = 'Request Onboarding';
-
-        // fallback: submit directly if JS fails
-
-        formEl.submit();
 
       }
 
