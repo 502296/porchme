@@ -80,19 +80,9 @@
 
 
 
-        <!-- FORM -->
+        <!-- FORM (JSON POST) -->
 
-        <form id="builderForm"
-
-              class="form form--grid"
-
-              action="https://script.google.com/macros/s/AKfycbxNMLeHe9RMs7ApY4hS9NtSfT25EtNealDQ7Vxc5eCe2tgy3CWxIaOozzecYfO8GyTU/exec"
-
-              method="POST"
-
-              enctype="multipart/form-data">
-
-
+        <form id="builder-form" class="form form--grid" autocomplete="on" novalidate>
 
           <!-- Honeypot -->
 
@@ -144,7 +134,17 @@
 
             <label class="form__label">Work Area (City) <span class="req">*</span></label>
 
-            <input class="form__control" name="workArea" required placeholder="Louisville" />
+            <input class="form__control" name="city" required placeholder="Louisville" />
+
+          </div>
+
+
+
+          <div class="form__item">
+
+            <label class="form__label">State (e.g., KY) <span class="req">*</span></label>
+
+            <input class="form__control" name="state" required placeholder="KY" />
 
           </div>
 
@@ -164,7 +164,7 @@
 
             <label class="form__label">Years of Experience <span class="req">*</span></label>
 
-            <input class="form__control" name="yearsExperience" required placeholder="e.g., 8" />
+            <input class="form__control" name="years" required placeholder="e.g., 8" />
 
           </div>
 
@@ -175,6 +175,8 @@
             <label class="form__label">License / Insurance (PDF/JPG/PNG) – optional</label>
 
             <input class="form__control form__control--file" name="license" type="file" multiple accept=".pdf,.jpg,.jpeg,.png" />
+
+            <small class="muted">Files are not uploaded in this version; we’ll enable uploads next.</small>
 
           </div>
 
@@ -192,7 +194,7 @@
 
           <label class="check form__item--span">
 
-            <input type="checkbox" id="agree" name="agree" required />
+            <input type="checkbox" id="licensed" name="licensed" required />
 
             <span>I confirm I’m a licensed/insured contractor and agree to be contacted by PorchMe.</span>
 
@@ -202,7 +204,7 @@
 
           <div class="actions form__item--span">
 
-            <button id="submitBtn" class="btn btn-gold" type="submit">Request Onboarding</button>
+            <button id="submitBtn" class="btn btn-gold" type="submit" disabled>Request Onboarding</button>
 
             <button class="btn btn-quiet" type="reset">Clear</button>
 
@@ -210,7 +212,7 @@
 
 
 
-          <p id="status" class="status muted"></p>
+          <p id="builder-success" class="status muted hidden"></p>
 
         </form>
 
@@ -246,91 +248,31 @@
 
   <script>
 
-    const formEl    = document.getElementById('builderForm');
+    // === CONFIG ===
 
-    const statusEl  = document.getElementById('status');
-
-    const submitBtn = document.getElementById('submitBtn');
-
-    const agree     = document.getElementById('agree');
+    const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxL9sAVFSFMwz675dd7UN1w3IlzxWaE71oWsbe8WLjmrvv_5zaOEBk1JDe-5rW-NPI/exec';
 
 
 
-    // Disable submit until checkbox is checked
+    // Elements
 
-    submitBtn.disabled = true;
+    const formEl     = document.getElementById('builder-form');
 
-    agree.addEventListener('change', () => submitBtn.disabled = !agree.checked);
+    const statusEl   = document.getElementById('builder-success');
 
+    const submitBtn  = document.getElementById('submitBtn');
 
-
-    formEl.addEventListener('submit', async (e) => {
-
-      e.preventDefault();
-
-      statusEl.classList.remove('error');
-
-      statusEl.textContent = '';
-
-      submitBtn.disabled = true;
-
-      submitBtn.textContent = 'Submitting...';
+    const licensedCb = document.getElementById('licensed');
 
 
 
-      try {
+    // Toggle submit by license checkbox
 
-        const fd  = new FormData(formEl);
+    const setSubmitEnabled = () => (submitBtn.disabled = !licensedCb.checked);
 
-        const res = await fetch(formEl.action, { method: 'POST', body: fd });
+    setSubmitEnabled();
 
-        const text = await res.text();
-
-        let data = {};
-
-        try { data = JSON.parse(text); } catch (_) {}
-
-
-
-        if (res.ok && data.result === 'success') {
-
-          formEl.reset();
-
-          agree.checked = false;
-
-          submitBtn.disabled = true;
-
-          submitBtn.textContent = 'Request Onboarding';
-
-          statusEl.style.color = '#8ef5a7';
-
-          statusEl.textContent = '✅ Submitted successfully. We will contact you soon.';
-
-          return;
-
-        }
-
-
-
-        throw new Error(data.message || 'Server error: ' + text.slice(0, 200));
-
-      } catch (err) {
-
-        statusEl.classList.add('error');
-
-        statusEl.style.color = '#ff8a8a';
-
-        statusEl.textContent = '❌ ' + (err.message || String(err));
-
-        console.error('[Submission error]', err);
-
-        submitBtn.disabled = false;
-
-        submitBtn.textContent = 'Request Onboarding';
-
-      }
-
-    });
+    licensedCb.addEventListener('change', setSubmitEnabled);
 
 
 
@@ -341,6 +283,124 @@
     const links  = document.querySelector('.nav-links');
 
     if (toggle && links) toggle.addEventListener('click', () => links.classList.toggle('open'));
+
+
+
+    // Utility: show status
+
+    function showStatus(ok, msg) {
+
+      statusEl.classList.remove('hidden');
+
+      statusEl.style.color = ok ? '#8ef5a7' : '#ff8a8a';
+
+      statusEl.textContent = (ok ? '✅ ' : '❌ ') + msg;
+
+    }
+
+
+
+    // Submit handler (JSON POST)
+
+    formEl.addEventListener('submit', async (e) => {
+
+      e.preventDefault();
+
+      showStatus(true, 'Submitting...');
+
+      submitBtn.disabled = true;
+
+      submitBtn.textContent = 'Submitting...';
+
+
+
+      // Honeypot
+
+      const trap = formEl.querySelector('[name="company_url"]');
+
+      if (trap && trap.value) { showStatus(false, 'Blocked (spam)'); return; }
+
+
+
+      // Collect data
+
+      const data = {
+
+        fullName: formEl.fullName.value.trim(),
+
+        company:  formEl.company.value.trim(),
+
+        email:    formEl.email.value.trim(),
+
+        phone:    formEl.phone.value.trim(),
+
+        city:     formEl.city.value.trim(),
+
+        state:    formEl.state.value.trim(),
+
+        zip:      formEl.zip.value.trim(),
+
+        years:    formEl.years.value.trim(),
+
+        notes:    formEl.notes.value.trim(),
+
+        licensed: licensedCb.checked === true
+
+      };
+
+
+
+      try {
+
+        const res  = await fetch(SCRIPT_URL, {
+
+          method: 'POST',
+
+          headers: { 'Content-Type': 'application/json' },
+
+          body: JSON.stringify(data)
+
+        });
+
+
+
+        const json = await res.json().catch(() => ({}));
+
+
+
+        if (res.ok && (json.ok === true || json.result === 'success')) {
+
+          formEl.reset();
+
+          licensedCb.checked = false;
+
+          setSubmitEnabled();
+
+          submitBtn.textContent = 'Request Onboarding';
+
+          showStatus(true, 'Submitted successfully. We will contact you soon.');
+
+        } else {
+
+          const reason = json.error || json.message || ('Server error ' + res.status);
+
+          throw new Error(reason);
+
+        }
+
+      } catch (err) {
+
+        console.error('[Submission error]', err);
+
+        showStatus(false, err.message || String(err));
+
+        submitBtn.disabled = false;
+
+        submitBtn.textContent = 'Request Onboarding';
+
+      }
+
+    });
 
   </script>
 
