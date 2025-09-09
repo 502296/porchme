@@ -80,7 +80,7 @@
 
 
 
-        <!-- IMPORTANT: action + method + enctype موجودة -->
+        <!-- FORM -->
 
         <form id="builderForm"
 
@@ -94,7 +94,7 @@
 
 
 
-          <!-- honeypot -->
+          <!-- Honeypot -->
 
           <input type="text" name="company_url" autocomplete="off" tabindex="-1" class="honeypot" />
 
@@ -174,8 +174,6 @@
 
             <label class="form__label">License / Insurance (PDF/JPG/PNG) – optional</label>
 
-            <!-- name يجب أن يكون 'license' ليُحفظ في Drive -->
-
             <input class="form__control form__control--file" name="license" type="file" multiple accept=".pdf,.jpg,.jpeg,.png" />
 
           </div>
@@ -248,12 +246,6 @@
 
   <script>
 
-    // نفس الرابط في action لا مشكلة؛ نستخدمه هنا أيضًا مع fetch
-
-    const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxLv7HbgL8RV2DwFlgsvJ8CRVQS06P4gSqClQwr-k16yOpUJNvj2IDpGT_-euIVh1bd/exec';
-
-
-
     const formEl    = document.getElementById('builderForm');
 
     const statusEl  = document.getElementById('status');
@@ -264,7 +256,7 @@
 
 
 
-    // اختياري: منع الإرسال قبل الموافقة
+    // Disable submit until agreement
 
     submitBtn.disabled = true;
 
@@ -273,8 +265,6 @@
 
 
     formEl.addEventListener('submit', async (e) => {
-
-      // سنحاول الإرسال عبر fetch أولاً (AJAX)
 
       e.preventDefault();
 
@@ -292,23 +282,17 @@
 
         const fd  = new FormData(formEl);
 
-        const res = await fetch(SCRIPT_URL, { method: 'POST', body: fd });
-
-
+        const res = await fetch(formEl.action, { method: 'POST', body: fd });
 
         const text = await res.text();
 
         let data = {};
 
-        try { data = JSON.parse(text); } catch (_) { /* ignore */ }
+        try { data = JSON.parse(text); } catch (_) {}
 
 
-
-        // ✅ يتوافق مع Code.gs: { result: 'success' }
 
         if (res.ok && data.result === 'success') {
-
-          // إعادة التعيين أو تحويل لصفحة شكر
 
           formEl.reset();
 
@@ -326,13 +310,9 @@
 
         }
 
-
-
-        throw new Error((data && data.message) ? data.message : ('Server error: ' + text.slice(0, 200)));
+        throw new Error(data.message || 'Server error: ' + text.slice(0, 200));
 
       } catch (err) {
-
-        // عرض الخطأ للمستخدم
 
         statusEl.classList.add('error');
 
@@ -342,15 +322,13 @@
 
         console.error('[Submission error]', err);
 
-
-
-        // فallback: لو فشل fetch بسبب CORS/نت، أرسل بالطريقة التقليدية
-
         submitBtn.disabled = false;
 
         submitBtn.textContent = 'Request Onboarding';
 
-        formEl.submit(); // يرسل عبر action مباشرة
+        // fallback: submit directly if JS fails
+
+        formEl.submit();
 
       }
 
@@ -358,7 +336,7 @@
 
 
 
-    // قائمة الموبايل
+    // Mobile menu toggle
 
     const toggle = document.querySelector('.nav-toggle');
 
