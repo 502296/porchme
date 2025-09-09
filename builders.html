@@ -56,35 +56,9 @@
 
         <h2>Builder Portal</h2>
 
-        <p class="muted">Materials for licensed builders partnering with PorchMe.</p>
-
-
-
-        <div class="btn-row" style="margin-top:12px">
-
-          <a class="btn btn-outline" href="files/Builder_Guide.pdf" target="_blank" rel="noopener">Download Builder Guide (PDF)</a>
-
-          <a class="btn btn-outline" href="files/Standard_Specs.pdf" target="_blank" rel="noopener">Standard Specs (PDF)</a>
-
-        </div>
-
-
-
-        <hr class="divider" />
-
-
-
-        <h3 class="h3">Request Onboarding</h3>
-
-        <p class="muted">Interested in partnering with PorchMe? Complete the form below to join our builder network.</p>
-
-
-
-        <!-- FORM (JSON POST) -->
+        <p class="muted">Complete the form to join our builder network.</p>
 
         <form id="builder-form" class="form form--grid" autocomplete="on" novalidate>
-
-          <!-- Honeypot -->
 
           <input type="text" name="company_url" autocomplete="off" tabindex="-1" class="honeypot" />
 
@@ -94,7 +68,7 @@
 
             <label class="form__label">Full Name <span class="req">*</span></label>
 
-            <input class="form__control" name="fullName" required placeholder="Your name" />
+            <input class="form__control" name="fullName" required />
 
           </div>
 
@@ -102,9 +76,9 @@
 
           <div class="form__item">
 
-            <label class="form__label">Company (optional)</label>
+            <label class="form__label">Company</label>
 
-            <input class="form__control" name="company" placeholder="Company name" />
+            <input class="form__control" name="company" />
 
           </div>
 
@@ -114,7 +88,7 @@
 
             <label class="form__label">Email <span class="req">*</span></label>
 
-            <input class="form__control" type="email" name="email" required placeholder="you@example.com" />
+            <input class="form__control" type="email" name="email" required />
 
           </div>
 
@@ -124,7 +98,7 @@
 
             <label class="form__label">Phone <span class="req">*</span></label>
 
-            <input class="form__control" type="tel" name="phone" required placeholder="(502) 123-4567" />
+            <input class="form__control" type="tel" name="phone" required />
 
           </div>
 
@@ -132,19 +106,9 @@
 
           <div class="form__item">
 
-            <label class="form__label">Work Area (City) <span class="req">*</span></label>
+            <label class="form__label">City</label>
 
-            <input class="form__control" name="city" required placeholder="Louisville" />
-
-          </div>
-
-
-
-          <div class="form__item">
-
-            <label class="form__label">State (e.g., KY) <span class="req">*</span></label>
-
-            <input class="form__control" name="state" required placeholder="KY" />
+            <input class="form__control" name="city" />
 
           </div>
 
@@ -152,19 +116,9 @@
 
           <div class="form__item">
 
-            <label class="form__label">ZIP Code <span class="req">*</span></label>
+            <label class="form__label">State</label>
 
-            <input class="form__control" name="zip" required placeholder="40218" />
-
-          </div>
-
-
-
-          <div class="form__item">
-
-            <label class="form__label">Years of Experience <span class="req">*</span></label>
-
-            <input class="form__control" name="years" required placeholder="e.g., 8" />
+            <input class="form__control" name="state" />
 
           </div>
 
@@ -172,11 +126,19 @@
 
           <div class="form__item">
 
-            <label class="form__label">License / Insurance (PDF/JPG/PNG) – optional</label>
+            <label class="form__label">ZIP Code</label>
 
-            <input class="form__control form__control--file" name="license" type="file" multiple accept=".pdf,.jpg,.jpeg,.png" />
+            <input class="form__control" name="zip" />
 
-            <small class="muted">Files are not uploaded in this version; we’ll enable uploads next.</small>
+          </div>
+
+
+
+          <div class="form__item">
+
+            <label class="form__label">Years of Experience</label>
+
+            <input class="form__control" name="years" />
 
           </div>
 
@@ -184,9 +146,9 @@
 
           <div class="form__item form__item--span">
 
-            <label class="form__label">Notes (optional)</label>
+            <label class="form__label">Notes</label>
 
-            <textarea class="form__control" name="notes" rows="4" placeholder="Tell us about specialties, crew size, coverage area…"></textarea>
+            <textarea class="form__control" name="notes" rows="3"></textarea>
 
           </div>
 
@@ -196,7 +158,7 @@
 
             <input type="checkbox" id="licensed" name="licensed" required />
 
-            <span>I confirm I’m a licensed/insured contractor and agree to be contacted by PorchMe.</span>
+            <span>I confirm I’m a licensed/insured contractor.</span>
 
           </label>
 
@@ -244,49 +206,27 @@
 
 
 
-  <!-- ===== JS ===== -->
-
   <script>
-
-    // === CONFIG ===
 
     const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxL9sAVFSFMwz675dd7UN1w3IlzxWaE71oWsbe8WLjmrvv_5zaOEBk1JDe-5rW-NPI/exec';
 
 
 
-    // Elements
+    const formEl = document.getElementById('builder-form');
 
-    const formEl     = document.getElementById('builder-form');
+    const statusEl = document.getElementById('builder-success');
 
-    const statusEl   = document.getElementById('builder-success');
-
-    const submitBtn  = document.getElementById('submitBtn');
+    const submitBtn = document.getElementById('submitBtn');
 
     const licensedCb = document.getElementById('licensed');
 
 
 
-    // Toggle submit by license checkbox
+    // Enable submit only if checked
 
-    const setSubmitEnabled = () => (submitBtn.disabled = !licensedCb.checked);
-
-    setSubmitEnabled();
-
-    licensedCb.addEventListener('change', setSubmitEnabled);
+    licensedCb.addEventListener('change', () => submitBtn.disabled = !licensedCb.checked);
 
 
-
-    // Mobile menu toggle
-
-    const toggle = document.querySelector('.nav-toggle');
-
-    const links  = document.querySelector('.nav-links');
-
-    if (toggle && links) toggle.addEventListener('click', () => links.classList.toggle('open'));
-
-
-
-    // Utility: show status
 
     function showStatus(ok, msg) {
 
@@ -300,8 +240,6 @@
 
 
 
-    // Submit handler (JSON POST)
-
     formEl.addEventListener('submit', async (e) => {
 
       e.preventDefault();
@@ -314,37 +252,33 @@
 
 
 
-      // Honeypot
-
       const trap = formEl.querySelector('[name="company_url"]');
 
-      if (trap && trap.value) { showStatus(false, 'Blocked (spam)'); return; }
+      if (trap && trap.value) { showStatus(false, 'Spam blocked'); return; }
 
 
-
-      // Collect data
 
       const data = {
 
         fullName: formEl.fullName.value.trim(),
 
-        company:  formEl.company.value.trim(),
+        company: formEl.company.value.trim(),
 
-        email:    formEl.email.value.trim(),
+        email: formEl.email.value.trim(),
 
-        phone:    formEl.phone.value.trim(),
+        phone: formEl.phone.value.trim(),
 
-        city:     formEl.city.value.trim(),
+        city: formEl.city.value.trim(),
 
-        state:    formEl.state.value.trim(),
+        state: formEl.state.value.trim(),
 
-        zip:      formEl.zip.value.trim(),
+        zip: formEl.zip.value.trim(),
 
-        years:    formEl.years.value.trim(),
+        years: formEl.years.value.trim(),
 
-        notes:    formEl.notes.value.trim(),
+        notes: formEl.notes.value.trim(),
 
-        licensed: licensedCb.checked === true
+        licensed: licensedCb.checked
 
       };
 
@@ -352,7 +286,7 @@
 
       try {
 
-        const res  = await fetch(SCRIPT_URL, {
+        const res = await fetch(SCRIPT_URL, {
 
           method: 'POST',
 
@@ -362,19 +296,15 @@
 
         });
 
+        const json = await res.json().catch(()=>({}));
 
-
-        const json = await res.json().catch(() => ({}));
-
-
-
-        if (res.ok && (json.ok === true || json.result === 'success')) {
+        if (res.ok && (json.ok || json.result === 'success')) {
 
           formEl.reset();
 
           licensedCb.checked = false;
 
-          setSubmitEnabled();
+          submitBtn.disabled = true;
 
           submitBtn.textContent = 'Request Onboarding';
 
@@ -382,17 +312,15 @@
 
         } else {
 
-          const reason = json.error || json.message || ('Server error ' + res.status);
-
-          throw new Error(reason);
+          throw new Error(json.error || 'Server error');
 
         }
 
       } catch (err) {
 
-        console.error('[Submission error]', err);
+        console.error(err);
 
-        showStatus(false, err.message || String(err));
+        showStatus(false, err.message || 'Error');
 
         submitBtn.disabled = false;
 
