@@ -58,7 +58,11 @@
 
         <p class="muted">Complete the form to join our builder network.</p>
 
-        <form id="builder-form" class="form form--grid" autocomplete="on" novalidate>
+
+
+        <form id="builder-form" class="form form--grid" method="POST" enctype="multipart/form-data" novalidate>
+
+          <!-- Honeypot -->
 
           <input type="text" name="company_url" autocomplete="off" tabindex="-1" class="honeypot" />
 
@@ -76,7 +80,7 @@
 
           <div class="form__item">
 
-            <label class="form__label">Company</label>
+            <label class="form__label">Company (optional)</label>
 
             <input class="form__control" name="company" />
 
@@ -144,9 +148,21 @@
 
 
 
+          <div class="form__item">
+
+            <label class="form__label">License / Insurance (optional)</label>
+
+            <input class="form__control form__control--file" name="license" type="file" multiple accept=".pdf,.jpg,.jpeg,.png" />
+
+            <small class="muted">File upload can be enabled later; sending works even without files.</small>
+
+          </div>
+
+
+
           <div class="form__item form__item--span">
 
-            <label class="form__label">Notes</label>
+            <label class="form__label">Notes (optional)</label>
 
             <textarea class="form__control" name="notes" rows="3"></textarea>
 
@@ -158,7 +174,7 @@
 
             <input type="checkbox" id="licensed" name="licensed" required />
 
-            <span>I confirm I’m a licensed/insured contractor.</span>
+            <span>I confirm I’m a licensed/insured contractor and agree to be contacted by PorchMe.</span>
 
           </label>
 
@@ -208,27 +224,35 @@
 
   <script>
 
+    // رابط الويب-آب الذي أعطيتني إيّاه
+
     const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxL9sAVFSFMwz675dd7UN1w3IlzxWaE71oWsbe8WLjmrvv_5zaOEBk1JDe-5rW-NPI/exec';
 
 
 
-    const formEl = document.getElementById('builder-form');
+    const formEl     = document.getElementById('builder-form');
 
-    const statusEl = document.getElementById('builder-success');
+    const statusEl   = document.getElementById('builder-success');
 
-    const submitBtn = document.getElementById('submitBtn');
+    const submitBtn  = document.getElementById('submitBtn');
 
     const licensedCb = document.getElementById('licensed');
 
 
 
-    // Enable submit only if checked
+    // فعّل الزر فقط عند التأشير
 
-    licensedCb.addEventListener('change', () => submitBtn.disabled = !licensedCb.checked);
+    const syncSubmit = () => submitBtn.disabled = !licensedCb.checked;
+
+    syncSubmit();
+
+    licensedCb.addEventListener('change', syncSubmit);
 
 
 
-    function showStatus(ok, msg) {
+    // رسالة الحالة
+
+    function showStatus(ok, msg){
 
       statusEl.classList.remove('hidden');
 
@@ -240,9 +264,21 @@
 
 
 
+    // إرسال FormData بدون ترويسات (يتجاوز CORS/preflight)
+
     formEl.addEventListener('submit', async (e) => {
 
       e.preventDefault();
+
+
+
+      // honeypot
+
+      const trap = formEl.querySelector('[name="company_url"]');
+
+      if (trap && trap.value) { showStatus(false, 'Blocked (spam)'); return; }
+
+
 
       showStatus(true, 'Submitting...');
 
@@ -252,59 +288,21 @@
 
 
 
-      const trap = formEl.querySelector('[name="company_url"]');
-
-      if (trap && trap.value) { showStatus(false, 'Spam blocked'); return; }
-
-
-
-      const data = {
-
-        fullName: formEl.fullName.value.trim(),
-
-        company: formEl.company.value.trim(),
-
-        email: formEl.email.value.trim(),
-
-        phone: formEl.phone.value.trim(),
-
-        city: formEl.city.value.trim(),
-
-        state: formEl.state.value.trim(),
-
-        zip: formEl.zip.value.trim(),
-
-        years: formEl.years.value.trim(),
-
-        notes: formEl.notes.value.trim(),
-
-        licensed: licensedCb.checked
-
-      };
-
-
-
       try {
 
-        const res = await fetch(SCRIPT_URL, {
+        const fd = new FormData(formEl);
 
-          method: 'POST',
+        const res = await fetch(SCRIPT_URL, { method: 'POST', body: fd }); // لا تضع Content-Type
 
-          headers: { 'Content-Type': 'application/json' },
+        // في بعض إعدادات GAS لا يرجع JSON؛ نعتبر نجاح أي 200-299
 
-          body: JSON.stringify(data)
-
-        });
-
-        const json = await res.json().catch(()=>({}));
-
-        if (res.ok && (json.ok || json.result === 'success')) {
+        if (res.ok) {
 
           formEl.reset();
 
           licensedCb.checked = false;
 
-          submitBtn.disabled = true;
+          syncSubmit();
 
           submitBtn.textContent = 'Request Onboarding';
 
@@ -312,7 +310,9 @@
 
         } else {
 
-          throw new Error(json.error || 'Server error');
+          const txt = await res.text();
+
+          throw new Error('Server error ' + res.status + ': ' + txt.slice(0,120));
 
         }
 
@@ -320,7 +320,7 @@
 
         console.error(err);
 
-        showStatus(false, err.message || 'Error');
+        showStatus(false, err.message || 'Failed to send');
 
         submitBtn.disabled = false;
 
@@ -329,6 +329,16 @@
       }
 
     });
+
+
+
+    // قائمة الموبايل
+
+    const toggle = document.querySelector('.nav-toggle');
+
+    const links  = document.querySelector('.nav-links');
+
+    if (toggle && links) toggle.addEventListener('click', () => links.classList.toggle('open'));
 
   </script>
 
